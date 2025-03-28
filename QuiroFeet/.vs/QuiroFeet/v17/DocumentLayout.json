@@ -1,0 +1,267 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C42841E0-560A-4D60-B038-295035283B2D}|QuiroFeet\\QuiroFeet.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\quirofeet\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C42841E0-560A-4D60-B038-295035283B2D}|QuiroFeet\\QuiroFeet.csproj|solutionrelative:quirofeet\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C42841E0-560A-4D60-B038-295035283B2D}|QuiroFeet\\QuiroFeet.csproj|c:\\users\\frander\\documents\\universidad\\cuatrimestre vi\\requerimientos\\quirofeet\\quirofeet\\views\\citas\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C42841E0-560A-4D60-B038-295035283B2D}|QuiroFeet\\QuiroFeet.csproj|solutionrelative:quirofeet\\views\\citas\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C42841E0-560A-4D60-B038-295035283B2D}|QuiroFeet\\QuiroFeet.csproj|c:\\users\\frander\\documents\\universidad\\cuatrimestre vi\\requerimientos\\quirofeet\\quirofeet\\views\\citas\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C42841E0-560A-4D60-B038-295035283B2D}|QuiroFeet\\QuiroFeet.csproj|solutionrelative:quirofeet\\views\\citas\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C42841E0-560A-4D60-B038-295035283B2D}|QuiroFeet\\QuiroFeet.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\quirofeet\\controllers\\recepcionistascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C42841E0-560A-4D60-B038-295035283B2D}|QuiroFeet\\QuiroFeet.csproj|solutionrelative:quirofeet\\controllers\\recepcionistascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB1EA459-9C11-48D3-A304-5509A94896AB}|QuiroFeet.Data\\QuiroFeet.Data.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\quirofeet.data\\quirofeet data context.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{EB1EA459-9C11-48D3-A304-5509A94896AB}|QuiroFeet.Data\\QuiroFeet.Data.csproj|solutionrelative:quirofeet.data\\quirofeet data context.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C42841E0-560A-4D60-B038-295035283B2D}|QuiroFeet\\QuiroFeet.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\quirofeet\\controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C42841E0-560A-4D60-B038-295035283B2D}|QuiroFeet\\QuiroFeet.csproj|solutionrelative:quirofeet\\controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C42841E0-560A-4D60-B038-295035283B2D}|QuiroFeet\\QuiroFeet.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\quirofeet\\controllers\\proveedorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C42841E0-560A-4D60-B038-295035283B2D}|QuiroFeet\\QuiroFeet.csproj|solutionrelative:quirofeet\\controllers\\proveedorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C42841E0-560A-4D60-B038-295035283B2D}|QuiroFeet\\QuiroFeet.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\quirofeet\\controllers\\ventascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C42841E0-560A-4D60-B038-295035283B2D}|QuiroFeet\\QuiroFeet.csproj|solutionrelative:quirofeet\\controllers\\ventascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C42841E0-560A-4D60-B038-295035283B2D}|QuiroFeet\\QuiroFeet.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\quirofeet\\controllers\\profesionalescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C42841E0-560A-4D60-B038-295035283B2D}|QuiroFeet\\QuiroFeet.csproj|solutionrelative:quirofeet\\controllers\\profesionalescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C42841E0-560A-4D60-B038-295035283B2D}|QuiroFeet\\QuiroFeet.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\quirofeet\\controllers\\citascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C42841E0-560A-4D60-B038-295035283B2D}|QuiroFeet\\QuiroFeet.csproj|solutionrelative:quirofeet\\controllers\\citascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C42841E0-560A-4D60-B038-295035283B2D}|QuiroFeet\\QuiroFeet.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\quirofeet\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C42841E0-560A-4D60-B038-295035283B2D}|QuiroFeet\\QuiroFeet.csproj|solutionrelative:quirofeet\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB1EA459-9C11-48D3-A304-5509A94896AB}|QuiroFeet.Data\\QuiroFeet.Data.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\quirofeet.data\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{EB1EA459-9C11-48D3-A304-5509A94896AB}|QuiroFeet.Data\\QuiroFeet.Data.csproj|solutionrelative:quirofeet.data\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C42841E0-560A-4D60-B038-295035283B2D}|QuiroFeet\\QuiroFeet.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\quirofeet\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{C42841E0-560A-4D60-B038-295035283B2D}|QuiroFeet\\QuiroFeet.csproj|solutionrelative:quirofeet\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB1EA459-9C11-48D3-A304-5509A94896AB}|QuiroFeet.Data\\QuiroFeet.Data.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\quirofeet.data\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{EB1EA459-9C11-48D3-A304-5509A94896AB}|QuiroFeet.Data\\QuiroFeet.Data.csproj|solutionrelative:quirofeet.data\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C42841E0-560A-4D60-B038-295035283B2D}|QuiroFeet\\QuiroFeet.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\quirofeet\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C42841E0-560A-4D60-B038-295035283B2D}|QuiroFeet\\QuiroFeet.csproj|solutionrelative:quirofeet\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 152,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet\\Views\\Citas\\Create.cshtml",
+              "RelativeDocumentMoniker": "QuiroFeet\\Views\\Citas\\Create.cshtml",
+              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet\\Views\\Citas\\Create.cshtml",
+              "RelativeToolTip": "QuiroFeet\\Views\\Citas\\Create.cshtml",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-28T00:46:08.242Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet\\Views\\Citas\\Index.cshtml",
+              "RelativeDocumentMoniker": "QuiroFeet\\Views\\Citas\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet\\Views\\Citas\\Index.cshtml",
+              "RelativeToolTip": "QuiroFeet\\Views\\Citas\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-25T02:31:10.235Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RecepcionistasController.cs",
+              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet\\Controllers\\RecepcionistasController.cs",
+              "RelativeDocumentMoniker": "QuiroFeet\\Controllers\\RecepcionistasController.cs",
+              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet\\Controllers\\RecepcionistasController.cs",
+              "RelativeToolTip": "QuiroFeet\\Controllers\\RecepcionistasController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T18:39:36.586Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "QuiroFeet Data Context.edmx [Diagram1]",
+              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet.Data\\QuiroFeet Data Context.edmx",
+              "RelativeDocumentMoniker": "QuiroFeet.Data\\QuiroFeet Data Context.edmx",
+              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet.Data\\QuiroFeet Data Context.edmx [Diagram1]",
+              "RelativeToolTip": "QuiroFeet.Data\\QuiroFeet Data Context.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2025-03-22T18:36:17.76Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "QuiroFeet\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "QuiroFeet\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-22T18:31:32.899Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "VentasController.cs",
+              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet\\Controllers\\VentasController.cs",
+              "RelativeDocumentMoniker": "QuiroFeet\\Controllers\\VentasController.cs",
+              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet\\Controllers\\VentasController.cs",
+              "RelativeToolTip": "QuiroFeet\\Controllers\\VentasController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T18:30:06.3Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ProfesionalesController.cs",
+              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet\\Controllers\\ProfesionalesController.cs",
+              "RelativeDocumentMoniker": "QuiroFeet\\Controllers\\ProfesionalesController.cs",
+              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet\\Controllers\\ProfesionalesController.cs",
+              "RelativeToolTip": "QuiroFeet\\Controllers\\ProfesionalesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T18:29:48.094Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ProveedoresController.cs",
+              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet\\Controllers\\ProveedoresController.cs",
+              "RelativeDocumentMoniker": "QuiroFeet\\Controllers\\ProveedoresController.cs",
+              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet\\Controllers\\ProveedoresController.cs",
+              "RelativeToolTip": "QuiroFeet\\Controllers\\ProveedoresController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T18:30:31.786Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CitasController.cs",
+              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet\\Controllers\\CitasController.cs",
+              "RelativeDocumentMoniker": "QuiroFeet\\Controllers\\CitasController.cs",
+              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet\\Controllers\\CitasController.cs",
+              "RelativeToolTip": "QuiroFeet\\Controllers\\CitasController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T18:21:32.333Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ProductosController.cs",
+              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet\\Controllers\\ProductosController.cs",
+              "RelativeDocumentMoniker": "QuiroFeet\\Controllers\\ProductosController.cs",
+              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet\\Controllers\\ProductosController.cs",
+              "RelativeToolTip": "QuiroFeet\\Controllers\\ProductosController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T18:31:25.504Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ClientesController.cs",
+              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet\\Controllers\\ClientesController.cs",
+              "RelativeDocumentMoniker": "QuiroFeet\\Controllers\\ClientesController.cs",
+              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet\\Controllers\\ClientesController.cs",
+              "RelativeToolTip": "QuiroFeet\\Controllers\\ClientesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T18:16:47.072Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "App.Config",
+              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet.Data\\App.Config",
+              "RelativeDocumentMoniker": "QuiroFeet.Data\\App.Config",
+              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet.Data\\App.Config",
+              "RelativeToolTip": "QuiroFeet.Data\\App.Config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-03-22T18:13:33.806Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "packages.config",
+              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet.Data\\packages.config",
+              "RelativeDocumentMoniker": "QuiroFeet.Data\\packages.config",
+              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet.Data\\packages.config",
+              "RelativeToolTip": "QuiroFeet.Data\\packages.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-03-22T18:13:31.58Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet\\Web.config",
+              "RelativeDocumentMoniker": "QuiroFeet\\Web.config",
+              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet\\Web.config",
+              "RelativeToolTip": "QuiroFeet\\Web.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-03-22T18:12:21.076Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Startup.cs",
+              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet\\Startup.cs",
+              "RelativeDocumentMoniker": "QuiroFeet\\Startup.cs",
+              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VI\\Requerimientos\\QuiroFeet\\QuiroFeet\\Startup.cs",
+              "RelativeToolTip": "QuiroFeet\\Startup.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T18:12:15.069Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
