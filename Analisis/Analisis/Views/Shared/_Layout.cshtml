@@ -1,0 +1,91 @@
+﻿@{ ViewBag.Title = "Layout"; }
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="~/Content/site.css" />
+    <title>@ViewBag.Title - QuiroFeet</title>
+</head>
+<body>
+    <div class="sidebar">
+        <h1>QuiroFeet</h1>
+        <ul>
+            <li><a href="@Url.Action("Index", "Clientes")"><i class="fas fa-user"></i> Clientes</a></li>
+            <li><a href="@Url.Action("Index", "Inventario")"><i class="fas fa-box"></i> Inventario</a></li>
+            <li><a href="@Url.Action("Receipts", "Home")"><i class="fas fa-receipt"></i> Recibos</a></li>
+            <li><a href="@Url.Action("Index", "Calendarizacion")"><i class="fas fa-calendar-alt"></i> Calendarización</a></li>
+            <li><a href="@Url.Action("Index", "Reportes")"><i class="fas fa-chart-line"></i> Reportes</a></li>
+            <li><a href="@Url.Action("Index", "Servicios")"><i class="fas fa-cogs"></i> Servicios</a></li>
+            <li><a href="@Url.Action("Index", "Proveedores")"><i class="fas fa-truck"></i> Proveedores</a></li>
+            <li><a href="@Url.Action("Users", "Home")"><i class="fas fa-users"></i> Usuarios</a></li>
+            <li><a href="@Url.Action("Sales", "Home")"><i class="fas fa-shopping-cart"></i> Ventas</a></li>
+            <li><a href="@Url.Action("Index", "Profesionales")"><i class="fas fa-briefcase"></i> Profesionales</a></li>
+            <li><a href="@Url.Action("Login", "Account")"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        @RenderBody()
+    </div>
+
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9fafb;
+        }
+
+        .sidebar {
+            width: 260px;
+            background-color: #234449;
+            color: white;
+            padding: 30px 20px;
+            min-height: 100vh;
+            overflow-y: auto;
+            box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1);
+        }
+
+            .sidebar h1 {
+                color: #93ded7;
+                font-size: 1.8em;
+                margin-bottom: 30px;
+            }
+
+            .sidebar ul {
+                list-style: none;
+                padding: 0;
+            }
+
+            .sidebar li {
+                margin: 30px 0;
+            }
+
+            .sidebar a {
+                color: white;
+                text-decoration: none;
+                font-size: 1.1em;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+
+                .sidebar a:hover {
+                    color: #3e77f8;
+                }
+
+        .content {
+            flex-grow: 1;
+            padding: 40px;
+            background-color: #ffffff;
+        }
+
+        .fas {
+            font-size: 1.4em;
+        }
+    </style>
+</body>
+</html>

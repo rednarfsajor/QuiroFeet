@@ -1,0 +1,108 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Lista de Usuarios";
+}
+
+<div class="container">
+    <h1>Usuarios Registrados</h1>
+    <p>A continuación, se muestran los usuarios existentes en el sistema.</p>
+
+    <!-- Tabla de Usuarios -->
+    <table class="user-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre Completo</th>
+                <th>Correo Electrónico</th>
+                <th>Teléfono</th>
+                <th>Rol</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Ejemplo de Datos Simulados -->
+            <tr>
+                <td>1</td>
+                <td>Francisco Soler</td>
+                <td>francisco.soler@example.com</td>
+                <td>88889999</td>
+                <td>Profesional</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Home", new { id = 1 })" class="btn-edit">Editar</a>
+                    <a href="@Url.Action("Delete", "Home", new { id = 1 })" class="btn-delete">Eliminar</a>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>María Gómez</td>
+                <td>maria.gomez@example.com</td>
+                <td>77778888</td>
+                <td>Profesional</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Home", new { id = 2 })" class="btn-edit">Editar</a>
+                    <a href="@Url.Action("Delete", "Home", new { id = 2 })" class="btn-delete">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Estilos CSS -->
+<style>
+    .container {
+        max-width: 900px;
+        margin: 50px auto;
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        color: #234449;
+    }
+
+    .user-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+        .user-table th, .user-table td {
+            border: 1px solid #ccc;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .user-table th {
+            background-color: #234449;
+            color: white;
+        }
+
+    .btn-edit {
+        background-color: #3e77f8;
+        border: none;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 8px;
+        text-decoration: none;
+        margin-right: 5px;
+    }
+
+    .btn-delete {
+        background-color: #e74c3c;
+        border: none;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 8px;
+        text-decoration: none;
+    }
+
+    .btn-edit:hover {
+        background-color: #234449;
+    }
+
+    .btn-delete:hover {
+        background-color: #c0392b;
+    }
+</style>

@@ -1,0 +1,55 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Recibo Actualizado";
+}
+
+<div class="confirmation-container">
+    <i class="fas fa-check-circle success-icon"></i>
+    <h1>¡Recibo Actualizado Exitosamente!</h1>
+    <p>Los detalles del recibo han sido actualizados correctamente.</p>
+
+    <a href="/Home/ViewReceipts" class="btn-back">Volver a la Lista de Recibos</a>
+</div>
+
+<!-- Estilos CSS -->
+<style>
+    .confirmation-container {
+        max-width: 600px;
+        margin: 100px auto;
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .success-icon {
+        font-size: 80px;
+        color: #28a745;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        color: #234449;
+        font-size: 2.5em;
+    }
+
+    p {
+        font-size: 1.2em;
+        color: #555;
+    }
+
+    .btn-back {
+        background-color: #234449;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 20px;
+    }
+
+        .btn-back:hover {
+            background-color: #3e77f8;
+        }
+</style>

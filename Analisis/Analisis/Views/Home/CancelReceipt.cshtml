@@ -1,0 +1,76 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Anular Recibo";
+}
+
+<div class="cancel-container">
+    <i class="fas fa-exclamation-triangle cancel-icon"></i>
+    <h1>Anular Recibo</h1>
+    <p>¿Está seguro de que desea anular el recibo <strong>#@ViewBag.ReceiptNumber</strong>?</p>
+    <p>Esta acción no se puede deshacer y se registrará en el historial de anulaciones.</p>
+
+    <!-- Formulario para confirmar la anulación -->
+    <form action="/Home/ConfirmCancelReceipt" method="post">
+        <input type="hidden" name="ReceiptNumber" value="@ViewBag.ReceiptNumber" />
+        <button type="submit" class="btn-cancel">Confirmar Anulación</button>
+        <a href="/Home/ViewReceipts" class="btn-back">Cancelar</a>
+    </form>
+</div>
+
+<!-- Estilos CSS -->
+<style>
+    .cancel-container {
+        max-width: 600px;
+        margin: 100px auto;
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .cancel-icon {
+        font-size: 80px;
+        color: #e74c3c;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        color: #e74c3c;
+        font-size: 2.5em;
+    }
+
+    p {
+        font-size: 1.2em;
+        color: #555;
+    }
+
+    button, a {
+        display: inline-block;
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 1em;
+        margin-top: 20px;
+        cursor: pointer;
+    }
+
+    .btn-cancel {
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+    }
+
+    .btn-back {
+        background-color: #234449;
+        color: white;
+    }
+
+    .btn-cancel:hover {
+        background-color: #c0392b;
+    }
+
+    .btn-back:hover {
+        background-color: #3e77f8;
+    }
+</style>

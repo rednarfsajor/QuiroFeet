@@ -1,0 +1,98 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Crear Usuario";
+}
+
+<div class="container">
+    <h1>Crear Usuario</h1>
+    <p>Por favor, completa el formulario para registrar un nuevo empleado.</p>
+
+    <form>
+        <!-- Nombre Completo -->
+        <div class="form-group">
+            <label for="nombre">Nombre Completo</label>
+            <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre completo" required>
+        </div>
+
+        <!-- Correo Electrónico -->
+        <div class="form-group">
+            <label for="correo">Correo Electrónico</label>
+            <input type="email" class="form-control" id="correo" placeholder="Ingrese el correo electrónico" required>
+        </div>
+
+        <!-- Teléfono -->
+        <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" class="form-control" id="telefono" placeholder="Ingrese el número de teléfono" pattern="\d{8}" title="Debe tener 8 dígitos" required>
+        </div>
+
+        <!-- Rol del Usuario -->
+        <div class="form-group">
+            <label for="rol">Rol del Usuario</label>
+            <select class="form-control" id="rol">
+                <option>Administrador</option>
+                <option>Profesional</option>
+                <option>Limpieza</option>
+                <option>Recepción</option>
+            </select>
+        </div>
+
+        <!-- Contraseña -->
+        <div class="form-group">
+            <label for="password">Contraseña</label>
+            <input type="password" class="form-control" id="password" placeholder="Ingrese la contraseña" required>
+        </div>
+
+        <!-- Confirmar Contraseña -->
+        <div class="form-group">
+            <label for="confirmPassword">Confirmar Contraseña</label>
+            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirme la contraseña" required>
+        </div>
+
+        <!-- Botón Crear Usuario -->
+        <button type="submit" class="btn btn-primary">Crear Usuario</button>
+    </form>
+</div>
+
+<!-- Estilos para Centrar y Expandir -->
+<style>
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        color: #234449;
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+    }
+
+    button {
+        background-color: #3e77f8;
+        border-color: #3e77f8;
+        color: white;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+        button:hover {
+            background-color: #234449;
+        }
+</style>
