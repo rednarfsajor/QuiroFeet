@@ -7,7 +7,7 @@
     <h1>Crear Usuario</h1>
     <p>Por favor, completa el formulario para registrar un nuevo empleado.</p>
 
-    <form>
+    <form id="userForm" onsubmit="return handleSubmit(event)">
         <!-- Nombre Completo -->
         <div class="form-group">
             <label for="nombre">Nombre Completo</label>
@@ -49,10 +49,29 @@
             <input type="password" class="form-control" id="confirmPassword" placeholder="Confirme la contraseña" required>
         </div>
 
-        <!-- Botón Crear Usuario -->
+        <!-- Botones -->
         <button type="submit" class="btn btn-primary">Crear Usuario</button>
+        <a href="/Home/List" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
+
+<!-- Notificación Estilizada -->
+<div id="notification" class="notification" style="display:none;">
+    Usuario Creado Exitosamente
+</div>
+
+<script>
+    function handleSubmit(event) {
+        event.preventDefault();
+        const notification = document.getElementById('notification');
+        notification.style.display = 'block';
+        setTimeout(() => {
+            notification.style.display = 'none';
+            window.location.href = '/Home/List';
+        }, 3000);
+        return false;
+    }
+</script>
 
 <!-- Estilos para Centrar y Expandir -->
 <style>
@@ -82,7 +101,7 @@
         border-radius: 8px;
     }
 
-    button {
+    button, .btn-secondary {
         background-color: #3e77f8;
         border-color: #3e77f8;
         color: white;
@@ -90,9 +109,43 @@
         border-radius: 8px;
         font-size: 16px;
         cursor: pointer;
+        margin-right: 10px;
+        text-decoration: none;
     }
 
-        button:hover {
+        button:hover, .btn-secondary:hover {
             background-color: #234449;
         }
+
+    .notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 15px 30px;
+        border-radius: 8px;
+        font-size: 16px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        z-index: 1000;
+        animation: fadeInOut 3s ease;
+    }
+
+    @@keyframes fadeInOut {
+        0% {
+            opacity: 0;
+        }
+
+        10% {
+            opacity: 1;
+        }
+
+        90% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
 </style>

@@ -7,7 +7,7 @@
     <h1>Registrar Venta</h1>
     <p>Ingrese la información de la venta.</p>
 
-    <form>
+    <form id="ventaForm" onsubmit="return handleSaleSubmit(event)">
         <!-- Nombre del Cliente -->
         <div class="form-group">
             <label for="nombreCliente">Nombre del Cliente</label>
@@ -37,8 +37,27 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Registrar Venta</button>
+        <a href="/Home/Sales" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
+
+<!-- Notificación Estilizada -->
+<div id="notification" class="notification" style="display:none;">
+    Venta Registrada Exitosamente
+</div>
+
+<script>
+    function handleSaleSubmit(event) {
+        event.preventDefault();
+        const notification = document.getElementById('notification');
+        notification.style.display = 'block';
+        setTimeout(() => {
+            notification.style.display = 'none';
+            window.location.href = '/Home/ListSales';
+        }, 3000);
+        return false;
+    }
+</script>
 
 <!-- Estilos CSS -->
 <style>
@@ -65,16 +84,49 @@
         border-radius: 8px;
     }
 
-    button {
+    button, .btn-secondary {
         background-color: #3e77f8;
         color: white;
         border-radius: 8px;
         padding: 12px;
         border: none;
         cursor: pointer;
+        text-decoration: none;
     }
 
-        button:hover {
+        button:hover, .btn-secondary:hover {
             background-color: #234449;
         }
+
+    .notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 15px 30px;
+        border-radius: 8px;
+        font-size: 16px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        z-index: 1000;
+        animation: fadeInOut 3s ease;
+    }
+
+    @@keyframes fadeInOut {
+        0% {
+            opacity: 0;
+        }
+
+        10% {
+            opacity: 1;
+        }
+
+        90% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
 </style>
