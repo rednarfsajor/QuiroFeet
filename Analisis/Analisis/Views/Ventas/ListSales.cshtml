@@ -1,0 +1,119 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Lista de Ventas";
+}
+
+<div class="sales-container">
+    <h1>Lista de Ventas</h1>
+    <p>A continuación se muestra un resumen de las ventas registradas en el sistema.</p>
+
+    <table class="sales-table">
+        <thead>
+            <tr>
+                <th>Número de Venta</th>
+                <th>Cliente</th>
+                <th>Fecha</th>
+                <th>Monto Total</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.Sales != null && ViewBag.Sales.Count > 0)
+            {
+                foreach (var sale in ViewBag.Sales)
+                {
+                    <tr>
+                        <td>@sale.SaleNumber</td>
+                        <td>@sale.ClientName</td>
+                        <td>@sale.Date.ToString("dd/MM/yyyy")</td>
+                        <td>@sale.Total.ToString("C")</td>
+                        <td>
+                            <a href="@Url.Action("EditSale", "Home", new { id = sale.SaleNumber })" class="btn-edit">Editar</a>
+                            <a href="@Url.Action("DeleteSale", "Home", new { id = sale.SaleNumber })" class="btn-delete">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5">No hay ventas registradas.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a href="@Url.Action("RegisterSale", "Home")" class="btn-add">Registrar Nueva Venta</a>
+</div>
+
+<!-- Estilos CSS -->
+<style>
+    .sales-container {
+        max-width: 900px;
+        margin: 40px auto;
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    h1 {
+        color: #234449;
+    }
+
+    p {
+        font-size: 1.2em;
+        color: #555;
+    }
+
+    .sales-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+        .sales-table th, .sales-table td {
+            border: 1px solid #ccc;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .sales-table th {
+            background-color: #234449;
+            color: white;
+        }
+
+    .btn-add, .btn-edit, .btn-delete {
+        display: inline-block;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        color: white;
+        margin: 5px;
+    }
+
+    .btn-add {
+        background-color: #28a745;
+    }
+
+    .btn-edit {
+        background-color: #007bff;
+    }
+
+    .btn-delete {
+        background-color: #dc3545;
+    }
+
+    .btn-add:hover {
+        background-color: #218838;
+    }
+
+    .btn-edit:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-delete:hover {
+        background-color: #c82333;
+    }
+</style>

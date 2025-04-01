@@ -1,0 +1,132 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Registrar Venta";
+}
+
+<div class="container">
+    <h1>Registrar Venta</h1>
+    <p>Ingrese la información de la venta.</p>
+
+    <form id="ventaForm" onsubmit="return handleSaleSubmit(event)">
+        <!-- Nombre del Cliente -->
+        <div class="form-group">
+            <label for="nombreCliente">Nombre del Cliente</label>
+            <input type="text" class="form-control" id="nombreCliente" placeholder="Ingrese el nombre del cliente" required>
+        </div>
+
+        <!-- Cédula del Cliente -->
+        <div class="form-group">
+            <label for="cedula">Cédula</label>
+            <input type="text" class="form-control" id="cedula" placeholder="Ingrese la cédula" required>
+        </div>
+
+        <!-- Selección de Productos -->
+        <div class="form-group">
+            <label for="productos">Seleccionar Productos</label>
+            <select class="form-control" id="productos" multiple>
+                <option>Producto A - Público</option>
+                <option>Producto B - Público</option>
+                <option>Producto C - Prescripción</option>
+            </select>
+        </div>
+
+        <!-- Cantidad -->
+        <div class="form-group">
+            <label for="cantidad">Cantidad</label>
+            <input type="number" class="form-control" id="cantidad" placeholder="Ingrese la cantidad" required min="1">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Registrar Venta</button>
+        <a href="/Home/Sales" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+
+<!-- Notificación Estilizada -->
+<div id="notification" class="notification" style="display:none;">
+    Venta Registrada Exitosamente
+</div>
+
+<script>
+    function handleSaleSubmit(event) {
+        event.preventDefault();
+        const notification = document.getElementById('notification');
+        notification.style.display = 'block';
+        setTimeout(() => {
+            notification.style.display = 'none';
+            window.location.href = '/Home/ListSales';
+        }, 3000);
+        return false;
+    }
+</script>
+
+<!-- Estilos CSS -->
+<style>
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        color: #234449;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    button, .btn-secondary {
+        background-color: #3e77f8;
+        color: white;
+        border-radius: 8px;
+        padding: 12px;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+        button:hover, .btn-secondary:hover {
+            background-color: #234449;
+        }
+
+    .notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 15px 30px;
+        border-radius: 8px;
+        font-size: 16px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        z-index: 1000;
+        animation: fadeInOut 3s ease;
+    }
+
+    @@keyframes fadeInOut {
+        0% {
+            opacity: 0;
+        }
+
+        10% {
+            opacity: 1;
+        }
+
+        90% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+</style>

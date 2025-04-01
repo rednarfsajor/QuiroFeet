@@ -1,0 +1,73 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Gestión de Ventas";
+}
+
+<div class="sales-container">
+    <h1>Gestión de Ventas</h1>
+    <p>Seleccione una opción para continuar.</p>
+
+    <div class="options">
+        <!-- Botón para Registrar Venta -->
+        <a href="@Url.Action("RegisterSale", "Home")" class="option-card">
+            <i class="fas fa-cash-register"></i>
+            <h3>Registrar Venta</h3>
+            <p>Registra una nueva venta de productos.</p>
+        </a>
+
+        <!-- Botón para Ver Ventas Existentes -->
+        <a href="@Url.Action("ListSales", "Home")" class="option-card">
+            <i class="fas fa-receipt"></i>
+            <h3>Ver Ventas</h3>
+            <p>Consulta el historial de ventas realizadas.</p>
+        </a>
+    </div>
+</div>
+
+<!-- Estilos CSS -->
+<style>
+    .sales-container {
+        max-width: 800px;
+        margin: 100px auto;
+        text-align: center;
+    }
+
+    h1 {
+        color: #234449;
+        font-size: 2.5em;
+    }
+
+    p {
+        font-size: 1.2em;
+        color: #555;
+        margin-bottom: 40px;
+    }
+
+    .options {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+    }
+
+    .option-card {
+        width: 300px;
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        text-decoration: none;
+        color: #234449;
+        transition: transform 0.3s;
+    }
+
+        .option-card:hover {
+            transform: translateY(-10px);
+            background-color: #e6f2f7;
+        }
+
+        .option-card i {
+            font-size: 3em;
+            color: #3e77f8;
+            margin-bottom: 20px;
+        }
+</style>

@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Error de Permisos";
+}
+
+<div class="error-container">
+    <i class="fas fa-times-circle error-icon"></i>
+    <h1>Acceso Denegado</h1>
+    <p>No tienes permisos para modificar este recibo.</p>
+    <p>Si crees que esto es un error, contacta al administrador del sistema.</p>
+
+    <a href="/Home/ViewReceipts" class="btn-retry">Volver a la Lista de Recibos</a>
+</div>
+
+<!-- Estilos CSS -->
+<style>
+    .error-container {
+        max-width: 600px;
+        margin: 100px auto;
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .error-icon {
+        font-size: 80px;
+        color: #e74c3c;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        color: #e74c3c;
+        font-size: 2.5em;
+    }
+
+    p {
+        font-size: 1.2em;
+        color: #555;
+    }
+
+    .btn-retry {
+        background-color: #e74c3c;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 1em;
+        cursor: pointer;
+    }
+
+        .btn-retry:hover {
+            background-color: #c0392b;
+        }
+</style>
