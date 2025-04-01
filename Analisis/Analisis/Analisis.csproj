@@ -120,6 +120,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventarioController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
@@ -195,6 +196,12 @@
     <Content Include="Views\Ventas\ConfirmSale.cshtml" />
     <Content Include="Views\Reportes\Reportes.cshtml" />
     <Content Include="Views\Inventario\Inventario.cshtml" />
+    <Content Include="Views\Citas\ScheduleIndex.cshtml" />
+    <Content Include="Views\Servicios\ServicesIndex.cshtml" />
+    <Content Include="Views\Clientes\ClientIndex.cshtml" />
+    <Content Include="Views\Clientes\CreateClient.cshtml" />
+    <Content Include="Views\Clientes\EditClient.cshtml" />
+    <Content Include="Views\Clientes\ListClients.cshtml" />
     <None Include="Views\Usuarios\ListUser.cshtml" />
     <Content Include="Views\Usuarios\Users.cshtml" />
     <Content Include="Views\Ventas\Sales.cshtml" />
