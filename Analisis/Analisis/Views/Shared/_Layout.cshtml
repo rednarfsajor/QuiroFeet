@@ -5,7 +5,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
     <link rel="stylesheet" href="~/Content/site.css" />
     <title>@ViewBag.Title - QuiroFeet</title>
 </head>
@@ -13,18 +14,19 @@
     <div class="sidebar">
         <h1>QuiroFeet</h1>
         <ul>
-            <li><a href="@Url.Action("Index", "Clientes")"><i class="fas fa-user"></i> Clientes</a></li>
-            <li><a href="@Url.Action("Index", "Inventario")"><i class="fas fa-box"></i> Inventario</a></li>
-            <li><a href="@Url.Action("Receipts", "Home")"><i class="fas fa-receipt"></i> Recibos</a></li>
-            <li><a href="@Url.Action("Index", "Calendarizacion")"><i class="fas fa-calendar-alt"></i> Calendarización</a></li>
-            <li><a href="@Url.Action("Index", "Reportes")"><i class="fas fa-chart-line"></i> Reportes</a></li>
-            <li><a href="@Url.Action("Index", "Servicios")"><i class="fas fa-cogs"></i> Servicios</a></li>
-            <li><a href="@Url.Action("Index", "Proveedores")"><i class="fas fa-truck"></i> Proveedores</a></li>
-            <li><a href="@Url.Action("Users", "Home")"><i class="fas fa-users"></i> Usuarios</a></li>
-            <li><a href="@Url.Action("Sales", "Home")"><i class="fas fa-shopping-cart"></i> Ventas</a></li>
-            <li><a href="@Url.Action("Index", "Profesionales")"><i class="fas fa-briefcase"></i> Profesionales</a></li>
-            <li><a href="@Url.Action("Login", "Account")"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</a></li>
+            <li><a href="@Url.Action("Index", "Clientes")"><i class="bi bi-person"></i> Clientes</a></li>
+            <li><a href="@Url.Action("Index", "Inventario")"><i class="bi bi-box-seam"></i> Inventario</a></li>
+            <li><a href="@Url.Action("Receipts", "Home")"><i class="bi bi-receipt"></i> Recibos</a></li>
+            <li><a href="@Url.Action("Index", "Calendarizacion")"><i class="bi bi-calendar2-week"></i> Calendarización</a></li>
+            <li><a href="@Url.Action("Index", "Reportes")"><i class="bi bi-bar-chart-line"></i> Reportes</a></li>
+            <li><a href="@Url.Action("Index", "Servicios")"><i class="bi bi-gear"></i> Servicios</a></li>
+            <li><a href="@Url.Action("Index", "Proveedores")"><i class="bi bi-truck"></i> Proveedores</a></li>
+            <li><a href="@Url.Action("Users", "Home")"><i class="bi bi-people"></i> Usuarios</a></li>
+            <li><a href="@Url.Action("Sales", "Home")"><i class="bi bi-cart-check"></i> Ventas</a></li>
+            <li><a href="@Url.Action("Index", "Profesionales")"><i class="bi bi-briefcase"></i> Profesionales</a></li>
+            <li><a href="@Url.Action("Login", "Account")"><i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión</a></li>
         </ul>
+
     </div>
 
     <div class="content">
