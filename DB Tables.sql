@@ -1,3 +1,9 @@
+CREATE DATABASE QuiroFeet;
+GO
+
+USE QuiroFeet;
+GO
+
 CREATE TABLE Clientes (
     id INT IDENTITY(1,1) PRIMARY KEY,
     nombre NVARCHAR(100) NOT NULL,
