@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="welcome-container">
+    <h1>Bienvenido a Quiropie By Lucy</h1>
+
+    <div class="image-collage">
+        <img src="@Url.Content("~/Imagenes/1.jpg")" alt="Quiropodia 1" class="collage-image" />
+        <img src="@Url.Content("~/Imagenes/2.jpg")" alt="Quiropodia 2" class="collage-image" />
+        <img src="@Url.Content("~/Imagenes/3.jpg")" alt="Quiropodia 3" class="collage-image" />
+        <img src="@Url.Content("~/Imagenes/4.jpeg")" alt="Quiropodia 4" class="collage-image" />
+    </div>
+</div>
+
+<style>
+    .welcome-container {
+        text-align: center;
+        margin-top: 10%;
+    }
+
+        .welcome-container h1 {
+            font-size: 2.5em;
+            color: #234449;
+        }
+
+        .welcome-container p {
+            font-size: 1.2em;
+            color: #555;
+        }
+
+    .image-collage {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .collage-image {
+        width: 250px; 
+        height: 200px; 
+        object-fit: cover;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+</style>

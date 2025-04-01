@@ -1,0 +1,53 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Confirmación de Venta";
+}
+
+<div class="confirmation-container">
+    <h1>¡Venta Registrada Exitosamente!</h1>
+    <p>La venta <strong>#@ViewBag.SaleNumber</strong> ha sido registrada con éxito en el sistema.</p>
+    <p>Puedes imprimir el recibo o volver al inicio.</p>
+
+    <button class="btn-primary" onclick="window.print()">Imprimir Recibo</button>
+    <a href="/Home/Sales" class="btn-back">Volver al Inicio</a>
+</div>
+
+<!-- Estilos CSS -->
+<style>
+    .confirmation-container {
+        max-width: 600px;
+        margin: 100px auto;
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    h1 {
+        color: #28a745;
+        font-size: 2.5em;
+    }
+
+    p {
+        font-size: 1.2em;
+        color: #555;
+    }
+
+    button, .btn-back {
+        background-color: #234449;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 20px;
+        border: none;
+        font-size: 1.1em;
+        cursor: pointer;
+    }
+
+        .btn-primary:hover, .btn-back:hover {
+            background-color: #3e77f8;
+        }
+</style>
