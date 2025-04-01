@@ -1,0 +1,64 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Eliminar Usuario";
+}
+
+<div class="container">
+    <h1>Eliminar Usuario</h1>
+    <p>¿Estás seguro de que deseas eliminar al usuario <strong>@ViewBag.FullName</strong>? Esta acción no se puede deshacer.</p>
+
+    <!-- Formulario para Confirmar Eliminación -->
+    <form action="@Url.Action("ConfirmDelete", "Home")" method="post">
+        <input type="hidden" name="UserId" value="@ViewBag.UserId" />
+        <button type="submit" class="btn-delete">Eliminar</button>
+        <a href="@Url.Action("List", "Home")" class="btn-cancel">Cancelar</a>
+    </form>
+</div>
+
+<!-- Estilos CSS -->
+<style>
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        color: #e74c3c;
+    }
+
+    p {
+        font-size: 1.2em;
+        color: #555;
+    }
+
+    .btn-delete {
+        background-color: #e74c3c;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .btn-cancel {
+        background-color: #234449;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 8px;
+        text-decoration: none;
+        margin-left: 10px;
+    }
+
+    .btn-delete:hover {
+        background-color: #c0392b;
+    }
+
+    .btn-cancel:hover {
+        background-color: #3e77f8;
+    }
+</style>
