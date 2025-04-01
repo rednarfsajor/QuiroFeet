@@ -1,13 +1,13 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Usuario Eliminado";
+    ViewBag.Title = "Usuario Actualizado";
 }
 
 <div class="confirmation-container">
-    <h1>Usuario Eliminado</h1>
-    <p>El usuario <strong>@ViewBag.FullName</strong> ha sido eliminado exitosamente.</p>
+    <h1>Usuario Actualizado</h1>
+    <p>Los datos del usuario <strong>@ViewBag.FullName</strong> han sido actualizados correctamente.</p>
 
-    <a href="/Home/List" class="btn-back">Volver a la Lista de Usuarios</a>
+    <a href="/Home/ListUser" class="btn-back">Volver a la Lista de Usuarios</a>
 </div>
 
 <!-- Estilos CSS -->
@@ -23,7 +23,7 @@
     }
 
     h1 {
-        color: #e74c3c;
+        color: #234449;
     }
 
     p {

@@ -14,90 +14,111 @@ namespace Analisis.Controllers
         }
 
 
-        // Acción para la vista de Crear Usuario
-        public ActionResult Create()
+        ///
+        public ActionResult CancelReceipt()
         {
-            return View();
+            return View("~/Views/Recibos/CancelReceipt.cshtml");
         }
 
-        public ActionResult List()
+        public ActionResult ConfirmCancelReceipt()
         {
-            return View();
-        }
-        public ActionResult Delete()
-        {
-            return View();
-        }
-        public ActionResult Edit()
-        {
-            return View();
-        }
-        public ActionResult ConfirmEdit()
-        {
-            return View();
+            return View("~/Views/Recibos/ConfirmCancelReceipt.cshtml");
         }
 
-        public ActionResult ConfirmDelete()
+        public ActionResult ConfirmReceiptUpdate()
         {
-            return View();
+            return View("~/Views/Recibos/ConfirmReceiptUpdate.cshtml");
         }
+
+        public ActionResult EditReceipt()
+        {
+            return View("~/Views/Recibos/EditReceipt.cshtml");
+        }
+
+        public ActionResult ErrorPermissionReceipt()
+        {
+            return View("~/Views/Recibos/ErrorPermissionReceipt.cshtml");
+        }
+
+        public ActionResult ListAnularReceipt()
+        {
+            return View("~/Views/Recibos/ListAnularReceipt.cshtml");
+        }
+
+        public ActionResult ListReceipts()
+        {
+            return View("~/Views/Recibos/ListReceipts.cshtml");
+        }
+
+        public ActionResult Receipts()
+        {
+            return View("~/Views/Recibos/Receipts.cshtml");
+        }
+
+
+        /// ///////////////////////////////////////////////////Acción para la vista de Crear Usuario
+        public ActionResult ConfirmDeleteUser()
+        {
+            return View("~/Views/Usuarios/ConfirmDeleteUser.cshtml");
+        }
+
+        public ActionResult ConfirmEditUser()
+        {
+            return View("~/Views/Usuarios/ConfirmEditUser.cshtml");
+        }
+
+        public ActionResult CreateUser()
+        {
+            return View("~/Views/Usuarios/CreateUser.cshtml");
+        }
+
+        public ActionResult DeleteUser()
+        {
+            return View("~/Views/Usuarios/DeleteUser.cshtml");
+        }
+
+        public ActionResult EditUser()
+        {
+            return View("~/Views/Usuarios/EditUser.cshtml");
+        }
+
+        public ActionResult ListUser()
+        {
+            return View("~/Views/Usuarios/ListUser.cshtml");
+        }
+
         public ActionResult Users()
         {
-            return View();
+            return View("~/Views/Usuarios/Users.cshtml");
         }
-        public ActionResult Sales()
-        {
-            return View();
-        }
-        public ActionResult ErrorSale()
-        {
-            return View();
-        }
+
+        /////////////////////////////////////////////////
         public ActionResult ConfirmSale()
         {
-            return View();
+            return View("~/Views/Ventas/ConfirmSale.cshtml");
+        }
+
+        public ActionResult ErrorSale()
+        {
+            return View("~/Views/Ventas/ErrorSale.cshtml");
+        }
+
+        public ActionResult ListSales()
+        {
+            return View("~/Views/Ventas/ListSales.cshtml");
         }
 
         public ActionResult RegisterSale()
         {
-            return View();
+            return View("~/Views/Ventas/RegisterSale.cshtml");
         }
-        public ActionResult ListSales()
+
+        public ActionResult Sales()
         {
-            return View();
+            return View("~/Views/Ventas/Sales.cshtml");
         }
-        public ActionResult ErrorPermission()
-        {
-            return View();
-        }
-        public ActionResult Receipts()
-        {
-            return View();
-        }
-        public ActionResult ConfirmReceiptUpdate()
-        {
-            return View();
-        }
-        public ActionResult EditReceipt()
-        {
-            return View();
-        }
-        public ActionResult ListReceipts()
-        {
-            return View();
-        }
-        public ActionResult CancelReceipt()
-        {
-            return View();
-        }
-        public ActionResult ConfirmCancelReceipt()
-        {
-            return View();
-        }
-        public ActionResult ListAnular()
-        {
-            return View();
-        }
+
+
     }
 
 }
