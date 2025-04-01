@@ -121,6 +121,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InventarioController.cs" />
+    <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -191,6 +193,8 @@
     <Content Include="Views\Recibos\ConfirmCancelReceipt.cshtml" />
     <Content Include="Views\Ventas\ErrorSale.cshtml" />
     <Content Include="Views\Ventas\ConfirmSale.cshtml" />
+    <Content Include="Views\Reportes\Reportes.cshtml" />
+    <Content Include="Views\Inventario\Inventario.cshtml" />
     <None Include="Views\Usuarios\ListUser.cshtml" />
     <Content Include="Views\Usuarios\Users.cshtml" />
     <Content Include="Views\Ventas\Sales.cshtml" />

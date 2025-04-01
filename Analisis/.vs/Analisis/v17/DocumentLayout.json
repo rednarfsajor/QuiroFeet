@@ -1,25 +1,37 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\",
+  "WorkspaceRootPath": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\heymm\\onedrive - universidad fid\u00E9litas\\documentos\\github\\quirofeet\\analisis\\analisis\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\final\\quirofeet\\analisis\\analisis\\controllers\\reportescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\reportescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\final\\quirofeet\\analisis\\analisis\\controllers\\inventariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\inventariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\final\\quirofeet\\analisis\\analisis\\views\\ventas\\sales.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\ventas\\sales.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\final\\quirofeet\\analisis\\analisis\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\heymm\\onedrive - universidad fid\u00E9litas\\documentos\\github\\quirofeet\\analisis\\analisis\\views\\usuarios\\deleteuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\analisis\\views\\usuarios\\deleteuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\usuarios\\deleteuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\heymm\\onedrive - universidad fid\u00E9litas\\documentos\\github\\quirofeet\\analisis\\analisis\\views\\usuarios\\confirmdeleteuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\analisis\\views\\usuarios\\confirmdeleteuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\usuarios\\confirmdeleteuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\heymm\\onedrive - universidad fid\u00E9litas\\documentos\\github\\quirofeet\\analisis\\analisis\\views\\recibos\\receipts.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\analisis\\views\\recibos\\receipts.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\recibos\\receipts.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\heymm\\onedrive - universidad fid\u00E9litas\\documentos\\github\\quirofeet\\analisis\\analisis\\views\\recibos\\listreceipts.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\analisis\\views\\recibos\\listreceipts.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\recibos\\listreceipts.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
@@ -30,67 +42,102 @@
       "DocumentGroups": [
         {
           "DockedWidth": 152,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ReportesController.cs",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ReportesController.cs",
+              "RelativeDocumentMoniker": "Analisis\\Controllers\\ReportesController.cs",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ReportesController.cs",
+              "RelativeToolTip": "Analisis\\Controllers\\ReportesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T17:50:18.23Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "DeleteUser.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\DeleteUser.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Usuarios\\DeleteUser.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\DeleteUser.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Usuarios\\DeleteUser.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-01T02:11:42.872Z",
+              "Title": "InventarioController.cs",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Controllers\\InventarioController.cs",
+              "RelativeDocumentMoniker": "Analisis\\Controllers\\InventarioController.cs",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Controllers\\InventarioController.cs",
+              "RelativeToolTip": "Analisis\\Controllers\\InventarioController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T17:50:00.304Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ConfirmDeleteUser.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\ConfirmDeleteUser.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Usuarios\\ConfirmDeleteUser.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\ConfirmDeleteUser.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Usuarios\\ConfirmDeleteUser.cshtml",
+              "Title": "Sales.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Ventas\\Sales.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Ventas\\Sales.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Ventas\\Sales.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Ventas\\Sales.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-01T02:11:40.124Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Receipts.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\Receipts.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Recibos\\Receipts.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\Receipts.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Recibos\\Receipts.cshtml",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABoAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-01T02:10:10.74Z",
+              "WhenOpened": "2025-04-01T17:49:53.918Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "ListReceipts.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\ListReceipts.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Recibos\\ListReceipts.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\ListReceipts.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Recibos\\ListReceipts.cshtml",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "DeleteUser.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\DeleteUser.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Usuarios\\DeleteUser.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\DeleteUser.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Usuarios\\DeleteUser.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-01T02:08:59.055Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-01T02:11:42.872Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
+              "Title": "ConfirmDeleteUser.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\ConfirmDeleteUser.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Usuarios\\ConfirmDeleteUser.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\ConfirmDeleteUser.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Usuarios\\ConfirmDeleteUser.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-01T02:11:40.124Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Receipts.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\Receipts.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Recibos\\Receipts.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\Receipts.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Recibos\\Receipts.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABoAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-01T02:10:10.74Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ListReceipts.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\ListReceipts.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Recibos\\ListReceipts.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\ListReceipts.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Recibos\\ListReceipts.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-01T02:08:59.055Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "Analisis\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "Analisis\\Views\\Home\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
