@@ -3,12 +3,60 @@
   "WorkspaceRootPath": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\analisis\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\proyecto analisis y modelo\\quirofeet\\analisis\\analisis\\views\\home\\inventario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\home\\inventario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\analisis\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\proyecto analisis y modelo\\quirofeet\\analisis\\analisis\\views\\home\\reportes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\home\\reportes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\proyecto analisis y modelo\\quirofeet\\analisis\\analisis\\views\\home\\sales.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\home\\sales.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\proyecto analisis y modelo\\quirofeet\\analisis\\analisis\\views\\home\\receipts.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\home\\receipts.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\analisis\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\proyecto analisis y modelo\\quirofeet\\analisis\\analisis\\views\\home\\users.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\home\\users.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\analisis\\views\\home\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\home\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\proyecto analisis y modelo\\quirofeet\\analisis\\analisis\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\analisis\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\proyecto analisis y modelo\\quirofeet\\analisis\\analisis\\views\\home\\registersale.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\home\\registersale.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\proyecto analisis y modelo\\quirofeet\\analisis\\analisis\\controllers\\reportescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\reportescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\proyecto analisis y modelo\\quirofeet\\analisis\\analisis\\controllers\\inventariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\inventariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\proyecto analisis y modelo\\quirofeet\\analisis\\analisis\\views\\home\\editreceipt.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\home\\editreceipt.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\analisis\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
@@ -17,18 +65,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\analisis\\app_start\\bundleconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\app_start\\bundleconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\analisis\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\analisis\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\analisis\\views\\home\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\home\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\analisis\\views\\home\\errorpermission.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -42,11 +78,166 @@
       "DocumentGroups": [
         {
           "DockedWidth": 152,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Analisis\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Analisis\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAEgAAAAAAAAAAAA6wFkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T15:40:07.93Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ReportesController.cs",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ReportesController.cs",
+              "RelativeDocumentMoniker": "Analisis\\Controllers\\ReportesController.cs",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ReportesController.cs",
+              "RelativeToolTip": "Analisis\\Controllers\\ReportesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T16:22:01.489Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAADMAAAAAAAAAAAAqwFoAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-01T15:38:27.962Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Create.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Home\\Create.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Create.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Home\\Create.cshtml",
+              "ViewState": "AgIAADkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-30T19:04:57.967Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Reportes.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Reportes.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Home\\Reportes.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Reportes.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Home\\Reportes.cshtml",
+              "ViewState": "AgIAAMwAAAAAAAAAAAAqwPkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-01T16:22:42.208Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Users.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Users.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Home\\Users.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Users.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Home\\Users.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACcAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-01T16:48:08.388Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Inventario.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Inventario.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Home\\Inventario.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Inventario.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Home\\Inventario.cshtml",
+              "ViewState": "AgIAAL4AAAAAAAAAAAAqwAYBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-01T16:15:10.954Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Sales.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Sales.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Home\\Sales.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Sales.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Home\\Sales.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-01T16:57:10.553Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Web.config",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Web.config",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Web.config",
+              "RelativeToolTip": "Analisis\\Views\\Web.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-03-30T19:04:52.194Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-01T15:39:20.87Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Receipts.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Receipts.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Home\\Receipts.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Receipts.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Home\\Receipts.cshtml",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAqwFcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-01T17:03:52.411Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "BundleConfig.cs",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\App_Start\\BundleConfig.cs",
+              "RelativeDocumentMoniker": "Analisis\\App_Start\\BundleConfig.cs",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\App_Start\\BundleConfig.cs",
+              "RelativeToolTip": "Analisis\\App_Start\\BundleConfig.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T15:40:34.228Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "Web.config",
               "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Web.config",
               "RelativeDocumentMoniker": "Analisis\\Web.config",
@@ -59,68 +250,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "BundleConfig.cs",
-              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\App_Start\\BundleConfig.cs",
-              "RelativeDocumentMoniker": "Analisis\\App_Start\\BundleConfig.cs",
-              "ToolTip": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\App_Start\\BundleConfig.cs",
-              "RelativeToolTip": "Analisis\\App_Start\\BundleConfig.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T15:40:34.228Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "Analisis\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "Analisis\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T15:40:07.93Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 10,
+              "Title": "RegisterSale.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\RegisterSale.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Home\\RegisterSale.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\RegisterSale.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Home\\RegisterSale.cshtml",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-01T15:39:20.87Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAB0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-01T15:38:27.962Z",
+              "WhenOpened": "2025-04-01T16:55:50.81Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Create.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Home\\Create.cshtml",
-              "ToolTip": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Create.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Home\\Create.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-30T19:04:57.967Z"
+              "DocumentIndex": 12,
+              "Title": "InventarioController.cs",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Controllers\\InventarioController.cs",
+              "RelativeDocumentMoniker": "Analisis\\Controllers\\InventarioController.cs",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Controllers\\InventarioController.cs",
+              "RelativeToolTip": "Analisis\\Controllers\\InventarioController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T16:21:09.845Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 13,
+              "Title": "EditReceipt.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\EditReceipt.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Home\\EditReceipt.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\EditReceipt.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Home\\EditReceipt.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-01T16:35:02.622Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
               "Title": "ErrorPermission.cshtml",
               "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\ErrorPermission.cshtml",
               "RelativeDocumentMoniker": "Analisis\\Views\\Home\\ErrorPermission.cshtml",
@@ -129,18 +298,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-03-30T19:04:56.698Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Web.config",
-              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Web.config",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Web.config",
-              "ToolTip": "C:\\Users\\AMD\\3D Objects\\proyecto analisis y modelo\\QuiroFeet\\Analisis\\Analisis\\Views\\Web.config",
-              "RelativeToolTip": "Analisis\\Views\\Web.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-03-30T19:04:52.194Z"
             }
           ]
         }
