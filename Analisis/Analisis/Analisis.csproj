@@ -120,6 +120,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CitasController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventarioController.cs" />
@@ -202,6 +203,9 @@
     <Content Include="Views\Clientes\CreateClient.cshtml" />
     <Content Include="Views\Clientes\EditClient.cshtml" />
     <Content Include="Views\Clientes\ListClients.cshtml" />
+    <Content Include="Views\Citas\CreateDate.cshtml" />
+    <Content Include="Views\Citas\Calendar.cshtml" />
+    <Content Include="Views\Citas\Day.cshtml" />
     <None Include="Views\Usuarios\ListUser.cshtml" />
     <Content Include="Views\Usuarios\Users.cshtml" />
     <Content Include="Views\Ventas\Sales.cshtml" />
