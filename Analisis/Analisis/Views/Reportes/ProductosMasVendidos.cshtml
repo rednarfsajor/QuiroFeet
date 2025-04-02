@@ -1,0 +1,93 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Productos Más Vendidos";
+}
+
+<!-- Estilos CSS -->
+<style>
+    .reportes-container {
+        max-width: 1000px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        color: #234449;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .table-container {
+        margin-top: 30px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #234449;
+        color: white;
+    }
+
+    td a {
+        color: #3e77f8;
+        text-decoration: none;
+    }
+
+        td a:hover {
+            color: #234449;
+        }
+</style>
+
+<div class="reportes-container">
+    <h2>Productos Más Vendidos</h2>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad Vendida</th>
+                    <th>Total Vendido</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Aquí insertas los datos de los productos más vendidos -->
+                <tr>
+                    <td>Producto A</td>
+                    <td>150 unidades</td>
+                    <td>$3000</td>
+                    <td>
+                        <a href="@Url.Action("VerProducto", new { id = 1 })">Ver Detalles</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Producto B</td>
+                    <td>120 unidades</td>
+                    <td>$2400</td>
+                    <td>
+                        <a href="@Url.Action("VerProducto", new { id = 2 })">Ver Detalles</a>
+                    </td>
+                </tr>
+                <!-- Agregar más productos más vendidos -->
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Editar Producto";
+}
+
+<!-- Estilos CSS -->
+<style>
+    .form-container {
+        max-width: 600px;
+        margin: 100px auto;
+        padding: 40px;
+        background-color: #fff;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+    }
+
+    h2 {
+        color: #234449;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+        .form-group label {
+            color: #234449;
+            font-size: 1.2em;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            margin-top: 8px;
+        }
+
+    button {
+        background-color: #3e77f8;
+        color: #fff;
+        padding: 12px 30px;
+        border-radius: 8px;
+        font-size: 1.2em;
+        margin-top: 20px;
+        width: 100%;
+        transition: transform 0.3s;
+    }
+
+        button:hover {
+            transform: translateY(-5px);
+            background-color: #234449;
+        }
+</style>
+
+<div class="form-container">
+    <h2>Editar Producto</h2>
+
+    <form action="#" method="post">
+        <div class="form-group">
+            <label for="nombre">Nombre del Producto</label>
+            <input type="text" id="nombre" name="nombre" value="Producto A" required />
+        </div>
+        <div class="form-group">
+            <label for="descripcion">Descripción</label>
+            <textarea id="descripcion" name="descripcion">Descripción A</textarea>
+        </div>
+        <div class="form-group">
+            <label for="precio">Precio</label>
+            <input type="text" id="precio" name="precio" value="100" required />
+        </div>
+        <button type="submit">Actualizar</button>
+    </form>
+</div>

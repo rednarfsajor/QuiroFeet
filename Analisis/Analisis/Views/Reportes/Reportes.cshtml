@@ -3,247 +3,133 @@
     ViewBag.Title = "Reportes";
 }
 
-<div class="container mt-4 report-container">
-    <h2 class="title">Reportes Quiropedia</h2>
-
-    <div class="card report-card">
-        <h3 class="subtitle">Reportes de Ventas</h3>
-        <form>
-            <div class="form-group">
-                <label for="periodo">Seleccionar Período:</label>
-                <select id="periodo" name="periodo" class="form-select">
-                    <option value="diario">Diario</option>
-                    <option value="mensual">Mensual</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-blue action-btn"><i class="fas fa-chart-bar"></i> Generar Reporte</button>
-        </form>
-    </div>
-
-    <div class="report-actions">
-        <button class="btn btn-blue action-btn" data-bs-toggle="modal" data-bs-target="#modalProductosMasVendidos">
-            <i class="fas fa-chart-pie"></i> Productos Más Vendidos
-        </button>
-        <button class="btn btn-blue action-btn" data-bs-toggle="modal" data-bs-target="#modalEstadoStock">
-            <i class="fas fa-box-open"></i> Estado del Stock
-        </button>
-        <button class="btn btn-blue action-btn" data-bs-toggle="modal" data-bs-target="#modalHistorialCompras">
-            <i class="fas fa-user"></i> Historial de Compras por Cliente
-        </button>
-        <button class="btn btn-blue action-btn" data-bs-toggle="modal" data-bs-target="#modalHistorialServicios">
-            <i class="fas fa-user-md"></i> Historial de Servicios por Profesional
-        </button>
-    </div>
-</div>
-
-<!-- Modal para Productos Más Vendidos -->
-<div class="modal fade" id="modalProductosMasVendidos" tabindex="-1" aria-labelledby="modalProductosMasVendidosLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalProductosMasVendidosLabel">Productos Más Vendidos en Quiropedia</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <h5>Productos recomendados para el cuidado podológico:</h5>
-                <ul>
-                    <li><strong>Plantillas ortopédicas</strong> – Ayudan a corregir la postura y aliviar el dolor en los pies.</li>
-                    <li><strong>Masajeadores de pies</strong> – Dispositivos para aliviar la tensión muscular y promover la circulación.</li>
-                    <li><strong>Crema para pies con árnica</strong> – Ideal para aliviar dolores y la inflamación en los pies.</li>
-                </ul>
-                <p>Estos productos son populares debido a su efectividad en mejorar la salud podológica de nuestros clientes.</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal para Estado del Stock -->
-<div class="modal fade" id="modalEstadoStock" tabindex="-1" aria-labelledby="modalEstadoStockLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalEstadoStockLabel">Estado del Stock en Quiropedia</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <h5>Estado actual de los productos más vendidos:</h5>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Producto</th>
-                            <th>Cantidad en Stock</th>
-                            <th>Precio Unitario</th>
-                            <th>Reabastecer</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Plantillas ortopédicas</td>
-                            <td>20</td>
-                            <td>$50</td>
-                            <td><button class="btn btn-warning">Reabastecer</button></td>
-                        </tr>
-                        <tr>
-                            <td>Masajeadores de pies</td>
-                            <td>15</td>
-                            <td>$80</td>
-                            <td><button class="btn btn-warning">Reabastecer</button></td>
-                        </tr>
-                        <tr>
-                            <td>Crema para pies con árnica</td>
-                            <td>30</td>
-                            <td>$12</td>
-                            <td><button class="btn btn-warning">Reabastecer</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p>Los productos con stock bajo necesitan ser reabastecidos para continuar con la venta.</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal para Historial de Compras por Cliente -->
-<div class="modal fade" id="modalHistorialCompras" tabindex="-1" aria-labelledby="modalHistorialComprasLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalHistorialComprasLabel">Historial de Compras por Cliente</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <h5>Clientes frecuentes:</h5>
-                <ul>
-                    <li><strong>Juan Pérez</strong> – 5 compras, total $250, productos más comprados: Plantillas ortopédicas, Masajeador de pies.</li>
-                    <li><strong>Ana González</strong> – 3 compras, total $180, productos más comprados: Crema para pies, Plantillas ortopédicas.</li>
-                </ul>
-                <p>Los clientes frecuentes han mostrado preferencia por los productos ortopédicos y de cuidado podológico, lo que nos ayuda a personalizar las recomendaciones.</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal para Historial de Servicios por Profesional -->
-<div class="modal fade" id="modalHistorialServicios" tabindex="-1" aria-labelledby="modalHistorialServiciosLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalHistorialServiciosLabel">Historial de Servicios por Profesional</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <h5>Servicios realizados:</h5>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Profesional</th>
-                            <th>Servicio</th>
-                            <th>Fecha</th>
-                            <th>Cantidad de Clientes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Dr. Carlos López</td>
-                            <td>Revisión y ajuste de plantillas</td>
-                            <td>2025-03-15</td>
-                            <td>10</td>
-                        </tr>
-                        <tr>
-                            <td>Lic. Sofía Martínez</td>
-                            <td>Masaje podológico</td>
-                            <td>2025-03-18</td>
-                            <td>8</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p>El historial de servicios por profesional nos permite analizar la carga de trabajo y la demanda de ciertos servicios.</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Incluir Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
+<!-- Estilos CSS -->
 <style>
-    .report-container {
-        max-width: 900px;
+    .reportes-container {
+        max-width: 1000px;
         margin: 50px auto;
         text-align: center;
     }
 
-    .title {
+    h2 {
         color: #234449;
         font-size: 2.5em;
-        margin-bottom: 30px;
-    }
-
-    .subtitle {
-        color: #3e77f8;
-        font-size: 1.8em;
         margin-bottom: 20px;
     }
 
-    .report-card {
-        background-color: #ffffff;
-        padding: 30px;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        margin-bottom: 30px;
-    }
-
-    .form-group {
-        margin-bottom: 20px;
-        text-align: left;
-    }
-
-    .report-actions {
+    .action-buttons {
         display: flex;
-        flex-wrap: wrap;
         justify-content: center;
-        gap: 15px;
+        gap: 40px;
         margin-bottom: 30px;
     }
 
-    .action-btn {
-        font-size: 1.2em;
-        padding: 12px 25px;
-        border-radius: 10px;
-        transition: background-color 0.3s, transform 0.2s;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-weight: bold;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-        .action-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        .action-buttons a {
+            text-decoration: none;
+            background-color: #3e77f8;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
         }
 
-    .btn-blue {
-        background-color: #3e77f8;
-        color: white;
-    }
-
-        .btn-blue:hover {
-            background-color: #3466d4;
-        }
+            .action-buttons a:hover {
+                transform: translateY(-5px);
+                background-color: #234449;
+            }
 
     table {
         width: 100%;
-        margin-top: 20px;
+        border-collapse: collapse;
+        margin-top: 40px;
     }
 
-        table th, table td {
-            text-align: center;
-            padding: 15px;
-        }
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
 
-    .modal-header {
-        background-color: #3e77f8;
+    th {
+        background-color: #234449;
         color: white;
     }
+
+    td a {
+        color: #3e77f8;
+        text-decoration: none;
+    }
+
+        td a:hover {
+            color: #234449;
+        }
 </style>
+
+<div class="reportes-container">
+    <h2>Reportes de Inventario</h2>
+
+    <div class="action-buttons">
+        <a href="@Url.Action("EstadoStock", "Reportes")">Reporte de Estado de Stock</a>
+        <a href="@Url.Action("HistorialComprasCliente", "Reportes")">Historial de Compras por Cliente</a>
+        <a href="@Url.Action("ReporteVentas", "Reportes")">Reporte de Ventas</a>
+        <a href="@Url.Action("HistorialServiciosProfesional", "Reportes")">Historial de Servicios Profesionales</a>
+        <a href="@Url.Action("ProductosMasVendidos", "Reportes")">Productos Más Vendidos</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre del Reporte</th>
+                <th>Descripción</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Estado de Stock</td>
+                <td>Informe con el estado actual de los productos en inventario.</td>
+                <td>
+                    <a href="@Url.Action("VerReporte", new { id = 1 })">Ver</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Historial de Compras por Cliente</td>
+                <td>Listado de compras realizadas por cada cliente.</td>
+                <td>
+                    <a href="@Url.Action("VerReporte", new { id = 2 })">Ver</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Ventas por Producto</td>
+                <td>Informe sobre las ventas realizadas por cada producto.</td>
+                <td>
+                    <a href="@Url.Action("VerReporte", new { id = 3 })">Ver</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Stock Bajo</td>
+                <td>Informe sobre los productos con stock por debajo del mínimo.</td>
+                <td>
+                    <a href="@Url.Action("VerReporte", new { id = 4 })">Ver</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Historial de Servicios Profesionales</td>
+                <td>Listado de los servicios profesionales realizados.</td>
+                <td>
+                    <a href="@Url.Action("VerReporte", new { id = 5 })">Ver</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Productos Más Vendidos</td>
+                <td>Informe sobre los productos con mayor volumen de ventas.</td>
+                <td>
+                    <a href="@Url.Action("VerReporte", new { id = 6 })">Ver</a>
+                </td>
+            </tr>
+            <!-- Más reportes pueden ser añadidos aquí -->
+        </tbody>
+    </table>
+</div>

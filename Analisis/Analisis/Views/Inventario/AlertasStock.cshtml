@@ -1,0 +1,74 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Alertas de Stock Mínimo";
+}
+
+<!-- Estilos CSS -->
+<style>
+    .alertas-container {
+        max-width: 900px;
+        margin: 50px auto;
+    }
+
+    h2 {
+        color: #234449;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+
+    .alerta-card {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+        .alerta-card h3 {
+            color: #234449;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .alerta-card p {
+            color: #555;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .alerta-card .cantidad {
+            color: #ff4c4c;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .alerta-card .boton-orden {
+            background-color: #3e77f8;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+            .alerta-card .boton-orden:hover {
+                transform: translateY(-5px);
+                background-color: #234449;
+            }
+</style>
+
+<div class="alertas-container">
+    <h2>Alertas de Stock Mínimo</h2>
+
+    <div class="alerta-card">
+        <h3>Producto A</h3>
+        <p>Stock actual: <span class="cantidad">5 unidades</span></p>
+        <p>Stock mínimo: 10 unidades</p>
+        <a href="@Url.Action("CrearOrdenCompra", "Inventario")" class="boton-orden">Crear Orden de Compra</a>
+    </div>
+
+    <div class="alerta-card">
+        <h3>Producto B</h3>
+        <p>Stock actual: <span class="cantidad">3 unidades</span></p>
+        <p>Stock mínimo: 8 unidades
