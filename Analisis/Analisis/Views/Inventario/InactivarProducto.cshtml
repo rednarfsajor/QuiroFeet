@@ -1,0 +1,64 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Inactivar Producto";
+}
+
+<!-- Estilos CSS -->
+<style>
+    .form-container {
+        max-width: 600px;
+        margin: 100px auto;
+        padding: 40px;
+        background-color: #fff;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+    }
+
+    h2 {
+        color: #234449;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+
+    p {
+        font-size: 1.2em;
+        color: #555;
+        margin-bottom: 30px;
+    }
+
+    button {
+        background-color: #ff4c4c;
+        color: #fff;
+        padding: 12px 30px;
+        border-radius: 8px;
+        font-size: 1.2em;
+        margin-top: 20px;
+        width: 100%;
+        transition: transform 0.3s;
+    }
+
+        button:hover {
+            transform: translateY(-5px);
+            background-color: #d13c3c;
+        }
+
+    a {
+        display: block;
+        text-align: center;
+        font-size: 1.2em;
+        margin-top: 20px;
+        color: #234449;
+    }
+</style>
+
+<div class="form-container">
+    <h2>Inactivar Producto</h2>
+
+    <p>¿Estás seguro de que deseas inactivar este producto?</p>
+
+    <form action="#" method="post">
+        <button type="submit">Inactivar</button>
+    </form>
+
+    <a href="@Url.Action("Index", "Inventario")">Cancelar</a>
+</div>

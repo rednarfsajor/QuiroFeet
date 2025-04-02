@@ -1,0 +1,66 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Historial de Movimientos";
+}
+
+<!-- Estilos CSS -->
+<style>
+    .movimientos-container {
+        max-width: 900px;
+        margin: 50px auto;
+    }
+
+    h2 {
+        color: #234449;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 30px;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #234449;
+        color: white;
+    }
+
+    td {
+        font-size: 1.2em;
+    }
+</style>
+
+<div class="movimientos-container">
+    <h2>Historial de Movimientos</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Tipo de Movimiento</th>
+                <th>Cantidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>01/04/2025</td>
+                <td>Ingreso</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>02/04/2025</td>
+                <td>Salida</td>
+                <td>5</td>
+            </tr>
+            <!-- Más movimientos aquí -->
+        </tbody>
+    </table>
+</div>

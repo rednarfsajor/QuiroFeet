@@ -1,0 +1,80 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Crear Orden de Compra";
+}
+
+<!-- Estilos CSS -->
+<style>
+    .form-container {
+        max-width: 600px;
+        margin: 100px auto;
+        padding: 40px;
+        background-color: #fff;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+    }
+
+    h2 {
+        color: #234449;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+        .form-group label {
+            color: #234449;
+            font-size: 1.2em;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            margin-top: 8px;
+        }
+
+    button {
+        background-color: #3e77f8;
+        color: #fff;
+        padding: 12px 30px;
+        border-radius: 8px;
+        font-size: 1.2em;
+        margin-top: 20px;
+        width: 100%;
+        transition: transform 0.3s;
+    }
+
+        button:hover {
+            transform: translateY(-5px);
+            background-color: #234449;
+        }
+</style>
+
+<div class="form-container">
+    <h2>Crear Orden de Compra</h2>
+
+    <form action="#" method="post">
+        <div class="form-group">
+            <label for="producto">Seleccionar Producto</label>
+            <select id="producto" name="producto">
+                <option value="1">Producto A</option>
+                <option value="2">Producto B</option>
+                <option value="3">Producto C</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="cantidad">Cantidad</label>
+            <input type="number" id="cantidad" name="cantidad" required />
+        </div>
+        <div class="form-group">
+            <label for="proveedor">Proveedor</label>
+            <input type="text" id="proveedor" name="proveedor" required />
+        </div>
+        <button type="submit">Crear Orden</button>
+    </form>
+</div>
