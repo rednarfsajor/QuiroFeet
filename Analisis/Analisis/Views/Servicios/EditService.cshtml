@@ -4,19 +4,19 @@
 }
 
 <div class="container">
-    <h1>Editar Cliente</h1>
+    <h1>Editar Servicio</h1>
     <p>Modifica la información del servicio</p>
 
     <!-- Formulario para Editar Servicio -->
     <form action="@Url.Action("ConfirmEditService", "Servicios")" method="post">
         <label>Nombre</label>
-        <input type="text" name="nombre" placeholder="Ingrese el nombre del servicio required" />
+        <input type="text" name="nombre" placeholder="Ingrese el nombre del servicio" required />
 
-        <label>Correo Electrónico</label>
+        <label>Descripción</label>
         <input type="text" name="descripcion" placeholder="Ingrese la descripcion del servicio" required />
 
         <label>Profesional</label>
-        <input type="text" name="profesional" placeholder="Ingrese el nombre del profesional"/>
+        <input type="text" name="profesional" placeholder="Ingrese el nombre del profesional" required/>
         <br />
         <!-- Botón para Guardar Cambios -->
         <button type="submit" class="btn-save">Guardar Cambios</button>
