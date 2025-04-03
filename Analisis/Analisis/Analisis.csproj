@@ -125,6 +125,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventarioController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
+    <Compile Include="Controllers\ServiciosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -198,7 +199,7 @@
     <Content Include="Views\Reportes\Reportes.cshtml" />
     <Content Include="Views\Inventario\Inventario.cshtml" />
     <Content Include="Views\Citas\ScheduleIndex.cshtml" />
-    <Content Include="Views\Servicios\ServicesIndex.cshtml" />
+    <Content Include="Views\Servicios\ServiceIndex.cshtml" />
     <Content Include="Views\Clientes\ClientIndex.cshtml" />
     <Content Include="Views\Clientes\CreateClient.cshtml" />
     <Content Include="Views\Clientes\EditClient.cshtml" />
@@ -206,6 +207,9 @@
     <Content Include="Views\Citas\CreateDate.cshtml" />
     <Content Include="Views\Citas\Calendar.cshtml" />
     <Content Include="Views\Citas\Day.cshtml" />
+    <Content Include="Views\Servicios\EditService.cshtml" />
+    <Content Include="Views\Servicios\ListServices.cshtml" />
+    <Content Include="Views\Servicios\CreateService.cshtml" />
     <None Include="Views\Usuarios\ListUser.cshtml" />
     <Content Include="Views\Usuarios\Users.cshtml" />
     <Content Include="Views\Ventas\Sales.cshtml" />
