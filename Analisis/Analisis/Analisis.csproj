@@ -122,6 +122,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventarioController.cs" />
+    <Compile Include="Controllers\ProveedoresController.cs" />
+    <Compile Include="Controllers\ProfesionalesController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -195,6 +197,16 @@
     <Content Include="Views\Ventas\ConfirmSale.cshtml" />
     <Content Include="Views\Reportes\Reportes.cshtml" />
     <Content Include="Views\Inventario\Inventario.cshtml" />
+    <Content Include="Views\Proveedores\Proveedores.cshtml" />
+    <Content Include="Views\Profesionales\Profesionales.cshtml" />
+    <Content Include="Views\Profesionales\RegistrarEmpleado.cshtml" />
+    <Content Include="Views\Profesionales\EditarEmpleado.cshtml" />
+    <Content Include="Views\Profesionales\DetallesEmpleado.cshtml" />
+    <Content Include="Views\Profesionales\GestionarDisponibilidad.cshtml" />
+    <Content Include="Views\Profesionales\ConsultarAgenda.cshtml" />
+    <Content Include="Views\Proveedores\RegistrarProveedor.cshtml" />
+    <Content Include="Views\Proveedores\EditarProveedor.cshtml" />
+    <Content Include="Views\Proveedores\DetallesProveedor.cshtml" />
     <None Include="Views\Usuarios\ListUser.cshtml" />
     <Content Include="Views\Usuarios\Users.cshtml" />
     <Content Include="Views\Ventas\Sales.cshtml" />

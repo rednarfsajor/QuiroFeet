@@ -3,36 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\jose andres\\source\\repos\\quirofeet\\analisis\\analisis\\controllers\\reportescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\reportescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\jose andres\\source\\repos\\quirofeet\\analisis\\analisis\\views\\profesionales\\registrarempleado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\profesionales\\registrarempleado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\analisis\\controllers\\inventariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\inventariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\jose andres\\source\\repos\\quirofeet\\analisis\\analisis\\views\\proveedores\\registrarproveedor.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\proveedores\\registrarproveedor.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\analisis\\views\\ventas\\sales.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\ventas\\sales.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\jose andres\\source\\repos\\quirofeet\\analisis\\analisis\\views\\proveedores\\proveedores.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\proveedores\\proveedores.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\analisis\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\jose andres\\source\\repos\\quirofeet\\analisis\\analisis\\views\\proveedores\\editarproveedor.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\proveedores\\editarproveedor.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\jose andres\\source\\repos\\quirofeet\\analisis\\analisis\\views\\proveedores\\detallesproveedor.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\proveedores\\detallesproveedor.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\jose andres\\source\\repos\\quirofeet\\analisis\\analisis\\controllers\\proveedorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\proveedorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\jose andres\\source\\repos\\quirofeet\\analisis\\analisis\\controllers\\profesionalescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\profesionalescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\jose andres\\source\\repos\\quirofeet\\analisis\\analisis\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\analisis\\views\\usuarios\\deleteuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\usuarios\\deleteuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\analisis\\views\\usuarios\\confirmdeleteuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\usuarios\\confirmdeleteuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\analisis\\views\\recibos\\receipts.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\recibos\\receipts.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\analisis\\views\\recibos\\listreceipts.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\recibos\\listreceipts.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,8 +42,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 399,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RegistrarEmpleado.cshtml",
+              "DocumentMoniker": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Profesionales\\RegistrarEmpleado.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Profesionales\\RegistrarEmpleado.cshtml",
+              "ToolTip": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Profesionales\\RegistrarEmpleado.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Profesionales\\RegistrarEmpleado.cshtml",
+              "ViewState": "AgIAAKIAAAAAAAAAAAAAALAAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-03T01:37:16.311Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DetallesProveedor.cshtml",
+              "DocumentMoniker": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Proveedores\\DetallesProveedor.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Proveedores\\DetallesProveedor.cshtml",
+              "ToolTip": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Proveedores\\DetallesProveedor.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Proveedores\\DetallesProveedor.cshtml",
+              "ViewState": "AgIAAHgAAAAAAAAAAAAgwKsAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-03T01:28:10.377Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -82,92 +108,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ReportesController.cs",
-              "DocumentMoniker": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ReportesController.cs",
-              "RelativeDocumentMoniker": "Analisis\\Controllers\\ReportesController.cs",
-              "ToolTip": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ReportesController.cs",
-              "RelativeToolTip": "Analisis\\Controllers\\ReportesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T17:50:18.23Z",
+              "DocumentIndex": 3,
+              "Title": "EditarProveedor.cshtml",
+              "DocumentMoniker": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Proveedores\\EditarProveedor.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Proveedores\\EditarProveedor.cshtml",
+              "ToolTip": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Proveedores\\EditarProveedor.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Proveedores\\EditarProveedor.cshtml",
+              "ViewState": "AgIAAAIBAAAAAAAAAAAAACABAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-03T01:30:05.637Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "InventarioController.cs",
-              "DocumentMoniker": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Controllers\\InventarioController.cs",
-              "RelativeDocumentMoniker": "Analisis\\Controllers\\InventarioController.cs",
-              "ToolTip": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Controllers\\InventarioController.cs",
-              "RelativeToolTip": "Analisis\\Controllers\\InventarioController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T17:50:00.304Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Sales.cshtml",
-              "DocumentMoniker": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Ventas\\Sales.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Ventas\\Sales.cshtml",
-              "ToolTip": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Ventas\\Sales.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Ventas\\Sales.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "RegistrarProveedor.cshtml",
+              "DocumentMoniker": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Proveedores\\RegistrarProveedor.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Proveedores\\RegistrarProveedor.cshtml",
+              "ToolTip": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Proveedores\\RegistrarProveedor.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Proveedores\\RegistrarProveedor.cshtml",
+              "ViewState": "AgIAAKgAAAAAAAAAAAAAAMsAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-01T17:49:53.918Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DeleteUser.cshtml",
-              "DocumentMoniker": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\DeleteUser.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Usuarios\\DeleteUser.cshtml",
-              "ToolTip": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\DeleteUser.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Usuarios\\DeleteUser.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-01T02:11:42.872Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ConfirmDeleteUser.cshtml",
-              "DocumentMoniker": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\ConfirmDeleteUser.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Usuarios\\ConfirmDeleteUser.cshtml",
-              "ToolTip": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\ConfirmDeleteUser.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Usuarios\\ConfirmDeleteUser.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-01T02:11:40.124Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Receipts.cshtml",
-              "DocumentMoniker": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\Receipts.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Recibos\\Receipts.cshtml",
-              "ToolTip": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\Receipts.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Recibos\\Receipts.cshtml",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABoAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-01T02:10:10.74Z"
+              "WhenOpened": "2025-04-03T01:28:20.757Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "ListReceipts.cshtml",
-              "DocumentMoniker": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\ListReceipts.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Recibos\\ListReceipts.cshtml",
-              "ToolTip": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\ListReceipts.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Recibos\\ListReceipts.cshtml",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-01T02:08:59.055Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "Analisis\\Views\\Home\\Index.cshtml",
@@ -175,7 +142,47 @@
               "RelativeToolTip": "Analisis\\Views\\Home\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-01T02:03:30.243Z"
+              "WhenOpened": "2025-04-03T01:26:49.657Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Proveedores.cshtml",
+              "DocumentMoniker": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Proveedores\\Proveedores.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Proveedores\\Proveedores.cshtml",
+              "ToolTip": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Proveedores\\Proveedores.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Proveedores\\Proveedores.cshtml",
+              "ViewState": "AgIAAI0AAAAAAAAAAAAAALcAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-03T01:25:35.047Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ProveedoresController.cs",
+              "DocumentMoniker": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ProveedoresController.cs",
+              "RelativeDocumentMoniker": "Analisis\\Controllers\\ProveedoresController.cs",
+              "ToolTip": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ProveedoresController.cs",
+              "RelativeToolTip": "Analisis\\Controllers\\ProveedoresController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T01:23:08.811Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ProfesionalesController.cs",
+              "DocumentMoniker": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ProfesionalesController.cs",
+              "RelativeDocumentMoniker": "Analisis\\Controllers\\ProfesionalesController.cs",
+              "ToolTip": "C:\\Users\\Jose Andres\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ProfesionalesController.cs",
+              "RelativeToolTip": "Analisis\\Controllers\\ProfesionalesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T00:53:33.219Z",
+              "EditorCaption": ""
             }
           ]
         },
