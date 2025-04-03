@@ -33,7 +33,7 @@
                         </tr>
                     </thead>
                     <tbody id="cuerpoTablaProveedores">
-                       
+                        <!-- Se llenará dinámicamente -->
                     </tbody>
                 </table>
             </div>
@@ -62,8 +62,14 @@
                         <td>${proveedor.correo}</td>
                         <td>${proveedor.identificacion}</td>
                         <td>
-                            <a href="@Url.Action("EditarProveedor", "Proveedores")?identificacion=${proveedor.identificacion}" class="btn btn-sm btn-warning">
+                            <a href="@Url.Action("VerProveedor", "Proveedores")?identificacion=${proveedor.identificacion}" class="btn btn-sm btn-info me-1">
+                                <i class="fas fa-eye"></i> Ver
+                            </a>
+                            <a href="@Url.Action("EditarProveedor", "Proveedores")?identificacion=${proveedor.identificacion}" class="btn btn-sm btn-warning me-1">
                                 <i class="fas fa-edit"></i> Editar
+                            </a>
+                            <a href="@Url.Action("EliminarProveedor", "Proveedores")?identificacion=${proveedor.identificacion}" class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i> Eliminar
                             </a>
                         </td>
                     </tr>`;

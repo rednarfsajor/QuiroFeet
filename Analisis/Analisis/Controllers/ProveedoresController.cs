@@ -23,7 +23,12 @@ namespace Analisis.Controllers
         }
 
         // Acción para ver detalles de empleado
-        public ActionResult DetallesProveedor()
+        public ActionResult VerProveedor()
+        {
+            return View();
+        }
+        // Acción para eliminar info empleado
+        public ActionResult EliminarProveedor()
         {
             return View();
         }

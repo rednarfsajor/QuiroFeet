@@ -201,12 +201,14 @@
     <Content Include="Views\Profesionales\Profesionales.cshtml" />
     <Content Include="Views\Profesionales\RegistrarEmpleado.cshtml" />
     <Content Include="Views\Profesionales\EditarEmpleado.cshtml" />
-    <Content Include="Views\Profesionales\DetallesEmpleado.cshtml" />
+    <Content Include="Views\Profesionales\VerEmpleado.cshtml" />
     <Content Include="Views\Profesionales\GestionarDisponibilidad.cshtml" />
     <Content Include="Views\Profesionales\ConsultarAgenda.cshtml" />
     <Content Include="Views\Proveedores\RegistrarProveedor.cshtml" />
     <Content Include="Views\Proveedores\EditarProveedor.cshtml" />
-    <Content Include="Views\Proveedores\DetallesProveedor.cshtml" />
+    <Content Include="Views\Proveedores\VerProveedor.cshtml" />
+    <Content Include="Views\Proveedores\EliminarProveedor.cshtml" />
+    <Content Include="Views\Profesionales\EliminarEmpleado.cshtml" />
     <None Include="Views\Usuarios\ListUser.cshtml" />
     <Content Include="Views\Usuarios\Users.cshtml" />
     <Content Include="Views\Ventas\Sales.cshtml" />

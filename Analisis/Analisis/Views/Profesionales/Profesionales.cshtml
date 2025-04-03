@@ -50,54 +50,61 @@
 @section Scripts {
     <script>
         function cargarProfesionales() {
-            const cuerpoTabla = $('#cuerpoTablaProfesionales');
-            cuerpoTabla.empty();
+    const cuerpoTabla = $('#cuerpoTablaProfesionales');
+    cuerpoTabla.empty();
 
-            const empleadosFicticios = [
-                {
-                    codigoUnico: 'EMP001',
-                    nombreCompleto: 'Ana María Pérez',
-                    identificacion: '12345678-9',
-                    especialidad: 'Psicología',
-                    telefono: '+506 1234 5678',
-                    correoElectronico: 'ana.perez@quirofeet.com'
-                },
-                {
-                    codigoUnico: 'EMP002',
-                    nombreCompleto: 'Carlos Rojas',
-                    identificacion: '87654321-0',
-                    especialidad: 'Kinesiología',
-                    telefono: '+506 8765 4321',
-                    correoElectronico: 'carlos.rojas@quirofeet.com'
-                },
-                {
-                    codigoUnico: 'EMP003',
-                    nombreCompleto: 'Lucía Gómez',
-                    identificacion: '11223344-5',
-                    especialidad: 'Fonoaudiología',
-                    telefono: '+506 3344 5566',
-                    correoElectronico: 'lucia.gomez@quirofeet.com'
-                }
-            ];
-
-            $.each(empleadosFicticios, function (index, empleado) {
-                let fila = `
-                    <tr>
-                        <td>${empleado.codigoUnico}</td>
-                        <td>${empleado.nombreCompleto}</td>
-                        <td>${empleado.identificacion}</td>
-                        <td>${empleado.especialidad}</td>
-                        <td>${empleado.telefono}</td>
-                        <td>${empleado.correoElectronico}</td>
-                        <td>
-                            <a href="@Url.Action("EditarEmpleado", "Profesionales")?codigo=${empleado.codigoUnico}" class="btn btn-sm btn-warning">
-                                <i class="fas fa-edit"></i> Editar
-                            </a>
-                        </td>
-                    </tr>`;
-                cuerpoTabla.append(fila);
-            });
+    const empleadosFicticios = [
+        {
+            codigoUnico: 'EMP001',
+            nombreCompleto: 'Ana María Pérez',
+            identificacion: '12345678-9',
+            especialidad: 'Psicología',
+            telefono: '+506 1234 5678',
+            correoElectronico: 'ana.perez@quirofeet.com'
+        },
+        {
+            codigoUnico: 'EMP002',
+            nombreCompleto: 'Carlos Rojas',
+            identificacion: '87654321-0',
+            especialidad: 'Kinesiología',
+            telefono: '+506 8765 4321',
+            correoElectronico: 'carlos.rojas@quirofeet.com'
+        },
+        {
+            codigoUnico: 'EMP003',
+            nombreCompleto: 'Lucía Gómez',
+            identificacion: '11223344-5',
+            especialidad: 'Fonoaudiología',
+            telefono: '+506 3344 5566',
+            correoElectronico: 'lucia.gomez@quirofeet.com'
         }
+    ];
+
+    $.each(empleadosFicticios, function (index, empleado) {
+        let fila = `
+            <tr>
+                <td>${empleado.codigoUnico}</td>
+                <td>${empleado.nombreCompleto}</td>
+                <td>${empleado.identificacion}</td>
+                <td>${empleado.especialidad}</td>
+                <td>${empleado.telefono}</td>
+                <td>${empleado.correoElectronico}</td>
+                <td>
+                    <a href="@Url.Action("VerEmpleado", "Profesionales")?codigo=${empleado.codigoUnico}" class="btn btn-sm btn-info me-1">
+                        <i class="fas fa-eye"></i> Ver
+                    </a>
+                    <a href="@Url.Action("EditarEmpleado", "Profesionales")?codigo=${empleado.codigoUnico}" class="btn btn-sm btn-warning me-1">
+                        <i class="fas fa-edit"></i> Editar
+                    </a>
+                    <a href="@Url.Action("EliminarEmpleado", "Profesionales")?codigo=${empleado.codigoUnico}" class="btn btn-sm btn-danger">
+                        <i class="fas fa-trash-alt"></i> Eliminar
+                    </a>
+                </td>
+            </tr>`;
+        cuerpoTabla.append(fila);
+    });
+}
+
 
         $(document).ready(function () {
             cargarProfesionales();

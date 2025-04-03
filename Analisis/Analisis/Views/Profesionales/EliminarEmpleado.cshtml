@@ -1,0 +1,81 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Eliminar Empleado";
+
+    var codigo = Request.QueryString["codigo"] ?? "";
+
+    dynamic profesional = new
+    {
+        NombreCompleto = "Desconocido",
+        Identificacion = "",
+        Especialidad = "",
+        Telefono = "",
+        CorreoElectronico = ""
+    };
+
+    if (codigo == "EMP001")
+    {
+        profesional = new
+        {
+            NombreCompleto = "Ana María Pérez",
+            Identificacion = "12345678-9",
+            Especialidad = "Psicología",
+            Telefono = "+506 1234 5678",
+            CorreoElectronico = "ana.perez@quirofeet.com"
+        };
+    }
+    else if (codigo == "EMP002")
+    {
+        profesional = new
+        {
+            NombreCompleto = "Carlos Rojas",
+            Identificacion = "87654321-0",
+            Especialidad = "Kinesiología",
+            Telefono = "+506 8765 4321",
+            CorreoElectronico = "carlos.rojas@quirofeet.com"
+        };
+    }
+    else if (codigo == "EMP003")
+    {
+        profesional = new
+        {
+            NombreCompleto = "Lucía Gómez",
+            Identificacion = "11223344-5",
+            Especialidad = "Fonoaudiología",
+            Telefono = "+506 3344 5566",
+            CorreoElectronico = "lucia.gomez@quirofeet.com"
+        };
+    }
+}
+
+<div class="container mt-4">
+    <div class="card border-danger shadow-sm">
+        <div class="card-header bg-danger text-white">
+            <h2 class="mb-0 h5"><i class="fas fa-trash me-2"></i> Eliminar Empleado</h2>
+        </div>
+        <div class="card-body">
+            <p class="text-danger fs-5">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                ¿Estás seguro que deseas eliminar al siguiente profesional?
+            </p>
+
+            <ul class="list-group mb-3">
+                <li class="list-group-item"><strong>Nombre:</strong> @profesional.NombreCompleto</li>
+                <li class="list-group-item"><strong>Identificación:</strong> @profesional.Identificacion</li>
+                <li class="list-group-item"><strong>Especialidad:</strong> @profesional.Especialidad</li>
+                <li class="list-group-item"><strong>Teléfono:</strong> @profesional.Telefono</li>
+                <li class="list-group-item"><strong>Correo:</strong> @profesional.CorreoElectronico</li>
+            </ul>
+
+            <div class="d-flex justify-content-end">
+                <a href="@Url.Action("Index", "Profesionales")" class="btn btn-secondary me-2">
+                    <i class="fas fa-times me-1"></i> Cancelar
+                </a>
+                <button class="btn btn-danger" disabled>
+                    <i class="fas fa-trash-alt me-1"></i> Eliminar Profesional
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -23,7 +23,7 @@ namespace Analisis.Controllers
         }
 
         // Acción para ver detalles de empleado
-        public ActionResult DetallesEmpleado()
+        public ActionResult VerEmpleado()
         {
             return View();
         }
@@ -36,6 +36,11 @@ namespace Analisis.Controllers
 
         // Acción para ver agenda del empleado
         public ActionResult ConsultarAgenda()
+        {
+            return View();
+        }
+        // Acción para eliminar empleado
+        public ActionResult EliminarEmpleado()
         {
             return View();
         }
