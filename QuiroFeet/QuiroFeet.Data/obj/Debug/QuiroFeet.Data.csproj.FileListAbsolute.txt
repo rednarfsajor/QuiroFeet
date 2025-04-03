@@ -10,3 +10,15 @@ C:\Users\Frander\Documents\Universidad\Cuatrimestre VI\Requerimientos\QuiroFeet\
 C:\Users\Frander\Documents\Universidad\Cuatrimestre VI\Requerimientos\QuiroFeet\QuiroFeet.Data\obj\Debug\QuiroFee.D76679C4.Up2Date
 C:\Users\Frander\Documents\Universidad\Cuatrimestre VI\Requerimientos\QuiroFeet\QuiroFeet.Data\obj\Debug\QuiroFeet.Data.dll
 C:\Users\Frander\Documents\Universidad\Cuatrimestre VI\Requerimientos\QuiroFeet\QuiroFeet.Data\obj\Debug\QuiroFeet.Data.pdb
+C:\Users\Jose Andres\source\repos\QuiroFeet\QuiroFeet\QuiroFeet.Data\bin\Debug\QuiroFeet.Data.dll.config
+C:\Users\Jose Andres\source\repos\QuiroFeet\QuiroFeet\QuiroFeet.Data\bin\Debug\QuiroFeet.Data.dll
+C:\Users\Jose Andres\source\repos\QuiroFeet\QuiroFeet\QuiroFeet.Data\bin\Debug\QuiroFeet.Data.pdb
+C:\Users\Jose Andres\source\repos\QuiroFeet\QuiroFeet\QuiroFeet.Data\bin\Debug\EntityFramework.dll
+C:\Users\Jose Andres\source\repos\QuiroFeet\QuiroFeet\QuiroFeet.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Jose Andres\source\repos\QuiroFeet\QuiroFeet\QuiroFeet.Data\bin\Debug\EntityFramework.xml
+C:\Users\Jose Andres\source\repos\QuiroFeet\QuiroFeet\QuiroFeet.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Jose Andres\source\repos\QuiroFeet\QuiroFeet\QuiroFeet.Data\obj\Debug\QuiroFeet.Data.csproj.AssemblyReference.cache
+C:\Users\Jose Andres\source\repos\QuiroFeet\QuiroFeet\QuiroFeet.Data\obj\Debug\QuiroFeet.Data.csproj.CoreCompileInputs.cache
+C:\Users\Jose Andres\source\repos\QuiroFeet\QuiroFeet\QuiroFeet.Data\obj\Debug\QuiroFee.D76679C4.Up2Date
+C:\Users\Jose Andres\source\repos\QuiroFeet\QuiroFeet\QuiroFeet.Data\obj\Debug\QuiroFeet.Data.dll
+C:\Users\Jose Andres\source\repos\QuiroFeet\QuiroFeet\QuiroFeet.Data\obj\Debug\QuiroFeet.Data.pdb
