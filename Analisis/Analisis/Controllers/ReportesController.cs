@@ -1,22 +1,22 @@
 ﻿using System.Web.Mvc;
 
-namespace Analisis.Controllers
+namespace QuiroFeet.Controllers
 {
     public class ReportesController : Controller
     {
-        // Página principal de reportes
-        public ActionResult Index()
+        // Acción principal: Mostrar la vista de reportes
+        public ActionResult Reportes()
         {
-            return View("~/Views/Reportes/Reportes.cshtml");
+            return View();
         }
 
-        // Acción para generar reportes de ventas
+        // Acción para generar el reporte de ventas
         public ActionResult ReporteVentas()
         {
             return View();
         }
 
-        // Acción para ver productos más vendidos
+        // Acción para ver los productos más vendidos
         public ActionResult ProductosMasVendidos()
         {
             return View();
@@ -28,13 +28,13 @@ namespace Analisis.Controllers
             return View();
         }
 
-        // Acción para ver historial de compras por cliente
+        // Acción para ver el historial de compras por cliente
         public ActionResult HistorialComprasCliente()
         {
             return View();
         }
 
-        // Acción para ver historial de servicios por profesional
+        // Acción para ver el historial de servicios por profesional
         public ActionResult HistorialServiciosProfesional()
         {
             return View();

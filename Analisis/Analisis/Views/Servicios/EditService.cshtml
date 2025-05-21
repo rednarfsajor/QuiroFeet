@@ -1,0 +1,86 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Editar Cliente";
+}
+
+<div class="container">
+    <h1>Editar Servicio</h1>
+    <p>Modifica la información del servicio</p>
+
+    <!-- Formulario para Editar Servicio -->
+    <form action="@Url.Action("ConfirmEditService", "Servicios")" method="post">
+        <label>Nombre</label>
+        <input type="text" name="nombre" placeholder="Ingrese el nombre del servicio" required />
+
+        <label>Descripción</label>
+        <input type="text" name="descripcion" placeholder="Ingrese la descripcion del servicio" required />
+
+        <label>Profesional</label>
+        <input type="text" name="profesional" placeholder="Ingrese el nombre del profesional" required/>
+        <br />
+        <!-- Botón para Guardar Cambios -->
+        <button type="submit" class="btn-save">Guardar Cambios</button>
+        <!-- Botón para Cancelar y Regresar -->
+        <a href="@Url.Action("ListServices", "Servicios")" class="btn-cancel">Cancelar</a>
+    </form>
+</div>
+
+<!-- Estilos CSS -->
+<style>
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        color: #234449;
+    }
+
+    label {
+        display: block;
+        margin-top: 20px;
+        font-weight: bold;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 12px;
+        margin-top: 8px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+    }
+
+    .btn-save {
+        background-color: #3e77f8;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .btn-cancel {
+        background-color: #e74c3c;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 8px;
+        text-decoration: none;
+        margin-left: 10px;
+    }
+
+    .btn-save:hover {
+        background-color: #234449;
+    }
+
+    .btn-cancel:hover {
+        background-color: #c0392b;
+    }
+</style>
+
+

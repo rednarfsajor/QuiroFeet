@@ -28,9 +28,9 @@
                         <td>@receipt.Date.ToString("dd/MM/yyyy")</td>
                         <td>@receipt.Total.ToString("C")</td>
                         <td>
-                            <a href="@Url.Action("EditReceipt", "Home", new { id = receipt.ReceiptNumber })" class="btn-edit">Editar</a>
-                            <a href="@Url.Action("CancelReceipt", "Home", new { id = receipt.ReceiptNumber })" class="btn-cancel">Anular</a>
-                            <a href="@Url.Action("DetailsReceipt", "Home", new { id = receipt.ReceiptNumber })" class="btn-details">Detalles</a>
+                            <a href="@Url.Action("EditReceipt", "Recibos", new { id = receipt.ReceiptNumber })" class="btn-edit">Editar</a>
+                            <a href="@Url.Action("CancelReceipt", "Recibos", new { id = receipt.ReceiptNumber })" class="btn-cancel">Anular</a>
+                            <a href="@Url.Action("DetailsReceipt", "Recibos", new { id = receipt.ReceiptNumber })" class="btn-details">Detalles</a>
                         </td>
                     </tr>
                 }
@@ -44,7 +44,7 @@
         </tbody>
     </table>
 
-    <a href="@Url.Action("Receipts", "Home")" class="btn-back">Volver al Panel de Recibos</a>
+    <a href="@Url.Action("Receipts", "Recibos")" class="btn-back">Volver al Panel de Recibos</a>
 </div>
 
 <!-- Estilos CSS -->

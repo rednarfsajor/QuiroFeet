@@ -8,10 +8,10 @@
     <p>¿Estás seguro de que deseas eliminar al usuario <strong>@ViewBag.FullName</strong>? Esta acción no se puede deshacer.</p>
 
     <!-- Formulario para Confirmar Eliminación -->
-    <form action="@Url.Action("ConfirmDeleteUser", "Home")" method="post">
+    <form action="@Url.Action("ConfirmDeleteUser", "Usuarios")" method="post">
         <input type="hidden" name="UserId" value="@ViewBag.UserId" />
         <button type="submit" class="btn-delete">Eliminar</button>
-        <a href="@Url.Action("ListUser", "Home")" class="btn-cancel">Cancelar</a>
+        <a href="@Url.Action("ListUser", "Usuarios")" class="btn-cancel">Cancelar</a>
     </form>
 </div>
 

@@ -42,7 +42,7 @@
                         <td>
                             @if (!receipt.IsCancelled)
                             {
-                                <a href="@Url.Action("CancelReceipt", "Home", new { id = receipt.ReceiptNumber })" class="btn-cancel">Anular</a>
+                                <a href="@Url.Action("CancelReceipt", "Recibos", new { id = receipt.ReceiptNumber })" class="btn-cancel">Anular</a>
                             }
                             else
                             {
@@ -61,7 +61,7 @@
         </tbody>
     </table>
 
-    <a href="@Url.Action("Receipts", "Home")" class="btn-back">Volver al Panel de Recibos</a>
+    <a href="@Url.Action("Receipts", "Recibos")" class="btn-back">Volver al Panel de Recibos</a>
 </div>
 
 <!-- Estilos CSS -->

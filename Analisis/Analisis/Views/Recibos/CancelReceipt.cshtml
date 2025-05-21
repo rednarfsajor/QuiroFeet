@@ -10,10 +10,10 @@
     <p>Esta acción no se puede deshacer y se registrará en el historial de anulaciones.</p>
 
     <!-- Formulario para confirmar la anulación -->
-    <form action="/Home/ConfirmCancelReceipt" method="post">
+    <form action="/Recibos/ConfirmCancelReceipt" method="post">
         <input type="hidden" name="ReceiptNumber" value="@ViewBag.ReceiptNumber" />
         <button type="submit" class="btn-cancel">Confirmar Anulación</button>
-        <a href="/Home/ListAnularReceipt" class="btn-back">Cancelar</a>
+        <a href="/Recibos/ListAnularReceipt" class="btn-back">Cancelar</a>
     </form>
 </div>
 

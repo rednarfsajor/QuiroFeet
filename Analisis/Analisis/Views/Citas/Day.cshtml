@@ -1,0 +1,60 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Dia";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center">Eventos del día @ViewBag.Fecha</h1>
+
+    <table class="table table-striped mt-4">
+        <thead>
+            <tr>
+                <th>Hora</th>
+                <th>Cliente</th>
+                <th>Servicio</th>
+                <th>Profesional</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var evento in Model)
+                {
+                    <tr>
+                        <td>@evento.Hora</td>
+                        <td>@evento.Cliente</td>
+                        <td>@evento.Servicio</td>
+                        <td>@evento.Profesional</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="2" class="text-center">No hay eventos programados para este día.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <a href="CreateDate?fecha=@ViewBag.Fecha" class="btn-back">Agregar Evento</a>
+    <a href="Calendar" class="btn-back">Volver al Calendario</a>
+
+</div>
+
+
+<style>
+
+    .btn-back {
+        background-color: #3e77f8;
+        border: none;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 8px;
+        text-decoration: none;
+        margin-right: 5px;
+    }
+
+
+
+</style>

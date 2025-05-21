@@ -1,0 +1,13 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Crear Orden de Compra";
+}
+
+<div class="container mt-4">
+    <h2>Crear Orden de Compra</h2>
+    <form action="@Url.Action("RegistrarOrdenCompra", "Inventario")" method="post">
+        <input type="text" name="producto" placeholder="Producto" required />
+        <input type="number" name="cantidad" placeholder="Cantidad" required />
+        <button type="submit">Crear Orden</button>
+    </form>
+</div>

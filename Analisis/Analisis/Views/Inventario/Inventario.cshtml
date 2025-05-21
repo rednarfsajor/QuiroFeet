@@ -3,260 +3,98 @@
     ViewBag.Title = "Inventario";
 }
 
-<div class="container mt-4 inventory-container">
-    <h2 class="title">Gestión de Inventario</h2>
-
-    <div class="card inventory-card">
-        <h3 class="subtitle">Registrar / Editar Producto</h3>
-        <form>
-            <div class="form-group">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" class="form-control" required>
-            </div>
-
-            <div class="form-group">
-                <label for="descripcion">Descripción:</label>
-                <textarea id="descripcion" name="descripcion" class="form-control"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="categoria">Categoría:</label>
-                <select id="categoria" name="categoria" class="form-select">
-                    <option value="electronica">Electrónica</option>
-                    <option value="ropa">Ropa</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="precio">Precio:</label>
-                <input type="number" id="precio" name="precio" class="form-control" required>
-            </div>
-
-            <button type="submit" class="btn action-btn"><i class="fas fa-save"></i> Guardar</button>
-        </form>
-    </div>
-
-    <div class="inventory-actions">
-        <button class="btn action-btn" data-bs-toggle="modal" data-bs-target="#modalRegistrarIngreso">
-            <i class="fas fa-plus"></i> Registrar Ingreso
-        </button>
-        <button class="btn action-btn" data-bs-toggle="modal" data-bs-target="#modalRegistrarSalida">
-            <i class="fas fa-minus"></i> Registrar Salida
-        </button>
-        <button class="btn action-btn" data-bs-toggle="modal" data-bs-target="#modalAjustarStock">
-            <i class="fas fa-edit"></i> Ajustar Stock
-        </button>
-    </div>
-
-    <div class="card inventory-card">
-        <h3 class="subtitle">Historial de Movimientos</h3>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Fecha</th>
-                    <th>Producto</th>
-                    <th>Movimiento</th>
-                    <th>Cantidad</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Datos dinámicos -->
-                <tr>
-                    <td>01/04/2025</td>
-                    <td>Ortesis Lumbar</td>
-                    <td>Ingreso</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <td>02/04/2025</td>
-                    <td>Plantillas Ortopédicas</td>
-                    <td>Salida</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>02/04/2025</td>
-                    <td>Muletas</td>
-                    <td>Ingreso</td>
-                    <td>20</td>
-                </tr>
-                <tr>
-                    <td>03/04/2025</td>
-                    <td>Férula para muñeca</td>
-                    <td>Salida</td>
-                    <td>2</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="card inventory-card">
-        <h3 class="subtitle">Alertas de Stock Mínimo</h3>
-        <p>Se mostrarán alertas cuando el stock de un producto esté bajo.</p>
-        <div class="alert alert-warning mt-3">
-            <strong>Alerta:</strong> El stock de <strong>Ortesis Lumbar</strong> está por debajo del nivel mínimo, solo quedan 3 unidades disponibles.
-        </div>
-
-        <div class="alert alert-warning mt-3">
-            <strong>Alerta:</strong> El stock de <strong>Muletas</strong> está por debajo del nivel mínimo, solo quedan 5 unidades disponibles.
-        </div>
-
-        <div class="alert alert-warning mt-3">
-            <strong>Alerta:</strong> El stock de <strong>Plantillas Ortopédicas</strong> está por debajo del nivel mínimo, solo quedan 2 unidades disponibles.
-        </div>
-    </div>
-</div>
-
-<!-- Modal para Registrar Ingreso -->
-<div class="modal fade" id="modalRegistrarIngreso" tabindex="-1" aria-labelledby="modalRegistrarIngresoLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalRegistrarIngresoLabel">Registrar Ingreso</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="productoIngreso">Producto:</label>
-                        <input type="text" id="productoIngreso" name="productoIngreso" class="form-control" placeholder="Nombre del Producto">
-                    </div>
-                    <div class="form-group">
-                        <label for="cantidadIngreso">Cantidad:</label>
-                        <input type="number" id="cantidadIngreso" name="cantidadIngreso" class="form-control" placeholder="Cantidad">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal para Registrar Salida -->
-<div class="modal fade" id="modalRegistrarSalida" tabindex="-1" aria-labelledby="modalRegistrarSalidaLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalRegistrarSalidaLabel">Registrar Salida</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="productoSalida">Producto:</label>
-                        <input type="text" id="productoSalida" name="productoSalida" class="form-control" placeholder="Nombre del Producto">
-                    </div>
-                    <div class="form-group">
-                        <label for="cantidadSalida">Cantidad:</label>
-                        <input type="number" id="cantidadSalida" name="cantidadSalida" class="form-control" placeholder="Cantidad">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal para Ajustar Stock -->
-<div class="modal fade" id="modalAjustarStock" tabindex="-1" aria-labelledby="modalAjustarStockLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalAjustarStockLabel">Ajustar Stock</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="productoAjustar">Producto:</label>
-                        <input type="text" id="productoAjustar" name="productoAjustar" class="form-control" placeholder="Nombre del Producto">
-                    </div>
-                    <div class="form-group">
-                        <label for="cantidadAjustar">Cantidad Ajustada:</label>
-                        <input type="number" id="cantidadAjustar" name="cantidadAjustar" class="form-control" placeholder="Cantidad Ajustada">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Ajustar</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
+<!-- Estilos CSS -->
 <style>
-    .inventory-container {
-        max-width: 900px;
+    .inventario-container {
+        max-width: 1000px;
         margin: 50px auto;
         text-align: center;
     }
 
-    .title {
+    h2 {
         color: #234449;
         font-size: 2.5em;
-        margin-bottom: 30px;
-    }
-
-    .subtitle {
-        color: #3e77f8;
-        font-size: 1.8em;
         margin-bottom: 20px;
     }
 
-    .inventory-card {
-        background-color: #ffffff;
-        padding: 30px;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        margin-bottom: 30px;
-    }
-
-    .form-group {
-        margin-bottom: 20px;
-        text-align: left;
-    }
-
-    .inventory-actions {
+    .action-buttons {
         display: flex;
         justify-content: center;
-        gap: 15px;
+        gap: 40px;
         margin-bottom: 30px;
     }
 
-    .action-btn {
-        font-size: 1.2em;
-        padding: 12px 25px;
-        border-radius: 10px;
-        transition: background-color 0.3s, transform 0.2s;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-weight: bold;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-        .action-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        .action-buttons a {
+            text-decoration: none;
+            background-color: #3e77f8;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
         }
 
-    /* Botones con color azul */
-    .btn {
-        background-color: #3e77f8;
-        border: none;
+            .action-buttons a:hover {
+                transform: translateY(-5px);
+                background-color: #234449;
+            }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 40px;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #234449;
         color: white;
     }
 
-        .btn:hover {
-            background-color: #3467d3;
+    td a {
+        color: #3e77f8;
+        text-decoration: none;
+    }
+
+        td a:hover {
+            color: #234449;
         }
-
-    /* Estilo para los modales */
-    .modal-dialog {
-        max-width: 500px;
-    }
-
-    .modal-content {
-        border-radius: 15px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    }
 </style>
+
+<div class="inventario-container">
+    <h2>Inventario</h2>
+
+    <div class="action-buttons">
+        <a href="@Url.Action("RegistrarProducto", "Inventario")">Registrar Producto</a>
+        <a href="@Url.Action("HistorialMovimientos", "Inventario")">Historial de Movimientos</a>
+        <a href="@Url.Action("AlertasStock", "Inventario")">Alertas de Stock Mínimo</a>
+        <a href="@Url.Action("CrearOrdenCompra", "Inventario")">Crear Orden de Compra</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Producto A</td>
+                <td>Descripción del Producto A</td>
+                <td>
+                    <a href="@Url.Action("EditarProducto", new { id = 1 })">Editar</a>
+                    <a href="@Url.Action("InactivarProducto", new { id = 1 })">Inactivar</a>
+                </td>
+            </tr>
+            <!-- Más productos aquí -->
+        </tbody>
+    </table>
+</div>

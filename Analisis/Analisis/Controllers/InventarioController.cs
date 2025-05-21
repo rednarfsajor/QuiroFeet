@@ -1,13 +1,13 @@
 ﻿using System.Web.Mvc;
 
-namespace Analisis.Controllers
+namespace QuiroFeet.Controllers
 {
     public class InventarioController : Controller
     {
-        // Página principal del inventario
-        public ActionResult Index()
+        // Acción principal: Mostrar la vista de inventario
+        public ActionResult Inventario()
         {
-            return View("~/Views/Inventario/Inventario.cshtml");
+            return View();
         }
 
         // Acción para registrar un nuevo producto
@@ -16,27 +16,30 @@ namespace Analisis.Controllers
             return View();
         }
 
-        // Acción para editar un producto existente
+        // Acción para editar un producto
         public ActionResult EditarProducto(int id)
         {
+            // Puedes pasar un "id" a la vista si necesitas algo específico
             ViewBag.ProductoId = id;
             return View();
         }
 
-        // Acción para registrar ingreso de stock
+        // Acción para inactivar un producto
+        public ActionResult InactivarProducto(int id)
+        {
+            // Lógica para inactivar el producto (solo vista estática)
+            ViewBag.ProductoId = id;
+            return View();
+        }
+
+        // Acción para registrar ingreso de productos
         public ActionResult RegistrarIngreso()
         {
             return View();
         }
 
-        // Acción para registrar salida de stock
+        // Acción para registrar salida de productos
         public ActionResult RegistrarSalida()
-        {
-            return View();
-        }
-
-        // Acción para ajustar stock manualmente
-        public ActionResult AjustarStock()
         {
             return View();
         }
@@ -47,8 +50,14 @@ namespace Analisis.Controllers
             return View();
         }
 
-        // Acción para mostrar alertas de stock mínimo
+        // Acción para ver alertas de stock mínimo
         public ActionResult AlertasStock()
+        {
+            return View();
+        }
+
+        // Acción para crear una orden de compra
+        public ActionResult CrearOrdenCompra()
         {
             return View();
         }

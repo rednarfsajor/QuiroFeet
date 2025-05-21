@@ -8,7 +8,7 @@
     <p>Modifica la información del usuario y guarda los cambios.</p>
 
     <!-- Formulario para Editar Usuario -->
-    <form action="@Url.Action("ConfirmEditUser", "Home")" method="post">
+    <form action="@Url.Action("ConfirmEditUser", "Usuarios")" method="post">
         <label>Nombre Completo</label>
         <input type="text" name="FullName" placeholder="Ingrese el nombre completo" required />
 
@@ -29,7 +29,7 @@
         <!-- Botón para Guardar Cambios -->
         <button type="submit" class="btn-save">Guardar Cambios</button>
         <!-- Botón para Cancelar y Regresar -->
-        <a href="@Url.Action("ListUser", "Home")" class="btn-cancel">Cancelar</a>
+        <a href="@Url.Action("ListUser", "Usuarios")" class="btn-cancel">Cancelar</a>
     </form>
 </div>
 
