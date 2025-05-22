@@ -9,27 +9,25 @@
 
     <div class="options">
         <!-- Botón para Ver Recibos -->
-        <!-- Botón para Ver Recibos -->
-        <a href="@Url.Action("ListReceipts", "Home")" class="option-card">
-            <i class="fas fa-file-invoice"></i>
+        <a href="@Url.Action("ListReceipts", "Recibos")" class="option-card">
+            <i class="bi bi-file-earmark-text"></i>
             <h3>Ver Recibos</h3>
             <p>Consulta la lista de recibos registrados en el sistema.</p>
         </a>
 
         <!-- Botón para Editar Recibos -->
-        <a href="@Url.Action("EditReceipt", "Home")" class="option-card">
-            <i class="fas fa-edit"></i>
+        <a href="@Url.Action("EditReceipt", "Recibos")" class="option-card">
+            <i class="bi bi-pencil-square"></i>
             <h3>Editar Recibo</h3>
             <p>Modifica los detalles de un recibo emitido.</p>
         </a>
 
         <!-- Botón para Anular Recibos -->
-        <a href="@Url.Action("ListAnularReceipt", "Home")" class="option-card">
-            <i class="fas fa-trash-alt"></i>
+        <a href="@Url.Action("ListAnularReceipt", "Recibos")" class="option-card">
+            <i class="bi bi-trash-fill"></i>
             <h3>Anular Recibo</h3>
             <p>Anular un recibo del sistema.</p>
         </a>
-
     </div>
 </div>
 

@@ -1,0 +1,203 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+            <h2 class="mb-0 h5"> <i class="fas fa-users me-2"></i> @ViewBag.Title </h2>
+            <div>
+                @* Botón para navegar a la acción RegistrarEmpleado del ProfesionalesController *@
+                <a href="@Url.Action("RegistrarEmpleado", "Profesionales")" class="btn btn-primary btn-sm">
+                    <i class="fas fa-plus me-1"></i> Nuevo Empleado
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            @* Alerta para mostrar mensajes de éxito (ej: después de eliminar) *@
+            <div id="alertaMensajes" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
+                <span id="mensajeTexto"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered table-sm" id="tablaProfesionales">
+                    <thead class="table-light">
+                        @* O usa la clase de cabecera que uses en otras tablas *@
+                        <tr>
+                            <th>Código</th> @* HU-037 Criterio 3 *@
+                            <th>Nombre Completo</th> @* HU-037 Criterio 1 *@
+                            <th>Identificación</th> @* HU-037 Criterio 2 *@
+                            <th>Especialidad</th> @* HU-037 Criterio 1 *@
+                            <th>Teléfono</th>
+                            <th>Correo Electrónico</th>
+                            <th class="text-center" style="width: 15%;">Acciones</th> @* Ajusta el ancho según necesidad *@
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpoTablaProfesionales">
+                        @* El contenido se cargará aquí mediante JavaScript *@
+                        <tr>
+                            <td colspan="7" class="text-center" id="filaLoading">
+                                <div class="spinner-border spinner-border-sm" role="status">
+                                    <span class="visually-hidden">Cargando...</span>
+                                </div>
+                                Cargando Profesionales...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> @* Fin card-body *@
+    </div> @* Fin card *@
+
+</div> @* Fin container *@
+
+@* Modal de Confirmación para Eliminar (Ejemplo usando Bootstrap Modal) *@
+<div class="modal fade" id="confirmarEliminarModal" tabindex="-1" aria-labelledby="confirmarEliminarModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h1 class="modal-title fs-5" id="confirmarEliminarModalLabel"> <i class="fas fa-exclamation-triangle me-2"></i> Confirmar Eliminación</h1>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Estás seguro de que deseas eliminar a este empleado? Esta acción no se puede deshacer.
+                <br><strong id="nombreEmpleadoEliminar"></strong>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger btn-sm" id="btnConfirmarEliminar"> <i class="fas fa-trash-alt me-1"></i> Eliminar </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @* Incluye aquí cualquier script específico para esta página *@
+    <script>
+        // URL base para las acciones (útil si tu app no está en la raíz)
+        const baseUrl = '@Url.Content("~/")'; // Obtiene la URL base de la aplicación
+        const ProfesionalesApiUrl = baseUrl + 'api/Profesionales'; // **IMPORTANTE: Define la URL de tu API de Profesionales**
+        let empleadoIdParaEliminar = null; // Variable para guardar el ID al confirmar eliminación
+
+        // Función para cargar los Profesionales desde la API
+        function cargarProfesionales() {
+            const cuerpoTabla = $('#cuerpoTablaProfesionales');
+            const filaLoading = $('#filaLoading');
+            filaLoading.show(); // Mostrar indicador de carga
+            cuerpoTabla.empty().append(filaLoading); // Limpiar tabla excepto loading
+
+            $.ajax({
+                url: ProfesionalesApiUrl, // Llama a tu API para obtener la lista
+                method: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    filaLoading.hide(); // Ocultar indicador de carga
+                    cuerpoTabla.empty(); // Limpiar tabla completamente
+
+                    if (data && data.length > 0) {
+                        $.each(data, function (index, empleado) {
+                            // Construir la fila de la tabla para cada empleado
+                            // **Asegúrate que los nombres de propiedad (ej: empleado.codigoUnico) coincidan con tu API**
+                            let fila = `
+                                <tr>
+                                    <td>${empleado.codigoUnico || 'N/A'}</td>
+                                    <td>${empleado.nombreCompleto || 'N/A'}</td>
+                                    <td>${empleado.identificacion || 'N/A'}</td>
+                                    <td>${empleado.especialidad || 'N/A'}</td>
+                                    <td>${empleado.telefono || 'N/A'}</td>
+                                    <td>${empleado.correoElectronico || 'N/A'}</td>
+                                    <td class="text-center">
+                                        <a href="${baseUrl}Profesionales/EditarEmpleado?id=${empleado.id}" class="btn btn-warning btn-sm me-1" title="Editar">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a href="${baseUrl}Profesionales/DetallesEmpleado?id=${empleado.id}" class="btn btn-info btn-sm text-white me-1" title="Detalles">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                         <a href="${baseUrl}Profesionales/GestionarDisponibilidad?id=${empleado.id}" class="btn btn-success btn-sm me-1" title="Disponibilidad">
+                                            <i class="fas fa-calendar-alt"></i>
+                                        </a>
+                                         <a href="${baseUrl}Profesionales/ConsultarAgenda?id=${empleado.id}" class="btn btn-secondary btn-sm me-1" title="Agenda">
+                                            <i class="fas fa-book-medical"></i>
+                                        </a>
+                                        <button type="button" class="btn btn-danger btn-sm btn-eliminar" data-id="${empleado.id}" data-nombre="${empleado.nombreCompleto || 'Empleado'}" title="Eliminar">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </td>
+                                </tr>`;
+                            cuerpoTabla.append(fila);
+                        });
+                    } else {
+                        // Mostrar mensaje si no hay Profesionales
+                        cuerpoTabla.append('<tr><td colspan="7" class="text-center">No hay Profesionales registrados.</td></tr>');
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    filaLoading.hide(); // Ocultar indicador de carga
+                    console.error("Error al cargar Profesionales:", textStatus, errorThrown, jqXHR.responseText);
+                    cuerpoTabla.empty().append('<tr><td colspan="7" class="text-center text-danger">Error al cargar los datos. Intente de nuevo más tarde.</td></tr>');
+                    // Podrías mostrar un mensaje más amigable al usuario
+                }
+            });
+        }
+
+        // --- Lógica para Eliminar ---
+
+        // 1. Cuando se hace clic en un botón de eliminar
+        $('#tablaProfesionales').on('click', '.btn-eliminar', function () {
+            empleadoIdParaEliminar = $(this).data('id'); // Guarda el ID del empleado
+            const nombreEmpleado = $(this).data('nombre');
+             $('#nombreEmpleadoEliminar').text(nombreEmpleado); // Muestra el nombre en el modal
+            $('#confirmarEliminarModal').modal('show'); // Muestra el modal de confirmación
+        });
+
+        // 2. Cuando se confirma la eliminación en el modal
+        $('#btnConfirmarEliminar').on('click', function () {
+            if (empleadoIdParaEliminar) {
+                 const urlEliminar = `${ProfesionalesApiUrl}/${empleadoIdParaEliminar}`; // URL para la API de borrado
+
+                 $.ajax({
+                    url: urlEliminar,
+                    method: 'DELETE', // O 'POST' si tu API lo requiere
+                    success: function (response) {
+                        $('#confirmarEliminarModal').modal('hide'); // Oculta el modal
+                         mostrarAlerta('Empleado eliminado correctamente.', 'success');
+                        cargarProfesionales(); // Recarga la lista de Profesionales
+                        empleadoIdParaEliminar = null; // Limpia el ID guardado
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                         $('#confirmarEliminarModal').modal('hide');
+                         console.error("Error al eliminar empleado:", textStatus, errorThrown, jqXHR.responseText);
+                         mostrarAlerta('Error al eliminar el empleado. ' + (jqXHR.responseJSON?.message || errorThrown), 'danger');
+                         empleadoIdParaEliminar = null;
+                    }
+                });
+            }
+        });
+
+         // --- Función para mostrar alertas ---
+         function mostrarAlerta(mensaje, tipo = 'success') {
+             const alerta = $('#alertaMensajes');
+             const texto = $('#mensajeTexto');
+
+             texto.text(mensaje);
+             // Quita clases de alerta anteriores y añade la nueva
+             alerta.removeClass('alert-success alert-danger alert-warning alert-info').addClass(`alert-${tipo}`);
+             alerta.show();
+
+             // Opcional: Ocultar la alerta después de unos segundos
+             setTimeout(() => {
+                 alerta.fadeOut();
+             }, 5000); // 5 segundos
+         }
+
+
+        // --- Ejecución Inicial ---
+        $(document).ready(function () {
+            cargarProfesionales(); // Carga la lista de Profesionales cuando la página esté lista
+        });
+
+    </script>
+}

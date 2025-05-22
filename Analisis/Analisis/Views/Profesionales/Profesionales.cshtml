@@ -1,0 +1,100 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+            <h2 class="mb-0 h5"> <i class="fas fa-users me-2"></i> @ViewBag.Title </h2>
+            <div>
+                <a href="@Url.Action("RegistrarEmpleado", "Profesionales")" class="btn btn-primary btn-sm">
+                    <i class="fas fa-plus me-1"></i> Nuevo Empleado
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            <div id="alertaMensajes" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
+                <span id="mensajeTexto"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered table-sm" id="tablaProfesionales">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombre Completo</th>
+                            <th>Identificación</th>
+                            <th>Especialidad</th>
+                            <th>Teléfono</th>
+                            <th>Correo Electrónico</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpoTablaProfesionales">
+                        <tr>
+                            <td colspan="6" class="text-center" id="filaLoading">
+                                <div class="spinner-border spinner-border-sm" role="status">
+                                    <span class="visually-hidden">Cargando...</span>
+                                </div>
+                                Cargando Profesionales...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function cargarProfesionales() {
+            const cuerpoTabla = $('#cuerpoTablaProfesionales');
+            cuerpoTabla.empty(); // Limpiar tabla
+
+            const empleadosFicticios = [
+                {
+                    codigoUnico: 'EMP001',
+                    nombreCompleto: 'Ana María Pérez',
+                    identificacion: '12345678-9',
+                    especialidad: 'Reflexologa Podal',
+                    telefono: '+506 1234 5678',
+                    correoElectronico: 'ana.perez@quirofeet.com'
+                },
+                {
+                    codigoUnico: 'EMP002',
+                    nombreCompleto: 'Carlos Rojas',
+                    identificacion: '87654321-0',
+                    especialidad: 'Quiropodista',
+                    telefono: '+506 8765 4321',
+                    correoElectronico: 'carlos.rojas@quirofeet.com'
+                },
+                {
+                    codigoUnico: 'EMP003',
+                    nombreCompleto: 'Lucía Gómez',
+                    identificacion: '11223344-5',
+                    especialidad: 'Quiropodista',
+                    telefono: '+506 3344 5566',
+                    correoElectronico: 'lucia.gomez@quirofeet.com'
+                }
+            ];
+
+            $.each(empleadosFicticios, function (index, empleado) {
+                let fila = `
+                        <tr>
+                            <td>${empleado.codigoUnico}</td>
+                            <td>${empleado.nombreCompleto}</td>
+                            <td>${empleado.identificacion}</td>
+                            <td>${empleado.especialidad}</td>
+                            <td>${empleado.telefono}</td>
+                            <td>${empleado.correoElectronico}</td>
+                        </tr>`;
+                cuerpoTabla.append(fila);
+            });
+        }
+
+        $(document).ready(function () {
+            cargarProfesionales(); // Cargar datos falsos al iniciar
+        });
+    </script>
+}

@@ -28,8 +28,8 @@
                         <td>@sale.Date.ToString("dd/MM/yyyy")</td>
                         <td>@sale.Total.ToString("C")</td>
                         <td>
-                            <a href="@Url.Action("EditSale", "Home", new { id = sale.SaleNumber })" class="btn-edit">Editar</a>
-                            <a href="@Url.Action("DeleteSale", "Home", new { id = sale.SaleNumber })" class="btn-delete">Eliminar</a>
+                            <a href="@Url.Action("EditSale", "Ventas", new { id = sale.SaleNumber })" class="btn-edit">Editar</a>
+                            <a href="@Url.Action("DeleteSale", "Ventas", new { id = sale.SaleNumber })" class="btn-delete">Eliminar</a>
                         </td>
                     </tr>
                 }
@@ -43,7 +43,7 @@
         </tbody>
     </table>
 
-    <a href="@Url.Action("RegisterSale", "Home")" class="btn-add">Registrar Nueva Venta</a>
+    <a href="@Url.Action("RegisterSale", "Ventas")" class="btn-add">Registrar Nueva Venta</a>
 </div>
 
 <!-- Estilos CSS -->
