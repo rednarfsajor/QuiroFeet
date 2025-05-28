@@ -1,128 +1,164 @@
-﻿@{
+﻿@model Analisis.BD.Servicios
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Crear Servicio";
 }
 
-<div class="container">
-    <h1>Registrar Servicio</h1>
-    <p>Por favor, completa el formulario para registrar un nuevo servicio</p>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <form id="userForm" onsubmit="return handleSubmit(event)">
-        <!-- Nombre Completo -->
-        <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre del servicio" required>
-        </div>
+<div class="full-page-container">
+    <div class="form-container">
+        <h1>Registrar Servicio</h1>
+        <p>Por favor, completa el formulario para registrar un nuevo servicio</p>
 
-        <!-- Correo Electrónico -->
-        <div class="form-group">
-            <label for="descripcion">Descripción</label>
-            <input type="text" class="form-control" id="descripcion" placeholder="Ingrese la descripcion del servicio" required>
-        </div>
+        @using (Html.BeginForm("CreateService", "Servicios", FormMethod.Post, new { @class = "formulario" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                @Html.LabelFor(model => model.Nombre)
+                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", placeholder = "Ingrese el nombre del servicio", required = "required" })
+                @Html.ValidationMessageFor(model => model.Nombre)
+            </div>
 
-        <!-- Teléfono -->
-        <div class="form-group">
-            <label for="profesional">Profesional</label>
-            <input type="text" class="form-control" id="profesional" placeholder="Ingrese el nombre del profesional" required>
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Descripcion)
+                @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control", placeholder = "Ingrese la descripción del servicio", required = "required" })
+                @Html.ValidationMessageFor(model => model.Descripcion)
+            </div>
 
-        <!-- Botones -->
-        <button type="submit" class="btn btn-primary">Registrar Servicio</button>
-        <a href="/Servicios/ServiceIndex" class="btn btn-secondary">Cancelar</a>
-    </form>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Duracion)
+                @Html.TextBoxFor(model => model.Duracion, new { @class = "form-control", placeholder = "Ingrese la duración (Ej: 1 hora)", required = "required" })
+                @Html.ValidationMessageFor(model => model.Duracion)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Precio)
+                @Html.TextBoxFor(model => model.Precio, new { @class = "form-control", placeholder = "Ingrese el precio (Ej: 25000)", required = "required", type = "number", step = "any" })
+                @Html.ValidationMessageFor(model => model.Precio)
+            </div>
+
+            <div class="form-buttons">
+                <button type="submit" class="btn-submit"><i class="bi bi-check-circle-fill"></i> Registrar Servicio</button>
+                <a href="@Url.Action("ListServices", "Servicios")" class="btn-cancel"><i class="bi bi-x-circle-fill"></i> Cancelar</a>
+            </div>
+        }
+    </div>
 </div>
 
-<!-- Notificación Estilizada -->
-<div id="notification" class="notification" style="display:none;">
-    Servicio Registrado Exitosamente
-</div>
-
-<script>
-    function handleSubmit(event) {
-        event.preventDefault();
-        const notification = document.getElementById('notification');
-        notification.style.display = 'block';
-        setTimeout(() => {
-            notification.style.display = 'none';
-            window.location.href = '/Servicios/ServiceIndex';
-        }, 3000);
-        return false;
-    }
-</script>
-
-<!-- Estilos para Centrar y Expandir -->
+<!-- Estilos CSS -->
 <style>
-    .container {
-        max-width: 600px;
-        margin: 50px auto;
-        background-color: #ffffff;
-        padding: 40px;
-        border-radius: 12px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    html, body {
+        height: 100%;
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: url('@Url.Content("~/Imagenes/marmol2.jfif")') no-repeat center center fixed;
+        background-size: cover;
     }
 
-    h1 {
-        color: #234449;
-        margin-bottom: 20px;
+    .full-page-container {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
-    label {
-        font-weight: bold;
-    }
-
-    input, select {
+    .form-container {
         width: 100%;
-        padding: 10px;
+        max-width: 500px;
+        background-color: rgba(255, 255, 255, 0.95);
+        padding: 40px 30px;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .form-container h1 {
+        font-size: 2em;
+        font-weight: 700;
+        color: #234449;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .form-container p {
+        color: #3e77f8;
+        margin-bottom: 30px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         margin-bottom: 20px;
+    }
+
+    .form-group label {
+        font-weight: 600;
+        color: #234449;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+
+    .form-group input {
+        width: 80%;
+        max-width: 350px;
+        padding: 10px 12px;
         border: 1px solid #ccc;
         border-radius: 8px;
+        font-size: 1em;
+        transition: border-color 0.3s;
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
     }
 
-    button, .btn-secondary {
-        background-color: #3e77f8;
+    .form-group input:focus {
         border-color: #3e77f8;
-        color: white;
+        outline: none;
+    }
+
+    .form-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .btn-submit, .btn-cancel {
+        flex: 1;
+        text-align: center;
         padding: 12px;
+        border: none;
         border-radius: 8px;
-        font-size: 16px;
+        font-weight: 600;
         cursor: pointer;
-        margin-right: 10px;
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
         text-decoration: none;
     }
 
-        button:hover, .btn-secondary:hover {
-            background-color: #234449;
-        }
-
-    .notification {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background-color: #4CAF50;
-        color: white;
-        padding: 15px 30px;
-        border-radius: 8px;
-        font-size: 16px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        z-index: 1000;
-        animation: fadeInOut 3s ease;
+    .btn-submit {
+        background-color: #3e77f8;
+        color: #fff;
     }
 
-    @@keyframes fadeInOut {
-        0% {
-            opacity: 0;
-        }
+    .btn-submit:hover {
+        background-color: #234449;
+    }
 
-        10% {
-            opacity: 1;
-        }
+    .btn-cancel {
+        background-color: #f0f0f0;
+        color: #234449;
+    }
 
-        90% {
-            opacity: 1;
-        }
-
-        100% {
-            opacity: 0;
-        }
+    .btn-cancel:hover {
+        background-color: #e0e0e0;
     }
 </style>
