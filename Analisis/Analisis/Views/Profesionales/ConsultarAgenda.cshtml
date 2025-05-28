@@ -27,3 +27,95 @@
         </div>
     </div>
 </div>
+
+<!-- Estilos CSS -->
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: #f9fafb;
+    }
+
+    .container {
+        max-width: 950px;
+        margin: 60px auto;
+        background-color: #ffffff;
+        padding: 40px 30px;
+        border-radius: 15px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    h1 {
+        color: #234449;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+
+    p {
+        color: #3e77f8;
+        margin-bottom: 30px;
+    }
+
+    .service-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
+
+        .service-table th, .service-table td {
+            border: 1px solid #e0e0e0;
+            padding: 12px;
+            text-align: center;
+            font-size: 0.95em;
+        }
+
+        .service-table th {
+            background-color: #234449;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .service-table tbody tr:nth-child(even) {
+            background-color: #f4f9f9;
+        }
+
+    .btn-edit, .btn-delete {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 8px 14px;
+        border-radius: 8px;
+        font-size: 0.9em;
+        font-weight: 600;
+        text-decoration: none;
+        color: white;
+        transition: background-color 0.3s, box-shadow 0.3s;
+        margin-bottom: 5px; /* separación vertical si hay dos filas */
+        margin-right: 5px; /* separación horizontal entre ellos */
+    }
+
+    .btn-edit {
+        background-color: #3e77f8;
+    }
+
+        .btn-edit:hover {
+            background-color: #234449;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+    .btn-delete {
+        background-color: #3e77f8;
+    }
+
+        .btn-delete:hover {
+            background-color: #234449;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+    i.bi {
+        font-size: 1em;
+    }
+</style>
+
+<!-- Vincula la fuente Poppins -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
