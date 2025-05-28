@@ -1,28 +1,43 @@
-﻿@{
+﻿@model Analisis.BD.Servicios
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Editar Cliente";
+    ViewBag.Title = "Editar Servicio";
 }
 
 <div class="container">
     <h1>Editar Servicio</h1>
     <p>Modifica la información del servicio</p>
 
-    <!-- Formulario para Editar Servicio -->
-    <form action="@Url.Action("ConfirmEditService", "Servicios")" method="post">
-        <label>Nombre</label>
-        <input type="text" name="nombre" placeholder="Ingrese el nombre del servicio" required />
+    @using (Html.BeginForm("EditService", "Servicios", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.Id)
 
-        <label>Descripción</label>
-        <input type="text" name="descripcion" placeholder="Ingrese la descripcion del servicio" required />
+        <div class="form-group">
+            <label>Nombre</label>
+            @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control", placeholder = "Ingrese el nombre del servicio", required = "required" })
+        </div>
 
-        <label>Profesional</label>
-        <input type="text" name="profesional" placeholder="Ingrese el nombre del profesional" required/>
-        <br />
-        <!-- Botón para Guardar Cambios -->
-        <button type="submit" class="btn-save">Guardar Cambios</button>
-        <!-- Botón para Cancelar y Regresar -->
-        <a href="@Url.Action("ListServices", "Servicios")" class="btn-cancel">Cancelar</a>
-    </form>
+        <div class="form-group">
+            <label>Descripción</label>
+            @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control", placeholder = "Ingrese la descripción del servicio", required = "required" })
+        </div>
+
+        <div class="form-group">
+            <label>Duración</label>
+            @Html.TextBoxFor(m => m.Duracion, new { @class = "form-control", placeholder = "Ingrese la duración (Ej: 1 hora)", required = "required" })
+        </div>
+
+        <div class="form-group">
+            <label>Precio</label>
+            @Html.TextBoxFor(m => m.Precio, new { @class = "form-control", placeholder = "Ingrese el precio (Ej: 25000)", required = "required", type = "number" })
+        </div>
+
+        <div class="form-buttons">
+            <button type="submit" class="btn-save"><i class="bi bi-check-circle-fill"></i> Guardar Cambios</button>
+            <a href="@Url.Action("ListServices", "Servicios")" class="btn-cancel"><i class="bi bi-x-circle-fill"></i> Cancelar</a>
+        </div>
+    }
 </div>
 
 <!-- Estilos CSS -->
@@ -34,53 +49,85 @@
         padding: 40px;
         border-radius: 12px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
     }
 
     h1 {
         color: #234449;
+        margin-bottom: 10px;
     }
 
-    label {
-        display: block;
-        margin-top: 20px;
-        font-weight: bold;
+    p {
+        color: #3e77f8;
+        margin-bottom: 30px;
     }
 
-    input, select {
-        width: 100%;
-        padding: 12px;
-        margin-top: 8px;
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         margin-bottom: 20px;
+    }
+
+        .form-group label {
+            font-weight: bold;
+            color: #234449;
+            margin-bottom: 5px;
+        }
+
+    .form-control {
+        width: 80%;
+        max-width: 350px;
+        padding: 10px 12px;
         border: 1px solid #ccc;
         border-radius: 8px;
+        font-size: 1em;
+        transition: border-color 0.3s;
+        text-align: center;
+    }
+
+        .form-control:focus {
+            border-color: #3e77f8;
+            outline: none;
+        }
+
+    .form-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .btn-save, .btn-cancel {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        text-align: center;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+        text-decoration: none;
     }
 
     .btn-save {
         background-color: #3e77f8;
-        color: white;
-        padding: 12px 20px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
+        color: #fff;
     }
+
+        .btn-save:hover {
+            background-color: #234449;
+        }
 
     .btn-cancel {
-        background-color: #e74c3c;
-        color: white;
-        padding: 12px 20px;
-        border: none;
-        border-radius: 8px;
-        text-decoration: none;
-        margin-left: 10px;
+        background-color: #f0f0f0;
+        color: #234449;
     }
 
-    .btn-save:hover {
-        background-color: #234449;
-    }
-
-    .btn-cancel:hover {
-        background-color: #c0392b;
-    }
+        .btn-cancel:hover {
+            background-color: #e0e0e0;
+        }
 </style>
-
-
