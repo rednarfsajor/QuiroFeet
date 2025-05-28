@@ -1,166 +1,30 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\",
+  "WorkspaceRootPath": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\heymm\\onedrive - universidad fid\u00E9litas\\documentos\\github\\quirofeet\\analisis\\analisis\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\final\\quirofeet\\analisis\\analisis\\views\\profesionales\\consultaragenda.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\profesionales\\consultaragenda.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\heymm\\onedrive - universidad fid\u00E9litas\\documentos\\github\\quirofeet\\analisis\\analisis\\views\\profesionales\\profesionales.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\final\\quirofeet\\analisis\\analisis\\views\\profesionales\\detallesempleado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\profesionales\\detallesempleado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\final\\quirofeet\\analisis\\analisis\\views\\profesionales\\editarempleado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\profesionales\\editarempleado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\final\\quirofeet\\analisis\\analisis\\views\\profesionales\\gestionardisponibilidad.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\profesionales\\gestionardisponibilidad.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\analisis\\views\\profesionales\\profesionales.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\profesionales\\profesionales.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\inventario\\inactivarproducto.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\inventario\\inactivarproducto.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\inventario\\inventario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\inventario\\inventario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\reportes\\estadostock.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\reportes\\estadostock.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\reportes\\historialcomprascliente.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\reportes\\historialcomprascliente.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\reportes\\historialserviciosprofesional.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\reportes\\historialserviciosprofesional.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\reportes\\productosmasvendidos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\reportes\\productosmasvendidos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\reportes\\reportes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\reportes\\reportes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\reportes\\reporteventas.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\reportes\\reporteventas.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\recibos\\confirmcancelreceipt.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\recibos\\confirmcancelreceipt.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\recibos\\cancelreceipt.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\recibos\\cancelreceipt.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\ventas\\confirmsale.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\ventas\\confirmsale.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\ventas\\errorsale.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\ventas\\errorsale.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\ventas\\listsales.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\ventas\\listsales.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\ventas\\registersale.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\ventas\\registersale.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\ventas\\sales.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\ventas\\sales.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\usuarios\\confirmdeleteuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\usuarios\\confirmdeleteuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\usuarios\\confirmedituser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\usuarios\\confirmedituser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\usuarios\\createuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\usuarios\\createuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\usuarios\\deleteuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\usuarios\\deleteuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\usuarios\\edituser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\usuarios\\edituser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\usuarios\\listuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\usuarios\\listuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\usuarios\\users.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\usuarios\\users.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\recibos\\confirmreceiptupdate.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\recibos\\confirmreceiptupdate.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\recibos\\editreceipt.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\recibos\\editreceipt.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\recibos\\errorpermissionreceipt.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\recibos\\errorpermissionreceipt.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\recibos\\listanularreceipt.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\recibos\\listanularreceipt.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\recibos\\listreceipts.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\recibos\\listreceipts.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\recibos\\receipts.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\recibos\\receipts.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\controllers\\ventascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\ventascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\controllers\\profesionalescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\profesionalescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\controllers\\proveedorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\proveedorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\views\\proveedores\\proveedores.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\proveedores\\proveedores.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\controllers\\reportescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\reportescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\controllers\\inventariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\inventariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\controllers\\citascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\citascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\analisis\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\final\\quirofeet\\analisis\\analisis\\views\\profesionales\\registrarempleado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\profesionales\\registrarempleado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -170,489 +34,85 @@
       "DocumentGroups": [
         {
           "DockedWidth": 152,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
+              "Title": "RegistrarEmpleado.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Profesionales\\RegistrarEmpleado.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Profesionales\\RegistrarEmpleado.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Profesionales\\RegistrarEmpleado.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Profesionales\\RegistrarEmpleado.cshtml",
+              "ViewState": "AgIAAO8AAAAAAAAAAAAuwBYBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-28T19:38:05.578Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Profesionales.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Profesionales\\Profesionales.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Profesionales\\Profesionales.cshtml",
               "RelativeDocumentMoniker": "Analisis\\Views\\Profesionales\\Profesionales.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Profesionales\\Profesionales.cshtml*",
-              "RelativeToolTip": "Analisis\\Views\\Profesionales\\Profesionales.cshtml*",
-              "ViewState": "AgIAACoAAAAAAAAAAAAAAEsAAAAvAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Profesionales\\Profesionales.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Profesionales\\Profesionales.cshtml",
+              "ViewState": "AgIAAJkAAAAAAAAAAAAqwMAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-04-10T22:29:01.272Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "GestionarDisponibilidad.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Profesionales\\GestionarDisponibilidad.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Profesionales\\GestionarDisponibilidad.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Profesionales\\GestionarDisponibilidad.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Profesionales\\GestionarDisponibilidad.cshtml",
+              "ViewState": "AgIAAAABAAAAAAAAAAAqwCcBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-10T22:23:07.49Z",
+              "WhenOpened": "2025-05-28T19:37:52.561Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "InactivarProducto.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Inventario\\InactivarProducto.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Inventario\\InactivarProducto.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Inventario\\InactivarProducto.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Inventario\\InactivarProducto.cshtml",
-              "ViewState": "AgIAADYAAAAAAAAAAAAAAD4AAAAkAAAAAAAAAA==",
+              "Title": "EditarEmpleado.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Profesionales\\EditarEmpleado.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Profesionales\\EditarEmpleado.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Profesionales\\EditarEmpleado.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Profesionales\\EditarEmpleado.cshtml",
+              "ViewState": "AgIAAAABAAAAAAAAAAAqwCcBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-10T21:36:02.702Z"
+              "WhenOpened": "2025-05-28T19:37:45.553Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Inventario.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Inventario\\Inventario.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Inventario\\Inventario.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Inventario\\Inventario.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Inventario\\Inventario.cshtml",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "DetallesEmpleado.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Profesionales\\DetallesEmpleado.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Profesionales\\DetallesEmpleado.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Profesionales\\DetallesEmpleado.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Profesionales\\DetallesEmpleado.cshtml",
+              "ViewState": "AgIAAP8AAAAAAAAAAAAqwCYBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-10T21:35:57.728Z"
+              "WhenOpened": "2025-05-28T19:37:33.296Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "EstadoStock.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Reportes\\EstadoStock.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Reportes\\EstadoStock.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Reportes\\EstadoStock.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Reportes\\EstadoStock.cshtml",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAAAFUAAAAaAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "ConsultarAgenda.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Profesionales\\ConsultarAgenda.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Profesionales\\ConsultarAgenda.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Profesionales\\ConsultarAgenda.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Profesionales\\ConsultarAgenda.cshtml",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAqwHkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-10T21:33:55.694Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "HistorialComprasCliente.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Reportes\\HistorialComprasCliente.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Reportes\\HistorialComprasCliente.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Reportes\\HistorialComprasCliente.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Reportes\\HistorialComprasCliente.cshtml",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAAAFgAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-10T21:33:44.336Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "HistorialServiciosProfesional.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Reportes\\HistorialServiciosProfesional.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Reportes\\HistorialServiciosProfesional.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Reportes\\HistorialServiciosProfesional.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Reportes\\HistorialServiciosProfesional.cshtml",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAAAFgAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-10T21:33:34.089Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ProductosMasVendidos.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Reportes\\ProductosMasVendidos.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Reportes\\ProductosMasVendidos.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Reportes\\ProductosMasVendidos.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Reportes\\ProductosMasVendidos.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE0AAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-10T21:33:18.184Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Reportes.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Reportes\\Reportes.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Reportes\\Reportes.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Reportes\\Reportes.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Reportes\\Reportes.cshtml",
-              "ViewState": "AgIAAG8AAAAAAAAAAAAAAIAAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-10T21:32:41.82Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ReporteVentas.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Reportes\\ReporteVentas.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Reportes\\ReporteVentas.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Reportes\\ReporteVentas.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Reportes\\ReporteVentas.cshtml",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAAAE8AAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-10T21:32:18.812Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "ConfirmDeleteUser.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\ConfirmDeleteUser.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Usuarios\\ConfirmDeleteUser.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\ConfirmDeleteUser.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Usuarios\\ConfirmDeleteUser.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-03T15:00:39.397Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "CreateUser.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\CreateUser.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Usuarios\\CreateUser.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\CreateUser.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Usuarios\\CreateUser.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-03T14:59:48.506Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "CancelReceipt.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\CancelReceipt.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Recibos\\CancelReceipt.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\CancelReceipt.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Recibos\\CancelReceipt.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-03T14:58:56.369Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ConfirmCancelReceipt.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\ConfirmCancelReceipt.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Recibos\\ConfirmCancelReceipt.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\ConfirmCancelReceipt.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Recibos\\ConfirmCancelReceipt.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABRAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-03T14:58:50.59Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "RegisterSale.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Ventas\\RegisterSale.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Ventas\\RegisterSale.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Ventas\\RegisterSale.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Ventas\\RegisterSale.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-03T15:18:38.451Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "ListSales.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Ventas\\ListSales.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Ventas\\ListSales.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Ventas\\ListSales.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Ventas\\ListSales.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-03T15:18:44.576Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAAAA4AAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-01T23:46:52.333Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "ConfirmSale.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Ventas\\ConfirmSale.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Ventas\\ConfirmSale.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Ventas\\ConfirmSale.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Ventas\\ConfirmSale.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-03T15:18:54.44Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "ErrorSale.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Ventas\\ErrorSale.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Ventas\\ErrorSale.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Ventas\\ErrorSale.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Ventas\\ErrorSale.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-03T15:18:49.592Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "EditUser.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\EditUser.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Usuarios\\EditUser.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\EditUser.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Usuarios\\EditUser.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-03T14:59:38.186Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "ListUser.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\ListUser.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Usuarios\\ListUser.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\ListUser.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Usuarios\\ListUser.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-03T14:59:33.639Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "Users.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\Users.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Usuarios\\Users.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\Users.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Usuarios\\Users.cshtml",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-03T14:59:21.281Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Sales.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Ventas\\Sales.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Ventas\\Sales.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Ventas\\Sales.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Ventas\\Sales.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-01T23:44:48.112Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "ConfirmEditUser.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\ConfirmEditUser.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Usuarios\\ConfirmEditUser.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\ConfirmEditUser.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Usuarios\\ConfirmEditUser.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-03T14:59:53.153Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "DeleteUser.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\DeleteUser.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Usuarios\\DeleteUser.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\DeleteUser.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Usuarios\\DeleteUser.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-01T23:48:16.991Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "ConfirmReceiptUpdate.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\ConfirmReceiptUpdate.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Recibos\\ConfirmReceiptUpdate.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\ConfirmReceiptUpdate.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Recibos\\ConfirmReceiptUpdate.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-03T14:58:44.697Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "EditReceipt.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\EditReceipt.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Recibos\\EditReceipt.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\EditReceipt.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Recibos\\EditReceipt.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-03T14:58:36.183Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "ErrorPermissionReceipt.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\ErrorPermissionReceipt.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Recibos\\ErrorPermissionReceipt.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\ErrorPermissionReceipt.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Recibos\\ErrorPermissionReceipt.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-03T14:58:19.308Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "ListAnularReceipt.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\ListAnularReceipt.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Recibos\\ListAnularReceipt.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\ListAnularReceipt.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Recibos\\ListAnularReceipt.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-03T14:58:12.153Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "ListReceipts.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\ListReceipts.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Recibos\\ListReceipts.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\ListReceipts.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Recibos\\ListReceipts.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-03T14:58:00.518Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "Receipts.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\Receipts.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Recibos\\Receipts.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Recibos\\Receipts.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Recibos\\Receipts.cshtml",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAQwBkAAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-03T14:57:31.972Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "ProveedoresController.cs",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ProveedoresController.cs",
-              "RelativeDocumentMoniker": "Analisis\\Controllers\\ProveedoresController.cs",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ProveedoresController.cs",
-              "RelativeToolTip": "Analisis\\Controllers\\ProveedoresController.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAcAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-03T14:18:19.249Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 38,
-              "Title": "CitasController.cs",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Controllers\\CitasController.cs",
-              "RelativeDocumentMoniker": "Analisis\\Controllers\\CitasController.cs",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Controllers\\CitasController.cs",
-              "RelativeToolTip": "Analisis\\Controllers\\CitasController.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAA1wAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-03T14:09:37.479Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "ProfesionalesController.cs",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ProfesionalesController.cs",
-              "RelativeDocumentMoniker": "Analisis\\Controllers\\ProfesionalesController.cs",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ProfesionalesController.cs",
-              "RelativeToolTip": "Analisis\\Controllers\\ProfesionalesController.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAAAAcAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-03T14:17:58.412Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 36,
-              "Title": "InventarioController.cs",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Controllers\\InventarioController.cs",
-              "RelativeDocumentMoniker": "Analisis\\Controllers\\InventarioController.cs",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Controllers\\InventarioController.cs",
-              "RelativeToolTip": "Analisis\\Controllers\\InventarioController.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAwwD0AAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-03T14:15:42.282Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "VentasController.cs",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Controllers\\VentasController.cs",
-              "RelativeDocumentMoniker": "Analisis\\Controllers\\VentasController.cs",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Controllers\\VentasController.cs",
-              "RelativeToolTip": "Analisis\\Controllers\\VentasController.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAgwCQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-03T14:06:24.343Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 34,
-              "Title": "Proveedores.cshtml",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Proveedores\\Proveedores.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Proveedores\\Proveedores.cshtml",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Views\\Proveedores\\Proveedores.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Proveedores\\Proveedores.cshtml",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-03T14:20:16.892Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 35,
-              "Title": "ReportesController.cs",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ReportesController.cs",
-              "RelativeDocumentMoniker": "Analisis\\Controllers\\ReportesController.cs",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ReportesController.cs",
-              "RelativeToolTip": "Analisis\\Controllers\\ReportesController.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAkwCcAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-03T14:16:56.938Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 39,
-              "Title": "UsuariosController.cs",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Controllers\\UsuariosController.cs",
-              "RelativeDocumentMoniker": "Analisis\\Controllers\\UsuariosController.cs",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Controllers\\UsuariosController.cs",
-              "RelativeToolTip": "Analisis\\Controllers\\UsuariosController.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAuwA0AAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-03T14:05:28.655Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 37,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "Analisis\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\heymm\\OneDrive - Universidad Fid\u00E9litas\\Documentos\\GitHub\\QuiroFeet\\Analisis\\Analisis\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "Analisis\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAADwvw8AAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T23:49:10.601Z"
+              "WhenOpened": "2025-05-28T19:37:15.751Z",
+              "EditorCaption": ""
             }
           ]
         }
