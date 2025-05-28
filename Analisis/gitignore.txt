@@ -9,20 +9,3 @@ obj/
 *.user
 *.userosscache
 *.sln.docstates
-# Archivos de Visual Studio
-.vs/
-*.user
-*.suo
-
-# Carpetas de compilación
-bin/
-obj/
-
-# Otros
-*.log
-*.pdb
-*.cache
-*.dbmdl
-*.db
-*.bak
-*.tmp

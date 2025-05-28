@@ -1,106 +1,139 @@
-﻿@{
+﻿@model IEnumerable<Analisis.BD.Servicios>
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Lista de Servicios";
 }
 
+<!-- Vincula la fuente Poppins -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
 <div class="container">
     <h1>Servicios Registrados</h1>
-    <p>Reporte del listado de clientes</p>
+    <p>Reporte del listado de servicios</p>
 
-    <!-- Tabla de Service -->
-    <table class="user-table">
+    <!-- Tabla de Servicios -->
+    <table class="service-table">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th>Especialidad</th>
-                <th>Profesional</th>
+                <th>Descripción</th>
+                <th>Duración</th>
+                <th>Precio</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <!-- Ejemplo de Datos Simulados -->
-            <tr>
-                <td>1</td>
-                <td>Servicio 1</td>
-                <td>Atención estandar</td>
-                <td>Diego Hugo Cortez</td>
-                <td>
-                    <a href="@Url.Action("EditService", "Servicios")" class="btn-edit">Editar</a>
-                    <a href="@Url.Action("ListServices", "Servicios")" class="btn-delete">Eliminar</a>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Servicio 2</td>
-                <td>Atención especial</td>
-                <td>Alicia Mendez</td>
-                <td>
-                    <a href="@Url.Action("EditService", "Servicios")" class="btn-edit">Editar</a>
-                    <a href="@Url.Action("ListServices", "Servicios")" class="btn-delete">Eliminar</a>
-                </td>
-            </tr>
+            @foreach (var servicio in Model)
+            {
+                <tr>
+                    <td>@servicio.Id</td>
+                    <td>@servicio.Nombre</td>
+                    <td>@servicio.Descripcion</td>
+                    <td>@servicio.Duracion</td>
+                    <td>@servicio.Precio.ToString("C")</td>
+                    <td>
+                        <!-- Enlace Editar con ID -->
+                        <a href="@Url.Action("EditService", "Servicios", new { id = servicio.Id })" class="btn-edit">
+                            <i class="bi bi-pencil-fill"></i> Editar
+                        </a>
+                        <!-- Enlace Eliminar con ID -->
+                        <a href="@Url.Action("DeleteService", "Servicios", new { id = servicio.Id })" class="btn-delete" onclick="return confirm('¿Está seguro que desea eliminar este servicio?');">
+                            <i class="bi bi-trash-fill"></i> Eliminar
+                        </a>
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>
 
 <!-- Estilos CSS -->
 <style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: #f9fafb;
+    }
+
     .container {
-        max-width: 900px;
-        margin: 50px auto;
+        max-width: 950px;
+        margin: 60px auto;
         background-color: #ffffff;
-        padding: 40px;
-        border-radius: 12px;
+        padding: 40px 30px;
+        border-radius: 15px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        text-align: center;
     }
 
     h1 {
         color: #234449;
+        font-weight: 700;
+        margin-bottom: 5px;
     }
 
-    .user-table {
+    p {
+        color: #3e77f8;
+        margin-bottom: 30px;
+    }
+
+    .service-table {
         width: 100%;
         border-collapse: collapse;
-        margin-top: 20px;
+        margin: 20px 0;
     }
 
-        .user-table th, .user-table td {
-            border: 1px solid #ccc;
+        .service-table th, .service-table td {
+            border: 1px solid #e0e0e0;
             padding: 12px;
             text-align: center;
+            font-size: 0.95em;
         }
 
-        .user-table th {
+        .service-table th {
             background-color: #234449;
-            color: white;
+            color: #ffffff;
+            font-weight: 600;
         }
+
+        .service-table tbody tr:nth-child(even) {
+            background-color: #f4f9f9;
+        }
+
+    .btn-edit, .btn-delete {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 8px 14px;
+        border-radius: 8px;
+        font-size: 0.9em;
+        font-weight: 600;
+        text-decoration: none;
+        color: white;
+        transition: background-color 0.3s, box-shadow 0.3s;
+        margin-bottom: 5px; /* separación vertical si hay dos filas */
+        margin-right: 5px; /* separación horizontal entre ellos */
+    }
 
     .btn-edit {
         background-color: #3e77f8;
-        border: none;
-        color: white;
-        padding: 8px 12px;
-        border-radius: 8px;
-        text-decoration: none;
-        margin-right: 5px;
     }
+
+        .btn-edit:hover {
+            background-color: #234449;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
 
     .btn-delete {
-        background-color: #e74c3c;
-        border: none;
-        color: white;
-        padding: 8px 12px;
-        border-radius: 8px;
-        text-decoration: none;
+        background-color: #3e77f8;
     }
 
-    .btn-edit:hover {
-        background-color: #234449;
-    }
+        .btn-delete:hover {
+            background-color: #234449;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
 
-    .btn-delete:hover {
-        background-color: #c0392b;
+    i.bi {
+        font-size: 1em;
     }
 </style>
-
