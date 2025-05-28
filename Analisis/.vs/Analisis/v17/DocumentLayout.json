@@ -11,7 +11,31 @@
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\servicios\\prueba.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+<<<<<<< Updated upstream
       "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\heymm\\source\\repos\\quirofeet\\analisis\\analisis\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+=======
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\source\\repos\\QuiroFeet\\Analisis\\analisis\\views\\servicios\\editservice.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\servicios\\editservice.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\source\\repos\\QuiroFeet\\Analisis\\analisis\\views\\servicios\\serviceindex.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\servicios\\serviceindex.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\source\\repos\\QuiroFeet\\Analisis\\analisis\\controllers\\servicioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\servicioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\source\\repos\\QuiroFeet\\Analisis\\analisis\\views\\servicios\\createservice.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\servicios\\createservice.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\source\\repos\\QuiroFeet\\Analisis\\analisis\\bd\\servicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\bd\\servicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\heymm\\source\\repos\\QuiroFeet\\Analisis\\analisis\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+>>>>>>> Stashed changes
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
@@ -186,6 +210,7 @@
           "Children": [
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 0,
               "Title": "Prueba.cs",
               "DocumentMoniker": "C:\\Users\\heymm\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Servicios\\Prueba.cs",
@@ -196,10 +221,98 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-28T01:36:19.033Z",
               "EditorCaption": ""
+=======
+              "DocumentIndex": 1,
+              "Title": "EditService.cshtml",
+              "DocumentMoniker": "C:\\Users\\heymm\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Servicios\\EditService.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Servicios\\EditService.cshtml",
+              "ToolTip": "C:\\Users\\heymm\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Servicios\\EditService.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Servicios\\EditService.cshtml",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAuwIUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-28T17:39:25.465Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Servicios.cs",
+              "DocumentMoniker": "C:\\Users\\heymm\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\BD\\Servicios.cs",
+              "RelativeDocumentMoniker": "Analisis\\BD\\Servicios.cs",
+              "ToolTip": "C:\\Users\\heymm\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\BD\\Servicios.cs",
+              "RelativeToolTip": "Analisis\\BD\\Servicios.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T17:26:23.036Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ServiciosController.cs",
+              "DocumentMoniker": "C:\\Users\\heymm\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ServiciosController.cs",
+              "RelativeDocumentMoniker": "Analisis\\Controllers\\ServiciosController.cs",
+              "ToolTip": "C:\\Users\\heymm\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ServiciosController.cs",
+              "RelativeToolTip": "Analisis\\Controllers\\ServiciosController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T16:48:54.755Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\Users\\heymm\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Web.config",
+              "RelativeDocumentMoniker": "Analisis\\Web.config",
+              "ToolTip": "C:\\Users\\heymm\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Web.config",
+              "RelativeToolTip": "Analisis\\Web.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEcAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-05-28T16:46:26.866Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ListServices.cshtml",
+              "DocumentMoniker": "C:\\Users\\heymm\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Servicios\\ListServices.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Servicios\\ListServices.cshtml",
+              "ToolTip": "C:\\Users\\heymm\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Servicios\\ListServices.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Servicios\\ListServices.cshtml",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAuwIQAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-28T16:34:58.294Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CreateService.cshtml",
+              "DocumentMoniker": "C:\\Users\\heymm\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Servicios\\CreateService.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Servicios\\CreateService.cshtml",
+              "ToolTip": "C:\\Users\\heymm\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Servicios\\CreateService.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Servicios\\CreateService.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-28T16:24:37.89Z"
+>>>>>>> Stashed changes
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+<<<<<<< Updated upstream
+=======
+              "Title": "ServiceIndex.cshtml",
+              "DocumentMoniker": "C:\\Users\\heymm\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Servicios\\ServiceIndex.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Servicios\\ServiceIndex.cshtml",
+              "ToolTip": "C:\\Users\\heymm\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Servicios\\ServiceIndex.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Servicios\\ServiceIndex.cshtml",
+              "ViewState": "AgIAAFsAAAAAAAAAAAAuwG0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-28T16:08:35.525Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+>>>>>>> Stashed changes
               "Title": "Profesionales.cshtml",
               "DocumentMoniker": "C:\\Users\\heymm\\source\\repos\\QuiroFeet\\Analisis\\Analisis\\Views\\Profesionales\\Profesionales.cshtml",
               "RelativeDocumentMoniker": "Analisis\\Views\\Profesionales\\Profesionales.cshtml",
@@ -219,8 +332,7 @@
               "RelativeToolTip": "Analisis\\Views\\Home\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-10T22:23:07.49Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-10T22:23:07.49Z"
             },
             {
               "$type": "Document",
