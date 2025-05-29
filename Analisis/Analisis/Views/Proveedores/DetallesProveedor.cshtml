@@ -19,21 +19,21 @@ HTML
                 <a href="@Url.Action("Index", "Proveedores")" class="btn btn-secondary btn-sm">
                     <i class="fas fa-arrow-left me-1"></i> Volver a la Lista
                 </a>
-                
+
                 <a href="#" id="btnEditarProveedor" class="btn btn-warning btn-sm" style="display: none;">
-                    
+
                     <i class="fas fa-edit me-1"></i> Editar
                 </a>
             </div>
         </div>
         <div class="card-body">
 
-           
+
             <div id="alertaErrorApi" class="alert alert-danger" role="alert" style="display: none;">
                 <strong>Error:</strong> <span id="mensajeErrorApi"></span>
             </div>
 
-            
+
             <div id="loadingIndicator" class="text-center my-4">
                 <div class="spinner-border text-primary" role="status">
                     <span class="visually-hidden">Cargando detalles del proveedor...</span>
@@ -41,10 +41,10 @@ HTML
                 <p class="mt-2">Cargando detalles del proveedor...</p>
             </div>
 
-            
+
             <div id="detallesProveedorContainer" style="display: none;">
                 <dl class="row">
-                  
+
 
                     <dt class="col-sm-3">Nombre Proveedor:</dt>
                     <dd class="col-sm-9" id="detalleNombre">-</dd>
@@ -66,7 +66,7 @@ HTML
 
                     <dt class="col-sm-3">Dirección:</dt>
                     <dd class="col-sm-9">
-                        <pre class="mb-0" id="detalleDireccion" style="white-space: pre-wrap; font-family: inherit;"></pre> 
+                        <pre class="mb-0" id="detalleDireccion" style="white-space: pre-wrap; font-family: inherit;"></pre>
                     </dd>
 
                     <dt class="col-sm-3">Notas / Observaciones:</dt>
@@ -74,28 +74,28 @@ HTML
                         <pre class="mb-0" id="detalleNotas" style="white-space: pre-wrap; font-family: inherit;"></pre>
                     </dd>
 
-                   
-                </dl>
-            </div> 
 
-        </div> 
+                </dl>
+            </div>
+
+        </div>
         <div class="card-footer bg-light text-end">
             <a href="@Url.Action("Index", "Proveedores")" class="btn btn-secondary btn-sm">
                 <i class="fas fa-arrow-left me-1"></i> Volver a la Lista
             </a>
         </div>
-    </div> 
-</div> 
+    </div>
+</div>
 
 @section Scripts {
     <script>
-        
+
         const baseUrl = '@Url.Content("~/")';
-       
+
         const proveedoresApiUrl_Base = baseUrl + 'api/proveedores';
         let proveedorId = null;
 
-       
+
         function cargarDetallesProveedor(id) {
             const alertaErrorApi = $('#alertaErrorApi');
             const mensajeErrorApi = $('#mensajeErrorApi');
@@ -115,13 +115,13 @@ HTML
                 success: function (data) {
                     loadingIndicator.hide();
                     if(data) {
-                       
+
                         $('#detalleNombre').text(data.nombre || 'N/A');
                         $('#detalleIdFiscal').text(data.identificacionFiscal || 'N/A');
                         $('#detalleContacto').text(data.nombreContacto || 'N/A');
                         $('#detalleTelefono').text(data.telefono || 'N/A');
                         $('#detalleCorreo').text(data.correoElectronico || 'N/A');
-                        
+
                         if(data.sitioWeb) {
                              $('#detalleSitioWeb').html(`<a href="${data.sitioWeb}" target="_blank">${data.sitioWeb}</a>`);
                         } else {
@@ -129,11 +129,11 @@ HTML
                         }
                         $('#detalleDireccion').text(data.direccion || 'N/A');
                         $('#detalleNotas').text(data.notas || 'N/A');
-                       
+
                         btnEditar.attr('href', `${baseUrl}Proveedores/EditarProveedor?id=${data.id}`);
                         btnEditar.show();
 
-                        detallesContainer.show(); 
+                        detallesContainer.show();
                     } else {
                         mensajeErrorApi.text('No se encontraron datos para el proveedor.');
                         alertaErrorApi.show();
@@ -154,9 +154,9 @@ HTML
             });
         }
 
-        
+
         $(document).ready(function () {
-           
+
             const urlParams = new URLSearchParams(window.location.search);
             proveedorId = urlParams.get('id');
 
@@ -166,10 +166,10 @@ HTML
             const detallesContainer = $('#detallesProveedorContainer');
 
             if (proveedorId && !isNaN(proveedorId)) {
-              
+
                 cargarDetallesProveedor(proveedorId);
             } else {
-               
+
                 console.error("ID de proveedor no encontrado o inválido en la URL.");
                 mensajeErrorApi.text("No se especificó un proveedor válido para ver detalles.");
                 alertaErrorApi.show();
@@ -179,3 +179,120 @@ HTML
         });
     </script>
 }
+<!-- Estilos CSS -->
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: url('@Url.Content("~/Imagenes/marmol2.jfif")') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .full-page-container {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form-container {
+        width: 100%;
+        max-width: 500px;
+        background-color: rgba(255, 255, 255, 0.95);
+        padding: 40px 30px;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .form-container h1 {
+        font-size: 2em;
+        font-weight: 700;
+        color: #234449;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .form-container p {
+        color: #3e77f8;
+        margin-bottom: 30px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        font-weight: 600;
+        color: #234449;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+
+    .form-group input {
+        width: 80%;
+        max-width: 350px;
+        padding: 10px 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 1em;
+        transition: border-color 0.3s;
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+    }
+
+    .form-group input:focus {
+        border-color: #3e77f8;
+        outline: none;
+    }
+
+    .form-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .btn-submit, .btn-cancel {
+        flex: 1;
+        text-align: center;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+    }
+
+    .btn-submit {
+        background-color: #3e77f8;
+        color: #fff;
+    }
+
+    .btn-submit:hover {
+        background-color: #234449;
+    }
+
+    .btn-cancel {
+        background-color: #f0f0f0;
+        color: #234449;
+    }
+
+    .btn-cancel:hover {
+        background-color: #e0e0e0;
+    }
+</style>
+<!-- Vincula la fuente Poppins -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
