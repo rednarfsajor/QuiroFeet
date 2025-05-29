@@ -1,0 +1,86 @@
+﻿@model Analisis.BD.Clientes
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Eliminar Cliente";
+}
+
+<div class="container" style="font-family: 'Poppins', sans-serif;">
+    <div class="card">
+        <div class="card-header text-center" style="background-color: #e74c3c; color: white; border-radius: 12px 12px 0 0;">
+            <h2>¿Eliminar Cliente?</h2>
+        </div>
+        <div class="card-body text-center">
+            <h4 class="mb-4">@Model.nombre</h4>
+            <p><strong>Correo:</strong> @Model.correo</p>
+            <p><strong>Teléfono:</strong> @Model.telefono</p>
+
+            <form method="post" class="mt-4">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-delete">Eliminar</button>
+                <a href="@Url.Action("ListClients", "Clientes")" class="btn btn-cancel">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 600px;
+        margin: 60px auto;
+        background-color: #ffffff;
+        padding: 0;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .card {
+        border: none;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .card-body {
+        padding: 40px;
+    }
+
+    h2, h4 {
+        margin-bottom: 20px;
+        color: #234449;
+    }
+
+    p {
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 10px;
+    }
+
+    .btn {
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 500;
+        margin: 0 8px;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-delete {
+        background-color: #e74c3c;
+        color: white;
+    }
+
+        .btn-delete:hover {
+            background-color: #c0392b;
+        }
+
+    .btn-cancel {
+        background-color: #3e77f8;
+        color: white;
+    }
+
+        .btn-cancel:hover {
+            background-color: #234449;
+        }
+</style>

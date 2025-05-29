@@ -305,6 +305,7 @@
     <Content Include="Views\Proveedores\EditarProveedor.cshtml" />
     <Content Include="Views\Proveedores\Proveedores.cshtml" />
     <Content Include="Views\Proveedores\RegistrarProveedor.cshtml" />
+    <Content Include="Views\Clientes\DeleteClient.cshtml" />
     <None Include="Views\Usuarios\ListUser.cshtml" />
     <Content Include="Views\Usuarios\Users.cshtml" />
     <Content Include="Views\Ventas\Sales.cshtml" />

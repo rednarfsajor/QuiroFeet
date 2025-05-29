@@ -1,31 +1,48 @@
-﻿@{
+﻿@model Analisis.BD.Clientes
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Editar Cliente";
 }
 
-<div class="container">
-    <h1>Editar Cliente</h1>
-    <p>Modifica la información del cliente</p>
+<div class="container" style="font-family: 'Poppins', sans-serif;">
+    <h1 class="text-center">Editar Cliente</h1>
+    <p class="text-center">Modifica la información del cliente</p>
 
-    <!-- Formulario para Editar Usuario -->
-    <form action="@Url.Action("ConfirmEditClient", "Clientes")" method="post">
-        <label>Nombre Completo</label>
-        <input type="text" name="FullName" placeholder="Ingrese el nombre completo" required />
+    @using (Html.BeginForm("EditClient", "Clientes", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.id)
 
-        <label>Correo Electrónico</label>
-        <input type="email" name="Email" placeholder="Ingrese el correo electrónico" required />
+        <!-- Nombre -->
+        <label for="nombre">Nombre</label>
+        @Html.TextBoxFor(model => model.nombre, new { @class = "form-control", placeholder = "Ingrese el nombre", required = "required" })
+        @Html.ValidationMessageFor(model => model.nombre)
 
-        <label>Teléfono</label>
-        <input type="text" name="PhoneNumber" placeholder="Ingrese el número de teléfono" required pattern="\d{8}" title="Debe contener 8 dígitos" />
-        <br />
-        <!-- Botón para Guardar Cambios -->
-        <button type="submit" class="btn-save">Guardar Cambios</button>
-        <!-- Botón para Cancelar y Regresar -->
-        <a href="@Url.Action("ListClients", "Clientes")" class="btn-cancel">Cancelar</a>
-    </form>
+        <!-- Correo -->
+        <label for="correo">Correo Electrónico</label>
+        @Html.TextBoxFor(model => model.correo, new { @class = "form-control", placeholder = "Ingrese el correo electrónico", type = "email", required = "required" })
+        @Html.ValidationMessageFor(model => model.correo)
+
+        <!-- Teléfono -->
+        <label for="telefono">Teléfono</label>
+        @Html.TextBoxFor(model => model.telefono, new
+        {
+            @class = "form-control",
+            placeholder = "Ingrese el número de teléfono",
+            pattern = "\\d{8}",
+            title = "Debe contener 8 dígitos"
+        })
+        @Html.ValidationMessageFor(model => model.telefono)
+
+        <!-- Botones -->
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-save">Guardar Cambios</button>
+            <a href="@Url.Action("ListClients", "Clientes")" class="btn btn-cancel">Cancelar</a>
+        </div>
+    }
 </div>
 
-<!-- Estilos CSS -->
 <style>
     .container {
         max-width: 600px;
@@ -38,6 +55,7 @@
 
     h1 {
         color: #234449;
+        margin-bottom: 10px;
     }
 
     label {
@@ -46,7 +64,7 @@
         font-weight: bold;
     }
 
-    input, select {
+    input {
         width: 100%;
         padding: 12px;
         margin-top: 8px;
@@ -82,5 +100,6 @@
         background-color: #c0392b;
     }
 </style>
+
 
 

@@ -1,49 +1,51 @@
-﻿@{
+﻿@model IEnumerable<Analisis.BD.Clientes>
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Lista de Clientes";
 }
 
-<div class="container">
-    <h1>Clientes Registrados</h1>
-    <p>Reporte del listado de clientes</p>
+<div class="container" style="font-family: 'Poppins', sans-serif;">
+    <h1 class="text-center mb-3" style="color: #234449;">Clientes Registrados</h1>
+    <p class="text-center">Reporte del listado de clientes en el sistema</p>
 
-    <!-- Tabla de Usuarios -->
-    <table class="user-table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre Completo</th>
-                <th>Correo Electrónico</th>
-                <th>Teléfono</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Ejemplo de Datos Simulados -->
-            <tr>
-                <td>1</td>
-                <td>Christian Madrigal</td>
-                <td>chris.m@example.com</td>
-                <td>84628872</td>
-                <td>
-                    <a href="@Url.Action("EditClient", "Clientes", new { id = 1 })" class="btn-edit">Editar</a>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Alis Gonzalez</td>
-                <td>Alis.Gm@example.com</td>
-                <td>42732222</td>
-                <td>
-                    <a href="@Url.Action("EditClient", "Clientes", new { id = 2 })" class="btn-edit">Editar</a>
-                    
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info text-center mt-4">
+            No hay clientes registrados en la base de datos.
+        </div>
+    }
+    else
+    {
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var cliente in Model)
+                {
+                    <tr>
+                        <td>@cliente.id</td>
+                        <td>@cliente.nombre</td>
+                        <td>@cliente.correo</td>
+                        <td>@cliente.telefono</td>
+                        <td>
+                            <a href="@Url.Action("EditClient", "Clientes", new { id = cliente.id })" class="btn-edit">Editar</a>
+                            <a href="@Url.Action("DeleteClient", "Clientes", new { id = cliente.id })" class="btn-delete">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
 </div>
 
-<!-- Estilos CSS -->
 <style>
     .container {
         max-width: 900px;
@@ -102,4 +104,3 @@
         background-color: #c0392b;
     }
 </style>
-
