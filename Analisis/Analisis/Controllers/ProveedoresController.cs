@@ -35,6 +35,14 @@ namespace Analisis.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult RegistrarProveedor(Proveedores nuevoProveedor)
         {
+            // Verifica si el correo ya existe
+            bool correoExistente = db.Proveedores.Any(p => p.correo == nuevoProveedor.correo);
+
+            if (correoExistente)
+            {
+                ModelState.AddModelError("Correo", "Ya existe un proveedor con este correo.");
+            }
+
             if (ModelState.IsValid)
             {
                 db.Proveedores.Add(nuevoProveedor);
