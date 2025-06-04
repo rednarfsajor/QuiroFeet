@@ -3,13 +3,11 @@
     ViewBag.Title = "Gestión de Clientes";
 }
 
-<div class="receipts-container">
+<div class="receipts-container" style="font-family: 'Poppins', sans-serif;">
     <h1>Gestión de Clientes</h1>
     <p>Seleccione una opción para continuar.</p>
 
     <div class="options">
-
-
         <!-- Botón para Crear Clientes -->
         <a href="@Url.Action("CreateClient", "Clientes")" class="option-card">
             <i class="bi bi-person-fill-add"></i>
@@ -26,17 +24,18 @@
     </div>
 </div>
 
-<!-- Estilos CSS -->
 <style>
     .receipts-container {
-        max-width: 800px;
-        margin: 100px auto;
+        max-width: 900px;
+        margin: 80px auto;
         text-align: center;
+        padding: 20px;
     }
 
     h1 {
         color: #234449;
         font-size: 2.5em;
+        margin-bottom: 10px;
     }
 
     p {
@@ -47,28 +46,29 @@
 
     .options {
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
         gap: 30px;
     }
 
     .option-card {
-        width: 300px;
+        width: 280px;
         background-color: #ffffff;
-        padding: 40px;
+        padding: 35px 30px;
         border-radius: 12px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         text-decoration: none;
         color: #234449;
-        transition: transform 0.3s;
+        transition: transform 0.3s, background-color 0.3s;
     }
 
         .option-card:hover {
             transform: translateY(-10px);
-            background-color: #e6f2f7;
+            background-color: #f0f6ff;
         }
 
         .option-card i {
-            font-size: 3em;
+            font-size: 3.2em;
             color: #3e77f8;
             margin-bottom: 20px;
         }
@@ -78,4 +78,5 @@
         font-size: 1.5em;
     }
 </style>
+
 

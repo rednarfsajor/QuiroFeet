@@ -1,78 +1,82 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Gestión de Proveedores";
 }
 
-<div class="container mt-4">
-    <div class="card shadow-sm">
-        <div class="card-header bg-light d-flex justify-content-between align-items-center">
-            <h2 class="mb-0 h5"> <i class="fas fa-truck me-2"></i> @ViewBag.Title </h2>
-            <div>
-                <a href="@Url.Action("RegistrarProveedor", "Proveedores")" class="btn btn-primary btn-sm">
-                    <i class="fas fa-plus me-1"></i> Nuevo Proveedor
-                </a>
-            </div>
-        </div>
-        <div class="card-body">
+<div class="receipts-container" style="font-family: 'Poppins', sans-serif;">
+    <h1>Gestión de Proveedores</h1>
+    <p>Seleccione una opción para continuar.</p>
 
-            <div id="alertaMensajes" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
-                <span id="mensajeTexto"></span>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+    <div class="options">
+        <!-- Botón para Crear Prov -->
+        <a href="@Url.Action("RegistrarProveedor", "Proveedores")" class="option-card">
+            <i class="bi bi-person-fill-add"></i>
+            <h3>Registrar Proveedor</h3>
+            <p>Ingresar nuevos proveedores en el sistema</p>
+        </a>
 
-            <div class="table-responsive">
-                <table class="table table-striped table-hover table-bordered table-sm" id="tablaProveedores">
-                    <thead class="table-light">
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Contacto</th>
-                            <th>Teléfono</th>
-                            <th>Correo Electrónico</th>
-                            <th>Identificación Fiscal</th>
-                        </tr>
-                    </thead>
-                    <tbody id="cuerpoTablaProveedores">
-                        <!-- Se llenará dinámicamente -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <!-- Botón para Ver Prov -->
+        <a href="@Url.Action("DetallesProveedor", "Proveedores")" class="option-card">
+            <i class="bi bi-people-fill"></i>
+            <h3>Ver Proveedores</h3>
+            <p>Consultar el listado de Proveedores</p>
+        </a>
     </div>
 </div>
 
-@section Scripts {
-    <script>
-        function cargarProveedores() {
-            const cuerpoTabla = $('#cuerpoTablaProveedores');
-            cuerpoTabla.empty();
+<style>
+    .receipts-container {
+        max-width: 900px;
+        margin: 80px auto;
+        text-align: center;
+        padding: 20px;
+    }
 
-            const proveedores = [
-                { nombre: 'Distribuidora La Tropical', contacto: 'Laura González', telefono: '+506 8701 2345', correo: 'laura@tropical.co.cr', identificacion: '3-101-456789' },
-                { nombre: 'Ferretería El Martillo', contacto: 'José Hernández', telefono: '+506 8890 1122', correo: 'jose@martillo.cr', identificacion: '1-115-987654' },
-                { nombre: 'Proveedoras Unidas S.A.', contacto: 'María Castro', telefono: '+506 8888 5555', correo: 'mcastro@unidas.cr', identificacion: '3-102-564738' },
-                { nombre: 'Alimentos Pura Vida', contacto: 'Luis Mena', telefono: '+506 8456 2233', correo: 'contacto@puravida.co.cr', identificacion: '3-101-998877' },
-                { nombre: 'Servicios Ticos', contacto: 'Karina Fallas', telefono: '+506 8702 5566', correo: 'karina@sticos.cr', identificacion: '3-108-112233' },
-                { nombre: 'Importadora Omega', contacto: 'Carlos Mora', telefono: '+506 8844 6677', correo: 'ventas@omega.cr', identificacion: '3-113-445566' },
-                { nombre: 'Suministros del Norte', contacto: 'Paola Solís', telefono: '+506 8611 7788', correo: 'psolis@norte.co.cr', identificacion: '1-121-334455' },
-                { nombre: 'Electro Hogar', contacto: 'Andrés Ureña', telefono: '+506 8999 1234', correo: 'andres@electrohogar.cr', identificacion: '3-114-556677' },
-                { nombre: 'Plásticos y Más', contacto: 'Sofía Navarro', telefono: '+506 8881 1122', correo: 'sofian@pymas.cr', identificacion: '3-119-998877' },
-                { nombre: 'Papelería La Central', contacto: 'Marco Segura', telefono: '+506 8900 3344', correo: 'marco@central.co.cr', identificacion: '3-120-445566' }
-            ];
+    h1 {
+        color: #234449;
+        font-size: 2.5em;
+        margin-bottom: 10px;
+    }
 
-            $.each(proveedores, function (index, proveedor) {
-                let fila = `
-                        <tr>
-                            <td>${proveedor.nombre}</td>
-                            <td>${proveedor.contacto}</td>
-                            <td>${proveedor.telefono}</td>
-                            <td>${proveedor.correo}</td>
-                            <td>${proveedor.identificacion}</td>
-                        </tr>`;
-                cuerpoTabla.append(fila);
-            });
+    p {
+        font-size: 1.2em;
+        color: #555;
+        margin-bottom: 40px;
+    }
+
+    .options {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+    }
+
+    .option-card {
+        width: 280px;
+        background-color: #ffffff;
+        padding: 35px 30px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        text-decoration: none;
+        color: #234449;
+        transition: transform 0.3s, background-color 0.3s;
+    }
+
+        .option-card:hover {
+            transform: translateY(-10px);
+            background-color: #f0f6ff;
         }
 
-        $(document).ready(function () {
-            cargarProveedores();
-        });
-    </script>
-}
+        .option-card i {
+            font-size: 3.2em;
+            color: #3e77f8;
+            margin-bottom: 20px;
+        }
+
+    h3 {
+        margin-bottom: 10px;
+        font-size: 1.5em;
+    }
+</style>
+
+

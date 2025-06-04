@@ -1,181 +1,139 @@
-﻿¡Claro! Procedamos con la vista de detalles del proveedor: Views/Proveedores/DetallesProveedor.cshtml.
-
-Esta vista será de solo lectura. Su propósito es mostrar toda la información relevante de un proveedor específico después de obtenerla de la API. Incluirá botones para volver a la lista y, opcionalmente, para ir a la pantalla de edición.
-
-Archivo: Views/Proveedores/DetallesProveedor.cshtml
-
-HTML
+﻿@model IEnumerable<Analisis.BD.Proveedores>
 
 @{
-    ViewBag.Title = "Detalles del Proveedor";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Lista de Proveedores";
 }
 
-<div class="container mt-4">
-    <div class="card shadow-sm">
-        <div class="card-header bg-light d-flex justify-content-between align-items-center">
-            <h2 class="mb-0 h5"> <i class="fas fa-info-circle me-2"></i> @ViewBag.Title </h2>
-            <div>
-                <a href="@Url.Action("Index", "Proveedores")" class="btn btn-secondary btn-sm">
-                    <i class="fas fa-arrow-left me-1"></i> Volver a la Lista
-                </a>
-                
-                <a href="#" id="btnEditarProveedor" class="btn btn-warning btn-sm" style="display: none;">
-                    
-                    <i class="fas fa-edit me-1"></i> Editar
-                </a>
-            </div>
-        </div>
-        <div class="card-body">
+<!-- Vincula la fuente Poppins -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-           
-            <div id="alertaErrorApi" class="alert alert-danger" role="alert" style="display: none;">
-                <strong>Error:</strong> <span id="mensajeErrorApi"></span>
-            </div>
+<div class="container">
+    <h1>Proveedores Registrados</h1>
+    <p>Reporte del listado de proveedores</p>
 
-            
-            <div id="loadingIndicator" class="text-center my-4">
-                <div class="spinner-border text-primary" role="status">
-                    <span class="visually-hidden">Cargando detalles del proveedor...</span>
-                </div>
-                <p class="mt-2">Cargando detalles del proveedor...</p>
-            </div>
+    <!-- Tabla de proveedores -->
+    <table class="service-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Contacto</th>
+                <th>Numero</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var proveedores in Model)
+            {
+                <tr>
+                    <td>@proveedores.id</td>
+                    <td>@proveedores.nombre</td>
+                    <td>@proveedores.correo</td>
+                    <td>@proveedores.contacto</td>
+                    <td>@proveedores.numero</td>
+                    <td>
+                        <!-- Enlace Editar con ID -->
+                        <a href="@Url.Action("EditarProveedor", "Proveedores", new { id = proveedores.id })" class="btn-edit">
+                            <i class="bi bi-pencil-fill"></i> Editar
+                        </a>
+                        <!-- Enlace Eliminar con ID -->
+                        <a href="@Url.Action("DeleteProveedor", "Proveedores", new { id = proveedores.id })" class="btn-delete" onclick="return confirm('¿Está seguro que desea eliminar este Proveedor?');">
+                            <i class="bi bi-trash-fill"></i> Eliminar
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
-            
-            <div id="detallesProveedorContainer" style="display: none;">
-                <dl class="row">
-                  
+<!-- Estilos CSS -->
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: #f9fafb;
+    }
 
-                    <dt class="col-sm-3">Nombre Proveedor:</dt>
-                    <dd class="col-sm-9" id="detalleNombre">-</dd>
+    .container {
+        max-width: 950px;
+        margin: 60px auto;
+        background-color: #ffffff;
+        padding: 40px 30px;
+        border-radius: 15px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
 
-                    <dt class="col-sm-3">Identificación Fiscal:</dt>
-                    <dd class="col-sm-9" id="detalleIdFiscal">-</dd>
+    h1 {
+        color: #234449;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
 
-                    <dt class="col-sm-3">Nombre Contacto:</dt>
-                    <dd class="col-sm-9" id="detalleContacto">-</dd>
+    p {
+        color: #3e77f8;
+        margin-bottom: 30px;
+    }
 
-                    <dt class="col-sm-3">Teléfono:</dt>
-                    <dd class="col-sm-9" id="detalleTelefono">-</dd>
+    .service-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
 
-                    <dt class="col-sm-3">Correo Electrónico:</dt>
-                    <dd class="col-sm-9" id="detalleCorreo">-</dd>
-
-                    <dt class="col-sm-3">Sitio Web:</dt>
-                    <dd class="col-sm-9" id="detalleSitioWeb">-</dd>
-
-                    <dt class="col-sm-3">Dirección:</dt>
-                    <dd class="col-sm-9">
-                        <pre class="mb-0" id="detalleDireccion" style="white-space: pre-wrap; font-family: inherit;"></pre> 
-                    </dd>
-
-                    <dt class="col-sm-3">Notas / Observaciones:</dt>
-                    <dd class="col-sm-9">
-                        <pre class="mb-0" id="detalleNotas" style="white-space: pre-wrap; font-family: inherit;"></pre>
-                    </dd>
-
-                   
-                </dl>
-            </div> 
-
-        </div> 
-        <div class="card-footer bg-light text-end">
-            <a href="@Url.Action("Index", "Proveedores")" class="btn btn-secondary btn-sm">
-                <i class="fas fa-arrow-left me-1"></i> Volver a la Lista
-            </a>
-        </div>
-    </div> 
-</div> 
-
-@section Scripts {
-    <script>
-        
-        const baseUrl = '@Url.Content("~/")';
-       
-        const proveedoresApiUrl_Base = baseUrl + 'api/proveedores';
-        let proveedorId = null;
-
-       
-        function cargarDetallesProveedor(id) {
-            const alertaErrorApi = $('#alertaErrorApi');
-            const mensajeErrorApi = $('#mensajeErrorApi');
-            const loadingIndicator = $('#loadingIndicator');
-            const detallesContainer = $('#detallesProveedorContainer');
-            const btnEditar = $('#btnEditarProveedor');
-
-            loadingIndicator.show();
-            detallesContainer.hide();
-            alertaErrorApi.hide();
-            btnEditar.hide();
-
-            $.ajax({
-                url: `${proveedoresApiUrl_Base}/${id}`,
-                method: 'GET',
-                dataType: 'json',
-                success: function (data) {
-                    loadingIndicator.hide();
-                    if(data) {
-                       
-                        $('#detalleNombre').text(data.nombre || 'N/A');
-                        $('#detalleIdFiscal').text(data.identificacionFiscal || 'N/A');
-                        $('#detalleContacto').text(data.nombreContacto || 'N/A');
-                        $('#detalleTelefono').text(data.telefono || 'N/A');
-                        $('#detalleCorreo').text(data.correoElectronico || 'N/A');
-                        
-                        if(data.sitioWeb) {
-                             $('#detalleSitioWeb').html(`<a href="${data.sitioWeb}" target="_blank">${data.sitioWeb}</a>`);
-                        } else {
-                             $('#detalleSitioWeb').text('N/A');
-                        }
-                        $('#detalleDireccion').text(data.direccion || 'N/A');
-                        $('#detalleNotas').text(data.notas || 'N/A');
-                       
-                        btnEditar.attr('href', `${baseUrl}Proveedores/EditarProveedor?id=${data.id}`);
-                        btnEditar.show();
-
-                        detallesContainer.show(); 
-                    } else {
-                        mensajeErrorApi.text('No se encontraron datos para el proveedor.');
-                        alertaErrorApi.show();
-                    }
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    loadingIndicator.hide();
-                    console.error("Error al cargar detalles del proveedor:", textStatus, errorThrown, jqXHR.responseText);
-                    let mensaje = "Error al cargar los detalles del proveedor.";
-                     if (jqXHR.status === 404) {
-                        mensaje = "Proveedor no encontrado.";
-                    } else if (jqXHR.responseJSON && jqXHR.responseJSON.message) {
-                        mensaje = jqXHR.responseJSON.message;
-                    }
-                    mensajeErrorApi.text(mensaje);
-                    alertaErrorApi.show();
-                }
-            });
+        .service-table th, .service-table td {
+            border: 1px solid #e0e0e0;
+            padding: 12px;
+            text-align: center;
+            font-size: 0.95em;
         }
 
-        
-        $(document).ready(function () {
-           
-            const urlParams = new URLSearchParams(window.location.search);
-            proveedorId = urlParams.get('id');
+        .service-table th {
+            background-color: #234449;
+            color: #ffffff;
+            font-weight: 600;
+        }
 
-            const alertaErrorApi = $('#alertaErrorApi');
-            const mensajeErrorApi = $('#mensajeErrorApi');
-            const loadingIndicator = $('#loadingIndicator');
-            const detallesContainer = $('#detallesProveedorContainer');
+        .service-table tbody tr:nth-child(even) {
+            background-color: #f4f9f9;
+        }
 
-            if (proveedorId && !isNaN(proveedorId)) {
-              
-                cargarDetallesProveedor(proveedorId);
-            } else {
-               
-                console.error("ID de proveedor no encontrado o inválido en la URL.");
-                mensajeErrorApi.text("No se especificó un proveedor válido para ver detalles.");
-                alertaErrorApi.show();
-                loadingIndicator.hide();
-                detallesContainer.hide();
-            }
-        });
-    </script>
-}
+    .btn-edit, .btn-delete {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 8px 14px;
+        border-radius: 8px;
+        font-size: 0.9em;
+        font-weight: 600;
+        text-decoration: none;
+        color: white;
+        transition: background-color 0.3s, box-shadow 0.3s;
+        margin-bottom: 5px; /* separación vertical si hay dos filas */
+        margin-right: 5px; /* separación horizontal entre ellos */
+    }
+
+    .btn-edit {
+        background-color: #3e77f8;
+    }
+
+        .btn-edit:hover {
+            background-color: #234449;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+    .btn-delete {
+        background-color: #3e77f8;
+    }
+
+        .btn-delete:hover {
+            background-color: #234449;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+    i.bi {
+        font-size: 1em;
+    }
+</style>

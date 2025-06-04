@@ -1,300 +1,133 @@
-﻿@{
-    ViewBag.Title = "Editar Proveedor";
+﻿@model Analisis.BD.Proveedores
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Editar Proveedor";
 }
 
-<div class="container mt-4">
-    <div class="card shadow-sm">
-        <div class="card-header bg-light">
-            <h2 class="mb-0 h5"> <i class="fas fa-edit me-2"></i> @ViewBag.Title </h2>
+<div class="container">
+    <h1>Editar Proveedor</h1>
+    <p>Modifica la información del proveedor</p>
+
+    @using (Html.BeginForm("EditarProveedor", "Proveedores", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        
+
+        <div class="form-group">
+            <label>Nombre</label>
+            @Html.TextBoxFor(m => m.nombre, new { @class = "form-control", placeholder = "Ingrese el nombre del proveedor", required = "required" })
         </div>
-        <div class="card-body">
 
-            
-            <div id="alertaErrorApi" class="alert alert-danger" role="alert" style="display: none;">
-                <strong>Error:</strong> <span id="mensajeErrorApi"></span>
-            </div>
+        <div class="form-group">
+            <label>Correo</label>
+            @Html.TextBoxFor(m => m.correo, new { @class = "form-control", placeholder = "Ingrese el correo", required = "required" })
+        </div>
 
-            
-            <div id="loadingIndicator" class="text-center my-4" style="display: none;">
-                 <div class="spinner-border text-primary" role="status">
-                    <span class="visually-hidden">Cargando datos del proveedor...</span>
-                </div>
-                <p class="mt-2">Cargando datos del proveedor...</p>
-            </div>
+        <div class="form-group">
+            <label>Contacto</label>
+            @Html.TextBoxFor(m => m.contacto, new { @class = "form-control", placeholder = "Ingrese el contacto", required = "required" })
+        </div>
 
+        <div class="form-group">
+            <label>Número</label>
+            @Html.TextBoxFor(m => m.numero, new { @class = "form-control", placeholder = "Ingrese el numero", required = "required"})
+        </div>
 
-            
-            <form id="formEditarProveedor" method="post" novalidate style="display: none;">
-                @Html.AntiForgeryToken()
-                
-                <input type="hidden" id="proveedorId" name="Id" />
+        <div class="form-buttons">
+            <button type="submit" class="btn-save"><i class="bi bi-check-circle-fill"></i> Guardar Cambios</button>
+            <a href="@Url.Action("DetallesProveedor", "Proveedores")" class="btn-cancel"><i class="bi bi-x-circle-fill"></i> Cancelar</a>
+        </div>
+    }
+</div>
 
-                <div class="row g-3">
-                    
-                    <div class="col-md-6 mb-3">
-                        <label for="nombreProveedor" class="form-label">Nombre Proveedor <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="nombreProveedor" name="Nombre" required>
-                        <div class="invalid-feedback">
-                            Por favor ingresa el nombre del proveedor.
-                        </div>
-                    </div>
+<!-- Estilos CSS -->
+<style>
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+    }
 
-                   
-                    <div class="col-md-6 mb-3">
-                        <label for="idFiscal" class="form-label">Identificación Fiscal <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="idFiscal" name="IdentificacionFiscal" required>
-                        <div class="invalid-feedback">
-                            Por favor ingresa la identificación fiscal.
-                        </div>
-                         <div class="text-danger mt-1" id="errorIdFiscalDuplicado" style="display: none; font-size: 0.875em;">
-                            Esta identificación ya está registrada para otro proveedor.
-                        </div>
-                    </div>
+    h1 {
+        color: #234449;
+        margin-bottom: 10px;
+    }
 
-                    
-                    <div class="col-md-6 mb-3">
-                        <label for="nombreContacto" class="form-label">Nombre Contacto</label>
-                        <input type="text" class="form-control" id="nombreContacto" name="NombreContacto">
-                    </div>
+    p {
+        color: #3e77f8;
+        margin-bottom: 30px;
+    }
 
-                  
-                    <div class="col-md-6 mb-3">
-                        <label for="telefono" class="form-label">Teléfono <span class="text-danger">*</span></label>
-                        <input type="tel" class="form-control" id="telefono" name="Telefono" required>
-                         <div class="invalid-feedback">
-                            Por favor ingresa un número de teléfono.
-                        </div>
-                    </div>
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
 
-                   
-                    <div class="col-md-6 mb-3">
-                        <label for="correoElectronico" class="form-label">Correo Electrónico <span class="text-danger">*</span></label>
-                        <input type="email" class="form-control" id="correoElectronico" name="CorreoElectronico" required>
-                         <div class="invalid-feedback">
-                            Por favor ingresa un correo electrónico válido.
-                        </div>
-                    </div>
-
-                  
-                    <div class="col-md-6 mb-3">
-                        <label for="sitioWeb" class="form-label">Sitio Web</label>
-                        <input type="url" class="form-control" id="sitioWeb" name="SitioWeb" placeholder="https://ejemplo.com">
-                         <div class="invalid-feedback">
-                            Por favor ingresa una URL válida (ej: https://ejemplo.com).
-                        </div>
-                    </div>
-
-                
-                    <div class="col-12 mb-3">
-                         <label for="direccion" class="form-label">Dirección</label>
-                        <textarea class="form-control" id="direccion" name="Direccion" rows="3"></textarea>
-                    </div>
-
-                     
-                    <div class="col-12 mb-3">
-                        <label for="notas" class="form-label">Notas / Observaciones</label>
-                        <textarea class="form-control" id="notas" name="Notas" rows="3"></textarea>
-                    </div>
-
-                </div> 
-
-                <hr />
-
-                <div class="d-flex justify-content-end">
-                    <a href="@Url.Action("Index", "Proveedores")" class="btn btn-secondary me-2">
-                        <i class="fas fa-times me-1"></i> Cancelar
-                    </a>
-                    <button type="submit" class="btn btn-success" id="btnActualizarProveedor">
-                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerGuardar" style="display: none;"></span>
-                         <i class="fas fa-sync-alt me-1" id="iconoGuardar"></i> Actualizar Proveedor
-                    </button>
-                </div>
-
-            </form>
-        </div> 
-    </div> 
-</div> 
-
-@section Scripts {
-    
-
-    <script>
-        
-        const baseUrl = '@Url.Content("~/")';
-       
-        const proveedoresApiUrl_Base = baseUrl + 'api/proveedores';
-        let proveedorId = null; 
-
-        
-        function cargarDatosProveedor(id) {
-            const form = $('#formEditarProveedor');
-            const alertaErrorApi = $('#alertaErrorApi');
-            const mensajeErrorApi = $('#mensajeErrorApi');
-            const loadingIndicator = $('#loadingIndicator');
-
-            loadingIndicator.show(); 
-            form.hide(); 
-            alertaErrorApi.hide(); 
-
-            $.ajax({
-                url: `${proveedoresApiUrl_Base}/${id}`, 
-                method: 'GET',
-                dataType: 'json',
-                success: function (data) {
-                    loadingIndicator.hide(); 
-                    if(data) {
-                        
-                        $('#proveedorId').val(data.id); 
-                        $('#nombreProveedor').val(data.nombre || '');
-                        $('#idFiscal').val(data.identificacionFiscal || '');
-                        $('#nombreContacto').val(data.nombreContacto || '');
-                        $('#telefono').val(data.telefono || '');
-                        $('#correoElectronico').val(data.correoElectronico || '');
-                        $('#sitioWeb').val(data.sitioWeb || '');
-                        $('#direccion').val(data.direccion || '');
-                        $('#notas').val(data.notas || '');
-
-                        form.show(); 
-                    } else {
-                        mensajeErrorApi.text('No se encontraron datos para el proveedor especificado.');
-                        alertaErrorApi.show();
-                    }
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    loadingIndicator.hide();
-                    console.error("Error al cargar proveedor:", textStatus, errorThrown, jqXHR.responseText);
-                    let mensaje = "Error al cargar los datos del proveedor.";
-                     if (jqXHR.status === 404) {
-                        mensaje = "Proveedor no encontrado.";
-                    } else if (jqXHR.responseJSON && jqXHR.responseJSON.message) {
-                        mensaje = jqXHR.responseJSON.message;
-                    }
-                    mensajeErrorApi.text(mensaje);
-                    alertaErrorApi.show();
-                    
-                    $('#btnActualizarProveedor').prop('disabled', true);
-                }
-            });
+        .form-group label {
+            font-weight: bold;
+            color: #234449;
+            margin-bottom: 5px;
         }
 
+    .form-control {
+        width: 80%;
+        max-width: 350px;
+        padding: 10px 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 1em;
+        transition: border-color 0.3s;
+        text-align: center;
+    }
 
-      
-        $(document).ready(function () {
-            
-            const urlParams = new URLSearchParams(window.location.search);
-            proveedorId = urlParams.get('id');
+        .form-control:focus {
+            border-color: #3e77f8;
+            outline: none;
+        }
 
-            const form = $('#formEditarProveedor');
-            const btnGuardar = $('#btnActualizarProveedor');
-            const spinner = $('#spinnerGuardar');
-            const icono = $('#iconoGuardar');
-            const alertaErrorApi = $('#alertaErrorApi');
-            const mensajeErrorApi = $('#mensajeErrorApi');
-            const errorIdFiscal = $('#errorIdFiscalDuplicado');
+    .form-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+    }
 
-            if (proveedorId && !isNaN(proveedorId)) {
-                
-                cargarDatosProveedor(proveedorId);
-            } else {
-                 
-                console.error("ID de proveedor no encontrado o inválido en la URL.");
-                mensajeErrorApi.text("No se especificó un proveedor válido para editar.");
-                alertaErrorApi.show();
-                $('#loadingIndicator').hide();
-                form.hide();
-                btnGuardar.prop('disabled', true); 
-            }
+    .btn-save, .btn-cancel {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        text-align: center;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+        text-decoration: none;
+    }
 
+    .btn-save {
+        background-color: #3e77f8;
+        color: #fff;
+    }
 
-            
-            form.on('submit', function (event) {
-                event.preventDefault();
-                errorIdFiscal.hide();
-                alertaErrorApi.hide();
+        .btn-save:hover {
+            background-color: #234449;
+        }
 
-                if (!form[0].checkValidity()) {
-                    event.stopPropagation();
-                    form.addClass('was-validated');
-                    return;
-                }
-                form.addClass('was-validated');
+    .btn-cancel {
+        background-color: #f0f0f0;
+        color: #234449;
+    }
 
-                btnGuardar.prop('disabled', true);
-                spinner.show();
-                icono.hide();
-
-               
-                const proveedorData = {
-                    Id: $('#proveedorId').val(), 
-                    Nombre: $('#nombreProveedor').val(),
-                    IdentificacionFiscal: $('#idFiscal').val(),
-                    NombreContacto: $('#nombreContacto').val(),
-                    Telefono: $('#telefono').val(),
-                    CorreoElectronico: $('#correoElectronico').val(),
-                    SitioWeb: $('#sitioWeb').val(),
-                    Direccion: $('#direccion').val(),
-                    Notas: $('#notas').val()
-                };
-
-                
-                $.ajax({
-                    url: `${proveedoresApiUrl_Base}/${proveedorData.Id}`, 
-                    method: 'PUT', 
-                    contentType: 'application/json',
-                    data: JSON.stringify(proveedorData),
-                    
-                    success: function (response) {
-                        console.log("Proveedor actualizado:", response);
-                        btnGuardar.prop('disabled', false);
-                        spinner.hide();
-                        icono.show();
-
-                        Swal.fire({
-                            title: '¡Actualizado!',
-                            text: 'Proveedor actualizado con éxito.',
-                            icon: 'success',
-                            confirmButtonText: 'OK'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                window.location.href = '@Url.Action("Index", "Proveedores")'; 
-                            }
-                        });
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        console.error("Error al actualizar proveedor:", textStatus, errorThrown, jqXHR.responseText);
-                        let mensaje = "Ocurrió un error al actualizar el proveedor.";
-                        if (jqXHR.responseJSON && jqXHR.responseJSON.message) {
-                             mensaje = jqXHR.responseJSON.message;
-                        } else if (jqXHR.status === 409) { 
-                             mensaje = "La Identificación Fiscal ingresada ya pertenece a otro proveedor.";
-                             errorIdFiscal.show();
-                             $('#idFiscal').addClass('is-invalid').focus();
-                        } else if (jqXHR.status === 400) { 
-                             mensaje = "Los datos enviados no son válidos. Revisa el formulario.";
-                        } else if (jqXHR.status === 404) {
-                            mensaje = "Proveedor no encontrado para actualizar.";
-                        }
-
-                        mensajeErrorApi.text(mensaje);
-                        alertaErrorApi.show();
-
-                        btnGuardar.prop('disabled', false);
-                        spinner.hide();
-                        icono.show();
-                    }
-                });
-            });
-
-           
-            form.find('input, select, textarea').on('input', function() {
-                if ($(this).hasClass('is-invalid')) {
-                    $(this).removeClass('is-invalid');
-                    if ($(this).attr('id') === 'idFiscal') {
-                         errorIdFiscal.hide();
-                    }
-                }
-            });
-        });
-    </script>
-}
+        .btn-cancel:hover {
+            background-color: #e0e0e0;
+        }
+</style>

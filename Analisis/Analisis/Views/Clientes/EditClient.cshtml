@@ -1,86 +1,175 @@
-﻿@{
+﻿@model Analisis.BD.Clientes
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Editar Cliente";
 }
 
-<div class="container">
-    <h1>Editar Cliente</h1>
-    <p>Modifica la información del cliente</p>
+<div class="form-container">
+    <h2 class="form-title">Editar Cliente</h2>
+    <p class="form-subtitle">Por favor, modifica la información del cliente</p>
 
-    <!-- Formulario para Editar Usuario -->
-    <form action="@Url.Action("ConfirmEditClient", "Clientes")" method="post">
-        <label>Nombre Completo</label>
-        <input type="text" name="FullName" placeholder="Ingrese el nombre completo" required />
+    @using (Html.BeginForm("EditClient", "Clientes", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.id)
 
-        <label>Correo Electrónico</label>
-        <input type="email" name="Email" placeholder="Ingrese el correo electrónico" required />
+        <div class="form-group">
+            <label class="form-label">Nombre</label>
+            @Html.TextBoxFor(model => model.nombre, new
+            {
+                @class = "form-input text-center",
+                placeholder = "Ingrese el nombre"
+            })
+            @Html.ValidationMessageFor(model => model.nombre, null, new { @class = "text-danger" })
+        </div>
 
-        <label>Teléfono</label>
-        <input type="text" name="PhoneNumber" placeholder="Ingrese el número de teléfono" required pattern="\d{8}" title="Debe contener 8 dígitos" />
-        <br />
-        <!-- Botón para Guardar Cambios -->
-        <button type="submit" class="btn-save">Guardar Cambios</button>
-        <!-- Botón para Cancelar y Regresar -->
-        <a href="@Url.Action("ListClients", "Clientes")" class="btn-cancel">Cancelar</a>
-    </form>
+        <div class="form-group">
+            <label class="form-label">Correo Electrónico</label>
+            @Html.TextBoxFor(model => model.correo, new
+            {
+                @class = "form-input text-center",
+                placeholder = "Ingrese el correo electrónico"
+            })
+            @Html.ValidationMessageFor(model => model.correo, null, new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Teléfono</label>
+            @Html.TextBoxFor(model => model.telefono, new
+            {
+                @class = "form-input text-center",
+                placeholder = "Ingrese el número de teléfono",
+                pattern = "\\d{8}",
+                title = "Debe tener 8 dígitos"
+            })
+            @Html.ValidationMessageFor(model => model.telefono, null, new { @class = "text-danger" })
+        </div>
+
+        <div class="form-button-group">
+            <button type="submit" class="btn-submit">Guardar Cambios</button>
+            <a href="@Url.Action("ListClients", "Clientes")" class="btn-cancel">
+                <span class="cancel-icon-circle"><span class="x-char">X</span></span>
+                <span>Cancelar</span>
+            </a>
+        </div>
+    }
 </div>
 
-<!-- Estilos CSS -->
 <style>
-    .container {
-        max-width: 600px;
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f9f9f9;
+    }
+
+    .form-container {
+        max-width: 500px;
         margin: 50px auto;
         background-color: #ffffff;
         padding: 40px;
-        border-radius: 12px;
+        border-radius: 20px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        text-align: center;
     }
 
-    h1 {
+    .form-title {
         color: #234449;
-    }
-
-    label {
-        display: block;
-        margin-top: 20px;
         font-weight: bold;
+        margin-bottom: 10px;
     }
 
-    input, select {
+    .form-subtitle {
+        color: #5a73fc;
+        margin-bottom: 30px;
+    }
+
+    .form-group {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    .form-input {
         width: 100%;
         padding: 12px;
-        margin-top: 8px;
-        margin-bottom: 20px;
         border: 1px solid #ccc;
-        border-radius: 8px;
+        border-radius: 10px;
+        background-color: #ffffff;
+        text-align: center;
     }
 
-    .btn-save {
+    .form-button-group {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 30px;
+    }
+
+    .btn-submit {
         background-color: #3e77f8;
         color: white;
-        padding: 12px 20px;
         border: none;
-        border-radius: 8px;
+        padding: 12px 20px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: bold;
         cursor: pointer;
+        transition: background-color 0.2s;
     }
+
+        .btn-submit:hover {
+            background-color: #234449;
+        }
 
     .btn-cancel {
-        background-color: #e74c3c;
-        color: white;
+        background-color: #f1f1f1;
+        color: #234449;
         padding: 12px 20px;
-        border: none;
-        border-radius: 8px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: bold;
         text-decoration: none;
-        margin-left: 10px;
+        border: 1px solid #ccc;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: background-color 0.2s;
     }
 
-    .btn-save:hover {
-        background-color: #234449;
+        .btn-cancel:hover {
+            background-color: #e0e0e0;
+        }
+
+    .cancel-icon-circle {
+        background-color: #3e77f8;
+        color: #ffffff;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    .btn-cancel:hover {
-        background-color: #c0392b;
+    .x-char {
+        font-size: 14px;
+        font-weight: 500;
+        font-family: 'Poppins', sans-serif;
+        line-height: 1;
+    }
+
+    .text-danger {
+        color: red;
+        font-size: 14px;
     }
 </style>
+
+
+
 
 

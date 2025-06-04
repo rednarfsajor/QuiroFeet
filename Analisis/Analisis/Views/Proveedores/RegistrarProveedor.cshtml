@@ -1,216 +1,164 @@
-﻿@{
-    ViewBag.Title = "Registrar Nuevo Proveedor";
+﻿@model Analisis.BD.Proveedores
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Crear Proveedor";
 }
 
-<div class="container mt-4">
-    <div class="card shadow-sm">
-        <div class="card-header bg-light">
-            <h2 class="mb-0 h5"> <i class="fas fa-truck-loading me-2"></i> @ViewBag.Title </h2>
-        </div>
-        <div class="card-body">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-            
-            <div id="alertaErrorApi" class="alert alert-danger" role="alert" style="display: none;">
-                <strong>Error:</strong> <span id="mensajeErrorApi"></span>
+<div class="full-page-container">
+    <div class="form-container">
+        <h1>Registrar Proveedor</h1>
+        <p>Por favor, completa el formulario para registrar un nuevo proveedor</p>
+
+        @using (Html.BeginForm("RegistrarProveedor", "Proveedores", FormMethod.Post, new { @class = "formulario" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                @Html.LabelFor(model => model.nombre)
+                @Html.TextBoxFor(model => model.nombre, new { @class = "form-control", placeholder = "Ingrese el nombre del proveedor", required = "required" })
+                @Html.ValidationMessageFor(model => model.nombre)
             </div>
 
-            
-            <form id="formRegistrarProveedor" method="post" novalidate>
-                @Html.AntiForgeryToken()
+            <div class="form-group">
+                @Html.LabelFor(model => model.correo)
+                @Html.TextBoxFor(model => model.correo, new { @class = "form-control", placeholder = "Ingrese el correo", required = "required" })
+                @Html.ValidationMessageFor(model => model.correo)
+            </div>
 
-                <div class="row g-3">
-                   
-                    <div class="col-md-6 mb-3">
-                        <label for="nombreProveedor" class="form-label">Nombre Proveedor <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="nombreProveedor" name="Nombre" required>
-                        <div class="invalid-feedback">
-                            Por favor ingresa el nombre del proveedor.
-                        </div>
-                    </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.contacto)
+                @Html.TextBoxFor(model => model.contacto, new { @class = "form-control", placeholder = "Ingrese el contacto", required = "required" })
+                @Html.ValidationMessageFor(model => model.contacto)
+            </div>
 
-                  
-                    <div class="col-md-6 mb-3">
-                        <label for="idFiscal" class="form-label">Identificación Fiscal (Céd. Jurídica/Física) <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="idFiscal" name="IdentificacionFiscal" required>
-                        <div class="invalid-feedback">
-                            Por favor ingresa la identificación fiscal.
-                        </div>
-                         <div class="text-danger mt-1" id="errorIdFiscalDuplicado" style="display: none; font-size: 0.875em;">
-                            Esta identificación ya está registrada.
-                        </div>
-                    </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.numero)
+                @Html.TextBoxFor(model => model.numero, new { @class = "form-control", placeholder = "Ingrese el numero", required = "required" })
+                @Html.ValidationMessageFor(model => model.numero)
+            </div>
 
-                   
-                    <div class="col-md-6 mb-3">
-                        <label for="nombreContacto" class="form-label">Nombre Contacto</label>
-                        <input type="text" class="form-control" id="nombreContacto" name="NombreContacto">
-                    </div>
+            <div class="form-buttons">
+                <button type="submit" class="btn-submit"><i class="bi bi-check-circle-fill"></i> Registrar Proveedores</button>
+                <a href="@Url.Action("DetallesProveedor", "Proveedores")" class="btn-cancel"><i class="bi bi-x-circle-fill"></i> Cancelar</a>
+            </div>
+        }
+    </div>
+</div>
 
-                  
-                    <div class="col-md-6 mb-3">
-                        <label for="telefono" class="form-label">Teléfono <span class="text-danger">*</span></label>
-                        <input type="tel" class="form-control" id="telefono" name="Telefono" required>
-                         <div class="invalid-feedback">
-                            Por favor ingresa un número de teléfono.
-                        </div>
-                    </div>
+<!-- Estilos CSS -->
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: url('@Url.Content("~/Imagenes/marmol2.jfif")') no-repeat center center fixed;
+        background-size: cover;
+    }
 
-                    
-                    <div class="col-md-6 mb-3">
-                        <label for="correoElectronico" class="form-label">Correo Electrónico <span class="text-danger">*</span></label>
-                        <input type="email" class="form-control" id="correoElectronico" name="CorreoElectronico" required>
-                         <div class="invalid-feedback">
-                            Por favor ingresa un correo electrónico válido.
-                        </div>
-                    </div>
+    .full-page-container {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-                    
-                    <div class="col-md-6 mb-3">
-                        <label for="sitioWeb" class="form-label">Sitio Web</label>
-                        <input type="url" class="form-control" id="sitioWeb" name="SitioWeb" placeholder="https://ejemplo.com">
-                         <div class="invalid-feedback">
-                            Por favor ingresa una URL válida (ej: https://ejemplo.com).
-                        </div>
-                    </div>
+    .form-container {
+        width: 100%;
+        max-width: 500px;
+        background-color: rgba(255, 255, 255, 0.95);
+        padding: 40px 30px;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
 
-                  
-                    <div class="col-12 mb-3">
-                         <label for="direccion" class="form-label">Dirección</label>
-                        <textarea class="form-control" id="direccion" name="Direccion" rows="3"></textarea>
-                    </div>
+    .form-container h1 {
+        font-size: 2em;
+        font-weight: 700;
+        color: #234449;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
 
-                     
-                    <div class="col-12 mb-3">
-                        <label for="notas" class="form-label">Notas / Observaciones</label>
-                        <textarea class="form-control" id="notas" name="Notas" rows="3"></textarea>
-                    </div>
+    .form-container p {
+        color: #3e77f8;
+        margin-bottom: 30px;
+    }
 
-                </div> 
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
 
-                <hr />
+    .form-group label {
+        font-weight: 600;
+        color: #234449;
+        margin-bottom: 5px;
+        text-align: center;
+    }
 
-                <div class="d-flex justify-content-end">
-                    <a href="@Url.Action("Index", "Proveedores")" class="btn btn-secondary me-2">
-                        <i class="fas fa-times me-1"></i> Cancelar
-                    </a>
-                    <button type="submit" class="btn btn-success" id="btnGuardarProveedor">
-                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerGuardar" style="display: none;"></span>
-                         <i class="fas fa-save me-1" id="iconoGuardar"></i> Guardar Proveedor
-                    </button>
-                </div>
+    .form-group input {
+        width: 80%;
+        max-width: 350px;
+        padding: 10px 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 1em;
+        transition: border-color 0.3s;
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+    }
 
-            </form>
-        </div> 
-    </div> 
-</div> 
+    .form-group input:focus {
+        border-color: #3e77f8;
+        outline: none;
+    }
 
-@section Scripts {
-  
+    .form-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+    }
 
-    <script>
-        
-        const baseUrl = '@Url.Content("~/")';
-       
-        const proveedoresApiUrl_POST = baseUrl + 'api/proveedores';
+    .btn-submit, .btn-cancel {
+        flex: 1;
+        text-align: center;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+    }
 
-        $(document).ready(function () {
+    .btn-submit {
+        background-color: #3e77f8;
+        color: #fff;
+    }
 
-            const form = $('#formRegistrarProveedor');
-            const btnGuardar = $('#btnGuardarProveedor'); 
-            const spinner = $('#spinnerGuardar');
-            const icono = $('#iconoGuardar');
-            const alertaErrorApi = $('#alertaErrorApi');
-            const mensajeErrorApi = $('#mensajeErrorApi');
-            const errorIdFiscal = $('#errorIdFiscalDuplicado');
+    .btn-submit:hover {
+        background-color: #234449;
+    }
 
-            form.on('submit', function (event) {
-                event.preventDefault();
-                errorIdFiscal.hide();
-                alertaErrorApi.hide();
+    .btn-cancel {
+        background-color: #f0f0f0;
+        color: #234449;
+    }
 
-                if (!form[0].checkValidity()) {
-                    event.stopPropagation();
-                    form.addClass('was-validated');
-                    return;
-                }
-                form.addClass('was-validated');
-
-                btnGuardar.prop('disabled', true);
-                spinner.show();
-                icono.hide();
-
-                
-                const proveedorData = {
-                    Nombre: $('#nombreProveedor').val(),
-                    IdentificacionFiscal: $('#idFiscal').val(),
-                    NombreContacto: $('#nombreContacto').val(),
-                    Telefono: $('#telefono').val(),
-                    CorreoElectronico: $('#correoElectronico').val(),
-                    SitioWeb: $('#sitioWeb').val(),
-                    Direccion: $('#direccion').val(),
-                    Notas: $('#notas').val()
-                };
-
-                
-                $.ajax({
-                    url: proveedoresApiUrl_POST, 
-                    method: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify(proveedorData),
-                    
-                    success: function (response) {
-                        console.log("Proveedor registrado:", response);
-                        btnGuardar.prop('disabled', false);
-                        spinner.hide();
-                        icono.show();
-
-                 
-                        Swal.fire({
-                            title: '¡Guardado!',
-                            text: 'Proveedor guardado con éxito.',
-                            icon: 'success',
-                            confirmButtonText: 'OK'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                window.location.href = '@Url.Action("Index", "Proveedores")'; 
-                            }
-                        });
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        console.error("Error al registrar proveedor:", textStatus, errorThrown, jqXHR.responseText);
-                        let mensaje = "Ocurrió un error al registrar el proveedor.";
-                        if (jqXHR.responseJSON && jqXHR.responseJSON.message) {
-                             mensaje = jqXHR.responseJSON.message;
-                        } else if (jqXHR.status === 409) { 
-                             mensaje = "La Identificación Fiscal ingresada ya existe.";
-                             errorIdFiscal.show();
-                             $('#idFiscal').addClass('is-invalid').focus();
-                        } else if (jqXHR.status === 400) { 
-                             mensaje = "Los datos enviados no son válidos. Revisa el formulario.";
-                             
-                        }
-
-                        mensajeErrorApi.text(mensaje);
-                        alertaErrorApi.show();
-
-                        btnGuardar.prop('disabled', false);
-                        spinner.hide();
-                        icono.show();
-                    }
-                });
-            });
-
-           
-            form.find('input, select, textarea').on('input', function() {
-                if ($(this).hasClass('is-invalid')) {
-                    $(this).removeClass('is-invalid');
-                    if ($(this).attr('id') === 'idFiscal') {
-                         errorIdFiscal.hide();
-                    }
-                }
-            });
-
-        });
-    </script>
-}
+    .btn-cancel:hover {
+        background-color: #e0e0e0;
+    }
+</style>

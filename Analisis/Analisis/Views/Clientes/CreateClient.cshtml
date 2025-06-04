@@ -1,128 +1,175 @@
-﻿@{
+﻿@model Analisis.BD.Clientes
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Crear Usuario";
+    ViewBag.Title = "Registrar Cliente";
 }
 
-<div class="container">
-    <h1>Registrar Cliente</h1>
-    <p>Por favor, completa el formulario para registrar un nuevo cliente</p>
+<!-- Contenedor -->
+<div class="form-container">
+    <h2 class="form-title">Registrar Cliente</h2>
+    <p class="form-subtitle">Por favor, completa el formulario para registrar un nuevo cliente</p>
 
-    <form id="userForm" onsubmit="return handleSubmit(event)">
-        <!-- Nombre Completo -->
+    @using (Html.BeginForm("CreateClient", "Clientes", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <!-- Nombre -->
         <div class="form-group">
-            <label for="nombre">Nombre Completo</label>
-            <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre completo" required>
+            <label for="nombre" class="form-label">Nombre</label>
+            @Html.TextBoxFor(model => model.nombre, new
+            {
+                @class = "form-input text-center",
+                placeholder = "Ingrese el nombre"
+            })
+            @Html.ValidationMessageFor(model => model.nombre, null, new { @class = "text-danger" })
         </div>
 
-        <!-- Correo Electrónico -->
+        <!-- Correo -->
         <div class="form-group">
-            <label for="correo">Correo Electrónico</label>
-            <input type="email" class="form-control" id="correo" placeholder="Ingrese el correo electrónico" required>
+            <label for="correo" class="form-label">Correo Electrónico</label>
+            @Html.TextBoxFor(model => model.correo, new
+            {
+                @class = "form-input text-center",
+                placeholder = "Ingrese el correo electrónico"
+            })
+            @Html.ValidationMessageFor(model => model.correo, null, new { @class = "text-danger" })
         </div>
 
         <!-- Teléfono -->
         <div class="form-group">
-            <label for="telefono">Teléfono</label>
-            <input type="tel" class="form-control" id="telefono" placeholder="Ingrese el número de teléfono" pattern="\d{8}" title="Debe tener 8 dígitos" required>
+            <label for="telefono" class="form-label">Teléfono</label>
+            @Html.TextBoxFor(model => model.telefono, new
+            {
+                @class = "form-input text-center",
+                placeholder = "Ingrese el número de teléfono",
+                pattern = "\\d{8}",
+                title = "Debe tener 8 dígitos"
+            })
+            @Html.ValidationMessageFor(model => model.telefono, null, new { @class = "text-danger" })
         </div>
 
         <!-- Botones -->
-        <button type="submit" class="btn btn-primary">Registrar Cliente</button>
-        <a href="/Clientes/ClientIndex" class="btn btn-secondary">Cancelar</a>
-    </form>
-</div>
-
-<!-- Notificación Estilizada -->
-<div id="notification" class="notification" style="display:none;">
-    Cliente Registrado Exitosamente
-</div>
-
-<script>
-    function handleSubmit(event) {
-        event.preventDefault();
-        const notification = document.getElementById('notification');
-        notification.style.display = 'block';
-        setTimeout(() => {
-            notification.style.display = 'none';
-            window.location.href = '/Clientes/ClientIndex';
-        }, 3000);
-        return false;
+        <div class="form-button-group">
+            <button type="submit" class="btn-submit">Registrar Cliente</button>
+            <a href="@Url.Action("ClientIndex", "Clientes")" class="btn-cancel">
+                <span class="cancel-icon-circle"><span class="x-char">X</span></span>
+                <span>Cancelar</span>
+            </a>
+        </div>
     }
-</script>
+</div>
 
-<!-- Estilos para Centrar y Expandir -->
+<!-- Estilos -->
 <style>
-    .container {
-        max-width: 600px;
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f9f9f9;
+    }
+
+    .form-container {
+        max-width: 500px;
         margin: 50px auto;
         background-color: #ffffff;
         padding: 40px;
-        border-radius: 12px;
+        border-radius: 20px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        text-align: center;
     }
 
-    h1 {
+    .form-title {
         color: #234449;
-        margin-bottom: 20px;
-    }
-
-    label {
         font-weight: bold;
+        margin-bottom: 10px;
     }
 
-    input, select {
-        width: 100%;
-        padding: 10px;
+    .form-subtitle {
+        color: #5a73fc;
+        margin-bottom: 30px;
+    }
+
+    .form-group {
+        text-align: center;
         margin-bottom: 20px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
     }
 
-    button, .btn-secondary {
-        background-color: #3e77f8;
-        border-color: #3e77f8;
-        color: white;
+    .form-label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    .form-input {
+        width: 100%;
         padding: 12px;
-        border-radius: 8px;
-        font-size: 16px;
-        cursor: pointer;
-        margin-right: 10px;
-        text-decoration: none;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #ffffff;
+        text-align: center;
     }
 
-        button:hover, .btn-secondary:hover {
+    .form-button-group {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 30px;
+    }
+
+    .btn-submit {
+        background-color: #3e77f8;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+        .btn-submit:hover {
             background-color: #234449;
         }
 
-    .notification {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background-color: #4CAF50;
-        color: white;
-        padding: 15px 30px;
-        border-radius: 8px;
+    .btn-cancel {
+        background-color: #f1f1f1;
+        color: #234449;
+        padding: 12px 20px;
+        border-radius: 10px;
         font-size: 16px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        z-index: 1000;
-        animation: fadeInOut 3s ease;
+        font-weight: bold;
+        text-decoration: none;
+        border: 1px solid #ccc;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: background-color 0.2s;
     }
 
-    @@keyframes fadeInOut {
-        0% {
-            opacity: 0;
+        .btn-cancel:hover {
+            background-color: #e0e0e0;
         }
 
-        10% {
-            opacity: 1;
-        }
+    .cancel-icon-circle {
+        background-color: #3e77f8;
+        color: #ffffff;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-        90% {
-            opacity: 1;
-        }
+    .x-char {
+        font-size: 14px;
+        font-weight: 500;
+        font-family: 'Poppins', sans-serif;
+        line-height: 1;
+    }
 
-        100% {
-            opacity: 0;
-        }
+    .text-danger {
+        color: red;
+        font-size: 14px;
     }
 </style>

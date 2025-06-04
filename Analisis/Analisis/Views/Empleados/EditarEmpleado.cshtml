@@ -1,0 +1,135 @@
+﻿@model Analisis.BD.Empleados
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Editar Empleado";
+}
+
+<div class="container">
+    <h1>Editar Empleado</h1>
+    <p>Modifica la información del empleado</p>
+
+    @using (Html.BeginForm("EditarEmpleado", "Empleados", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+
+        <div class="form-group">
+            <label>Nombre</label>
+            @Html.TextBoxFor(m => m.nombre, new { @class = "form-control", placeholder = "Ingrese el nombre del empleado", required = "required" })
+        </div>
+
+        <div class="form-group">
+            <label>Contacto</label>
+            @Html.TextBoxFor(m => m.tipo, new { @class = "form-control", placeholder = "Ingrese el tipo", required = "required" })
+        </div>
+
+        <div class="form-group">
+            <label>Correo</label>
+            @Html.TextBoxFor(m => m.correo, new { @class = "form-control", placeholder = "Ingrese el correo", required = "required" })
+        </div>
+
+
+
+        <div class="form-group">
+            <label>Número</label>
+            @Html.TextBoxFor(m => m.telefono, new { @class = "form-control", placeholder = "Ingrese el telefono", required = "required" })
+        </div>
+
+        <div class="form-buttons">
+            <button type="submit" class="btn-save"><i class="bi bi-check-circle-fill"></i> Guardar Cambios</button>
+            <a href="@Url.Action("Index", "Empleados")" class="btn-cancel"><i class="bi bi-x-circle-fill"></i> Cancelar</a>
+        </div>
+    }
+</div>
+
+<!-- Estilos CSS -->
+<style>
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+    }
+
+    h1 {
+        color: #234449;
+        margin-bottom: 10px;
+    }
+
+    p {
+        color: #3e77f8;
+        margin-bottom: 30px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+        .form-group label {
+            font-weight: bold;
+            color: #234449;
+            margin-bottom: 5px;
+        }
+
+    .form-control {
+        width: 80%;
+        max-width: 350px;
+        padding: 10px 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 1em;
+        transition: border-color 0.3s;
+        text-align: center;
+    }
+
+        .form-control:focus {
+            border-color: #3e77f8;
+            outline: none;
+        }
+
+    .form-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .btn-save, .btn-cancel {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        text-align: center;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+        text-decoration: none;
+    }
+
+    .btn-save {
+        background-color: #3e77f8;
+        color: #fff;
+    }
+
+        .btn-save:hover {
+            background-color: #234449;
+        }
+
+    .btn-cancel {
+        background-color: #f0f0f0;
+        color: #234449;
+    }
+
+        .btn-cancel:hover {
+            background-color: #e0e0e0;
+        }
+</style>
