@@ -292,8 +292,8 @@
     <Content Include="Views\Reportes\Reportes.cshtml" />
     <Content Include="Views\Reportes\ReporteVentas.cshtml" />
     <Content Include="Views\Empleados\ConsultarAgenda.cshtml" />
-    <Content Include="Views\Empleados\DetallesEmpleado.cshtml" />
-    <Content Include="Views\Empleados\EditarEmpleado.cshtml" />
+    <Content Include="Views\Empleados\DetallesEmpleados.cshtml" />
+    <Content Include="Views\Empleados\EditarEmpleados.cshtml" />
     <Content Include="Views\Empleados\GestionarDisponibilidad.cshtml" />
     <Content Include="Views\Empleados\Empleados.cshtml" />
     <Content Include="Views\Empleados\RegistrarEmpleados.cshtml" />

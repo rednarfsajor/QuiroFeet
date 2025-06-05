@@ -36,11 +36,11 @@
                     <td>@empleados.telefono</td>
                     <td>
                         <!-- Enlace Editar con ID -->
-                        <a href="@Url.Action("EditarEmpleado", "Empleados", new { id = empleados.id })" class="btn-edit">
+                        <a href="@Url.Action("EditarEmpleados", "Empleados", new { id = empleados.id })" class="btn-edit">
                             <i class="bi bi-pencil-fill"></i> Editar
                         </a>
                         <!-- Enlace Eliminar con ID -->
-                        <a href="@Url.Action("DeleteEmpleado", "Empleados", new { id = empleados.id })" class="btn-delete" onclick="return confirm('¿Está seguro que desea eliminar este Empleado?');">
+                        <a href="@Url.Action("DeleteEmpleados", "Empleados", new { id = empleados.id })" class="btn-delete" onclick="return confirm('¿Está seguro que desea eliminar este Empleado?');">
                             <i class="bi bi-trash-fill"></i> Eliminar
                         </a>
                     </td>

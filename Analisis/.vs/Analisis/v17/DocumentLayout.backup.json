@@ -1,109 +1,117 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\",
+  "WorkspaceRootPath": "C:\\QuiroFeet\\Analisis\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\analisis\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\quirofeet\\analisis\\analisis\\views\\empleados\\detallesempleados.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\empleados\\detallesempleados.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\frander\\documents\\universidad\\cuatrimestre vii\\desarrollo\\sprint 1\\jafet\\analisis\\analisis\\views\\empleados\\editarempleado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\empleados\\editarempleado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\quirofeet\\analisis\\analisis\\views\\empleados\\editarempleados.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\empleados\\editarempleados.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\frander\\documents\\universidad\\cuatrimestre vii\\desarrollo\\sprint 1\\jafet\\analisis\\analisis\\views\\empleados\\registrarempleados.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\empleados\\registrarempleados.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\frander\\documents\\universidad\\cuatrimestre vii\\desarrollo\\sprint 1\\jafet\\analisis\\analisis\\views\\empleados\\empleados.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\empleados\\empleados.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\empleados\\empleados.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\frander\\documents\\universidad\\cuatrimestre vii\\desarrollo\\sprint 1\\jafet\\analisis\\analisis\\views\\empleados\\detallesempleado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\empleados\\detallesempleado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\empleados\\registrarempleados.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\empleados\\registrarempleados.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\analisis\\controllers\\proveedorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\proveedorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\quirofeet\\analisis\\analisis\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\frander\\documents\\universidad\\cuatrimestre vii\\desarrollo\\sprint 1\\jafet\\analisis\\analisis\\controllers\\empleadoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\controllers\\empleadoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\empleadoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\analisis\\controllers\\servicioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\controllers\\proveedorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\proveedorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\quirofeet\\analisis\\analisis\\views\\empleados\\gestionardisponibilidad.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\empleados\\gestionardisponibilidad.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\quirofeet\\analisis\\analisis\\bd\\quirofeet.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\bd\\quirofeet.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\controllers\\servicioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\servicioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\frander\\documents\\universidad\\cuatrimestre vii\\desarrollo\\sprint 1\\jafet\\analisis\\analisis\\controllers\\reportescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\controllers\\reportescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\reportescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\frander\\documents\\universidad\\cuatrimestre vii\\desarrollo\\sprint 1\\jafet\\analisis\\analisis\\controllers\\ventascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\controllers\\ventascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\ventascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\analisis\\views\\proveedores\\editarproveedor.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\proveedores\\editarproveedor.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\proveedores\\editarproveedor.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\frander\\documents\\universidad\\cuatrimestre vii\\desarrollo\\sprint 1\\jafet\\analisis\\analisis\\views\\proveedores\\detallesproveedor.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\proveedores\\detallesproveedor.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\proveedores\\detallesproveedor.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\frander\\documents\\universidad\\cuatrimestre vii\\desarrollo\\sprint 1\\jafet\\analisis\\analisis\\views\\proveedores\\registrarproveedor.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\proveedores\\registrarproveedor.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\proveedores\\registrarproveedor.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\analisis\\views\\proveedores\\proveedores.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\proveedores\\proveedores.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\proveedores\\proveedores.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\frander\\documents\\universidad\\cuatrimestre vii\\desarrollo\\sprint 1\\jafet\\analisis\\analisis\\views\\empleados\\consultaragenda.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\empleados\\consultaragenda.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\empleados\\consultaragenda.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\analisis\\views\\proveedores\\deleteproveedor.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\proveedores\\deleteproveedor.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\proveedores\\deleteproveedor.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\analisis\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\analisis\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\analisis\\bd\\proveedores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\bd\\proveedores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\bd\\proveedores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\analisis\\bd\\servicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\bd\\servicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\bd\\servicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\analisis\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\analisis\\views\\servicios\\createservice.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\servicios\\createservice.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\servicios\\createservice.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\analisis\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\analisis\\views\\servicios\\editservice.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\servicios\\editservice.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\servicios\\editservice.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\analisis\\views\\servicios\\listservices.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\servicios\\listservices.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\servicios\\listservices.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\analisis\\views\\servicios\\serviceindex.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\servicios\\serviceindex.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\servicios\\serviceindex.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
@@ -114,7 +122,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -122,24 +130,89 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
+              "Title": "RegistrarEmpleados.cshtml",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Empleados\\RegistrarEmpleados.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Empleados\\RegistrarEmpleados.cshtml",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Empleados\\RegistrarEmpleados.cshtml*",
+              "RelativeToolTip": "Analisis\\Views\\Empleados\\RegistrarEmpleados.cshtml*",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAADEAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-03T07:37:15.627Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EditarEmpleados.cshtml",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Empleados\\EditarEmpleados.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Empleados\\EditarEmpleados.cshtml",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Empleados\\EditarEmpleados.cshtml*",
+              "RelativeToolTip": "Analisis\\Views\\Empleados\\EditarEmpleados.cshtml*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-03T07:43:29.63Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EmpleadosController.cs",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\EmpleadosController.cs",
+              "RelativeDocumentMoniker": "Analisis\\Controllers\\EmpleadosController.cs",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\EmpleadosController.cs",
+              "RelativeToolTip": "Analisis\\Controllers\\EmpleadosController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T07:34:10.801Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Shared\\_Layout.cshtml",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Analisis\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "Analisis\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF4AAABpAAAAAAAAAA==",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAF4AAABpAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-05-29T17:34:30.15Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
+              "Title": "Empleados.cshtml",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Empleados\\Empleados.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Empleados\\Empleados.cshtml",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Empleados\\Empleados.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Empleados\\Empleados.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAsAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-03T07:34:36.978Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DetallesEmpleados.cshtml",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Empleados\\DetallesEmpleados.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Empleados\\DetallesEmpleados.cshtml",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Empleados\\DetallesEmpleados.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Empleados\\DetallesEmpleados.cshtml",
+              "ViewState": "AgIAAHgAAAAAAAAAAAAAAC0AAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-03T07:41:16.01Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "ProveedoresController.cs",
-              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Controllers\\ProveedoresController.cs",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ProveedoresController.cs",
               "RelativeDocumentMoniker": "Analisis\\Controllers\\ProveedoresController.cs",
-              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Controllers\\ProveedoresController.cs",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ProveedoresController.cs",
               "RelativeToolTip": "Analisis\\Controllers\\ProveedoresController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -148,180 +221,132 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Empleados.cshtml",
-              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Empleados\\Empleados.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Empleados\\Empleados.cshtml",
-              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Empleados\\Empleados.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Empleados\\Empleados.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-03T07:34:36.978Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DetallesEmpleado.cshtml",
-              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Empleados\\DetallesEmpleado.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Empleados\\DetallesEmpleado.cshtml",
-              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Empleados\\DetallesEmpleado.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Empleados\\DetallesEmpleado.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-03T07:41:16.01Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "RegistrarEmpleados.cshtml",
-              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Empleados\\RegistrarEmpleados.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Empleados\\RegistrarEmpleados.cshtml",
-              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Empleados\\RegistrarEmpleados.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Empleados\\RegistrarEmpleados.cshtml",
-              "ViewState": "AgIAAJkAAAAAAAAAAAAAAAwAAABNAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-03T07:37:15.627Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EditarEmpleado.cshtml",
-              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Empleados\\EditarEmpleado.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Empleados\\EditarEmpleado.cshtml",
-              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Empleados\\EditarEmpleado.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Empleados\\EditarEmpleado.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-03T07:43:29.63Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "EmpleadosController.cs",
-              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Controllers\\EmpleadosController.cs",
-              "RelativeDocumentMoniker": "Analisis\\Controllers\\EmpleadosController.cs",
-              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Controllers\\EmpleadosController.cs",
-              "RelativeToolTip": "Analisis\\Controllers\\EmpleadosController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T07:34:10.801Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "VentasController.cs",
-              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Controllers\\VentasController.cs",
-              "RelativeDocumentMoniker": "Analisis\\Controllers\\VentasController.cs",
-              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Controllers\\VentasController.cs",
-              "RelativeToolTip": "Analisis\\Controllers\\VentasController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-04T09:33:57Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "ServiciosController.cs",
-              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Controllers\\ServiciosController.cs",
-              "RelativeDocumentMoniker": "Analisis\\Controllers\\ServiciosController.cs",
-              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Controllers\\ServiciosController.cs",
-              "RelativeToolTip": "Analisis\\Controllers\\ServiciosController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-29T17:55:54.092Z",
+              "Title": "GestionarDisponibilidad.cshtml",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Empleados\\GestionarDisponibilidad.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Empleados\\GestionarDisponibilidad.cshtml",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Empleados\\GestionarDisponibilidad.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Empleados\\GestionarDisponibilidad.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-05T01:11:46.135Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "ReportesController.cs",
-              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Controllers\\ReportesController.cs",
-              "RelativeDocumentMoniker": "Analisis\\Controllers\\ReportesController.cs",
-              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Controllers\\ReportesController.cs",
-              "RelativeToolTip": "Analisis\\Controllers\\ReportesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-04T09:33:59.514Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "EditarProveedor.cshtml",
-              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Proveedores\\EditarProveedor.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Proveedores\\EditarProveedor.cshtml",
-              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Proveedores\\EditarProveedor.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Proveedores\\EditarProveedor.cshtml",
-              "ViewState": "AgIAAGYAAAAAAAAAAADwv4UAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-29T17:30:19.514Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "RegistrarProveedor.cshtml",
-              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Proveedores\\RegistrarProveedor.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Proveedores\\RegistrarProveedor.cshtml",
-              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Proveedores\\RegistrarProveedor.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Proveedores\\RegistrarProveedor.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-03T07:37:33.918Z",
-              "EditorCaption": ""
+              "Title": "Quirofeet.edmx [Diagram1]",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\BD\\Quirofeet.edmx",
+              "RelativeDocumentMoniker": "Analisis\\BD\\Quirofeet.edmx",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\BD\\Quirofeet.edmx [Diagram1]",
+              "RelativeToolTip": "Analisis\\BD\\Quirofeet.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2025-06-05T00:42:42.389Z",
+              "EditorCaption": " [Diagram1]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
-              "Title": "DetallesProveedor.cshtml",
-              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Proveedores\\DetallesProveedor.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Proveedores\\DetallesProveedor.cshtml",
-              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Proveedores\\DetallesProveedor.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Proveedores\\DetallesProveedor.cshtml",
-              "ViewState": "AgIAAGwAAAAAAAAAAADwv4sAAAAAAAAAAAAAAA==",
+              "Title": "VentasController.cs",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\VentasController.cs",
+              "RelativeDocumentMoniker": "Analisis\\Controllers\\VentasController.cs",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\VentasController.cs",
+              "RelativeToolTip": "Analisis\\Controllers\\VentasController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T09:33:57Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ServiciosController.cs",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ServiciosController.cs",
+              "RelativeDocumentMoniker": "Analisis\\Controllers\\ServiciosController.cs",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ServiciosController.cs",
+              "RelativeToolTip": "Analisis\\Controllers\\ServiciosController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-29T17:55:54.092Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ReportesController.cs",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ReportesController.cs",
+              "RelativeDocumentMoniker": "Analisis\\Controllers\\ReportesController.cs",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ReportesController.cs",
+              "RelativeToolTip": "Analisis\\Controllers\\ReportesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T09:33:59.514Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "EditarProveedor.cshtml",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Proveedores\\EditarProveedor.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Proveedores\\EditarProveedor.cshtml",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Proveedores\\EditarProveedor.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Proveedores\\EditarProveedor.cshtml",
+              "ViewState": "AgIAAGYAAAAAAAAAAADwv4UAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-29T17:15:07.501Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-29T17:30:19.514Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 14,
-              "Title": "ConsultarAgenda.cshtml",
-              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Empleados\\ConsultarAgenda.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Empleados\\ConsultarAgenda.cshtml",
-              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Empleados\\ConsultarAgenda.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Empleados\\ConsultarAgenda.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "RegistrarProveedor.cshtml",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Proveedores\\RegistrarProveedor.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Proveedores\\RegistrarProveedor.cshtml",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Proveedores\\RegistrarProveedor.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Proveedores\\RegistrarProveedor.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-03T07:33:44.695Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-03T07:37:33.918Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "DeleteProveedor.cshtml",
-              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Proveedores\\DeleteProveedor.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Proveedores\\DeleteProveedor.cshtml",
-              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Proveedores\\DeleteProveedor.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Proveedores\\DeleteProveedor.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAATAAAAAAAAAA==",
+              "DocumentIndex": 13,
+              "Title": "DetallesProveedor.cshtml",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Proveedores\\DetallesProveedor.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Proveedores\\DetallesProveedor.cshtml",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Proveedores\\DetallesProveedor.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Proveedores\\DetallesProveedor.cshtml",
+              "ViewState": "AgIAAGwAAAAAAAAAAADwv4sAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-30T16:48:21.858Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-29T17:15:07.501Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 16,
+              "Title": "ConsultarAgenda.cshtml",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Empleados\\ConsultarAgenda.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Empleados\\ConsultarAgenda.cshtml",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Empleados\\ConsultarAgenda.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Empleados\\ConsultarAgenda.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-03T07:33:44.695Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "DeleteProveedor.cshtml",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Proveedores\\DeleteProveedor.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Proveedores\\DeleteProveedor.cshtml",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Proveedores\\DeleteProveedor.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Proveedores\\DeleteProveedor.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-30T16:48:21.858Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
               "Title": "Web.config",
-              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Web.config",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Web.config",
               "RelativeDocumentMoniker": "Analisis\\Web.config",
-              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Web.config",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Web.config",
               "RelativeToolTip": "Analisis\\Web.config",
               "ViewState": "AgIAAC0AAAAAAAAAAAAAAEAAAADmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
@@ -330,11 +355,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "Proveedores.cs",
-              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\BD\\Proveedores.cs",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\BD\\Proveedores.cs",
               "RelativeDocumentMoniker": "Analisis\\BD\\Proveedores.cs",
-              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\BD\\Proveedores.cs",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\BD\\Proveedores.cs",
               "RelativeToolTip": "Analisis\\BD\\Proveedores.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -342,24 +367,23 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "Proveedores.cshtml",
-              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Proveedores\\Proveedores.cshtml",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Proveedores\\Proveedores.cshtml",
               "RelativeDocumentMoniker": "Analisis\\Views\\Proveedores\\Proveedores.cshtml",
-              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Proveedores\\Proveedores.cshtml",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Proveedores\\Proveedores.cshtml",
               "RelativeToolTip": "Analisis\\Views\\Proveedores\\Proveedores.cshtml",
               "ViewState": "AgIAADMAAAAAAAAAAADwv1IAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-29T17:22:47.203Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-29T17:22:47.203Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Home\\Index.cshtml",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "Analisis\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "Analisis\\Views\\Home\\Index.cshtml",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAACUAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -367,11 +391,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "Servicios.cs",
-              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\BD\\Servicios.cs",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\BD\\Servicios.cs",
               "RelativeDocumentMoniker": "Analisis\\BD\\Servicios.cs",
-              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\BD\\Servicios.cs",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\BD\\Servicios.cs",
               "RelativeToolTip": "Analisis\\BD\\Servicios.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -379,11 +403,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 22,
               "Title": "Web.config",
-              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Web.config",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Web.config",
               "RelativeDocumentMoniker": "Analisis\\Views\\Web.config",
-              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Web.config",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Web.config",
               "RelativeToolTip": "Analisis\\Views\\Web.config",
               "ViewState": "AgIAABIAAAAAAAAAAAAAABwAAADZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
@@ -391,11 +415,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 23,
               "Title": "CreateService.cshtml",
-              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Servicios\\CreateService.cshtml",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Servicios\\CreateService.cshtml",
               "RelativeDocumentMoniker": "Analisis\\Views\\Servicios\\CreateService.cshtml",
-              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Servicios\\CreateService.cshtml",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Servicios\\CreateService.cshtml",
               "RelativeToolTip": "Analisis\\Views\\Servicios\\CreateService.cshtml",
               "ViewState": "AgIAABQAAAAAAAAAAAAqwDAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -403,11 +427,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 24,
               "Title": "Global.asax.cs",
-              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Global.asax.cs",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Global.asax.cs",
               "RelativeDocumentMoniker": "Analisis\\Global.asax.cs",
-              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Global.asax.cs",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Global.asax.cs",
               "RelativeToolTip": "Analisis\\Global.asax.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -415,11 +439,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 25,
               "Title": "EditService.cshtml",
-              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Servicios\\EditService.cshtml",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Servicios\\EditService.cshtml",
               "RelativeDocumentMoniker": "Analisis\\Views\\Servicios\\EditService.cshtml",
-              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Servicios\\EditService.cshtml",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Servicios\\EditService.cshtml",
               "RelativeToolTip": "Analisis\\Views\\Servicios\\EditService.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -427,11 +451,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 26,
               "Title": "ListServices.cshtml",
-              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Servicios\\ListServices.cshtml",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Servicios\\ListServices.cshtml",
               "RelativeDocumentMoniker": "Analisis\\Views\\Servicios\\ListServices.cshtml",
-              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Servicios\\ListServices.cshtml",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Servicios\\ListServices.cshtml",
               "RelativeToolTip": "Analisis\\Views\\Servicios\\ListServices.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -439,11 +463,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 27,
               "Title": "ServiceIndex.cshtml",
-              "DocumentMoniker": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Servicios\\ServiceIndex.cshtml",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Servicios\\ServiceIndex.cshtml",
               "RelativeDocumentMoniker": "Analisis\\Views\\Servicios\\ServiceIndex.cshtml",
-              "ToolTip": "C:\\Users\\Frander\\Documents\\Universidad\\Cuatrimestre VII\\Desarrollo\\Sprint 1\\Jafet\\Analisis\\Analisis\\Views\\Servicios\\ServiceIndex.cshtml",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Servicios\\ServiceIndex.cshtml",
               "RelativeToolTip": "Analisis\\Views\\Servicios\\ServiceIndex.cshtml",
               "ViewState": "AgIAAEYAAAAAAAAAAAAqwG0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",

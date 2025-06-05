@@ -17,7 +17,7 @@ namespace Analisis.Controllers
         }
 
         // LISTAR Empleados
-        public ActionResult DetallesEmpleado()
+        public ActionResult DetallesEmpleados()
         {
             var Empleados = db.Empleados.ToList();
             return View(Empleados);
@@ -25,7 +25,7 @@ namespace Analisis.Controllers
 
         // CREAR Empleado - GET
         [HttpGet]
-        public ActionResult RegistrarEmpleado()
+        public ActionResult RegistrarEmpleados()
         {
             return View();
         }
@@ -33,7 +33,7 @@ namespace Analisis.Controllers
         // CREAR Empleado - POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult RegistrarEmpleado(Empleados nuevoEmpleado)
+        public ActionResult RegistrarEmpleados(Empleados nuevoEmpleado)
         {
             // Verifica si el correo ya existe
             bool correoExistente = db.Empleados.Any(p => p.correo == nuevoEmpleado.correo);
@@ -55,7 +55,7 @@ namespace Analisis.Controllers
 
         // EDITAR Empleado - GET
         [HttpGet]
-        public ActionResult EditarEmpleado(int id)
+        public ActionResult EditarEmpleados(int id)
         {
             var profesional = db.Empleados.Find(id);
             if (profesional == null)
@@ -67,7 +67,7 @@ namespace Analisis.Controllers
         // EDITAR CLIENTE - POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditarEmpleado(Empleados profesionalEditado)
+        public ActionResult EditarEmpleados(Empleados profesionalEditado)
         {
             if (ModelState.IsValid)
             {
@@ -100,7 +100,7 @@ namespace Analisis.Controllers
 
         // ELIMINAR Empleado - GET
         [HttpGet]
-        public ActionResult DeleteEmpleado(int id)
+        public ActionResult DeleteEmpleados(int id)
         {
             var profesional = db.Empleados.Find(id);
             if (profesional == null)
@@ -112,7 +112,7 @@ namespace Analisis.Controllers
         // ELIMINAR Empleado - POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteEmpleado(int id, FormCollection form)
+        public ActionResult DeleteEmpleados(int id, FormCollection form)
         {
             var profesional = db.Empleados.Find(id);
             if (profesional == null)

@@ -8,7 +8,7 @@
     <h1>Editar Empleado</h1>
     <p>Modifica la información del empleado</p>
 
-    @using (Html.BeginForm("EditarEmpleado", "Empleados", FormMethod.Post))
+    @using (Html.BeginForm("EditarEmpleados", "Empleados", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
 
@@ -37,7 +37,7 @@
 
         <div class="form-buttons">
             <button type="submit" class="btn-save"><i class="bi bi-check-circle-fill"></i> Guardar Cambios</button>
-            <a href="@Url.Action("Index", "Empleados")" class="btn-cancel"><i class="bi bi-x-circle-fill"></i> Cancelar</a>
+            <a href="@Url.Action("Empleados", "Empleados")" class="btn-cancel"><i class="bi bi-x-circle-fill"></i> Cancelar</a>
         </div>
     }
 </div>
