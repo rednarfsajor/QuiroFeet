@@ -3,11 +3,15 @@
   "WorkspaceRootPath": "C:\\QuiroFeet\\Analisis\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\bd\\quirofeet.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\bd\\quirofeet.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\quirofeet\\analisis\\analisis\\views\\empleados\\editarempleados.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\empleados\\editarempleados.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\quirofeet\\analisis\\analisis\\views\\empleados\\detallesempleados.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\empleados\\detallesempleados.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\empleados\\detallesempleados.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
@@ -19,7 +23,7 @@
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\empleados\\registrarempleados.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\quirofeet\\analisis\\analisis\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
@@ -31,12 +35,8 @@
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\proveedorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\quirofeet\\analisis\\analisis\\views\\empleados\\gestionardisponibilidad.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\empleados\\gestionardisponibilidad.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\empleados\\gestionardisponibilidad.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\quirofeet\\analisis\\analisis\\bd\\quirofeet.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\bd\\quirofeet.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\controllers\\servicioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -122,7 +122,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -130,20 +130,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "RegistrarEmpleados.cshtml",
-              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Empleados\\RegistrarEmpleados.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Empleados\\RegistrarEmpleados.cshtml",
-              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Empleados\\RegistrarEmpleados.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Empleados\\RegistrarEmpleados.cshtml",
-              "ViewState": "AgIAACQAAAAAAAAAAAAAADEAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-03T07:37:15.627Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "EditarEmpleados.cshtml",
               "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Empleados\\EditarEmpleados.cshtml",
               "RelativeDocumentMoniker": "Analisis\\Views\\Empleados\\EditarEmpleados.cshtml",
@@ -156,33 +143,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "EmpleadosController.cs",
-              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\EmpleadosController.cs",
-              "RelativeDocumentMoniker": "Analisis\\Controllers\\EmpleadosController.cs",
-              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\EmpleadosController.cs",
-              "RelativeToolTip": "Analisis\\Controllers\\EmpleadosController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T07:34:10.801Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAADAAAAAAAAAAAAAAAF4AAABpAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-29T17:34:30.15Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Empleados.cshtml",
               "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Empleados\\Empleados.cshtml",
               "RelativeDocumentMoniker": "Analisis\\Views\\Empleados\\Empleados.cshtml",
@@ -190,12 +151,11 @@
               "RelativeToolTip": "Analisis\\Views\\Empleados\\Empleados.cshtml",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAAAsAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-03T07:34:36.978Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-03T07:34:36.978Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "DetallesEmpleados.cshtml",
               "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Empleados\\DetallesEmpleados.cshtml",
               "RelativeDocumentMoniker": "Analisis\\Views\\Empleados\\DetallesEmpleados.cshtml",
@@ -203,38 +163,11 @@
               "RelativeToolTip": "Analisis\\Views\\Empleados\\DetallesEmpleados.cshtml*",
               "ViewState": "AgIAAB4AAAAAAAAAAAAAACYAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-03T07:41:16.01Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-03T07:41:16.01Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ProveedoresController.cs",
-              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ProveedoresController.cs",
-              "RelativeDocumentMoniker": "Analisis\\Controllers\\ProveedoresController.cs",
-              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ProveedoresController.cs",
-              "RelativeToolTip": "Analisis\\Controllers\\ProveedoresController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-29T17:15:33.824Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "GestionarDisponibilidad.cshtml",
-              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Empleados\\GestionarDisponibilidad.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Empleados\\GestionarDisponibilidad.cshtml",
-              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Empleados\\GestionarDisponibilidad.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Empleados\\GestionarDisponibilidad.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-05T01:11:46.135Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 0,
               "Title": "Quirofeet.edmx [Diagram1]",
               "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\BD\\Quirofeet.edmx",
               "RelativeDocumentMoniker": "Analisis\\BD\\Quirofeet.edmx",
@@ -243,6 +176,66 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
               "WhenOpened": "2025-06-05T00:42:42.389Z",
               "EditorCaption": " [Diagram1]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAF4AAABpAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-29T17:34:30.15Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "EmpleadosController.cs",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\EmpleadosController.cs",
+              "RelativeDocumentMoniker": "Analisis\\Controllers\\EmpleadosController.cs",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\EmpleadosController.cs",
+              "RelativeToolTip": "Analisis\\Controllers\\EmpleadosController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T07:34:10.801Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RegistrarEmpleados.cshtml",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Empleados\\RegistrarEmpleados.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Empleados\\RegistrarEmpleados.cshtml",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Empleados\\RegistrarEmpleados.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Empleados\\RegistrarEmpleados.cshtml",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAADEAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-03T07:37:15.627Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ProveedoresController.cs",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ProveedoresController.cs",
+              "RelativeDocumentMoniker": "Analisis\\Controllers\\ProveedoresController.cs",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ProveedoresController.cs",
+              "RelativeToolTip": "Analisis\\Controllers\\ProveedoresController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-29T17:15:33.824Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "GestionarDisponibilidad.cshtml",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Empleados\\GestionarDisponibilidad.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Empleados\\GestionarDisponibilidad.cshtml",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Empleados\\GestionarDisponibilidad.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Empleados\\GestionarDisponibilidad.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-05T01:11:46.135Z"
             },
             {
               "$type": "Document",
