@@ -35,18 +35,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Inventario">
-      <EntityTypeMapping TypeName="QuiroFeetModel.Inventario">
-        <MappingFragment StoreEntitySet="Inventario">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-          <ScalarProperty Name="proveedor" ColumnName="proveedor" />
-          <ScalarProperty Name="stock" ColumnName="stock" />
-          <ScalarProperty Name="publico" ColumnName="publico" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Ordenes">
       <EntityTypeMapping TypeName="QuiroFeetModel.Ordenes">
         <MappingFragment StoreEntitySet="Ordenes">
@@ -56,28 +44,6 @@
           <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
           <ScalarProperty Name="fecha_recepcion" ColumnName="fecha_recepcion" />
           <ScalarProperty Name="estado" ColumnName="estado" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Productos">
-      <EntityTypeMapping TypeName="QuiroFeetModel.Productos">
-        <MappingFragment StoreEntitySet="Productos">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="stock" ColumnName="stock" />
-          <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
-          <ScalarProperty Name="categoria" ColumnName="categoria" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Proveedores">
-      <EntityTypeMapping TypeName="QuiroFeetModel.Proveedores">
-        <MappingFragment StoreEntitySet="Proveedores">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="contacto" ColumnName="contacto" />
-          <ScalarProperty Name="correo" ColumnName="correo" />
-          <ScalarProperty Name="numero" ColumnName="numero" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -101,6 +67,39 @@
           <ScalarProperty Name="detalle" ColumnName="detalle" />
           <ScalarProperty Name="monto" ColumnName="monto" />
           <ScalarProperty Name="fecha" ColumnName="fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inventario">
+      <EntityTypeMapping TypeName="QuiroFeetModel.Inventario">
+        <MappingFragment StoreEntitySet="Inventario">
+          <ScalarProperty Name="publico" ColumnName="publico" />
+          <ScalarProperty Name="stock" ColumnName="stock" />
+          <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Productos">
+      <EntityTypeMapping TypeName="QuiroFeetModel.Productos">
+        <MappingFragment StoreEntitySet="Productos">
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Proveedores">
+      <EntityTypeMapping TypeName="QuiroFeetModel.Proveedores">
+        <MappingFragment StoreEntitySet="Proveedores">
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="contacto" ColumnName="contacto" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

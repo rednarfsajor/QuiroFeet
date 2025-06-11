@@ -16,7 +16,7 @@
         <AssociationConnector Association="QuiroFeetModel.FK__Ventas__id_clien__5DCAEF64" ManuallyRouted="false" />
         <EntityTypeShape EntityType="QuiroFeetModel.Inventario" Width="1.5" PointX="6" PointY="0.625" />
         <EntityTypeShape EntityType="QuiroFeetModel.Productos" Width="1.5" PointX="3.625" PointY="0.5" />
-        <EntityTypeShape EntityType="QuiroFeetModel.Proveedores" Width="1.5" PointX="1.375" PointY="4.75" />
+        <EntityTypeShape EntityType="QuiroFeetModel.Proveedores" Width="1.5" PointX="1.625" PointY="3.125" />
         <AssociationConnector Association="QuiroFeetModel.FK_Inventario_Producto" />
         <AssociationConnector Association="QuiroFeetModel.FK_Productos_Proveedores" />
         </Diagram>

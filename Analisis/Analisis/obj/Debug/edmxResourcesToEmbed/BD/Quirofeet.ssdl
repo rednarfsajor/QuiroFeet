@@ -36,9 +36,7 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" Nullable="false" />
-    <Property Name="nombre" Type="varchar" MaxLength="50" />
-    <Property Name="descripcion" Type="varchar" MaxLength="200" />
-    <Property Name="proveedor" Type="int" />
+    <Property Name="id_producto" Type="int" Nullable="false" />
     <Property Name="stock" Type="int" />
     <Property Name="publico" Type="int" />
   </EntityType>
@@ -59,9 +57,10 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="stock" Type="int" Nullable="false" />
     <Property Name="id_proveedor" Type="int" Nullable="false" />
-    <Property Name="categoria" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="200" />
+    <Property Name="precio" Type="decimal" Precision="20" Scale="2" />
+    <Property Name="activo" Type="int" />
   </EntityType>
   <EntityType Name="Proveedores">
     <Key>
@@ -94,7 +93,7 @@
     <Property Name="monto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="fecha" Type="datetime" />
   </EntityType>
-  <Association Name="FK__Citas__id_client__59FA5E80">
+  <Association Name="FK__Citas__id_client__4CA06362">
     <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
     <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
     <ReferentialConstraint>
@@ -118,19 +117,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Productos__id_pr__5CD6CB2B">
-    <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="1" />
-    <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Proveedores">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Productos">
-        <PropertyRef Name="id_proveedor" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Ventas__id_clien__5DCAEF64">
+  <Association Name="FK__Ventas__id_clien__3E52440B">
     <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
     <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
     <ReferentialConstraint>
@@ -142,15 +129,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Inventario_Proveedores">
-    <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="0..1" />
+  <Association Name="FK_Inventario_Producto">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
     <End Role="Inventario" Type="Self.Inventario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Inventario">
+        <PropertyRef Name="id_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Productos_Proveedores">
+    <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="1" />
+    <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Proveedores">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="Inventario">
-        <PropertyRef Name="proveedor" />
+      <Dependent Role="Productos">
+        <PropertyRef Name="id_proveedor" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -164,7 +163,7 @@
     <EntitySet Name="Proveedores" EntityType="Self.Proveedores" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Servicios" EntityType="Self.Servicios" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ventas" EntityType="Self.Ventas" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Citas__id_client__59FA5E80" Association="Self.FK__Citas__id_client__59FA5E80">
+    <AssociationSet Name="FK__Citas__id_client__4CA06362" Association="Self.FK__Citas__id_client__4CA06362">
       <End Role="Clientes" EntitySet="Clientes" />
       <End Role="Citas" EntitySet="Citas" />
     </AssociationSet>
@@ -172,17 +171,17 @@
       <End Role="Empleados" EntitySet="Empleados" />
       <End Role="Citas" EntitySet="Citas" />
     </AssociationSet>
-    <AssociationSet Name="FK__Productos__id_pr__5CD6CB2B" Association="Self.FK__Productos__id_pr__5CD6CB2B">
-      <End Role="Proveedores" EntitySet="Proveedores" />
-      <End Role="Productos" EntitySet="Productos" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Ventas__id_clien__5DCAEF64" Association="Self.FK__Ventas__id_clien__5DCAEF64">
+    <AssociationSet Name="FK__Ventas__id_clien__3E52440B" Association="Self.FK__Ventas__id_clien__3E52440B">
       <End Role="Clientes" EntitySet="Clientes" />
       <End Role="Ventas" EntitySet="Ventas" />
     </AssociationSet>
-    <AssociationSet Name="FK_Inventario_Proveedores" Association="Self.FK_Inventario_Proveedores">
-      <End Role="Proveedores" EntitySet="Proveedores" />
+    <AssociationSet Name="FK_Inventario_Producto" Association="Self.FK_Inventario_Producto">
+      <End Role="Productos" EntitySet="Productos" />
       <End Role="Inventario" EntitySet="Inventario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Productos_Proveedores" Association="Self.FK_Productos_Proveedores">
+      <End Role="Proveedores" EntitySet="Proveedores" />
+      <End Role="Productos" EntitySet="Productos" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

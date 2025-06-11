@@ -14,8 +14,9 @@ namespace Analisis.Controllers
         public ActionResult Proveedores()
         {
             return View();
+            
         }
-
+        
         // LISTAR Proveedores
         public ActionResult DetallesProveedor()
         {
