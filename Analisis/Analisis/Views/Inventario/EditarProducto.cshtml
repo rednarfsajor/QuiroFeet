@@ -1,76 +1,213 @@
-﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@model Analisis.BD.Productos
+
+@{
     ViewBag.Title = "Editar Producto";
 }
 
-<!-- Estilos CSS -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+
+<div class="full-page-container">
+    <div class="form-container">
+        <h1><i class="bi bi-pencil-square"></i> Editar Producto</h1>
+        <p>Actualiza los datos del producto y su inventario</p>
+
+        @using (Html.BeginForm("EditarProducto", "Inventario", FormMethod.Post, new { @class = "formulario", autocomplete = "off" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.id)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.nombre)
+                <div class="input-icon">
+                    <i class="bi bi-card-text"></i>
+                    @Html.TextBoxFor(model => model.nombre, new { @class = "form-control", placeholder = "Ej. Producto XYZ", required = "required", autofocus = "autofocus" })
+                </div>
+                @Html.ValidationMessageFor(model => model.nombre)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.id_proveedor, "Proveedor")
+                <div class="input-icon">
+                    <i class="bi bi-truck"></i>
+                    @Html.DropDownListFor(model => model.id_proveedor, ViewBag.IdProveedor as SelectList, "-- Seleccione un proveedor --", new { @class = "form-control", required = "required" })
+                </div>
+                @Html.ValidationMessageFor(model => model.id_proveedor)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.descripcion)
+                <div class="input-icon">
+                    <i class="bi bi-text-paragraph"></i>
+                    @Html.TextAreaFor(model => model.descripcion, new { @class = "form-control", rows = 3, placeholder = "Descripción del producto (opcional)" })
+                </div>
+                @Html.ValidationMessageFor(model => model.descripcion)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.precio)
+                <div class="input-icon">
+                    <i class="bi bi-currency-dollar"></i>
+                    @Html.TextBoxFor(model => model.precio, new { @class = "form-control", type = "number", step = "0.01", placeholder = "Ej. 99.99", required = "required" })
+                </div>
+                @Html.ValidationMessageFor(model => model.precio)
+            </div>
+
+            <hr />
+
+            <h4 class="mt-4 text-center" style="color:#234449;">Inventario</h4>
+
+            <div class="form-group">
+                <label for="stock" class="control-label">Stock</label>
+                <div class="input-icon">
+                    <i class="bi bi-box-seam"></i>
+                    <input type="number" name="stock" class="form-control" value="@ViewBag.Inventario?.stock ?? 0" min="0" required />
+                </div>
+            </div>
+
+            <div class="form-buttons mt-4">
+                <button type="submit" class="btn-submit">
+                    <i class="bi bi-check-circle-fill"></i> Guardar Cambios
+                </button>
+                <a href="@Url.Action("Index", "Inventario")" class="btn-cancel">
+                    <i class="bi bi-x-circle-fill"></i> Cancelar
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
 <style>
-    .form-container {
-        max-width: 600px;
-        margin: 100px auto;
-        padding: 40px;
-        background-color: #fff;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        border-radius: 12px;
+    html, body {
+        height: 100%;
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: url('@Url.Content("~/Imagenes/marmol2.jfif")') no-repeat center center fixed;
+        background-size: cover;
     }
 
-    h2 {
+    .full-page-container {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .form-container {
+        background-color: rgba(255, 255, 255, 0.97);
+        padding: 40px 30px;
+        border-radius: 20px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        max-width: 520px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .form-container h1 {
+        font-size: 2em;
+        font-weight: 700;
         color: #234449;
-        font-size: 2.5em;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .form-container p {
+        color: #3e77f8;
+        margin-bottom: 30px;
     }
 
     .form-group {
         margin-bottom: 20px;
+        text-align: left;
     }
 
-        .form-group label {
-            color: #234449;
-            font-size: 1.2em;
-        }
+    .form-group label {
+        font-weight: 600;
+        color: #234449;
+        margin-bottom: 5px;
+        display: block;
+        text-transform: capitalize;
+    }
 
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1em;
-            margin-top: 8px;
-        }
+    .input-icon {
+        display: flex;
+        align-items: center;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 8px 12px;
+    }
 
-    button {
+    .input-icon i {
+        margin-right: 10px;
+        color: #3e77f8;
+        font-size: 1.2em;
+    }
+
+    .input-icon input,
+    .input-icon textarea,
+    .input-icon select {
+        border: none;
+        outline: none;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        background-color: transparent;
+        font-size: 1em;
+    }
+
+    .form-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 25px;
+    }
+
+    .btn-submit, .btn-cancel {
+        flex: 1;
+        text-align: center;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .btn-submit {
         background-color: #3e77f8;
         color: #fff;
-        padding: 12px 30px;
-        border-radius: 8px;
-        font-size: 1.2em;
-        margin-top: 20px;
-        width: 100%;
-        transition: transform 0.3s;
     }
 
-        button:hover {
-            transform: translateY(-5px);
-            background-color: #234449;
-        }
+    .btn-submit:hover {
+        background-color: #234449;
+    }
+
+    .btn-cancel {
+        background-color: #f0f0f0;
+        color: #234449;
+    }
+
+    .btn-cancel:hover {
+        background-color: #ddd;
+    }
+
+    .field-validation-error {
+        color: #dc3545;
+        font-size: 0.9em;
+        margin-top: 5px;
+    }
+
+    .btn-submit i {
+        color: #fff;
+    }
 </style>
-
-<div class="form-container">
-    <h2>Editar Producto</h2>
-
-    <form action="#" method="post">
-        <div class="form-group">
-            <label for="nombre">Nombre del Producto</label>
-            <input type="text" id="nombre" name="nombre" value="Producto A" required />
-        </div>
-        <div class="form-group">
-            <label for="descripcion">Descripción</label>
-            <textarea id="descripcion" name="descripcion">Descripción A</textarea>
-        </div>
-        <div class="form-group">
-            <label for="precio">Precio</label>
-            <input type="text" id="precio" name="precio" value="100" required />
-        </div>
-        <button type="submit">Actualizar</button>
-    </form>
-</div>

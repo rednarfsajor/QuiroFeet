@@ -4,7 +4,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Lista de Proveedores";
 }
-
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Vincula la fuente Poppins -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -34,15 +35,18 @@
                     <td>@proveedores.contacto</td>
                     <td>@proveedores.numero</td>
                     <td>
-                        <!-- Enlace Editar con ID -->
+                        <!-- Botón Editar -->
                         <a href="@Url.Action("EditarProveedor", "Proveedores", new { id = proveedores.id })" class="btn-edit">
                             <i class="bi bi-pencil-fill"></i> Editar
                         </a>
-                        <!-- Enlace Eliminar con ID -->
-                        <a href="@Url.Action("DeleteProveedor", "Proveedores", new { id = proveedores.id })" class="btn-delete" onclick="return confirm('¿Está seguro que desea eliminar este Proveedor?');">
+
+                        <!-- Botón Eliminar con formulario POST -->
+                        <a href="#" class="btn-delete btn-eliminar" data-id="@proveedores.id">
                             <i class="bi bi-trash-fill"></i> Eliminar
                         </a>
+
                     </td>
+
                 </tr>
             }
         </tbody>
@@ -136,4 +140,92 @@
     i.bi {
         font-size: 1em;
     }
+
+    .btn-edit {
+        background-color: #3e77f8;
+        color: white; /* Asegura texto e iconos blancos */
+    }
+
+        .btn-edit i.bi {
+            color: white; /* ícono blanco */
+        }
+
+        .btn-edit:hover {
+            background-color: #234449;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+    .btn-delete {
+        background-color: #e74c3c; /* rojo bonito y amigable */
+        color: white; /* texto blanco */
+    }
+
+        .btn-delete i.bi {
+            color: white; /* ícono blanco */
+        }
+
+        .btn-delete:hover {
+            background-color: #c0392b; /* rojo más oscuro al pasar el mouse */
+            box-shadow: 0 4px 12px rgba(192, 57, 43, 0.5);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
 </style>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const botonesEliminar = document.querySelectorAll(".btn-eliminar");
+
+        botonesEliminar.forEach(btn => {
+            btn.addEventListener("click", function (e) {
+                e.preventDefault();
+                const proveedorId = this.getAttribute("data-id");
+
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "Esta acción eliminará el proveedor.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#234449',
+                    cancelButtonColor: '#aaa',
+                    confirmButtonText: 'Sí, eliminar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        fetch('@Url.Action("EliminarProveedor", "Proveedores")', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                            },
+                            body: JSON.stringify({ id: proveedorId })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                Swal.fire(
+                                    '¡Eliminado!',
+                                    data.message,
+                                    'success'
+                                ).then(() => {
+                                    location.reload(); // Recarga para actualizar la tabla
+                                });
+                            } else {
+                                Swal.fire(
+                                    'Error',
+                                    data.message,
+                                    'error'
+                                );
+                            }
+                        })
+                        .catch(error => {
+                            Swal.fire(
+                                'Error',
+                                'Ocurrió un error al eliminar el proveedor.',
+                                'error'
+                            );
+                        });
+                    }
+                });
+            });
+        });
+    });
+</script>

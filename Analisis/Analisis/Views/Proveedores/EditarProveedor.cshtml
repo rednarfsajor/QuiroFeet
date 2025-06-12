@@ -1,133 +1,201 @@
 ﻿@model Analisis.BD.Proveedores
+
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Editar Proveedor";
 }
 
-<div class="container">
-    <h1>Editar Proveedor</h1>
-    <p>Modifica la información del proveedor</p>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
 
-    @using (Html.BeginForm("EditarProveedor", "Proveedores", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
-        
+<div class="full-page-container">
+    <div class="form-container">
+        <h1><i class="bi bi-pencil-square"></i> Editar Proveedor</h1>
+        <p>Modifica la información del proveedor</p>
 
-        <div class="form-group">
-            <label>Nombre</label>
-            @Html.TextBoxFor(m => m.nombre, new { @class = "form-control", placeholder = "Ingrese el nombre del proveedor", required = "required" })
-        </div>
+        @using (Html.BeginForm("EditarProveedor", "Proveedores", FormMethod.Post, new { @class = "formulario", autocomplete = "off" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.id)
 
-        <div class="form-group">
-            <label>Correo</label>
-            @Html.TextBoxFor(m => m.correo, new { @class = "form-control", placeholder = "Ingrese el correo", required = "required" })
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.nombre)
+                <div class="input-icon">
+                    <i class="bi bi-building"></i>
+                    @Html.TextBoxFor(model => model.nombre, new { @class = "form-control", placeholder = "Ej. Proveedor XYZ", required = "required", autofocus = "autofocus" })
+                </div>
+                @Html.ValidationMessageFor(model => model.nombre)
+            </div>
 
-        <div class="form-group">
-            <label>Contacto</label>
-            @Html.TextBoxFor(m => m.contacto, new { @class = "form-control", placeholder = "Ingrese el contacto", required = "required" })
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.correo)
+                <div class="input-icon">
+                    <i class="bi bi-envelope"></i>
+                    @Html.TextBoxFor(model => model.correo, new { @class = "form-control", type = "email", placeholder = "correo@ejemplo.com", required = "required" })
+                </div>
+                @Html.ValidationMessageFor(model => model.correo)
+            </div>
 
-        <div class="form-group">
-            <label>Número</label>
-            @Html.TextBoxFor(m => m.numero, new { @class = "form-control", placeholder = "Ingrese el numero", required = "required"})
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.contacto)
+                <div class="input-icon">
+                    <i class="bi bi-person"></i>
+                    @Html.TextBoxFor(model => model.contacto, new { @class = "form-control", placeholder = "Nombre del contacto", required = "required" })
+                </div>
+                @Html.ValidationMessageFor(model => model.contacto)
+            </div>
 
-        <div class="form-buttons">
-            <button type="submit" class="btn-save"><i class="bi bi-check-circle-fill"></i> Guardar Cambios</button>
-            <a href="@Url.Action("DetallesProveedor", "Proveedores")" class="btn-cancel"><i class="bi bi-x-circle-fill"></i> Cancelar</a>
-        </div>
-    }
+            <div class="form-group">
+                @Html.LabelFor(model => model.numero, "Número")
+                <div class="input-icon">
+                    <i class="bi bi-phone"></i>
+                    @Html.TextBoxFor(model => model.numero, new { @class = "form-control", placeholder = "Número telefónico", required = "required" })
+                </div>
+                @Html.ValidationMessageFor(model => model.numero)
+            </div>
+
+            <div class="form-buttons mt-4">
+                <button type="submit" class="btn-submit">
+                    <i class="bi bi-check-circle-fill"></i> Guardar Cambios
+                </button>
+                <a href="@Url.Action("DetallesProveedor", "Proveedores")" class="btn-cancel">
+                    <i class="bi bi-x-circle-fill"></i> Cancelar
+                </a>
+            </div>
+        }
+    </div>
 </div>
 
-<!-- Estilos CSS -->
 <style>
-    .container {
-        max-width: 600px;
-        margin: 50px auto;
-        background-color: #ffffff;
-        padding: 40px;
-        border-radius: 12px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    html, body {
+        height: 100%;
+        margin: 0;
         font-family: 'Poppins', sans-serif;
+        background: url('@Url.Content("~/Imagenes/marmol2.jfif")') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .full-page-container {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .form-container {
+        background-color: rgba(255, 255, 255, 0.97);
+        padding: 40px 30px;
+        border-radius: 20px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        max-width: 520px;
+        width: 100%;
         text-align: center;
     }
 
-    h1 {
+    .form-container h1 {
+        font-size: 2em;
+        font-weight: 700;
         color: #234449;
         margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
     }
 
-    p {
+    .form-container p {
         color: #3e77f8;
         margin-bottom: 30px;
     }
 
     .form-group {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         margin-bottom: 20px;
+        text-align: left;
     }
 
-        .form-group label {
-            font-weight: bold;
-            color: #234449;
-            margin-bottom: 5px;
-        }
+    .form-group label {
+        font-weight: 600;
+        color: #234449;
+        margin-bottom: 5px;
+        display: block;
+        text-transform: capitalize;
+    }
 
-    .form-control {
-        width: 80%;
-        max-width: 350px;
-        padding: 10px 12px;
+    .input-icon {
+        display: flex;
+        align-items: center;
+        background-color: #f9f9f9;
         border: 1px solid #ccc;
-        border-radius: 8px;
-        font-size: 1em;
-        transition: border-color 0.3s;
-        text-align: center;
+        border-radius: 10px;
+        padding: 8px 12px;
     }
 
-        .form-control:focus {
-            border-color: #3e77f8;
-            outline: none;
-        }
+    .input-icon i {
+        margin-right: 10px;
+        color: #3e77f8;
+        font-size: 1.2em;
+    }
+
+    .input-icon input,
+    .input-icon textarea,
+    .input-icon select {
+        border: none;
+        outline: none;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        background-color: transparent;
+        font-size: 1em;
+    }
 
     .form-buttons {
         display: flex;
         justify-content: center;
         gap: 10px;
-        margin-top: 20px;
+        margin-top: 25px;
     }
 
-    .btn-save, .btn-cancel {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
+    .btn-submit, .btn-cancel {
+        flex: 1;
         text-align: center;
-        padding: 12px 20px;
+        padding: 12px;
         border: none;
-        border-radius: 8px;
+        border-radius: 10px;
         font-weight: 600;
         cursor: pointer;
         font-family: 'Poppins', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
         text-decoration: none;
+        transition: all 0.3s ease;
     }
 
-    .btn-save {
+    .btn-submit {
         background-color: #3e77f8;
         color: #fff;
     }
 
-        .btn-save:hover {
-            background-color: #234449;
-        }
+    .btn-submit:hover {
+        background-color: #234449;
+    }
 
     .btn-cancel {
         background-color: #f0f0f0;
         color: #234449;
     }
 
-        .btn-cancel:hover {
-            background-color: #e0e0e0;
-        }
+    .btn-cancel:hover {
+        background-color: #ddd;
+    }
+
+    .field-validation-error {
+        color: #dc3545;
+        font-size: 0.9em;
+        margin-top: 5px;
+    }
+
+    .btn-submit i {
+        color: #fff;
+    }
 </style>
