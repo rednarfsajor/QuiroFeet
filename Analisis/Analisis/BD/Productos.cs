@@ -25,7 +25,9 @@ namespace Analisis.BD
         public string descripcion { get; set; }
         public Nullable<decimal> precio { get; set; }
         public Nullable<int> activo { get; set; }
-    
+
+       
+
         public virtual ICollection<Inventario> Inventario { get; set; }
         public virtual Proveedores Proveedores { get; set; }
     }

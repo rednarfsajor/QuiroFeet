@@ -18,7 +18,7 @@
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress />
+    <Use64BitIISExpress>false</Use64BitIISExpress>
     <IISExpressSSLPort>44341</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -301,7 +301,6 @@
     <Content Include="Views\Proveedores\EditarProveedor.cshtml" />
     <Content Include="Views\Proveedores\Proveedores.cshtml" />
     <Content Include="Views\Proveedores\RegistrarProveedor.cshtml" />
-    <Content Include="Views\Proveedores\DeleteProveedor.cshtml" />
     <Content Include="Views\Clientes\ClientIndex.cshtml" />
     <Content Include="Views\Clientes\CreateClient.cshtml" />
     <Content Include="Views\Clientes\DeleteClient.cshtml" />

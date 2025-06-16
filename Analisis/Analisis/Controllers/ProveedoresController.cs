@@ -99,29 +99,24 @@ namespace Analisis.Controllers
         }
 
 
-        // ELIMINAR Proveedor - GET
-        [HttpGet]
-        public ActionResult DeleteProveedor(int id)
-        {
-            var proveedor = db.Proveedores.Find(id);
-            if (proveedor == null)
-                return HttpNotFound();
 
-            return View(proveedor);
-        }
 
-        // ELIMINAR Proveedor - POST
+        // ELIMINAR Proveedor - POST (directo)
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteProveedor(int id, FormCollection form)
+        public JsonResult EliminarProveedor(int id)
         {
             var proveedor = db.Proveedores.Find(id);
             if (proveedor == null)
-                return HttpNotFound();
+            {
+                return Json(new { success = false, message = "Proveedor no encontrado." });
+            }
 
             db.Proveedores.Remove(proveedor);
             db.SaveChanges();
-            return RedirectToAction("DetallesProveedor");
+
+            return Json(new { success = true, message = "Proveedor eliminado exitosamente." });
         }
+
+
     }
 }

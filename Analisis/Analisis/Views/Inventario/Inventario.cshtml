@@ -1,7 +1,11 @@
-﻿@{
+﻿@model List<Analisis.BD.Productos>
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Inventario";
 }
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <!-- Estilos CSS -->
 <style>
@@ -65,7 +69,61 @@
         td a:hover {
             color: #234449;
         }
+
+    .mensaje-vacio {
+        margin-top: 40px;
+        font-size: 1.3em;
+        color: #b02a37;
+        background-color: #ffe6e6;
+        padding: 20px;
+        border-radius: 8px;
+    }
+    .btn-editar,
+    .btn-eliminar {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.9em;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        border: none;
+        text-decoration: none;
+        user-select: none;
+    }
+
+    .btn-editar {
+        background-color: #3e77f8;
+        color: white;
+    }
+
+        .btn-editar:hover {
+            background-color: #234449;
+            color: white;
+        }
+
+    .btn-eliminar {
+        background-color: #b02a37;
+        color: white;
+        margin-left: 10px;
+    }
+
+        .btn-eliminar:hover {
+            background-color: #7a1c24;
+            color: white;
+        }
+
+        .btn-eliminar i,
+        .btn-editar i {
+            font-size: 1.2em;
+            color: white; /* Aquí forzamos el color blanco */
+        }
+
+
 </style>
+
 
 <div class="inventario-container">
     <h2>Inventario</h2>
@@ -77,24 +135,71 @@
         <a href="@Url.Action("CrearOrdenCompra", "Inventario")">Crear Orden de Compra</a>
     </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Descripción</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Producto A</td>
-                <td>Descripción del Producto A</td>
-                <td>
-                    <a href="@Url.Action("EditarProducto", new { id = 1 })">Editar</a>
-                    <a href="@Url.Action("InactivarProducto", new { id = 1 })">Inactivar</a>
-                </td>
-            </tr>
-            <!-- Más productos aquí -->
-        </tbody>
-    </table>
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="mensaje-vacio">
+            ⚠️ No hay productos registrados en el inventario.
+        </div>
+    }
+    else
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.nombre</td>
+                        <td>@item.descripcion</td>
+                        
+
+
+                        <td>
+                            <a href="@Url.Action("EditarProducto", new { id = item.id })" class="btn-editar" title="Editar">
+                                <i class="bi bi-pencil-square"></i> Editar
+                            </a>
+                            <button class="btn-eliminar" data-id="@item.id" title="Eliminar">
+                                <i class="bi bi-trash-fill"></i> Eliminar
+                            </button>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const botonesEliminar = document.querySelectorAll(".btn-eliminar");
+
+        botonesEliminar.forEach(btn => {
+            btn.addEventListener("click", function () {
+                const productoId = this.getAttribute("data-id");
+
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "Esta acción no se puede deshacer.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#234449',
+                    cancelButtonColor: '#aaa',
+                    confirmButtonText: 'Sí, eliminar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Redirigir al controlador para eliminar
+                        window.location.href = `/Inventario/EliminarProducto/${productoId}`;
+                    }
+                });
+            });
+        });
+    });
+</script>
