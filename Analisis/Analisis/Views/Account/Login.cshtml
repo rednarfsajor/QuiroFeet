@@ -1,0 +1,104 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Iniciar Sesión";
+}
+
+<div class="login-container">
+    <h1>Iniciar Sesión</h1>
+    <p>Accede a tu cuenta con tus credenciales</p>
+
+    @if (ViewBag.Mensaje != null)
+    {
+        <div class="error-message">@ViewBag.Mensaje</div>
+    }
+
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+    {
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control" placeholder="Ingrese su correo electrónico" required />
+        </div>
+
+        <div class="form-group">
+            <label>Contraseña</label>
+            <input type="password" name="password" class="form-control" placeholder="Ingrese su contraseña" required />
+        </div>
+
+        <button type="submit" class="btn-login">
+            <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
+        </button>
+    }
+</div>
+
+<style>
+    .login-container {
+        max-width: 400px;
+        margin: 100px auto;
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+    }
+
+        .login-container h1 {
+            color: #234449;
+            margin-bottom: 10px;
+            font-size: 2em;
+            font-weight: 700;
+        }
+
+        .login-container p {
+            color: #3e77f8;
+            margin-bottom: 20px;
+        }
+
+    .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+        .form-group label {
+            font-weight: 600;
+            color: #234449;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+    .form-control {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 1em;
+    }
+
+    .btn-login {
+        background-color: #3e77f8;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 1em;
+    }
+
+        .btn-login:hover {
+            background-color: #234449;
+        }
+
+    .error-message {
+        background-color: #ffe0e0;
+        color: #d8000c;
+        padding: 10px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-weight: 500;
+    }
+</style>
