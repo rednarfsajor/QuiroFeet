@@ -178,6 +178,7 @@
     <Compile Include="BD\Ventas.cs">
       <DependentUpon>Quirofeet.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CitasController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -196,8 +197,8 @@
   <ItemGroup>
     <Content Include="BD\Quirofeet.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Quirofeet.Context.cs</LastGenOutput>
       <DependentUpon>Quirofeet.edmx</DependentUpon>
+      <LastGenOutput>Quirofeet.Context.cs</LastGenOutput>
     </Content>
     <Content Include="BD\Quirofeet.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

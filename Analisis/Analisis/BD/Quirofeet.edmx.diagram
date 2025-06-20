@@ -4,25 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5385743fa585482a806678bf5ed75b92" Name="Diagram1">
-        <EntityTypeShape EntityType="QuiroFeetModel.Citas" Width="1.5" PointX="8" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuiroFeetModel.Clientes" Width="1.5" PointX="5.75" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuiroFeetModel.Empleados" Width="1.5" PointX="5.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuiroFeetModel.Ordenes" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuiroFeetModel.Servicios" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuiroFeetModel.Ventas" Width="1.5" PointX="8" PointY="6.125" IsExpanded="true" />
+      <Diagram DiagramId="59b5510811d844efb01a17e1812b82fb" Name="Diagram1">
+        <EntityTypeShape EntityType="QuiroFeetModel.Citas" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuiroFeetModel.Clientes" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuiroFeetModel.Empleados" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuiroFeetModel.Inventario" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuiroFeetModel.Ordenes" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuiroFeetModel.Productos" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuiroFeetModel.Proveedores" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuiroFeetModel.Roles" Width="1.5" PointX="5.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuiroFeetModel.Servicios" Width="1.5" PointX="5.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuiroFeetModel.Usuarios" Width="1.5" PointX="8" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuiroFeetModel.Ventas" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
         <AssociationConnector Association="QuiroFeetModel.FK__Citas__id_client__59FA5E80" ManuallyRouted="false" />
         <AssociationConnector Association="QuiroFeetModel.FK__Citas__id_profes__4D94879B" ManuallyRouted="false" />
         <AssociationConnector Association="QuiroFeetModel.FK__Ventas__id_clien__5DCAEF64" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="QuiroFeetModel.Proveedores" Width="1.5" PointX="1.625" PointY="3.125" />
-        <EntityTypeShape EntityType="QuiroFeetModel.Roles" Width="1.5" PointX="8.375" PointY="10.25" />
-        <EntityTypeShape EntityType="QuiroFeetModel.Usuarios" Width="1.5" PointX="10.625" PointY="9.875" />
-        <AssociationConnector Association="QuiroFeetModel.FK__Usuarios__RolId__74AE54BC" />
-        <EntityTypeShape EntityType="QuiroFeetModel.Inventario" Width="1.5" PointX="6.125" PointY="1.5" />
-        <EntityTypeShape EntityType="QuiroFeetModel.Productos" Width="1.5" PointX="3.875" PointY="0.75" />
-        <AssociationConnector Association="QuiroFeetModel.FK_Inventario_Producto" />
-        <AssociationConnector Association="QuiroFeetModel.FK_Productos_Proveedores" />
-        </Diagram>
+        <AssociationConnector Association="QuiroFeetModel.FK_Inventario_Producto" ManuallyRouted="false" />
+        <AssociationConnector Association="QuiroFeetModel.FK_Productos_Proveedores" ManuallyRouted="false" />
+        <AssociationConnector Association="QuiroFeetModel.FK__Usuarios__RolId__74AE54BC" ManuallyRouted="false" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

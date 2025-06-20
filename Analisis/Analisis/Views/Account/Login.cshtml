@@ -7,21 +7,21 @@
     <h1>Iniciar Sesión</h1>
     <p>Accede a tu cuenta con tus credenciales</p>
 
-    @if (ViewBag.Mensaje != null)
+    @if (!string.IsNullOrEmpty(ViewBag.Mensaje as string))
     {
         <div class="error-message">@ViewBag.Mensaje</div>
     }
 
-    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { autocomplete = "off" }))
     {
         <div class="form-group">
-            <label>Email</label>
-            <input type="email" name="email" class="form-control" placeholder="Ingrese su correo electrónico" required />
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="Ingrese su correo electrónico" required />
         </div>
 
         <div class="form-group">
-            <label>Contraseña</label>
-            <input type="password" name="password" class="form-control" placeholder="Ingrese su contraseña" required />
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Ingrese su contraseña" required />
         </div>
 
         <button type="submit" class="btn-login">
