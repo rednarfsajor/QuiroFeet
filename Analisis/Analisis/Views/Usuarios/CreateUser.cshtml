@@ -1,79 +1,52 @@
-﻿@{
+﻿@model Analisis.BD.Usuarios
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Crear Usuario";
 }
 
 <div class="container">
     <h1>Crear Usuario</h1>
-    <p>Por favor, completa el formulario para registrar un nuevo empleado.</p>
+    <p>Por favor, completa el formulario para registrar un nuevo usuario.</p>
 
-    <form id="userForm" onsubmit="return handleSubmit(event)">
+    @using (Html.BeginForm("CreateUser", "Usuarios", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
         <!-- Nombre Completo -->
         <div class="form-group">
-            <label for="nombre">Nombre Completo</label>
-            <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre completo" required>
+            <label for="Nombre">Nombre Completo</label>
+            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", placeholder = "Ingrese el nombre completo", required = "required" })
         </div>
 
         <!-- Correo Electrónico -->
         <div class="form-group">
-            <label for="correo">Correo Electrónico</label>
-            <input type="email" class="form-control" id="correo" placeholder="Ingrese el correo electrónico" required>
-        </div>
-
-        <!-- Teléfono -->
-        <div class="form-group">
-            <label for="telefono">Teléfono</label>
-            <input type="tel" class="form-control" id="telefono" placeholder="Ingrese el número de teléfono" pattern="\d{8}" title="Debe tener 8 dígitos" required>
+            <label for="Email">Correo Electrónico</label>
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", type = "email", placeholder = "Ingrese el correo electrónico", required = "required" })
         </div>
 
         <!-- Rol del Usuario -->
         <div class="form-group">
-            <label for="rol">Rol del Usuario</label>
-            <select class="form-control" id="rol">
-                <option>Administrador</option>
-                <option>Profesional</option>
-                <option>Limpieza</option>
-                <option>Recepción</option>
-            </select>
+            <label for="RolId">Rol del Usuario</label>
+            @Html.DropDownList("RolId", ViewBag.RolId as SelectList, "Seleccione un rol", new { @class = "form-control", required = "required" })
         </div>
 
         <!-- Contraseña -->
         <div class="form-group">
-            <label for="password">Contraseña</label>
-            <input type="password" class="form-control" id="password" placeholder="Ingrese la contraseña" required>
+            <label for="Password">Contraseña</label>
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Ingrese la contraseña", required = "required" })
         </div>
-
-        <!-- Confirmar Contraseña -->
         <div class="form-group">
             <label for="confirmPassword">Confirmar Contraseña</label>
             <input type="password" class="form-control" id="confirmPassword" placeholder="Confirme la contraseña" required>
         </div>
 
-        <!-- Botones -->
         <button type="submit" class="btn btn-primary">Crear Usuario</button>
-        <a href="/Usuarios/ListUser" class="btn btn-secondary">Cancelar</a>
-    </form>
-</div>
-
-<!-- Notificación Estilizada -->
-<div id="notification" class="notification" style="display:none;">
-    Usuario Creado Exitosamente
-</div>
-
-<script>
-    function handleSubmit(event) {
-        event.preventDefault();
-        const notification = document.getElementById('notification');
-        notification.style.display = 'block';
-        setTimeout(() => {
-            notification.style.display = 'none';
-            window.location.href = '/Usuarios/ListUser';
-        }, 3000);
-        return false;
+        <a href="@Url.Action("ListUser", "Usuarios")" class="btn btn-secondary">Cancelar</a>
     }
-</script>
+</div>
 
-<!-- Estilos para Centrar y Expandir -->
+<!-- Estilos -->
 <style>
     .container {
         max-width: 600px;
@@ -116,36 +89,4 @@
         button:hover, .btn-secondary:hover {
             background-color: #234449;
         }
-
-    .notification {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background-color: #4CAF50;
-        color: white;
-        padding: 15px 30px;
-        border-radius: 8px;
-        font-size: 16px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        z-index: 1000;
-        animation: fadeInOut 3s ease;
-    }
-
-    @@keyframes fadeInOut {
-        0% {
-            opacity: 0;
-        }
-
-        10% {
-            opacity: 1;
-        }
-
-        90% {
-            opacity: 1;
-        }
-
-        100% {
-            opacity: 0;
-        }
-    }
 </style>

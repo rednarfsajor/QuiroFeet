@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<Analisis.BD.Usuarios>
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Lista de Usuarios";
 }
@@ -7,44 +9,44 @@
     <h1>Usuarios Registrados</h1>
     <p>A continuación, se muestran los usuarios existentes en el sistema.</p>
 
-    <!-- Tabla de Usuarios -->
-    <table class="user-table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre Completo</th>
-                <th>Correo Electrónico</th>
-                <th>Teléfono</th>
-                <th>Rol</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Ejemplo de Datos Simulados -->
-            <tr>
-                <td>1</td>
-                <td>Francisco Soler</td>
-                <td>francisco.soler@example.com</td>
-                <td>88889999</td>
-                <td>Profesional</td>
-                <td>
-                    <a href="@Url.Action("EditUser", "Usuarios", new { id = 1 })" class="btn-edit">Editar</a>
-                    <a href="@Url.Action("DeleteUser", "Usuarios", new { id = 1 })" class="btn-delete">Eliminar</a>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>María Gómez</td>
-                <td>maria.gomez@example.com</td>
-                <td>77778888</td>
-                <td>Profesional</td>
-                <td>
-                    <a href="@Url.Action("EditUser", "Usuarios", new { id = 2 })" class="btn-edit">Editar</a>
-                    <a href="@Url.Action("DeleteUser", "Usuarios", new { id = 2 })" class="btn-delete">Eliminar</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    @if (Model != null && Model.Any())
+    {
+        <!-- Tabla de Usuarios -->
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre Completo</th>
+                    <th>Correo Electrónico</th>
+                    <th>Rol</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Nombre</td>
+                        <td>@item.Email</td>
+                        <td>@item.Roles.Nombre</td>
+                        <td>
+                            <a href="@Url.Action("EditUser", "Usuarios", new { id = item.Id })" class="btn-edit">Editar</a>
+                            <a href="@Url.Action("DeleteUser", "Usuarios", new { id = item.Id })" class="btn-delete">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <!-- Mensaje si no hay usuarios -->
+        <div class="no-data-message">
+            <i class="bi bi-exclamation-triangle-fill"></i>
+            No hay usuarios registrados en el sistema.
+        </div>
+    }
 </div>
 
 <!-- Estilos CSS -->
@@ -105,4 +107,24 @@
     .btn-delete:hover {
         background-color: #c0392b;
     }
+
+    .no-data-message {
+        margin-top: 30px;
+        background-color: #fff3f3;
+        color: #a94442;
+        border: 1px solid #f5c6cb;
+        border-radius: 10px;
+        padding: 16px 24px;
+        font-size: 1.1em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        font-weight: 600;
+    }
+
+        .no-data-message i {
+            color: #e74c3c;
+            font-size: 1.4em;
+        }
 </style>

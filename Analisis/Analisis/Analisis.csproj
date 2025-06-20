@@ -188,6 +188,7 @@
     <Compile Include="Controllers\RecibosController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\ServiciosController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\VentasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -228,6 +229,7 @@
     <Content Include="Imagenes\2.jpg" />
     <Content Include="Imagenes\3.jpg" />
     <Content Include="Imagenes\4.jpeg" />
+    <Content Include="Imagenes\Fondo.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />

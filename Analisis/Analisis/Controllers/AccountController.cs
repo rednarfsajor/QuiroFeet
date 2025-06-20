@@ -22,30 +22,20 @@ namespace Analisis.Controllers
 
             if (user != null)
             {
+              
                 Session["UsuarioId"] = user.Id;
                 Session["UsuarioNombre"] = user.Nombre;
                 Session["RolNombre"] = user.Roles.Nombre;
 
-                // Redireccionar según el rol
-                if (Session["RolNombre"].ToString() == "Administrador")
-                {
-                    return RedirectToAction("ServiceIndex", "Servicios");
-                }
-                else if (Session["RolNombre"].ToString() == "Recepcionista")
-                {
-                    return RedirectToAction("Calendar", "Citas");
-                }
-                else if (Session["RolNombre"].ToString() == "Profesional")
-                {
-                    return RedirectToAction("Calendar", "Citas");
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Home");
-                }
+     
+                TempData["LoginSuccess"] = $"¡Hola!, {user.Nombre}";
+
+             
+                return RedirectToAction("Index", "Home");
             }
             else
             {
+               
                 ViewBag.Mensaje = "Email o contraseña incorrectos.";
                 return View();
             }
