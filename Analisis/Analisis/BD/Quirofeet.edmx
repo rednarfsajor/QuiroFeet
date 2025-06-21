@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="QuiroFeetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="QuiroFeetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Citas">
           <Key>
             <PropertyRef Name="id" />
@@ -40,7 +40,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity"/>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_producto" Type="int" Nullable="false" />
           <Property Name="stock" Type="int" />
           <Property Name="publico" Type="int" />
@@ -77,6 +77,13 @@
           <Property Name="correo" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="numero" Type="nvarchar" MaxLength="15" Nullable="false" />
         </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Servicios">
           <Key>
             <PropertyRef Name="Id" />
@@ -86,6 +93,16 @@
           <Property Name="Descripcion" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Duracion" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RolId" Type="int" />
         </EntityType>
         <EntityType Name="Ventas">
           <Key>
@@ -98,7 +115,7 @@
           <Property Name="monto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="fecha" Type="datetime" />
         </EntityType>
-        <Association Name="FK__Citas__id_client__4CA06362">
+        <Association Name="FK__Citas__id_client__59FA5E80">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
           <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -122,7 +139,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ventas__id_clien__3E52440B">
+        <Association Name="FK__Usuarios__RolId__74AE54BC">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="RolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ventas__id_clien__5DCAEF64">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
           <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -166,9 +195,11 @@
           <EntitySet Name="Ordenes" EntityType="Self.Ordenes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proveedores" EntityType="Self.Proveedores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Servicios" EntityType="Self.Servicios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ventas" EntityType="Self.Ventas" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Citas__id_client__4CA06362" Association="Self.FK__Citas__id_client__4CA06362">
+          <AssociationSet Name="FK__Citas__id_client__59FA5E80" Association="Self.FK__Citas__id_client__59FA5E80">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Citas" EntitySet="Citas" />
           </AssociationSet>
@@ -176,7 +207,11 @@
             <End Role="Empleados" EntitySet="Empleados" />
             <End Role="Citas" EntitySet="Citas" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ventas__id_clien__3E52440B" Association="Self.FK__Ventas__id_clien__3E52440B">
+          <AssociationSet Name="FK__Usuarios__RolId__74AE54BC" Association="Self.FK__Usuarios__RolId__74AE54BC">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ventas__id_clien__5DCAEF64" Association="Self.FK__Ventas__id_clien__5DCAEF64">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Ventas" EntitySet="Ventas" />
           </AssociationSet>
@@ -189,7 +224,8 @@
             <End Role="Productos" EntitySet="Productos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QuiroFeetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -229,6 +265,16 @@
           <Property Name="telefono" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Citas" Relationship="Self.FK__Citas__id_profes__4D94879B" FromRole="Empleados" ToRole="Citas" />
         </EntityType>
+        <EntityType Name="Inventario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_producto" Type="Int32" Nullable="false" />
+          <Property Name="stock" Type="Int32" />
+          <Property Name="publico" Type="Int32" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK_Inventario_Producto" FromRole="Inventario" ToRole="Productos" />
+        </EntityType>
         <EntityType Name="Ordenes">
           <Key>
             <PropertyRef Name="id" />
@@ -240,6 +286,38 @@
           <Property Name="fecha_recepcion" Type="DateTime" Precision="0" />
           <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_proveedor" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="precio" Type="Decimal" Precision="20" Scale="2" />
+          <Property Name="activo" Type="Int32" />
+          <NavigationProperty Name="Inventario" Relationship="Self.FK_Inventario_Producto" FromRole="Productos" ToRole="Inventario" />
+          <NavigationProperty Name="Proveedores" Relationship="Self.FK_Productos_Proveedores" FromRole="Productos" ToRole="Proveedores" />
+        </EntityType>
+        <EntityType Name="Proveedores">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contacto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="numero" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK_Productos_Proveedores" FromRole="Proveedores" ToRole="Productos" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__RolId__74AE54BC" FromRole="Roles" ToRole="Usuarios" />
+        </EntityType>
         <EntityType Name="Servicios">
           <Key>
             <PropertyRef Name="Id" />
@@ -249,6 +327,17 @@
           <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Duracion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RolId" Type="Int32" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__RolId__74AE54BC" FromRole="Usuarios" ToRole="Roles" />
         </EntityType>
         <EntityType Name="Ventas">
           <Key>
@@ -298,12 +387,53 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Inventario_Producto">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="Inventario" Type="Self.Inventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Inventario">
+              <PropertyRef Name="id_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Productos_Proveedores">
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="id_proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuarios__RolId__74AE54BC">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="RolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="QuiroFeetEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Citas" EntityType="Self.Citas" />
           <EntitySet Name="Clientes" EntityType="Self.Clientes" />
           <EntitySet Name="Empleados" EntityType="Self.Empleados" />
+          <EntitySet Name="Inventario" EntityType="Self.Inventario" />
           <EntitySet Name="Ordenes" EntityType="Self.Ordenes" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" />
+          <EntitySet Name="Proveedores" EntityType="Self.Proveedores" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="Servicios" EntityType="Self.Servicios" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
           <EntitySet Name="Ventas" EntityType="Self.Ventas" />
           <AssociationSet Name="FK__Citas__id_client__59FA5E80" Association="Self.FK__Citas__id_client__59FA5E80">
             <End Role="Clientes" EntitySet="Clientes" />
@@ -317,77 +447,20 @@
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Ventas" EntitySet="Ventas" />
           </AssociationSet>
-          <EntitySet Name="Inventario" EntityType="QuiroFeetModel.Inventario" />
-          <EntitySet Name="Productos" EntityType="QuiroFeetModel.Productos" />
-          <EntitySet Name="Proveedores" EntityType="QuiroFeetModel.Proveedores" />
-          <AssociationSet Name="FK_Inventario_Producto" Association="QuiroFeetModel.FK_Inventario_Producto">
+          <AssociationSet Name="FK_Inventario_Producto" Association="Self.FK_Inventario_Producto">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="Inventario" EntitySet="Inventario" />
           </AssociationSet>
-          <AssociationSet Name="FK_Productos_Proveedores" Association="QuiroFeetModel.FK_Productos_Proveedores">
+          <AssociationSet Name="FK_Productos_Proveedores" Association="Self.FK_Productos_Proveedores">
             <End Role="Proveedores" EntitySet="Proveedores" />
             <End Role="Productos" EntitySet="Productos" />
           </AssociationSet>
-          </EntityContainer>
-        <EntityType Name="Inventario">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="id_producto" Type="Int32" Nullable="false" />
-          <Property Name="stock" Type="Int32" />
-          <Property Name="publico" Type="Int32" />
-          <NavigationProperty Name="Productos" Relationship="QuiroFeetModel.FK_Inventario_Producto" FromRole="Inventario" ToRole="Productos" />
-        </EntityType>
-        <EntityType Name="Productos">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="id_proveedor" Type="Int32" Nullable="false" />
-          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="precio" Type="Decimal" Precision="20" Scale="2" />
-          <Property Name="activo" Type="Int32" />
-          <NavigationProperty Name="Inventario" Relationship="QuiroFeetModel.FK_Inventario_Producto" FromRole="Productos" ToRole="Inventario" />
-          <NavigationProperty Name="Proveedores" Relationship="QuiroFeetModel.FK_Productos_Proveedores" FromRole="Productos" ToRole="Proveedores" />
-        </EntityType>
-        <EntityType Name="Proveedores">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="contacto" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="correo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="numero" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Productos" Relationship="QuiroFeetModel.FK_Productos_Proveedores" FromRole="Proveedores" ToRole="Productos" />
-        </EntityType>
-        <Association Name="FK_Inventario_Producto">
-          <End Type="QuiroFeetModel.Productos" Role="Productos" Multiplicity="1" />
-          <End Type="QuiroFeetModel.Inventario" Role="Inventario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Productos">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Inventario">
-              <PropertyRef Name="id_producto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Productos_Proveedores">
-          <End Type="QuiroFeetModel.Proveedores" Role="Proveedores" Multiplicity="1" />
-          <End Type="QuiroFeetModel.Productos" Role="Productos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Proveedores">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Productos">
-              <PropertyRef Name="id_proveedor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        </Schema>
+          <AssociationSet Name="FK__Usuarios__RolId__74AE54BC" Association="Self.FK__Usuarios__RolId__74AE54BC">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -427,6 +500,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Inventario">
+            <EntityTypeMapping TypeName="QuiroFeetModel.Inventario">
+              <MappingFragment StoreEntitySet="Inventario">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="publico" ColumnName="publico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Ordenes">
             <EntityTypeMapping TypeName="QuiroFeetModel.Ordenes">
               <MappingFragment StoreEntitySet="Ordenes">
@@ -436,6 +519,37 @@
                 <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
                 <ScalarProperty Name="fecha_recepcion" ColumnName="fecha_recepcion" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Productos">
+            <EntityTypeMapping TypeName="QuiroFeetModel.Productos">
+              <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proveedores">
+            <EntityTypeMapping TypeName="QuiroFeetModel.Proveedores">
+              <MappingFragment StoreEntitySet="Proveedores">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="contacto" ColumnName="contacto" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="QuiroFeetModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -450,6 +564,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="QuiroFeetModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RolId" ColumnName="RolId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Ventas">
             <EntityTypeMapping TypeName="QuiroFeetModel.Ventas">
               <MappingFragment StoreEntitySet="Ventas">
@@ -459,39 +584,6 @@
                 <ScalarProperty Name="detalle" ColumnName="detalle" />
                 <ScalarProperty Name="monto" ColumnName="monto" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Inventario">
-            <EntityTypeMapping TypeName="QuiroFeetModel.Inventario">
-              <MappingFragment StoreEntitySet="Inventario">
-                <ScalarProperty Name="publico" ColumnName="publico" />
-                <ScalarProperty Name="stock" ColumnName="stock" />
-                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Productos">
-            <EntityTypeMapping TypeName="QuiroFeetModel.Productos">
-              <MappingFragment StoreEntitySet="Productos">
-                <ScalarProperty Name="activo" ColumnName="activo" />
-                <ScalarProperty Name="precio" ColumnName="precio" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Proveedores">
-            <EntityTypeMapping TypeName="QuiroFeetModel.Proveedores">
-              <MappingFragment StoreEntitySet="Proveedores">
-                <ScalarProperty Name="numero" ColumnName="numero" />
-                <ScalarProperty Name="correo" ColumnName="correo" />
-                <ScalarProperty Name="contacto" ColumnName="contacto" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -511,7 +603,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>

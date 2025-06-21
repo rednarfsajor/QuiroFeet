@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Analisis.BD.Usuarios
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Editar Usuario";
 }
@@ -7,33 +9,29 @@
     <h1>Editar Usuario</h1>
     <p>Modifica la información del usuario y guarda los cambios.</p>
 
-    <!-- Formulario para Editar Usuario -->
-    <form action="@Url.Action("ConfirmEditUser", "Usuarios")" method="post">
+    @using (Html.BeginForm("EditUser", "Usuarios", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(model => model.Id)
+
         <label>Nombre Completo</label>
-        <input type="text" name="FullName" placeholder="Ingrese el nombre completo" required />
+        @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", placeholder = "Ingrese el nombre completo", required = "required" })
 
         <label>Correo Electrónico</label>
-        <input type="email" name="Email" placeholder="Ingrese el correo electrónico" required />
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Ingrese el correo electrónico", required = "required" })
 
-        <label>Teléfono</label>
-        <input type="text" name="PhoneNumber" placeholder="Ingrese el número de teléfono" required pattern="\d{8}" title="Debe contener 8 dígitos" />
+        <label>Contraseña</label>
+        @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Ingrese la contraseña", required = "required" })
 
         <label>Rol del Usuario</label>
-        <select name="Role">
-            <option>Administrador</option>
-            <option>Profesional</option>
-            <option>Limpieza</option>
-            <option>Recepción</option>
-        </select>
+        @Html.DropDownList("RolId", null, htmlAttributes: new { @class = "form-control" })
 
-        <!-- Botón para Guardar Cambios -->
         <button type="submit" class="btn-save">Guardar Cambios</button>
-        <!-- Botón para Cancelar y Regresar -->
         <a href="@Url.Action("ListUser", "Usuarios")" class="btn-cancel">Cancelar</a>
-    </form>
+    }
 </div>
 
-<!-- Estilos CSS -->
 <style>
     .container {
         max-width: 600px;

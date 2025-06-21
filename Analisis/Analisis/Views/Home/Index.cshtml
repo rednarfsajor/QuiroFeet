@@ -3,6 +3,12 @@
 }
 
 <div class="welcome-container">
+
+    @if (TempData["LoginSuccess"] != null)
+    {
+        <p class="login-success">@TempData["LoginSuccess"]</p>
+    }
+
     <h1 class="welcome-title">Bienvenido a Quiropie By Lucy</h1>
     <svg viewBox="0 0 120 20" preserveAspectRatio="none" class="separator-svg">
         <path d="M0 10 Q 60 20 120 10 T 240 10" fill="none" stroke="#3e77f8" stroke-width="2" />
@@ -28,8 +34,6 @@
         En Quiropie By Lucy nos especializamos en cuidar y consentir tus pies con tratamientos profesionales, garantizando comodidad y bienestar en cada paso.
     </p>
 
-    <a href="@Url.Action("ServiceIndex", "Servicios")" class="btn-cta">Ver Servicios</a>
-    <a href="@Url.Action("Proveedores", "Proveedores")" class="btn-cta">Ver Proveedores</a>
 </div>
 
 <style>
@@ -40,6 +44,13 @@
     .welcome-container {
         text-align: center;
         padding: 60px 20px;
+    }
+
+    .login-success {
+        font-size: 1.3em;
+        font-weight: 600;
+        color: #234449;
+        margin-bottom: 20px;
     }
 
     .welcome-title {

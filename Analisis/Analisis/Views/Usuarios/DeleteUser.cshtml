@@ -1,18 +1,24 @@
-﻿@{
+﻿@model Analisis.BD.Usuarios
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Eliminar Usuario";
 }
 
 <div class="container">
     <h1>Eliminar Usuario</h1>
-    <p>¿Estás seguro de que deseas eliminar al usuario <strong>@ViewBag.FullName</strong>? Esta acción no se puede deshacer.</p>
+    <p>¿Estás seguro de que deseas eliminar al usuario <strong>@Model.Nombre</strong>? Esta acción no se puede deshacer.</p>
 
     <!-- Formulario para Confirmar Eliminación -->
-    <form action="@Url.Action("ConfirmDeleteUser", "Usuarios")" method="post">
-        <input type="hidden" name="UserId" value="@ViewBag.UserId" />
+    @using (Html.BeginForm("ConfirmDeleteUser", "Usuarios", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken() <!-- IMPORTANTE para evitar el error -->
+
+        @Html.HiddenFor(model => model.Id)
+
         <button type="submit" class="btn-delete">Eliminar</button>
         <a href="@Url.Action("ListUser", "Usuarios")" class="btn-cancel">Cancelar</a>
-    </form>
+    }
 </div>
 
 <!-- Estilos CSS -->
