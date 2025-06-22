@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QuiroFeetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QuiroFeetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Citas">
           <Key>
             <PropertyRef Name="id" />
@@ -13,8 +13,9 @@
           <Property Name="id_cliente" Type="int" Nullable="false" />
           <Property Name="fecha" Type="date" Nullable="false" />
           <Property Name="hora" Type="time" Precision="7" Nullable="false" />
-          <Property Name="servicio" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="id_profesional" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_servicio" Type="int" />
         </EntityType>
         <EntityType Name="Clientes">
           <Key>
@@ -115,7 +116,7 @@
           <Property Name="monto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="fecha" Type="datetime" />
         </EntityType>
-        <Association Name="FK__Citas__id_client__59FA5E80">
+        <Association Name="FK__Citas__id_client__4CA06362">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
           <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -139,7 +140,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios__RolId__74AE54BC">
+        <Association Name="FK__Usuarios__RolId__2BFE89A6">
           <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -151,7 +152,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ventas__id_clien__5DCAEF64">
+        <Association Name="FK__Ventas__id_clien__3E52440B">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
           <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -160,6 +161,18 @@
             </Principal>
             <Dependent Role="Ventas">
               <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Citas_Servicios">
+          <End Role="Servicios" Type="Self.Servicios" Multiplicity="0..1" />
+          <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servicios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Citas">
+              <PropertyRef Name="id_servicio" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -199,7 +212,7 @@
           <EntitySet Name="Servicios" EntityType="Self.Servicios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ventas" EntityType="Self.Ventas" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Citas__id_client__59FA5E80" Association="Self.FK__Citas__id_client__59FA5E80">
+          <AssociationSet Name="FK__Citas__id_client__4CA06362" Association="Self.FK__Citas__id_client__4CA06362">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Citas" EntitySet="Citas" />
           </AssociationSet>
@@ -207,13 +220,17 @@
             <End Role="Empleados" EntitySet="Empleados" />
             <End Role="Citas" EntitySet="Citas" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__RolId__74AE54BC" Association="Self.FK__Usuarios__RolId__74AE54BC">
+          <AssociationSet Name="FK__Usuarios__RolId__2BFE89A6" Association="Self.FK__Usuarios__RolId__2BFE89A6">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ventas__id_clien__5DCAEF64" Association="Self.FK__Ventas__id_clien__5DCAEF64">
+          <AssociationSet Name="FK__Ventas__id_clien__3E52440B" Association="Self.FK__Ventas__id_clien__3E52440B">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Ventas" EntitySet="Ventas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Citas_Servicios" Association="Self.FK_Citas_Servicios">
+            <End Role="Servicios" EntitySet="Servicios" />
+            <End Role="Citas" EntitySet="Citas" />
           </AssociationSet>
           <AssociationSet Name="FK_Inventario_Producto" Association="Self.FK_Inventario_Producto">
             <End Role="Productos" EntitySet="Productos" />
@@ -224,24 +241,10 @@
             <End Role="Productos" EntitySet="Productos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QuiroFeetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Citas">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_cliente" Type="Int32" Nullable="false" />
-          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="hora" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="servicio" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="id_profesional" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Clientes" Relationship="Self.FK__Citas__id_client__59FA5E80" FromRole="Citas" ToRole="Clientes" />
-          <NavigationProperty Name="Empleados" Relationship="Self.FK__Citas__id_profes__4D94879B" FromRole="Citas" ToRole="Empleados" />
-        </EntityType>
         <EntityType Name="Clientes">
           <Key>
             <PropertyRef Name="id" />
@@ -250,8 +253,8 @@
           <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Citas" Relationship="Self.FK__Citas__id_client__59FA5E80" FromRole="Clientes" ToRole="Citas" />
           <NavigationProperty Name="Ventas" Relationship="Self.FK__Ventas__id_clien__5DCAEF64" FromRole="Clientes" ToRole="Ventas" />
+          <NavigationProperty Name="Citas" Relationship="QuiroFeetModel.FK__Citas__id_client__4CA06362" FromRole="Clientes" ToRole="Citas" />
         </EntityType>
         <EntityType Name="Empleados">
           <Key>
@@ -263,7 +266,7 @@
           <Property Name="especialidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="telefono" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Citas" Relationship="Self.FK__Citas__id_profes__4D94879B" FromRole="Empleados" ToRole="Citas" />
+          <NavigationProperty Name="Citas" Relationship="QuiroFeetModel.FK__Citas__id_profes__4D94879B" FromRole="Empleados" ToRole="Citas" />
         </EntityType>
         <EntityType Name="Inventario">
           <Key>
@@ -327,6 +330,7 @@
           <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Duracion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Citas" Relationship="QuiroFeetModel.FK_Citas_Servicios" FromRole="Servicios" ToRole="Citas" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -351,30 +355,6 @@
           <Property Name="fecha" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Clientes" Relationship="Self.FK__Ventas__id_clien__5DCAEF64" FromRole="Ventas" ToRole="Clientes" />
         </EntityType>
-        <Association Name="FK__Citas__id_client__59FA5E80">
-          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
-          <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clientes">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Citas">
-              <PropertyRef Name="id_cliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Citas__id_profes__4D94879B">
-          <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
-          <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Empleados">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Citas">
-              <PropertyRef Name="id_profesional" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Ventas__id_clien__5DCAEF64">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
           <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
@@ -424,7 +404,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="QuiroFeetEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Citas" EntityType="Self.Citas" />
           <EntitySet Name="Clientes" EntityType="Self.Clientes" />
           <EntitySet Name="Empleados" EntityType="Self.Empleados" />
           <EntitySet Name="Inventario" EntityType="Self.Inventario" />
@@ -435,14 +414,6 @@
           <EntitySet Name="Servicios" EntityType="Self.Servicios" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
           <EntitySet Name="Ventas" EntityType="Self.Ventas" />
-          <AssociationSet Name="FK__Citas__id_client__59FA5E80" Association="Self.FK__Citas__id_client__59FA5E80">
-            <End Role="Clientes" EntitySet="Clientes" />
-            <End Role="Citas" EntitySet="Citas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Citas__id_profes__4D94879B" Association="Self.FK__Citas__id_profes__4D94879B">
-            <End Role="Empleados" EntitySet="Empleados" />
-            <End Role="Citas" EntitySet="Citas" />
-          </AssociationSet>
           <AssociationSet Name="FK__Ventas__id_clien__5DCAEF64" Association="Self.FK__Ventas__id_clien__5DCAEF64">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Ventas" EntitySet="Ventas" />
@@ -459,25 +430,77 @@
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
+          <EntitySet Name="Citas" EntityType="QuiroFeetModel.Citas" />
+          <AssociationSet Name="FK__Citas__id_client__4CA06362" Association="QuiroFeetModel.FK__Citas__id_client__4CA06362">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Citas" EntitySet="Citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Citas__id_profes__4D94879B" Association="QuiroFeetModel.FK__Citas__id_profes__4D94879B">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Citas" EntitySet="Citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Citas_Servicios" Association="QuiroFeetModel.FK_Citas_Servicios">
+            <End Role="Servicios" EntitySet="Servicios" />
+            <End Role="Citas" EntitySet="Citas" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Citas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_cliente" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="hora" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="id_profesional" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_servicio" Type="Int32" />
+          <NavigationProperty Name="Clientes" Relationship="QuiroFeetModel.FK__Citas__id_client__4CA06362" FromRole="Citas" ToRole="Clientes" />
+          <NavigationProperty Name="Empleados" Relationship="QuiroFeetModel.FK__Citas__id_profes__4D94879B" FromRole="Citas" ToRole="Empleados" />
+          <NavigationProperty Name="Servicios" Relationship="QuiroFeetModel.FK_Citas_Servicios" FromRole="Citas" ToRole="Servicios" />
+        </EntityType>
+        <Association Name="FK__Citas__id_client__4CA06362">
+          <End Type="QuiroFeetModel.Clientes" Role="Clientes" Multiplicity="1" />
+          <End Type="QuiroFeetModel.Citas" Role="Citas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Citas">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Citas__id_profes__4D94879B">
+          <End Type="QuiroFeetModel.Empleados" Role="Empleados" Multiplicity="1" />
+          <End Type="QuiroFeetModel.Citas" Role="Citas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Citas">
+              <PropertyRef Name="id_profesional" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Citas_Servicios">
+          <End Type="QuiroFeetModel.Servicios" Role="Servicios" Multiplicity="0..1" />
+          <End Type="QuiroFeetModel.Citas" Role="Citas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servicios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Citas">
+              <PropertyRef Name="id_servicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="QuiroFeetModelStoreContainer" CdmEntityContainer="QuiroFeetEntities1">
-          <EntitySetMapping Name="Citas">
-            <EntityTypeMapping TypeName="QuiroFeetModel.Citas">
-              <MappingFragment StoreEntitySet="Citas">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="hora" ColumnName="hora" />
-                <ScalarProperty Name="servicio" ColumnName="servicio" />
-                <ScalarProperty Name="id_profesional" ColumnName="id_profesional" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Clientes">
             <EntityTypeMapping TypeName="QuiroFeetModel.Clientes">
               <MappingFragment StoreEntitySet="Clientes">
@@ -584,6 +607,19 @@
                 <ScalarProperty Name="detalle" ColumnName="detalle" />
                 <ScalarProperty Name="monto" ColumnName="monto" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Citas">
+            <EntityTypeMapping TypeName="QuiroFeetModel.Citas">
+              <MappingFragment StoreEntitySet="Citas">
+                <ScalarProperty Name="id_servicio" ColumnName="id_servicio" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="id_profesional" ColumnName="id_profesional" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

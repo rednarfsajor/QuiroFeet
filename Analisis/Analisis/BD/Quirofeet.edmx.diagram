@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="59b5510811d844efb01a17e1812b82fb" Name="Diagram1">
-        <EntityTypeShape EntityType="QuiroFeetModel.Citas" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
         <EntityTypeShape EntityType="QuiroFeetModel.Clientes" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QuiroFeetModel.Empleados" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QuiroFeetModel.Inventario" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
@@ -16,12 +15,14 @@
         <EntityTypeShape EntityType="QuiroFeetModel.Servicios" Width="1.5" PointX="5.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QuiroFeetModel.Usuarios" Width="1.5" PointX="8" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QuiroFeetModel.Ventas" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
-        <AssociationConnector Association="QuiroFeetModel.FK__Citas__id_client__59FA5E80" ManuallyRouted="false" />
-        <AssociationConnector Association="QuiroFeetModel.FK__Citas__id_profes__4D94879B" ManuallyRouted="false" />
         <AssociationConnector Association="QuiroFeetModel.FK__Ventas__id_clien__5DCAEF64" ManuallyRouted="false" />
         <AssociationConnector Association="QuiroFeetModel.FK_Inventario_Producto" ManuallyRouted="false" />
         <AssociationConnector Association="QuiroFeetModel.FK_Productos_Proveedores" ManuallyRouted="false" />
         <AssociationConnector Association="QuiroFeetModel.FK__Usuarios__RolId__74AE54BC" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QuiroFeetModel.Citas" Width="1.5" PointX="8" PointY="8.5" />
+        <AssociationConnector Association="QuiroFeetModel.FK__Citas__id_client__4CA06362" />
+        <AssociationConnector Association="QuiroFeetModel.FK__Citas__id_profes__4D94879B" />
+        <AssociationConnector Association="QuiroFeetModel.FK_Citas_Servicios" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

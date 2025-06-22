@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Dia";
 }
@@ -16,15 +17,17 @@
             </tr>
         </thead>
         <tbody>
-            @if (Model != null && Model.Any())
+            @if (Model != null)
             {
-                foreach (var evento in Model)
+                foreach (Analisis.BD.Citas cita in Model)
                 {
                     <tr>
-                        <td>@evento.Hora</td>
-                        <td>@evento.Cliente</td>
-                        <td>@evento.Servicio</td>
-                        <td>@evento.Profesional</td>
+                        <td>@cita.fecha</td>
+                        <td>@cita.hora</td>
+                        <td>@cita.id_cliente</td>
+                        <td>@cita.id_servicio</td>
+                        <td>@cita.id_profesional</td>
+                        <td>@cita.Estado</td>
                     </tr>
                 }
             }
@@ -54,7 +57,4 @@
         text-decoration: none;
         margin-right: 5px;
     }
-
-
-
 </style>
