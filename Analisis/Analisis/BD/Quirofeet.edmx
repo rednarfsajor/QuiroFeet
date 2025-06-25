@@ -104,6 +104,7 @@
           <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="RolId" Type="int" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Ventas">
           <Key>
@@ -116,7 +117,7 @@
           <Property Name="monto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="fecha" Type="datetime" />
         </EntityType>
-        <Association Name="FK__Citas__id_client__4CA06362">
+        <Association Name="FK__Citas__id_client__03F0984C">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
           <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -128,19 +129,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Citas__id_profes__4D94879B">
-          <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
-          <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Empleados">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Citas">
-              <PropertyRef Name="id_profesional" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Usuarios__RolId__2BFE89A6">
+        <Association Name="FK__Usuarios__RolId__74AE54BC">
           <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -152,7 +141,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ventas__id_clien__3E52440B">
+        <Association Name="FK__Ventas__id_clien__5DCAEF64">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
           <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -173,6 +162,18 @@
             </Principal>
             <Dependent Role="Citas">
               <PropertyRef Name="id_servicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Citasid_profes_4D94879B">
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
+          <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Citas">
+              <PropertyRef Name="id_profesional" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -212,24 +213,24 @@
           <EntitySet Name="Servicios" EntityType="Self.Servicios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ventas" EntityType="Self.Ventas" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Citas__id_client__4CA06362" Association="Self.FK__Citas__id_client__4CA06362">
+          <AssociationSet Name="FK__Citas__id_client__03F0984C" Association="Self.FK__Citas__id_client__03F0984C">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Citas" EntitySet="Citas" />
           </AssociationSet>
-          <AssociationSet Name="FK__Citas__id_profes__4D94879B" Association="Self.FK__Citas__id_profes__4D94879B">
-            <End Role="Empleados" EntitySet="Empleados" />
-            <End Role="Citas" EntitySet="Citas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__RolId__2BFE89A6" Association="Self.FK__Usuarios__RolId__2BFE89A6">
+          <AssociationSet Name="FK__Usuarios__RolId__74AE54BC" Association="Self.FK__Usuarios__RolId__74AE54BC">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ventas__id_clien__3E52440B" Association="Self.FK__Ventas__id_clien__3E52440B">
+          <AssociationSet Name="FK__Ventas__id_clien__5DCAEF64" Association="Self.FK__Ventas__id_clien__5DCAEF64">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Ventas" EntitySet="Ventas" />
           </AssociationSet>
           <AssociationSet Name="FK_Citas_Servicios" Association="Self.FK_Citas_Servicios">
             <End Role="Servicios" EntitySet="Servicios" />
+            <End Role="Citas" EntitySet="Citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Citasid_profes_4D94879B" Association="Self.FK_Citasid_profes_4D94879B">
+            <End Role="Empleados" EntitySet="Empleados" />
             <End Role="Citas" EntitySet="Citas" />
           </AssociationSet>
           <AssociationSet Name="FK_Inventario_Producto" Association="Self.FK_Inventario_Producto">
@@ -342,6 +343,7 @@
           <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="RolId" Type="Int32" />
           <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__RolId__74AE54BC" FromRole="Usuarios" ToRole="Roles" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Ventas">
           <Key>
@@ -590,6 +592,7 @@
           <EntitySetMapping Name="Usuarios">
             <EntityTypeMapping TypeName="QuiroFeetModel.Usuarios">
               <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Email" ColumnName="Email" />

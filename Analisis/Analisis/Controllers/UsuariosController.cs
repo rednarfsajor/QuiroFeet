@@ -15,11 +15,24 @@ namespace Analisis.Controllers
             return View();
         }
 
-        // GET: Usuarios/ListUser
+        // GET: Usuarios/ListUser (Activos)
         public ActionResult ListUser()
         {
-            var usuarios = db.Usuarios.Include("Roles").ToList();
+            var usuarios = db.Usuarios.Include("Roles")
+                                      .Where(u => u.Activo == true)
+                                      .ToList();
+
             return View(usuarios);
+        }
+
+        // GET: Usuarios/ListInactiveUsers
+        public ActionResult ListInactiveUsers()
+        {
+            var inactivos = db.Usuarios.Include("Roles")
+                                       .Where(u => u.Activo == false)
+                                       .ToList();
+
+            return View(inactivos);
         }
 
         // GET: Usuarios/CreateUser
@@ -36,6 +49,7 @@ namespace Analisis.Controllers
         {
             if (ModelState.IsValid)
             {
+                usuario.Activo = true; // Siempre se crean activos
                 db.Usuarios.Add(usuario);
                 db.SaveChanges();
                 return RedirectToAction("ListUser");
@@ -65,8 +79,21 @@ namespace Analisis.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(usuario).State = System.Data.Entity.EntityState.Modified;
+                var usuarioDB = db.Usuarios.Find(usuario.Id);
+                if (usuarioDB == null)
+                {
+                    return HttpNotFound();
+                }
+
+                // Solo actualizamos los campos que queremos modificar
+                usuarioDB.Nombre = usuario.Nombre;
+                usuarioDB.Email = usuario.Email;
+                usuarioDB.RolId = usuario.RolId;
+
+                // No se toca Password ni Activo
                 db.SaveChanges();
+
+                TempData["SuccessMessage"] = $"El usuario {usuario.Nombre} ha sido actualizado correctamente.";
                 return RedirectToAction("ListUser");
             }
 
@@ -74,8 +101,8 @@ namespace Analisis.Controllers
             return View(usuario);
         }
 
-        // GET: Usuarios/DeleteUser/5
-        public ActionResult DeleteUser(int id)
+        // GET: Usuarios/InactivarUser/5
+        public ActionResult InactivarUser(int id)
         {
             var usuario = db.Usuarios.Find(id);
             if (usuario == null)
@@ -83,13 +110,17 @@ namespace Analisis.Controllers
                 return HttpNotFound();
             }
 
-            return View(usuario);
+            usuario.Activo = false;
+            db.SaveChanges();
+
+            TempData["SuccessMessage"] = $"El usuario {usuario.Nombre} ha sido inactivado correctamente.";
+            return RedirectToAction("ListUser");
         }
 
-        // POST: Usuarios/ConfirmDeleteUser
-        [HttpPost, ActionName("ConfirmDeleteUser")]
+        // POST: Usuarios/ActivarUser
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ConfirmDeleteUser(int id)
+        public ActionResult ActivarUser(int id)
         {
             var usuario = db.Usuarios.Find(id);
             if (usuario == null)
@@ -97,9 +128,11 @@ namespace Analisis.Controllers
                 return HttpNotFound();
             }
 
-            db.Usuarios.Remove(usuario);
+            usuario.Activo = true;
             db.SaveChanges();
-            return RedirectToAction("ListUser");
+
+            TempData["ActivateSuccess"] = $"El usuario {usuario.Nombre} ha sido activado correctamente.";
+            return RedirectToAction("ListInactiveUsers");
         }
     }
 }
