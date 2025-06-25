@@ -10,16 +10,22 @@ namespace Analisis.Controllers
     public class ProveedoresController : Controller
     {
         private QuiroFeetEntities1 db = new QuiroFeetEntities1();
+
         // GET: Proveedores (opcional, se puede usar como dashboard)
         public ActionResult Proveedores()
         {
+            if (Session["UsuarioId"] == null)
+                return RedirectToAction("Login", "Account");
+
             return View();
-            
         }
-        
+
         // LISTAR Proveedores
         public ActionResult DetallesProveedor()
         {
+            if (Session["UsuarioId"] == null)
+                return RedirectToAction("Login", "Account");
+
             var Proveedores = db.Proveedores.ToList();
             return View(Proveedores);
         }
@@ -28,6 +34,9 @@ namespace Analisis.Controllers
         [HttpGet]
         public ActionResult RegistrarProveedor()
         {
+            if (Session["UsuarioId"] == null)
+                return RedirectToAction("Login", "Account");
+
             return View();
         }
 
@@ -36,6 +45,9 @@ namespace Analisis.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult RegistrarProveedor(Proveedores nuevoProveedor)
         {
+            if (Session["UsuarioId"] == null)
+                return RedirectToAction("Login", "Account");
+
             // Verifica si el correo ya existe
             bool correoExistente = db.Proveedores.Any(p => p.correo == nuevoProveedor.correo);
 
@@ -58,6 +70,9 @@ namespace Analisis.Controllers
         [HttpGet]
         public ActionResult EditarProveedor(int id)
         {
+            if (Session["UsuarioId"] == null)
+                return RedirectToAction("Login", "Account");
+
             var proveedor = db.Proveedores.Find(id);
             if (proveedor == null)
                 return HttpNotFound();
@@ -65,11 +80,14 @@ namespace Analisis.Controllers
             return View(proveedor);
         }
 
-        // EDITAR CLIENTE - POST
+        // EDITAR Proveedor - POST
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditarProveedor(Proveedores proveedorEditado)
         {
+            if (Session["UsuarioId"] == null)
+                return RedirectToAction("Login", "Account");
+
             if (ModelState.IsValid)
             {
                 try
@@ -84,27 +102,25 @@ namespace Analisis.Controllers
                     {
                         foreach (var validationError in validationErrors.ValidationErrors)
                         {
-                            // Esto imprime en la consola de salida de Visual Studio
                             System.Diagnostics.Debug.WriteLine($"Propiedad: {validationError.PropertyName} - Error: {validationError.ErrorMessage}");
-
-                            // También puedes agregar el error al ModelState para mostrarlo en la vista
                             ModelState.AddModelError(validationError.PropertyName, validationError.ErrorMessage);
                         }
                     }
                 }
             }
 
-            // Si llega aquí, hubo un error
             return View(proveedorEditado);
         }
-
-
-
 
         // ELIMINAR Proveedor - POST (directo)
         [HttpPost]
         public JsonResult EliminarProveedor(int id)
         {
+            if (Session["UsuarioId"] == null)
+            {
+                return Json(new { success = false, message = "Sesión no válida. Inicie sesión nuevamente." });
+            }
+
             var proveedor = db.Proveedores.Find(id);
             if (proveedor == null)
             {
@@ -116,7 +132,5 @@ namespace Analisis.Controllers
 
             return Json(new { success = true, message = "Proveedor eliminado exitosamente." });
         }
-
-
     }
 }

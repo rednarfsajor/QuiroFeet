@@ -10,13 +10,10 @@ namespace Analisis.Controllers
     {
         public ActionResult Index()
         {
+            if (Session["UsuarioId"] == null)
+                return RedirectToAction("Login", "Account");
+
             return View();
         }
-
-        
-        
-
-
     }
-
 }

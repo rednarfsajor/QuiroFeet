@@ -12,12 +12,22 @@ namespace Analisis.Controllers
         // GET: Usuarios/Users (MENÚ)
         public ActionResult Users()
         {
+            if (Session["UsuarioId"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             return View();
         }
 
         // GET: Usuarios/ListUser (Activos)
         public ActionResult ListUser()
         {
+            if (Session["UsuarioId"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             var usuarios = db.Usuarios.Include("Roles")
                                       .Where(u => u.Activo == true)
                                       .ToList();
@@ -28,6 +38,11 @@ namespace Analisis.Controllers
         // GET: Usuarios/ListInactiveUsers
         public ActionResult ListInactiveUsers()
         {
+            if (Session["UsuarioId"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             var inactivos = db.Usuarios.Include("Roles")
                                        .Where(u => u.Activo == false)
                                        .ToList();
@@ -38,6 +53,11 @@ namespace Analisis.Controllers
         // GET: Usuarios/CreateUser
         public ActionResult CreateUser()
         {
+            if (Session["UsuarioId"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             ViewBag.RolId = new SelectList(db.Roles, "Id", "Nombre");
             return View();
         }
@@ -47,6 +67,11 @@ namespace Analisis.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateUser(Usuarios usuario)
         {
+            if (Session["UsuarioId"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             if (ModelState.IsValid)
             {
                 usuario.Activo = true; // Siempre se crean activos
@@ -62,6 +87,11 @@ namespace Analisis.Controllers
         // GET: Usuarios/EditUser/5
         public ActionResult EditUser(int id)
         {
+            if (Session["UsuarioId"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             var usuario = db.Usuarios.Find(id);
             if (usuario == null)
             {
@@ -77,6 +107,11 @@ namespace Analisis.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditUser(Usuarios usuario)
         {
+            if (Session["UsuarioId"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             if (ModelState.IsValid)
             {
                 var usuarioDB = db.Usuarios.Find(usuario.Id);
@@ -104,6 +139,11 @@ namespace Analisis.Controllers
         // GET: Usuarios/InactivarUser/5
         public ActionResult InactivarUser(int id)
         {
+            if (Session["UsuarioId"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             var usuario = db.Usuarios.Find(id);
             if (usuario == null)
             {
@@ -122,6 +162,11 @@ namespace Analisis.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ActivarUser(int id)
         {
+            if (Session["UsuarioId"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             var usuario = db.Usuarios.Find(id);
             if (usuario == null)
             {

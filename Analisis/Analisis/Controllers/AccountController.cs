@@ -18,24 +18,35 @@ namespace Analisis.Controllers
         [HttpPost]
         public ActionResult Login(string email, string password)
         {
-            var user = db.Usuarios.FirstOrDefault(u => u.Email == email && u.Password == password);
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+            {
+                ViewBag.Mensaje = "Debe ingresar correo y contraseña.";
+                return View();
+            }
+
+            var user = db.Usuarios
+                         .Where(u => u.Email == email && u.Password == password)
+                         .FirstOrDefault();
 
             if (user != null)
             {
-              
+                if (user.Activo == false)
+                {
+                    ViewBag.Mensaje = "El usuario está inactivo. Contacte al administrador.";
+                    return View();
+                }
+
+                // Usuario Activo
                 Session["UsuarioId"] = user.Id;
                 Session["UsuarioNombre"] = user.Nombre;
                 Session["RolNombre"] = user.Roles.Nombre;
 
-     
                 TempData["LoginSuccess"] = $"¡Hola!, {user.Nombre}";
 
-             
                 return RedirectToAction("Index", "Home");
             }
             else
             {
-               
                 ViewBag.Mensaje = "Email o contraseña incorrectos.";
                 return View();
             }
