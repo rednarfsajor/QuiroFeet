@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Migrations;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 using System.Web.WebPages;
 using Analisis.BD;
+using Analisis.ViewModel;
 
 namespace Analisis.Controllers
 {
@@ -23,12 +26,26 @@ namespace Analisis.Controllers
         
         public ActionResult Day(String fecha)
         {
+            var model = new DateViewModel();
+            
             ViewBag.Fecha = fecha;
             Console.WriteLine(fecha);
-            DateTime day;
-            day = DateTime.Parse(fecha);
-            var daycitas = db.Citas.Where(c => c.fecha == day).ToList();
-            return View(daycitas);
+            DateTime day = DateTime.Parse(fecha);
+            var citas = db.Citas
+            .Include("Clientes")
+            .Include("Empleados")
+            .Include("Servicios")
+            .Select(c => new DateViewModel
+            {
+                id = c.id,
+                fecha = c.fecha,
+                hora = c.hora,
+                Estado = c.Estado,
+                NombreCliente = c.Clientes.nombre,
+                NombreProfesional = c.Empleados.nombre,
+                NombreServicio = c.Servicios.Nombre
+            }).Where(c => c.fecha == day).ToList();
+            return View(citas);
         }
 
         [HttpGet]
@@ -82,6 +99,42 @@ namespace Analisis.Controllers
             ViewBag.Clientes = new SelectList(db.Clientes.ToList(), "id", "nombre");
             ViewBag.Profesionales = new SelectList(db.Empleados.Where(p => p.tipo == "Profesional"), "id", "nombre");
             return View(cita);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public ActionResult ModifyDate(Citas cita)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Citas.AddOrUpdate(cita);
+                db.SaveChanges();
+                return RedirectToAction("Calendar");
+            }
+            return View(cita);
+        }
+
+        public ActionResult ProcessDate(int id)
+        {
+            var cita = db.Citas.Find(id);
+            cita.Estado = "Atendida";
+            if (cita == null) return HttpNotFound();
+
+            db.Citas.AddOrUpdate(cita);
+            db.SaveChanges();
+            return RedirectToAction("Day", new { fecha = cita.fecha.ToString("dd/MM/yyyy") });
+        }
+
+        public ActionResult CancelDate(int id)
+        {
+            var cita = db.Citas.Find(id);
+            cita.Estado = "Cancelada";
+            if (cita == null) return HttpNotFound();
+
+            db.Citas.AddOrUpdate(cita);
+            db.SaveChanges();
+            return RedirectToAction("Day", new { fecha = cita.fecha.ToString("dd/MM/yyyy") });
         }
     }
 }

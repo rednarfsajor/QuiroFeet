@@ -3,64 +3,36 @@
   "WorkspaceRootPath": "C:\\QuiroFeet\\Analisis\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\quirofeet\\analisis\\analisis\\controllers\\citascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\controllers\\citascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\citascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\quirofeet\\analisis\\analisis\\views\\citas\\day.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\quirofeet\\analisis\\analisis\\views\\citas\\calendar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\citas\\calendar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\quirofeet\\analisis\\analisis\\views\\citas\\modifydate.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\citas\\modifydate.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\quirofeet\\analisis\\analisis\\controllers\\servicioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\servicioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\citas\\day.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\citas\\day.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\quirofeet\\analisis\\analisis\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\quirofeet\\analisis\\analisis\\viewmodel\\dateviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\viewmodel\\dateviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\quirofeet\\analisis\\analisis\\views\\citas\\createdate.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\citas\\createdate.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\quirofeet\\analisis\\analisis\\bd\\citas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\bd\\citas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\usuarios\\confirmdeleteuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\usuarios\\confirmdeleteuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\quirofeet\\analisis\\analisis\\views\\inventario\\registrarproducto.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\inventario\\registrarproducto.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\quirofeet\\analisis\\analisis\\controllers\\inventariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\inventariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\quirofeet\\analisis\\analisis\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\usuarios\\deleteuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\usuarios\\deleteuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\usuarios\\listuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\usuarios\\listuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\usuarios\\createuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\usuarios\\createuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\usuarios\\users.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\usuarios\\users.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\clientes\\listclients.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\clientes\\listclients.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -70,17 +42,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Day.cshtml",
               "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Citas\\Day.cshtml",
               "RelativeDocumentMoniker": "Analisis\\Views\\Citas\\Day.cshtml",
-              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Citas\\Day.cshtml*",
-              "RelativeToolTip": "Analisis\\Views\\Citas\\Day.cshtml*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAeAAAAAAAAAA==",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Citas\\Day.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Citas\\Day.cshtml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAB0AAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-06-21T23:20:24.387Z",
               "IsPinned": true,
@@ -92,42 +64,80 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "Analisis\\Controllers\\AccountController.cs",
-              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "Analisis\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAA4wBQAAAAMAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "ServiciosController.cs",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ServiciosController.cs",
+              "RelativeDocumentMoniker": "Analisis\\Controllers\\ServiciosController.cs",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ServiciosController.cs",
+              "RelativeToolTip": "Analisis\\Controllers\\ServiciosController.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAswE4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-20T02:59:23.958Z",
+              "WhenOpened": "2025-06-25T03:37:12.585Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Calendar.cshtml",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Citas\\Calendar.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Citas\\Calendar.cshtml",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Citas\\Calendar.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Citas\\Calendar.cshtml",
+              "ViewState": "AgIAAJMAAAAAAAAAAAAAAKMAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-25T03:31:34.088Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "InventarioController.cs",
-              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\InventarioController.cs",
-              "RelativeDocumentMoniker": "Analisis\\Controllers\\InventarioController.cs",
-              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\InventarioController.cs",
-              "RelativeToolTip": "Analisis\\Controllers\\InventarioController.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAYwCMAAAAMAAAAAAAAAA==",
+              "Title": "Citas.cs",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\BD\\Citas.cs",
+              "RelativeDocumentMoniker": "Analisis\\BD\\Citas.cs",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\BD\\Citas.cs",
+              "RelativeToolTip": "Analisis\\BD\\Citas.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABAAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-21T23:52:10.485Z",
+              "WhenOpened": "2025-06-25T03:18:35.915Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CreateDate.cshtml",
-              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Citas\\CreateDate.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Citas\\CreateDate.cshtml",
-              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Citas\\CreateDate.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Citas\\CreateDate.cshtml",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABsAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-21T23:39:09.577Z",
+              "DocumentIndex": 5,
+              "Title": "DateViewModel.cs",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\ViewModel\\DateViewModel.cs",
+              "RelativeDocumentMoniker": "Analisis\\ViewModel\\DateViewModel.cs",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\ViewModel\\DateViewModel.cs",
+              "RelativeToolTip": "Analisis\\ViewModel\\DateViewModel.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T03:18:22.236Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ModifyDate.cshtml",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Citas\\ModifyDate.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Citas\\ModifyDate.cshtml",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Citas\\ModifyDate.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Citas\\ModifyDate.cshtml",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAADwAAABnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-25T00:15:49.744Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ListClients.cshtml",
+              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Clientes\\ListClients.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Clientes\\ListClients.cshtml",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Clientes\\ListClients.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Clientes\\ListClients.cshtml",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-25T00:13:53.021Z"
             },
             {
               "$type": "Document",
@@ -135,135 +145,12 @@
               "Title": "CitasController.cs",
               "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\CitasController.cs",
               "RelativeDocumentMoniker": "Analisis\\Controllers\\CitasController.cs",
-              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\CitasController.cs",
-              "RelativeToolTip": "Analisis\\Controllers\\CitasController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAMAAAAAAAAAA==",
+              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\CitasController.cs*",
+              "RelativeToolTip": "Analisis\\Controllers\\CitasController.cs*",
+              "ViewState": "AgIAAGsAAAAAAAAAAAAswH0AAABeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-21T23:10:15.566Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "RegistrarProducto.cshtml",
-              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Inventario\\RegistrarProducto.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Inventario\\RegistrarProducto.cshtml",
-              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Inventario\\RegistrarProducto.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Inventario\\RegistrarProducto.cshtml",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAADMAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-21T23:51:43.435Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ConfirmDeleteUser.cshtml",
-              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\ConfirmDeleteUser.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Usuarios\\ConfirmDeleteUser.cshtml",
-              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\ConfirmDeleteUser.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Usuarios\\ConfirmDeleteUser.cshtml",
-              "ViewState": "AgIAADQAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-20T04:16:15.649Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Web.config",
-              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Web.config",
-              "RelativeDocumentMoniker": "Analisis\\Web.config",
-              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Web.config",
-              "RelativeToolTip": "Analisis\\Web.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEAAAADXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-06-21T22:33:06.517Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ListUser.cshtml",
-              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\ListUser.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Usuarios\\ListUser.cshtml",
-              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\ListUser.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Usuarios\\ListUser.cshtml",
-              "ViewState": "AgIAAG4AAAAAAAAAAAAuwIIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-20T03:49:25.142Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "DeleteUser.cshtml",
-              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\DeleteUser.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Usuarios\\DeleteUser.cshtml",
-              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\DeleteUser.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Usuarios\\DeleteUser.cshtml",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAAwEYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-20T03:38:44.178Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Web.config",
-              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Web.config",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Web.config",
-              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Web.config",
-              "RelativeToolTip": "Analisis\\Views\\Web.config",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-06-20T03:10:42.002Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAHIAAAAAAAAAAAAuwIYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-20T04:00:32.747Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Users.cshtml",
-              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\Users.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Usuarios\\Users.cshtml",
-              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\Users.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Usuarios\\Users.cshtml",
-              "ViewState": "AgIAADoAAAAAAAAAAAAAwFIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-20T03:36:15.723Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "CreateUser.cshtml",
-              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\CreateUser.cshtml",
-              "RelativeDocumentMoniker": "Analisis\\Views\\Usuarios\\CreateUser.cshtml",
-              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Usuarios\\CreateUser.cshtml",
-              "RelativeToolTip": "Analisis\\Views\\Usuarios\\CreateUser.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-20T03:42:22.821Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "RouteConfig.cs",
-              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\App_Start\\RouteConfig.cs",
-              "RelativeDocumentMoniker": "Analisis\\App_Start\\RouteConfig.cs",
-              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\App_Start\\RouteConfig.cs",
-              "RelativeToolTip": "Analisis\\App_Start\\RouteConfig.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-20T02:20:09.816Z"
             }
           ]
         }

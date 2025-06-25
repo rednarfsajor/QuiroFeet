@@ -59,8 +59,8 @@
 
         <div class="form-buttons">
             <button type="submit" class="btn-submit"><i class="bi bi-check-circle-fill"></i> Modificar Cita</button>
-            <a href="@Url.Action("ProcessDate", "Citas")" class="btn btn-success"><i class="bi bi-x-circle-fill"></i>Procesar Cita</a>
-            <a href="@Url.Action("CancelDate", "Citas")" class="btn btn-danger"><i class="bi bi-x-circle-fill"></i> Cancelar Cita</a>
+            <a href="@Url.Action("ProcessDate", "Citas", new { id = Model.id })" class="btn btn-success"><i class="bi bi-x-circle-fill"></i>Procesar Cita</a>
+            <a href="@Url.Action("CancelDate", "Citas", new { id = Model.id })" class="btn btn-danger"><i class="bi bi-x-circle-fill"></i> Cancelar Cita</a>
             <a href="@Url.Action("Calendar", "Citas")" class="btn-cancel"><i class="bi bi-x-circle-fill"></i> Volver</a>
 </div>
     }

@@ -194,6 +194,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\DateViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="BD\Quirofeet.Context.tt">

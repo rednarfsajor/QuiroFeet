@@ -1,5 +1,5 @@
 ﻿@using System.Linq
-@model List<Analisis.BD.Citas>
+@model List<Analisis.ViewModel.DateViewModel>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Dia";
@@ -22,14 +22,14 @@
         <tbody>
             @if (Model != null && Model.Any())
             {
-                foreach (Analisis.BD.Citas cita in Model)
+                foreach (Analisis.ViewModel.DateViewModel cita in Model)
                 {
                     <tr style="cursor:pointer" onclick="location.href='@Url.Action("ModifyDate", "Citas", new { id = cita.id })'">>
                         <td>@cita.fecha.ToString("dd/MM/yyyy")</td>
                         <td>@cita.hora</td>
-                        <td>@cita.id_cliente</td>
-                        <td>@cita.id_servicio</td>
-                        <td>@cita.id_profesional</td>
+                        <td>@cita.NombreCliente</td>
+                        <td>@cita.NombreServicio</td>
+                        <td>@cita.NombreProfesional</td>
                         <td>@cita.Estado</td>
                     </tr>
                 }
