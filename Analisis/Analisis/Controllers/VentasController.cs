@@ -11,26 +11,41 @@ namespace Analisis.Controllers
         // GET: Ventas
         public ActionResult ConfirmSale()
         {
+            if (Session["UsuarioId"] == null)
+                return RedirectToAction("Login", "Account");
+
             return View();
         }
 
         public ActionResult ErrorSale()
         {
+            if (Session["UsuarioId"] == null)
+                return RedirectToAction("Login", "Account");
+
             return View();
         }
 
         public ActionResult ListSales()
         {
+            if (Session["UsuarioId"] == null)
+                return RedirectToAction("Login", "Account");
+
             return View();
         }
 
         public ActionResult RegisterSale()
         {
+            if (Session["UsuarioId"] == null)
+                return RedirectToAction("Login", "Account");
+
             return View();
         }
 
         public ActionResult Sales()
         {
+            if (Session["UsuarioId"] == null)
+                return RedirectToAction("Login", "Account");
+
             return View();
         }
     }

@@ -21,9 +21,6 @@
         <label>Correo Electrónico</label>
         @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Ingrese el correo electrónico", required = "required" })
 
-        <label>Contraseña</label>
-        @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Ingrese la contraseña", required = "required" })
-
         <label>Rol del Usuario</label>
         @Html.DropDownList("RolId", null, htmlAttributes: new { @class = "form-control" })
 

@@ -12,19 +12,52 @@ namespace Analisis.Controllers
         // GET: Usuarios/Users (MENÚ)
         public ActionResult Users()
         {
+            if (Session["UsuarioId"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             return View();
         }
 
-        // GET: Usuarios/ListUser
+        // GET: Usuarios/ListUser (Activos)
         public ActionResult ListUser()
         {
-            var usuarios = db.Usuarios.Include("Roles").ToList();
+            if (Session["UsuarioId"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            var usuarios = db.Usuarios.Include("Roles")
+                                      .Where(u => u.Activo == true)
+                                      .ToList();
+
             return View(usuarios);
+        }
+
+        // GET: Usuarios/ListInactiveUsers
+        public ActionResult ListInactiveUsers()
+        {
+            if (Session["UsuarioId"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            var inactivos = db.Usuarios.Include("Roles")
+                                       .Where(u => u.Activo == false)
+                                       .ToList();
+
+            return View(inactivos);
         }
 
         // GET: Usuarios/CreateUser
         public ActionResult CreateUser()
         {
+            if (Session["UsuarioId"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             ViewBag.RolId = new SelectList(db.Roles, "Id", "Nombre");
             return View();
         }
@@ -34,8 +67,14 @@ namespace Analisis.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateUser(Usuarios usuario)
         {
+            if (Session["UsuarioId"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             if (ModelState.IsValid)
             {
+                usuario.Activo = true; // Siempre se crean activos
                 db.Usuarios.Add(usuario);
                 db.SaveChanges();
                 return RedirectToAction("ListUser");
@@ -48,6 +87,11 @@ namespace Analisis.Controllers
         // GET: Usuarios/EditUser/5
         public ActionResult EditUser(int id)
         {
+            if (Session["UsuarioId"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             var usuario = db.Usuarios.Find(id);
             if (usuario == null)
             {
@@ -63,10 +107,28 @@ namespace Analisis.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditUser(Usuarios usuario)
         {
+            if (Session["UsuarioId"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             if (ModelState.IsValid)
             {
-                db.Entry(usuario).State = System.Data.Entity.EntityState.Modified;
+                var usuarioDB = db.Usuarios.Find(usuario.Id);
+                if (usuarioDB == null)
+                {
+                    return HttpNotFound();
+                }
+
+                // Solo actualizamos los campos que queremos modificar
+                usuarioDB.Nombre = usuario.Nombre;
+                usuarioDB.Email = usuario.Email;
+                usuarioDB.RolId = usuario.RolId;
+
+                // No se toca Password ni Activo
                 db.SaveChanges();
+
+                TempData["SuccessMessage"] = $"El usuario {usuario.Nombre} ha sido actualizado correctamente.";
                 return RedirectToAction("ListUser");
             }
 
@@ -74,32 +136,48 @@ namespace Analisis.Controllers
             return View(usuario);
         }
 
-        // GET: Usuarios/DeleteUser/5
-        public ActionResult DeleteUser(int id)
+        // GET: Usuarios/InactivarUser/5
+        public ActionResult InactivarUser(int id)
         {
+            if (Session["UsuarioId"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             var usuario = db.Usuarios.Find(id);
             if (usuario == null)
             {
                 return HttpNotFound();
             }
 
-            return View(usuario);
+            usuario.Activo = false;
+            db.SaveChanges();
+
+            TempData["SuccessMessage"] = $"El usuario {usuario.Nombre} ha sido inactivado correctamente.";
+            return RedirectToAction("ListUser");
         }
 
-        // POST: Usuarios/ConfirmDeleteUser
-        [HttpPost, ActionName("ConfirmDeleteUser")]
+        // POST: Usuarios/ActivarUser
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ConfirmDeleteUser(int id)
+        public ActionResult ActivarUser(int id)
         {
+            if (Session["UsuarioId"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             var usuario = db.Usuarios.Find(id);
             if (usuario == null)
             {
                 return HttpNotFound();
             }
 
-            db.Usuarios.Remove(usuario);
+            usuario.Activo = true;
             db.SaveChanges();
-            return RedirectToAction("ListUser");
+
+            TempData["ActivateSuccess"] = $"El usuario {usuario.Nombre} ha sido activado correctamente.";
+            return RedirectToAction("ListInactiveUsers");
         }
     }
 }

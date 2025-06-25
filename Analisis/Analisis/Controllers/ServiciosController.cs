@@ -4,23 +4,26 @@ using System.Web.Mvc;
 using Analisis.BD; // Tu contexto de base de datos
 using System.Data.Entity;
 
-
 namespace Analisis.Controllers
 {
     public class ServiciosController : Controller
     {
         private QuiroFeetEntities1 db = new QuiroFeetEntities1();
 
-
         public ActionResult ServiceIndex()
         {
+            if (Session["UsuarioId"] == null)
+                return RedirectToAction("Login", "Account");
+
             return View();
         }
-
 
         // GET: Servicios/ListServices
         public ActionResult ListServices()
         {
+            if (Session["UsuarioId"] == null)
+                return RedirectToAction("Login", "Account");
+
             var servicios = db.Servicios.ToList();
             return View(servicios);
         }
@@ -28,6 +31,9 @@ namespace Analisis.Controllers
         // GET: Servicios/CreateService
         public ActionResult CreateService()
         {
+            if (Session["UsuarioId"] == null)
+                return RedirectToAction("Login", "Account");
+
             return View();
         }
 
@@ -36,6 +42,9 @@ namespace Analisis.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateService(Servicios servicio)
         {
+            if (Session["UsuarioId"] == null)
+                return RedirectToAction("Login", "Account");
+
             if (ModelState.IsValid)
             {
                 db.Servicios.Add(servicio);
@@ -48,6 +57,9 @@ namespace Analisis.Controllers
         // GET: Servicios/EditService/5
         public ActionResult EditService(int id)
         {
+            if (Session["UsuarioId"] == null)
+                return RedirectToAction("Login", "Account");
+
             var servicio = db.Servicios.Find(id);
             if (servicio == null) return HttpNotFound();
             return View(servicio);
@@ -58,9 +70,12 @@ namespace Analisis.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditService(Servicios servicio)
         {
+            if (Session["UsuarioId"] == null)
+                return RedirectToAction("Login", "Account");
+
             if (ModelState.IsValid)
             {
-                db.Entry(servicio).State = EntityState.Modified; // 💡 Requiere el using
+                db.Entry(servicio).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("ListServices");
             }
@@ -70,6 +85,9 @@ namespace Analisis.Controllers
         // GET: Servicios/DeleteService/5
         public ActionResult DeleteService(int id)
         {
+            if (Session["UsuarioId"] == null)
+                return RedirectToAction("Login", "Account");
+
             var servicio = db.Servicios.Find(id);
             if (servicio == null) return HttpNotFound();
 

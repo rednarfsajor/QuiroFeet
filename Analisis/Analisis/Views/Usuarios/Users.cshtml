@@ -15,6 +15,13 @@
             <p>Consulta la lista de usuarios registrados en la plataforma.</p>
         </a>
 
+        <!-- Botón para Ver Inactivos -->
+        <a href="/Usuarios/ListInactiveUsers" class="option-card">
+            <i class="bi bi-person-x"></i>
+            <h3>Ver Inactivos</h3>
+            <p>Consulta los usuarios inactivos y vuelve a activarlos si es necesario.</p>
+        </a>
+
         <!-- Botón para Crear Usuario -->
         <a href="/Usuarios/CreateUser" class="option-card">
             <i class="bi bi-person-plus"></i>
@@ -27,7 +34,7 @@
 <!-- Estilos CSS -->
 <style>
     .users-container {
-        max-width: 800px;
+        max-width: 1000px;
         margin: 100px auto;
         text-align: center;
     }
@@ -47,6 +54,7 @@
         display: flex;
         justify-content: center;
         gap: 30px;
+        flex-wrap: wrap;
     }
 
     .option-card {
