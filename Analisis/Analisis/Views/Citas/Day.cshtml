@@ -1,4 +1,6 @@
-﻿@{
+﻿@using System.Linq
+@model List<Analisis.ViewModel.DateViewModel>
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Dia";
 }
@@ -9,22 +11,26 @@
     <table class="table table-striped mt-4">
         <thead>
             <tr>
+                <th>Fecha</th>
                 <th>Hora</th>
                 <th>Cliente</th>
                 <th>Servicio</th>
                 <th>Profesional</th>
+                <th>Estado</th>
             </tr>
         </thead>
         <tbody>
             @if (Model != null && Model.Any())
             {
-                foreach (var evento in Model)
+                foreach (Analisis.ViewModel.DateViewModel cita in Model)
                 {
-                    <tr>
-                        <td>@evento.Hora</td>
-                        <td>@evento.Cliente</td>
-                        <td>@evento.Servicio</td>
-                        <td>@evento.Profesional</td>
+                    <tr style="cursor:pointer" onclick="location.href='@Url.Action("ModifyDate", "Citas", new { id = cita.id })'">>
+                        <td>@cita.fecha.ToString("dd/MM/yyyy")</td>
+                        <td>@cita.hora</td>
+                        <td>@cita.NombreCliente</td>
+                        <td>@cita.NombreServicio</td>
+                        <td>@cita.NombreProfesional</td>
+                        <td>@cita.Estado</td>
                     </tr>
                 }
             }
@@ -54,7 +60,4 @@
         text-decoration: none;
         margin-right: 5px;
     }
-
-
-
 </style>
