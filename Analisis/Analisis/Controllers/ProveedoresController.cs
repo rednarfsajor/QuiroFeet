@@ -68,10 +68,13 @@ namespace Analisis.Controllers
 
         // EDITAR Proveedor - GET
         [HttpGet]
-        public ActionResult EditarProveedor(int id)
+        public ActionResult EditarProveedor(int? id)
         {
             if (Session["UsuarioId"] == null)
                 return RedirectToAction("Login", "Account");
+
+            if (id == null)
+                return RedirectToAction("DetallesProveedor");
 
             var proveedor = db.Proveedores.Find(id);
             if (proveedor == null)
