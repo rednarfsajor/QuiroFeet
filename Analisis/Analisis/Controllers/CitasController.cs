@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -22,12 +23,11 @@ namespace Analisis.Controllers
         
         public ActionResult Day(String fecha)
         {
-            ViewBag.Fecha = DateTime.Parse(fecha);
+            ViewBag.Fecha = fecha;
             Console.WriteLine(fecha);
             DateTime day;
             day = DateTime.Parse(fecha);
             var daycitas = db.Citas.Where(c => c.fecha == day).ToList();
-
             return View(daycitas);
         }
 
@@ -49,16 +49,39 @@ namespace Analisis.Controllers
         {
             if (ModelState.IsValid)
             {
-                nuevacita.Estado = "Agendado"; // Marcar como agendado al crearse
+                bool citaExistente = db.Citas.Any(c =>
+                c.fecha == nuevacita.fecha &&
+                c.hora == nuevacita.hora);
 
-                db.Citas.Add(nuevacita);
-                db.SaveChanges();
-                return RedirectToAction("Calendar");
+                if (citaExistente)
+                {
+                    ModelState.AddModelError("hora", "Ya existe una cita en esa fecha y hora.");
+                }
+                else
+                {
+
+                    nuevacita.Estado = "Agendado"; // Marcar como agendado al crearse
+
+                    db.Citas.Add(nuevacita);
+                    db.SaveChanges();
+                    return RedirectToAction("Calendar");
+                }
             }
             ViewBag.Servicios = new SelectList(db.Servicios.ToList(), "Id", "Nombre");
             ViewBag.Clientes = new SelectList(db.Clientes.ToList(), "id", "nombre");
             ViewBag.Profesionales = new SelectList(db.Empleados.Where(p => p.tipo == "Profesional"), "id", "nombre");
             return View(nuevacita);
+
+        }
+
+        public ActionResult ModifyDate(int id)
+        {
+            
+            Citas cita = db.Citas.Find(id);
+            ViewBag.Servicios = new SelectList(db.Servicios.ToList(), "Id", "Nombre");
+            ViewBag.Clientes = new SelectList(db.Clientes.ToList(), "id", "nombre");
+            ViewBag.Profesionales = new SelectList(db.Empleados.Where(p => p.tipo == "Profesional"), "id", "nombre");
+            return View(cita);
         }
     }
 }

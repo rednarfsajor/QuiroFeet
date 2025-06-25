@@ -315,6 +315,7 @@
     <Content Include="Views\Clientes\EditClient.cshtml" />
     <Content Include="Views\Clientes\ListClients.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Citas\ModifyDate.cshtml" />
     <None Include="Views\Usuarios\ListUser.cshtml" />
     <Content Include="Views\Usuarios\Users.cshtml" />
     <Content Include="Views\Ventas\Sales.cshtml" />
