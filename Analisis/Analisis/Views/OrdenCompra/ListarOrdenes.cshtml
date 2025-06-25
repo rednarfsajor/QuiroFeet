@@ -1,0 +1,128 @@
+﻿@model IEnumerable<Analisis.BD.OrdenesCompra>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Listado de Órdenes de Compra";
+}
+
+<div class="container mt-5">
+    <!-- Título -->
+    <h2 class="text-center mb-4">@ViewBag.Title</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info text-center">
+            No se encontraron órdenes de compra.
+        </div>
+    }
+    else
+    {
+        <table class="table table-striped text-center">
+            <thead class="bg-dark text-white">
+                <tr>
+                    <th>ID</th>
+                    <th>Proveedor</th>
+                    <th>Fecha y Hora</th>
+                    <th>Estado</th>
+                    <th>Total (₡)</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var orden in Model)
+                {
+                    <tr>
+                        <td>@orden.id_orden</td>
+                        <td>@orden.Proveedores.nombre</td>
+                        <td>@orden.fecha_creacion.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>@orden.status</td>
+                        <td>₡@(orden.total.HasValue ? orden.total.Value.ToString("N2") : "0.00")</td>
+                        <td class="d-flex justify-content-center gap-2">
+                            <a href="@Url.Action("DetallesOrdenCompra","OrdenCompra", new { id = orden.id_orden })"
+                               class="btn btn-ver">
+                                <i class="bi bi-eye"></i> Ver
+                            </a>
+                            <a href="@Url.Action("EditarOrdenCompra","OrdenCompra", new { id = orden.id_orden })"
+                               class="btn btn-editar">
+                                <i class="bi bi-pencil-square"></i> Editar
+                            </a>
+                            <a href="@Url.Action("EliminarOrdenCompra","OrdenCompra", new { id = orden.id_orden })"
+                               class="btn btn-eliminar">
+                                <i class="bi bi-trash-fill"></i> Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+<style>
+    .container {
+        max-width: 1000px;
+        background-color: #ffffff;
+        padding: 30px;
+        margin: 40px auto;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+    }
+
+    h2 {
+        color: #234449;
+    }
+
+    .table th {
+        background-color: #234449 !important;
+    }
+
+    .table td,
+    .table th {
+        vertical-align: middle;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.9em;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        border: none;
+        text-decoration: none;
+        user-select: none;
+        color: white !important;
+    }
+
+    .btn-ver {
+        background-color: #3e77f8;
+    }
+
+        .btn-ver:hover {
+            background-color: #234449;
+        }
+
+    .btn-editar {
+        background-color: #3e77f8;
+    }
+
+        .btn-editar:hover {
+            background-color: #234449;
+        }
+
+    .btn-eliminar {
+        background-color: #b02a37;
+        color: white !important;
+    }
+
+        .btn-eliminar:hover {
+            background-color: #7a1c24;
+        }
+
+    .btn i {
+        color: white !important;
+    }
+</style>

@@ -12,22 +12,12 @@ namespace Analisis.BD
     using System;
     using System.Collections.Generic;
     
-    public partial class Empleados
+    public partial class Profesionales
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Empleados()
-        {
-            this.Citas = new HashSet<Citas>();
-        }
-    
         public int id { get; set; }
         public string nombre { get; set; }
-        public string tipo { get; set; }
         public string especialidad { get; set; }
         public string correo { get; set; }
-        public string telefono { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Citas> Citas { get; set; }
+        public string numero { get; set; }
     }
 }

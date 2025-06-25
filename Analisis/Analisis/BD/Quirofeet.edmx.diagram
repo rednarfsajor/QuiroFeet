@@ -23,6 +23,15 @@
         <AssociationConnector Association="QuiroFeetModel.FK__Citas__id_client__4CA06362" />
         <AssociationConnector Association="QuiroFeetModel.FK__Citas__id_profes__4D94879B" />
         <AssociationConnector Association="QuiroFeetModel.FK_Citas_Servicios" />
+        <EntityTypeShape EntityType="QuiroFeetModel.C__MigrationHistory" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="QuiroFeetModel.DetalleOrden" Width="1.5" PointX="5.25" PointY="14.125" />
+        <EntityTypeShape EntityType="QuiroFeetModel.OrdenesCompra" Width="1.5" PointX="3" PointY="14" />
+        <EntityTypeShape EntityType="QuiroFeetModel.Profesionales" Width="1.5" PointX="10.375" PointY="3.75" />
+        <EntityTypeShape EntityType="QuiroFeetModel.Profesionals" Width="1.5" PointX="10.375" PointY="6.75" />
+        <EntityTypeShape EntityType="QuiroFeetModel.Recepcionistas" Width="1.5" PointX="10.375" PointY="10.75" />
+        <EntityTypeShape EntityType="QuiroFeetModel.sysdiagrams" Width="1.5" PointX="12.375" PointY="0.75" />
+        <AssociationConnector Association="QuiroFeetModel.FK__DetalleOr__id_or__06CD04F7" />
+        <AssociationConnector Association="QuiroFeetModel.FK__OrdenesCo__prove__03F0984C" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

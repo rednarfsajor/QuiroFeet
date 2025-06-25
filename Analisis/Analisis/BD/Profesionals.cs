@@ -12,15 +12,14 @@ namespace Analisis.BD
     using System;
     using System.Collections.Generic;
     
-    public partial class Ventas
+    public partial class Profesionals
     {
-        public int id { get; set; }
-        public int id_cliente { get; set; }
-        public string servicio { get; set; }
-        public string detalle { get; set; }
-        public decimal monto { get; set; }
-        public Nullable<System.DateTime> fecha { get; set; }
-    
-        public virtual Clientes Clientes { get; set; }
+        public int IdProfesional { get; set; }
+        public string CodigoUnico { get; set; }
+        public string NombreCompleto { get; set; }
+        public string Identificacion { get; set; }
+        public string Especialidad { get; set; }
+        public string Telefono { get; set; }
+        public string CorreoElectronico { get; set; }
     }
 }

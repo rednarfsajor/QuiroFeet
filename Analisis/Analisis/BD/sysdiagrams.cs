@@ -12,15 +12,12 @@ namespace Analisis.BD
     using System;
     using System.Collections.Generic;
     
-    public partial class Ventas
+    public partial class sysdiagrams
     {
-        public int id { get; set; }
-        public int id_cliente { get; set; }
-        public string servicio { get; set; }
-        public string detalle { get; set; }
-        public decimal monto { get; set; }
-        public Nullable<System.DateTime> fecha { get; set; }
-    
-        public virtual Clientes Clientes { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

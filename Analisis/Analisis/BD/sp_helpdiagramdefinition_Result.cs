@@ -10,17 +10,10 @@
 namespace Analisis.BD
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Ventas
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public int id { get; set; }
-        public int id_cliente { get; set; }
-        public string servicio { get; set; }
-        public string detalle { get; set; }
-        public decimal monto { get; set; }
-        public Nullable<System.DateTime> fecha { get; set; }
-    
-        public virtual Clientes Clientes { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

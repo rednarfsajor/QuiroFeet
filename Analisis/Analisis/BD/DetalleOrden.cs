@@ -12,15 +12,15 @@ namespace Analisis.BD
     using System;
     using System.Collections.Generic;
     
-    public partial class Ventas
+    public partial class DetalleOrden
     {
-        public int id { get; set; }
-        public int id_cliente { get; set; }
-        public string servicio { get; set; }
-        public string detalle { get; set; }
-        public decimal monto { get; set; }
-        public Nullable<System.DateTime> fecha { get; set; }
+        public int id_detalle { get; set; }
+        public int id_orden { get; set; }
+        public int id_producto { get; set; }
+        public int qty { get; set; }
+        public Nullable<decimal> precio_unidad { get; set; }
+        public Nullable<decimal> subtotal { get; set; }
     
-        public virtual Clientes Clientes { get; set; }
+        public virtual OrdenesCompra OrdenesCompra { get; set; }
     }
 }

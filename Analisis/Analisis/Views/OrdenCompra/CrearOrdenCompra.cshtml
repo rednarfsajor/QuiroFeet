@@ -1,0 +1,236 @@
+﻿@model object
+@using Analisis.BD
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Crear Nueva Orden de Compra";
+    var productos = (List<Productos>)ViewBag.Productos;
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">@ViewBag.Title</h2>
+
+    @using (Html.BeginForm("CrearOrdenCompra", "OrdenCompra", FormMethod.Post, new { @class = "mx-auto", style = "max-width:800px;" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="mb-3">
+            @Html.Label("Proveedor", new { @class = "form-label" })
+            @Html.DropDownList("proveedor_id",
+                (SelectList)ViewBag.Proveedores,
+                "-- Seleccione --",
+                new { @class = "form-select", required = "required" })
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Fecha de Creación</label>
+            <input type="text"
+                   class="form-control"
+                   value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm")"
+                   readonly />
+        </div>
+
+        <h4 class="text-primary mb-3">Productos</h4>
+        <div id="productos-container">
+            <div class="row mb-3 g-2 align-items-end producto-row">
+                <div class="col">
+                    <label class="form-label">Producto</label>
+                    <select name="id_producto" class="form-select" required>
+                        <option value="">-- Seleccione --</option>
+                        @foreach (var p in productos)
+                        {
+                            <option value="@p.id" data-precio="@p.precio">@p.nombre</option>
+                        }
+                    </select>
+                </div>
+                <div class="col">
+                    <label class="form-label">Cantidad</label>
+                    <input type="number" name="qty" class="form-control" min="1" value="1" required />
+                </div>
+                <div class="col">
+                    <label class="form-label">Precio Unitario</label>
+                    <input type="number" name="precio" class="form-control" step="0.01" min="0" value="0.00" readonly />
+                </div>
+                <div class="col-auto">
+                    <button type="button" class="btn-eliminar-icono">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" id="add-product-btn" class="btn-azul mt-3">
+            <i class="bi bi-plus-circle me-1"></i> Agregar Producto
+        </button>
+
+        <div class="text-center mt-4 mb-2">
+            <strong>Total: <span id="totalGeneral">₡0.00</span></strong>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn-azul px-4 me-2">
+                <i class="bi bi-save me-1"></i> Guardar Orden
+            </button>
+            <a href="@Url.Action("ListarOrdenes","OrdenCompra")" class="btn-azul px-4">
+                <i class="bi bi-arrow-left-circle me-1"></i> Cancelar
+            </a>
+        </div>
+    }
+</div>
+
+<script>
+    function actualizarPrecioYTotal() {
+        const filas = document.querySelectorAll(".producto-row");
+        let total = 0;
+
+        filas.forEach(row => {
+            const select = row.querySelector("select[name='id_producto']");
+            const precioInput = row.querySelector("input[name='precio']");
+            const qtyInput = row.querySelector("input[name='qty']");
+
+            const selectedOption = select.options[select.selectedIndex];
+            const precio = parseFloat(selectedOption.getAttribute("data-precio")) || 0;
+            const cantidad = parseInt(qtyInput.value) || 0;
+
+            precioInput.value = precio.toFixed(2);
+            total += precio * cantidad;
+        });
+
+        document.getElementById("totalGeneral").innerText = "₡" + total.toFixed(2);
+    }
+
+    function attachRemove(row) {
+        row.querySelector(".btn-eliminar-icono").addEventListener("click", function () {
+            if (document.querySelectorAll(".producto-row").length > 1) {
+                row.remove();
+                actualizarPrecioYTotal();
+            }
+        });
+    }
+
+    document.getElementById("add-product-btn").addEventListener("click", function () {
+        var container = document.getElementById("productos-container");
+        var template = container.querySelector(".producto-row").cloneNode(true);
+
+        template.querySelector("select[name='id_producto']").value = "";
+        template.querySelector("input[name='qty']").value = 1;
+        template.querySelector("input[name='precio']").value = "0.00";
+
+        container.appendChild(template);
+        attachRemove(template);
+    });
+
+    document.addEventListener("change", function (e) {
+        if (e.target.matches("select[name='id_producto']") || e.target.matches("input[name='qty']")) {
+            actualizarPrecioYTotal();
+        }
+    });
+
+    attachRemove(document.querySelector(".producto-row"));
+    actualizarPrecioYTotal();
+</script>
+
+<<style>
+    .container {
+        max-width: 800px;
+        background-color: #ffffff;
+        padding: 30px;
+        margin: 40px auto;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+        color: #234449;
+    }
+
+    h2 {
+        color: #234449;
+    }
+
+    .text-primary {
+        color: #3e77f8 !important;
+    }
+
+    .form-label {
+        font-weight: 600;
+    }
+
+    .btn i {
+        vertical-align: middle;
+    }
+
+    /* ✅ Estilo azul uniforme para todos los botones principales */
+    .btn-azul {
+        background-color: #3e77f8;
+        color: white !important;
+        border: none;
+        padding: 10px 24px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1em;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        text-decoration: none;
+    }
+
+        .btn-azul:hover {
+            background-color: #234449;
+            color: white !important;
+        }
+
+        .btn-azul i {
+            color: white !important;
+        }
+
+    /* ✅ Botón de eliminar (basurero blanco y fondo azul) */
+    .btn-eliminar-icono {
+        background-color: #3e77f8;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 12px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .btn-eliminar-icono:hover {
+            background-color: #234449;
+        }
+
+        .btn-eliminar-icono i {
+            color: white !important;
+            font-size: 1.2em;
+        }
+
+    /* ✅ Botón Agregar Producto */
+    #add-product-btn {
+        background-color: #3e77f8;
+        color: white !important;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        padding: 10px 18px;
+        font-size: 1em;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+        #add-product-btn:hover {
+            background-color: #234449;
+            color: white !important;
+        }
+
+        #add-product-btn i {
+            color: white !important;
+        }
+
+    /* ✅ Espaciado total */
+    #totalGeneral {
+        font-weight: bold;
+        font-size: 1.1em;
+    }
+</style>

@@ -46,11 +46,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -136,6 +142,12 @@
     <Compile Include="BD\Clientes.cs">
       <DependentUpon>Quirofeet.tt</DependentUpon>
     </Compile>
+    <Compile Include="BD\C__MigrationHistory.cs">
+      <DependentUpon>Quirofeet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BD\DetalleOrden.cs">
+      <DependentUpon>Quirofeet.tt</DependentUpon>
+    </Compile>
     <Compile Include="BD\Empleados.cs">
       <DependentUpon>Quirofeet.tt</DependentUpon>
     </Compile>
@@ -145,7 +157,16 @@
     <Compile Include="BD\Ordenes.cs">
       <DependentUpon>Quirofeet.tt</DependentUpon>
     </Compile>
+    <Compile Include="BD\OrdenesCompra.cs">
+      <DependentUpon>Quirofeet.tt</DependentUpon>
+    </Compile>
     <Compile Include="BD\Productos.cs">
+      <DependentUpon>Quirofeet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BD\Profesionales.cs">
+      <DependentUpon>Quirofeet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BD\Profesionals.cs">
       <DependentUpon>Quirofeet.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\Proveedores.cs">
@@ -166,10 +187,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Quirofeet.edmx</DependentUpon>
     </Compile>
+    <Compile Include="BD\Recepcionistas.cs">
+      <DependentUpon>Quirofeet.tt</DependentUpon>
+    </Compile>
     <Compile Include="BD\Roles.cs">
       <DependentUpon>Quirofeet.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\Servicios.cs">
+      <DependentUpon>Quirofeet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BD\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Quirofeet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BD\sp_helpdiagrams_Result.cs">
+      <DependentUpon>Quirofeet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BD\sysdiagrams.cs">
       <DependentUpon>Quirofeet.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\Usuarios.cs">
@@ -184,6 +217,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventarioController.cs" />
     <Compile Include="Controllers\EmpleadosController.cs" />
+    <Compile Include="Controllers\OrdenCompraController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
     <Compile Include="Controllers\RecibosController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
@@ -287,7 +321,6 @@
     <Content Include="Views\Citas\CreateDate.cshtml" />
     <Content Include="Views\Citas\Day.cshtml" />
     <Content Include="Views\Inventario\AlertasStock.cshtml" />
-    <Content Include="Views\Inventario\CrearOrdenCompra.cshtml" />
     <Content Include="Views\Inventario\EditarProducto.cshtml" />
     <Content Include="Views\Inventario\HistorialMovimientos.cshtml" />
     <Content Include="Views\Inventario\InactivarProducto.cshtml" />
@@ -318,6 +351,11 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Citas\ModifyDate.cshtml" />
     <Content Include="Views\Usuarios\ListInactiveUsers.cshtml" />
+    <Content Include="Views\OrdenCompra\CrearOrdenCompra.cshtml" />
+    <Content Include="Views\OrdenCompra\DetallesOrdenCompra.cshtml" />
+    <Content Include="Views\OrdenCompra\EditarOrdenCompra.cshtml" />
+    <Content Include="Views\OrdenCompra\EliminarOrdenCompra.cshtml" />
+    <Content Include="Views\OrdenCompra\ListarOrdenes.cshtml" />
     <None Include="Views\Usuarios\ListUser.cshtml" />
     <Content Include="Views\Usuarios\Users.cshtml" />
     <Content Include="Views\Ventas\Sales.cshtml" />
