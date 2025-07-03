@@ -78,17 +78,21 @@ namespace Analisis.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CrearOrdenCompra(int proveedor_id, string[] id_producto, int[] qty, decimal[] precio)
         {
-            if (id_producto.Length != qty.Length || qty.Length != precio.Length)
+            /*if (id_producto.Length != qty.Length || qty.Length != precio.Length)
             {
                 ModelState.AddModelError("", "Los detalles de productos están desalineados.");
-            }
+            }*/
 
-            if (!ModelState.IsValid)
+            /*if (!ModelState.IsValid)
             {
                 ViewBag.Proveedores = new SelectList(db.Proveedores, "id", "nombre", proveedor_id);
                 ViewBag.Productos = db.Productos.ToList();
                 return View();
-            }
+            }*/
+            System.Diagnostics.Debug.WriteLine("Proveedor: " + proveedor_id);
+            System.Diagnostics.Debug.WriteLine("Productos: " + string.Join(",", id_producto ?? new string[0]));
+            System.Diagnostics.Debug.WriteLine("Cantidades: " + string.Join(",", qty ?? new int[0]));
+            System.Diagnostics.Debug.WriteLine("Precios: " + string.Join(",", precio ?? new decimal[0]));
 
             var orden = new OrdenesCompra
             {
@@ -102,7 +106,7 @@ namespace Analisis.Controllers
             db.SaveChanges(); // Guardamos para obtener el ID
 
             decimal totalOrden = 0;
-
+            
             for (int i = 0; i < id_producto.Length; i++)
             {
                 var detalle = new DetalleOrden
@@ -276,6 +280,21 @@ namespace Analisis.Controllers
                 byte[] bytes = ms.ToArray();
                 return File(bytes, "application/pdf", $"Orden_{orden.id_orden}.pdf");
             }
+        }
+
+        [HttpGet]
+        public JsonResult GetProductosPorProveedor(int proveedorId)
+        {
+            var productos = db.Productos
+                .Where(p => p.id_proveedor == proveedorId)
+                .Select(p => new {
+                    id = p.id,
+                    nombre = p.nombre,
+                    precio = p.precio
+                })
+                .ToList();
+
+            return Json(productos, JsonRequestBehavior.AllowGet);
         }
 
     }
