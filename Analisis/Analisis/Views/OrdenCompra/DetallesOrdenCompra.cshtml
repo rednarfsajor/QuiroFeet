@@ -1,0 +1,104 @@
+﻿@using Analisis.BD
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var orden = ViewBag.Orden as OrdenesCompra;
+
+    if (orden == null)
+    {
+        <div class="alert alert-danger text-center">
+            No se pudo cargar la información de la orden.
+        </div>
+        return;
+    }
+
+    ViewBag.Title = $"Detalles de la Orden #{orden.id_orden}";
+    var detalles = ViewBag.Detalles as IEnumerable<dynamic>;
+}
+
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">@ViewBag.Title</h2>
+
+    <!-- Información de la Orden -->
+    <div class="mb-5">
+        <h4 class="text-primary">Información de la Orden</h4>
+        <p><strong>Proveedor:</strong> @orden.Proveedores.nombre</p>
+        <p><strong>Fecha de creación:</strong> @orden.fecha_creacion.ToString("dd/MM/yyyy HH:mm")</p>
+        <p>
+            <strong>Fecha de recepción:</strong>
+            @(orden.fecha_recepcion.HasValue
+                ? orden.fecha_recepcion.Value.ToString("dd/MM/yyyy")
+                : "-")
+        </p>
+        <p><strong>Estado:</strong> @orden.status</p>
+        <p>
+            <strong>Total:</strong>
+            ₡@(orden.total.HasValue
+                ? orden.total.Value.ToString("N2")
+                : "0.00")
+        </p>
+    </div>
+
+    <!-- Detalle de Productos -->
+    <h4 class="text-primary mb-3">Detalle de Productos</h4>
+    <table class="table table-striped text-center">
+        <thead class="bg-dark text-white">
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var d in detalles)
+            {
+                <tr>
+                    <td>@d.Nombre</td>
+                    <td>@d.Cantidad</td>
+                    
+                    <td>₡@string.Format("{0:N2}", d.PrecioUnidad)</td>
+                    <td>₡@string.Format("{0:N2}", d.Subtotal)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Botones -->
+    <a href="@Url.Action("ListarOrdenes", "OrdenCompra")"
+       class="btn btn-primary rounded-pill px-4 py-2 me-2 text-white">
+        <i class="bi bi-arrow-left text-white me-1"></i> Volver al listado
+    </a>
+
+    <a href="@Url.Action("DescargarOrdenPDF", "OrdenCompra", new { id = orden.id_orden })"
+       class="btn btn-primary rounded-pill px-4 py-2 text-white">
+        <i class="bi bi-file-earmark-pdf text-white me-1"></i> Descargar PDF
+    </a>
+
+    <style>
+        .container {
+            max-width: 900px;
+            background-color: #ffffff;
+            padding: 40px;
+            margin: 40px auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: #234449;
+        }
+
+        .text-primary {
+            color: #3e77f8 !important;
+        }
+
+        .table th {
+            background-color: #234449 !important;
+        }
+
+        .btn i {
+            vertical-align: middle;
+        }
+    </style>

@@ -1,0 +1,66 @@
+﻿@model Analisis.BD.OrdenesCompra
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = $"Eliminar Orden #{Model.id_orden}";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4 text-danger">Eliminar Orden #@Model.id_orden</h2>
+
+    <div class="alert alert-warning">
+        <p>¿Estás seguro de que deseas eliminar esta orden de compra? Esta acción no se puede deshacer.</p>
+    </div>
+
+    <div class="mb-4">
+        <h5 class="text-primary">Resumen de la Orden</h5>
+        <ul class="list-unstyled">
+            <li><strong>Proveedor:</strong> @Model.Proveedores.nombre</li>
+            <li><strong>Fecha de creación:</strong> @Model.fecha_creacion.ToString("dd/MM/yyyy HH:mm")</li>
+            <li><strong>Estado:</strong> @Model.status</li>
+            <li><strong>Total:</strong> ₡@(Model.total.HasValue ? Model.total.Value.ToString("N2") : "0.00")</li>
+        </ul>
+    </div>
+
+    @using (Html.BeginForm("EliminarOrdenCompra", "OrdenCompra", FormMethod.Post, new { @class = "d-inline" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.id_orden)
+        <button type="submit" class="btn btn-danger px-4 me-2">
+            <i class="bi bi-trash me-1"></i> Eliminar
+        </button>
+    }
+    <a href="@Url.Action("ListarOrdenes","OrdenCompra")" class="btn btn-secondary px-4">
+        <i class="bi bi-arrow-left-circle me-1"></i> Cancelar
+    </a>
+</div>
+
+<style>
+    .container {
+        max-width: 700px;
+        background-color: #ffffff;
+        padding: 40px;
+        margin: 40px auto;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+        color: #234449;
+    }
+
+    h2 {
+        font-size: 1.75em;
+    }
+
+    .alert-warning {
+        background-color: #fff3cd;
+        border-color: #ffeeba;
+        color: #856404;
+    }
+
+    .text-primary {
+        color: #3e77f8 !important;
+    }
+
+    .btn i {
+        vertical-align: middle;
+    }
+</style>
