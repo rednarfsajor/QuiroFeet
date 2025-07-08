@@ -1,33 +1,65 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\QuiroFeet\\Analisis\\",
+  "WorkspaceRootPath": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\quirofeet\\analisis\\analisis\\views\\ordencompra\\crearordencompra.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\ordencompra\\crearordencompra.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\final\\quirofeet\\analisis\\analisis\\views\\reportes\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\reportes\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\quirofeet\\analisis\\analisis\\controllers\\ordencompracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\ordencompracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\final\\quirofeet\\analisis\\analisis\\views\\reportes\\estadostock.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\reportes\\estadostock.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\quirofeet\\analisis\\analisis\\views\\inventario\\ordencompra.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\inventario\\ordencompra.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\final\\quirofeet\\analisis\\analisis\\controllers\\reportescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\reportescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\views\\inventario\\inventario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\inventario\\inventario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\final\\quirofeet\\analisis\\analisis\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\quirofeet\\analisis\\analisis\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\final\\quirofeet\\analisis\\analisis\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\final\\quirofeet\\analisis\\analisis\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\final\\quirofeet\\analisis\\analisis\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\packages\\EPPlus.8.0.7\\readme.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:packages\\EPPlus.8.0.7\\readme.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\analisis\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\bd\\quirofeet.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|c:\\users\\amd\\3d objects\\final\\quirofeet\\analisis\\analisis\\views\\ordencompra\\crearordencompra.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\ordencompra\\crearordencompra.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\analisis\\controllers\\ordencompracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\ordencompracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\analisis\\views\\inventario\\ordencompra.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\inventario\\ordencompra.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\analisis\\views\\inventario\\inventario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\views\\inventario\\inventario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\analisis\\bd\\quirofeet.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\bd\\quirofeet.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\QuiroFeet\\Analisis\\analisis\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\analisis\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{58A5D05B-AE0C-4B07-9DAF-93C63BD28D74}|Analisis\\Analisis.csproj|solutionrelative:analisis\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -38,101 +70,416 @@
       "DocumentGroups": [
         {
           "DockedWidth": 214,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 59,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:12:0:{2456bd12-ecf7-4988-a4a6-67d49173f565}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:13:0:{2456bd12-ecf7-4988-a4a6-67d49173f565}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:133:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:134:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:135:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:136:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:137:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:138:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:14:0:{2456bd12-ecf7-4988-a4a6-67d49173f565}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{809f6ff3-8092-454a-8003-6d4091f9b5bb}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{809f6ff3-8092-454a-8003-6d4091f9b5bb}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:134:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:11:0:{2456bd12-ecf7-4988-a4a6-67d49173f565}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:140:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:137:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:138:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:139:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:140:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:141:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:142:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:143:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:144:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:145:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:146:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:147:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:148:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:151:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:149:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:150:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:136:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:152:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:153:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:154:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:155:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:156:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:159:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:133:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:135:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{ca8cc5c7-0231-406a-95cd-aa5ed6ac0190}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Global.asax.cs",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Global.asax.cs",
+              "RelativeDocumentMoniker": "Analisis\\Global.asax.cs",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Global.asax.cs",
+              "RelativeToolTip": "Analisis\\Global.asax.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-08T02:55:53.38Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAAwF0AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-08T02:52:09.079Z",
+              "EditorCaption": ""
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "OrdenCompraController.cs",
-              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\OrdenCompraController.cs",
-              "RelativeDocumentMoniker": "Analisis\\Controllers\\OrdenCompraController.cs",
-              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\OrdenCompraController.cs",
-              "RelativeToolTip": "Analisis\\Controllers\\OrdenCompraController.cs",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAcwF8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-03T03:29:28.205Z",
+              "Title": "EstadoStock.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Reportes\\EstadoStock.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Reportes\\EstadoStock.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Reportes\\EstadoStock.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Reportes\\EstadoStock.cshtml",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAwFoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-08T02:50:33.42Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-08T02:46:42.709Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Reportes\\Index.cshtml",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Reportes\\Index.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Reportes\\Index.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\Reportes\\Index.cshtml",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAADwAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-08T02:40:54.461Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "readme.txt",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\packages\\EPPlus.8.0.7\\readme.txt",
+              "RelativeDocumentMoniker": "packages\\EPPlus.8.0.7\\readme.txt",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\packages\\EPPlus.8.0.7\\readme.txt",
+              "RelativeToolTip": "packages\\EPPlus.8.0.7\\readme.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-07-08T02:38:21.209Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ReportesController.cs",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ReportesController.cs",
+              "RelativeDocumentMoniker": "Analisis\\Controllers\\ReportesController.cs",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Controllers\\ReportesController.cs",
+              "RelativeToolTip": "Analisis\\Controllers\\ReportesController.cs",
+              "ViewState": "AgIAAI8AAAAAAAAAAAAqwKMAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-08T02:37:20.626Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Web.config",
+              "RelativeDocumentMoniker": "Analisis\\Views\\Web.config",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Web.config",
+              "RelativeToolTip": "Analisis\\Views\\Web.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-07-08T02:29:55.99Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "OrdenCompraController.cs",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Controllers\\OrdenCompraController.cs",
+              "RelativeDocumentMoniker": "Analisis\\Controllers\\OrdenCompraController.cs",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Controllers\\OrdenCompraController.cs",
+              "RelativeToolTip": "Analisis\\Controllers\\OrdenCompraController.cs",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAcwF8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-03T03:29:28.205Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "CrearOrdenCompra.cshtml",
-              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\OrdenCompra\\CrearOrdenCompra.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\OrdenCompra\\CrearOrdenCompra.cshtml",
               "RelativeDocumentMoniker": "Analisis\\Views\\OrdenCompra\\CrearOrdenCompra.cshtml",
-              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\OrdenCompra\\CrearOrdenCompra.cshtml*",
-              "RelativeToolTip": "Analisis\\Views\\OrdenCompra\\CrearOrdenCompra.cshtml*",
-              "ViewState": "AgIAAOQAAAAAAAAAAADwvwMBAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\OrdenCompra\\CrearOrdenCompra.cshtml",
+              "RelativeToolTip": "Analisis\\Views\\OrdenCompra\\CrearOrdenCompra.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-07-03T03:32:54.07Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 11,
               "Title": "OrdenCompra.cshtml",
-              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Inventario\\OrdenCompra.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Inventario\\OrdenCompra.cshtml",
               "RelativeDocumentMoniker": "Analisis\\Views\\Inventario\\OrdenCompra.cshtml",
-              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Inventario\\OrdenCompra.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Inventario\\OrdenCompra.cshtml",
               "RelativeToolTip": "Analisis\\Views\\Inventario\\OrdenCompra.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-03T03:32:38.161Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-03T03:32:38.161Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 12,
               "Title": "Inventario.cshtml",
-              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Inventario\\Inventario.cshtml",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Inventario\\Inventario.cshtml",
               "RelativeDocumentMoniker": "Analisis\\Views\\Inventario\\Inventario.cshtml",
-              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Views\\Inventario\\Inventario.cshtml",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Views\\Inventario\\Inventario.cshtml",
               "RelativeToolTip": "Analisis\\Views\\Inventario\\Inventario.cshtml",
               "ViewState": "AgIAAGwAAAAAAAAAAAAAAIYAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-25T22:13:45.287Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-25T22:13:45.287Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 13,
               "Title": "Quirofeet.edmx [Diagram1]",
-              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\BD\\Quirofeet.edmx",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\BD\\Quirofeet.edmx",
               "RelativeDocumentMoniker": "Analisis\\BD\\Quirofeet.edmx",
               "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\BD\\Quirofeet.edmx [Diagram1]",
-              "RelativeToolTip": "Analisis\\BD\\Quirofeet.edmx [Diagram1]",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\QuiroFeet\\Analisis\\Analisis\\BD\\Quirofeet.edmx [Diagram1]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
-              "WhenOpened": "2025-06-25T21:38:20.321Z",
-              "EditorCaption": " [Diagram1]"
+              "WhenOpened": "2025-06-25T21:38:20.321Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "Web.config",
-              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Web.config",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Web.config",
               "RelativeDocumentMoniker": "Analisis\\Web.config",
-              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Web.config",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Web.config",
               "RelativeToolTip": "Analisis\\Web.config",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAAAEAAAADmAAAAAAAAAA==",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAAEAAAADcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
               "WhenOpened": "2025-06-25T21:36:31.968Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 14,
               "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "Analisis\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\QuiroFeet\\Analisis\\Analisis\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\AMD\\3D Objects\\Final\\QuiroFeet\\Analisis\\Analisis\\Controllers\\HomeController.cs",
               "RelativeToolTip": "Analisis\\Controllers\\HomeController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T18:24:42.079Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-25T18:24:42.079Z"
             }
           ]
         }

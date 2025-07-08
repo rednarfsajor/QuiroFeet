@@ -1,0 +1,75 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Reportes";
+}
+
+<style>
+    body {
+        background-color: #f5f8fa;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .reportes-container {
+        max-width: 900px;
+        margin: 60px auto;
+        padding: 30px 25px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        text-align: center;
+    }
+
+    h2 {
+        color: #1f3a47;
+        font-size: 2.75rem;
+        font-weight: 700;
+        margin-bottom: 30px;
+        letter-spacing: 1px;
+    }
+
+    .action-buttons {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+
+    .action-buttons a {
+        display: inline-block;
+        padding: 15px 22px;
+        background: linear-gradient(135deg, #3e77f8, #2c57d4);
+        color: white !important;
+        font-weight: 600;
+        font-size: 1.1rem;
+        border-radius: 10px;
+        box-shadow: 0 6px 15px rgba(62, 119, 248, 0.35);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        user-select: none;
+        cursor: pointer;
+        border: none;
+    }
+
+    .action-buttons a:hover,
+    .action-buttons a:focus {
+        background: linear-gradient(135deg, #234449, #1c2e35);
+        box-shadow: 0 8px 20px rgba(35, 68, 73, 0.6);
+        transform: translateY(-5px);
+        outline: none;
+    }
+
+   
+</style>
+
+<div class="reportes-container">
+    <h2>Reportes Disponibles</h2>
+
+    <div class="action-buttons">
+        <a href="@Url.Action("ExportarOrdenesPdf", "Reportes")" role="button">Órdenes PDF</a>
+        <a href="@Url.Action("ExportarProveedoresPdf", "Reportes")" role="button">Proveedores PDF</a>
+        <a href="@Url.Action("ExportarUsuariosPdf", "Reportes")" role="button">Usuarios PDF</a>
+        <a href="@Url.Action("ExportarInventarioPdf", "Reportes")" role="button">Inventario PDF</a>
+        <a href="@Url.Action("ExportarClientesPdf", "Reportes")" role="button">Clientes PDF</a>
+        <a href="@Url.Action("ExportarServiciosPdf", "Reportes")" role="button">Servicios PDF</a>
+    </div>
+</div>
