@@ -11,7 +11,7 @@ namespace Analisis.BD
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Ventas
     {
         public int id { get; set; }
@@ -19,9 +19,9 @@ namespace Analisis.BD
         public string servicio { get; set; }
         public string detalle { get; set; }
         public decimal monto { get; set; }
-        public DateTime? fecha { get; set; }
-
+        public Nullable<System.DateTime> fecha { get; set; }
+        public string NumeroRecibo { get; set; }
+    
         public virtual Clientes Clientes { get; set; }
     }
-
 }

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
-using Analisis.BD; // Tu contexto de base de datos
+using Analisis.BD;
 using System.Data.Entity;
 
 namespace Analisis.Controllers
 {
     public class ServiciosController : Controller
     {
-        private QuiroFeetEntities2 db = new QuiroFeetEntities2();
+        private QuiroFeetEntities5 db = new QuiroFeetEntities5();
 
         public ActionResult ServiceIndex()
         {

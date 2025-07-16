@@ -7,7 +7,7 @@ namespace Analisis.Controllers
 {
     public class UsuariosController : Controller
     {
-        private QuiroFeetEntities2 db = new QuiroFeetEntities2();
+        private QuiroFeetEntities5 db = new QuiroFeetEntities5();
 
         // GET: Usuarios/Users (MENÚ)
         public ActionResult Users()

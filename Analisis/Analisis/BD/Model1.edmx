@@ -116,6 +116,7 @@
           <Property Name="detalle" Type="nvarchar" MaxLength="255" />
           <Property Name="monto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="fecha" Type="datetime" />
+          <Property Name="NumeroRecibo" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <Association Name="FK__Citas__id_client__03F0984C">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
@@ -371,6 +372,7 @@
           <Property Name="detalle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="monto" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="NumeroRecibo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Clientes" Relationship="Self.FK__Ventas__id_clien__5DCAEF64" FromRole="Ventas" ToRole="Clientes" />
         </EntityType>
         <Association Name="FK__Citas__id_client__03F0984C">
@@ -457,7 +459,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="QuiroFeetEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="QuiroFeetEntities5" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Citas" EntityType="Self.Citas" />
           <EntitySet Name="Clientes" EntityType="Self.Clientes" />
           <EntitySet Name="Empleados" EntityType="Self.Empleados" />
@@ -503,7 +505,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="QuiroFeetModelStoreContainer" CdmEntityContainer="QuiroFeetEntities2">
+        <EntityContainerMapping StorageEntityContainer="QuiroFeetModelStoreContainer" CdmEntityContainer="QuiroFeetEntities5">
           <EntitySetMapping Name="Citas">
             <EntityTypeMapping TypeName="QuiroFeetModel.Citas">
               <MappingFragment StoreEntitySet="Citas">
@@ -624,6 +626,7 @@
                 <ScalarProperty Name="detalle" ColumnName="detalle" />
                 <ScalarProperty Name="monto" ColumnName="monto" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="NumeroRecibo" ColumnName="NumeroRecibo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

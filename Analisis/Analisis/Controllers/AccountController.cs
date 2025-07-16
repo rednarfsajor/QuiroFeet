@@ -6,7 +6,7 @@ namespace Analisis.Controllers
 {
     public class AccountController : Controller
     {
-        private QuiroFeetEntities2 db = new QuiroFeetEntities2();
+        private QuiroFeetEntities5 db = new QuiroFeetEntities5();
 
         // GET: Account/Login
         public ActionResult Login()

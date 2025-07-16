@@ -13,10 +13,10 @@ namespace Analisis.BD
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class QuiroFeetEntities2 : DbContext
+    public partial class QuiroFeetEntities5 : DbContext
     {
-        public QuiroFeetEntities2()
-            : base("name=QuiroFeetEntities2")
+        public QuiroFeetEntities5()
+            : base("name=QuiroFeetEntities5")
         {
         }
     
