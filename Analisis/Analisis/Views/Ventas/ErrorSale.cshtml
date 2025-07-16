@@ -3,17 +3,18 @@
     ViewBag.Title = "Error en la Venta";
 }
 
-<div class="confirmation-container">
-    <h1>Error en la Venta</h1>
-    <p>Ha ocurrido un error durante el proceso de registro de la venta.</p>
-    <p>Por favor, verifica los datos e intenta nuevamente.</p>
+<div class="error-container">
+    <h1>❌ Error en la Venta</h1>
+    <p>Ha ocurrido un problema durante el registro de la venta.</p>
+    <p>Por favor, revisa los datos ingresados o contacta al soporte si el problema persiste.</p>
 
     <a href="/Ventas/RegisterSale" class="btn-back">Intentar Nuevamente</a>
+    <a href="/Ventas/Sales" class="btn-secondary">Volver al Inicio</a>
 </div>
 
 <!-- Estilos CSS -->
 <style>
-    .confirmation-container {
+    .error-container {
         max-width: 600px;
         margin: 100px auto;
         background-color: #ffffff;
@@ -25,25 +26,42 @@
 
     h1 {
         color: #D9534F;
+        font-size: 2.3em;
     }
 
     p {
         font-size: 1.2em;
         color: #555;
+        margin-bottom: 20px;
+    }
+
+    .btn-back,
+    .btn-secondary {
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 1.1em;
+        margin: 10px;
     }
 
     .btn-back {
         background-color: #D9534F;
         color: white;
-        padding: 12px 20px;
         border: none;
-        border-radius: 8px;
-        text-decoration: none;
-        display: inline-block;
-        margin-top: 20px;
     }
 
         .btn-back:hover {
             background-color: #C9302C;
+        }
+
+    .btn-secondary {
+        background-color: #234449;
+        color: white;
+        border: none;
+    }
+
+        .btn-secondary:hover {
+            background-color: #3e77f8;
         }
 </style>

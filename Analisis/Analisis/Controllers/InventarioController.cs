@@ -8,7 +8,7 @@ namespace QuiroFeet.Controllers
 {
     public class InventarioController : Controller
     {
-        private QuiroFeetEntities1 db = new QuiroFeetEntities1();
+        private QuiroFeetEntities2 db = new QuiroFeetEntities2();
 
         // Acción principal: Mostrar la vista de inventario con la lista de productos activos
         public ActionResult Inventario()

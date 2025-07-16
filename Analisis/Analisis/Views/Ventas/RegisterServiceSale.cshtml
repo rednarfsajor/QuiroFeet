@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Registrar Venta de Servicio";
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Usa tu layout general
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Registrar Venta de Servicio</h2>
+
+    @using (Html.BeginForm("RegisterServiceSale", "Ventas", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="mb-3">
+            <label for="id_cliente" class="form-label">Cliente</label>
+            @Html.DropDownList("id_cliente", (SelectList)ViewBag.Clientes, "-- Seleccione un cliente --", new { @class = "form-control" })
+        </div>
+
+        <div class="mb-3">
+            <label for="id_servicio" class="form-label">Servicio</label>
+            @Html.DropDownList("id_servicio", (SelectList)ViewBag.Servicios, "-- Seleccione un servicio --", new { @class = "form-control" })
+        </div>
+
+        <button type="submit" class="btn btn-primary">Registrar Venta</button>
+        <a href="@Url.Action("ListSales", "Ventas")" class="btn btn-secondary ms-2">Volver</a>
+    }
+</div>

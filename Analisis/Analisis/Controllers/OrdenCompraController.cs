@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -14,7 +14,7 @@ namespace Analisis.Controllers
 {
     public class OrdenCompraController : Controller
     {
-        private QuiroFeetEntities1 db = new QuiroFeetEntities1();
+        private QuiroFeetEntities2 db = new QuiroFeetEntities2();
 
         // GET: /OrdenCompra/ListarOrdenes
         public ActionResult ListarOrdenes()
@@ -83,13 +83,13 @@ namespace Analisis.Controllers
                 ModelState.AddModelError("", "Los detalles de productos están desalineados.");
             }*/
 
-            /*if (!ModelState.IsValid)
-            {
-                ViewBag.Proveedores = new SelectList(db.Proveedores, "id", "nombre", proveedor_id);
-                ViewBag.Productos = db.Productos.ToList();
-                return View();
-            }*/
-            System.Diagnostics.Debug.WriteLine("Proveedor: " + proveedor_id);
+/*if (!ModelState.IsValid)
+{
+    ViewBag.Proveedores = new SelectList(db.Proveedores, "id", "nombre", proveedor_id);
+    ViewBag.Productos = db.Productos.ToList();
+    return View();
+}*/
+/*System.Diagnostics.Debug.WriteLine("Proveedor: " + proveedor_id);
             System.Diagnostics.Debug.WriteLine("Productos: " + string.Join(",", id_producto ?? new string[0]));
             System.Diagnostics.Debug.WriteLine("Cantidades: " + string.Join(",", qty ?? new int[0]));
             System.Diagnostics.Debug.WriteLine("Precios: " + string.Join(",", precio ?? new decimal[0]));
@@ -299,3 +299,4 @@ namespace Analisis.Controllers
 
     }
 }
+*/

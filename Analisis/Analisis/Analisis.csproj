@@ -128,79 +128,52 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BD\Citas.cs">
-      <DependentUpon>Quirofeet.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\Clientes.cs">
-      <DependentUpon>Quirofeet.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BD\C__MigrationHistory.cs">
-      <DependentUpon>Quirofeet.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BD\DetalleOrden.cs">
-      <DependentUpon>Quirofeet.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\Empleados.cs">
-      <DependentUpon>Quirofeet.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\Inventario.cs">
-      <DependentUpon>Quirofeet.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BD\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BD\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BD\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="BD\Ordenes.cs">
-      <DependentUpon>Quirofeet.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BD\OrdenesCompra.cs">
-      <DependentUpon>Quirofeet.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\Productos.cs">
-      <DependentUpon>Quirofeet.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BD\Profesionales.cs">
-      <DependentUpon>Quirofeet.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BD\Profesionals.cs">
-      <DependentUpon>Quirofeet.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\Proveedores.cs">
-      <DependentUpon>Quirofeet.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BD\Quirofeet.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Quirofeet.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BD\Quirofeet.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Quirofeet.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BD\Quirofeet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Quirofeet.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="BD\Recepcionistas.cs">
-      <DependentUpon>Quirofeet.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\Roles.cs">
-      <DependentUpon>Quirofeet.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\Servicios.cs">
-      <DependentUpon>Quirofeet.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BD\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>Quirofeet.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BD\sp_helpdiagrams_Result.cs">
-      <DependentUpon>Quirofeet.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BD\sysdiagrams.cs">
-      <DependentUpon>Quirofeet.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\Usuarios.cs">
-      <DependentUpon>Quirofeet.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\Ventas.cs">
-      <DependentUpon>Quirofeet.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CitasController.cs" />
@@ -222,15 +195,15 @@
     <Compile Include="ViewModel\DateViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BD\Quirofeet.Context.tt">
+    <Content Include="BD\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Quirofeet.edmx</DependentUpon>
-      <LastGenOutput>Quirofeet.Context.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="BD\Quirofeet.tt">
+    <Content Include="BD\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Quirofeet.edmx</DependentUpon>
-      <LastGenOutput>Quirofeet.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -256,19 +229,19 @@
     <Content Include="Imagenes\3.jpg" />
     <Content Include="Imagenes\4.jpeg" />
     <Content Include="Imagenes\Fondo.jpg" />
-    <EntityDeploy Include="BD\Quirofeet.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Quirofeet.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="BD\Quirofeet.edmx.diagram">
-      <DependentUpon>Quirofeet.edmx</DependentUpon>
-    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="BD\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="BD\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -379,6 +352,8 @@
     <Content Include="Views\Ventas\ListSales.cshtml" />
     <Content Include="Views\Recibos\ListReceipts.cshtml" />
     <Content Include="Views\Recibos\ListAnularReceipt.cshtml" />
+    <Content Include="Views\Ventas\EditSale.cshtml" />
+    <Content Include="Views\Ventas\RegisterServiceSale.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

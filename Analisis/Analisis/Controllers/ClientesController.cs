@@ -9,7 +9,7 @@ namespace Analisis.Controllers
 {
     public class ClientesController : Controller
     {
-        QuiroFeetEntities1 db = new QuiroFeetEntities1();
+        QuiroFeetEntities2 db = new QuiroFeetEntities2();
 
         // GET: Clientes (opcional, se puede usar como dashboard)
         public ActionResult ClientIndex()

@@ -5,49 +5,78 @@
 
 <div class="confirmation-container">
     <h1>¡Venta Registrada Exitosamente!</h1>
-    <p>La venta <strong>#@ViewBag.SaleNumber</strong> ha sido registrada con éxito en el sistema.</p>
-    <p>Puedes imprimir el Ventas o volver al inicio.</p>
 
-    <button class="btn-primary" onclick="window.print()">Imprimir Ventas</button>
-    <a href="/Home/Sales" class="btn-back">Volver al Inicio</a>
+    <p>La venta con número de recibo <strong>#@ViewBag.SaleNumber</strong> ha sido registrada exitosamente.</p>
+
+    <div class="confirmation-actions">
+        <button class="btn btn-primary" onclick="window.print()">
+            <i class="bi bi-printer"></i> Imprimir Recibo
+        </button>
+        <a href="@Url.Action("Sales", "Ventas")" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Volver al Listado
+        </a>
+    </div>
 </div>
 
-<!-- Estilos CSS -->
 <style>
     .confirmation-container {
         max-width: 600px;
-        margin: 100px auto;
+        margin: 80px auto;
         background-color: #ffffff;
         padding: 40px;
         border-radius: 12px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     h1 {
         color: #28a745;
-        font-size: 2.5em;
+        font-size: 2.2em;
+        margin-bottom: 20px;
     }
 
     p {
         font-size: 1.2em;
-        color: #555;
+        color: #444;
+        margin-bottom: 30px;
     }
 
-    button, .btn-back {
-        background-color: #234449;
-        color: white;
+    .confirmation-actions {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .btn {
         padding: 12px 24px;
-        border-radius: 8px;
-        text-decoration: none;
-        display: inline-block;
-        margin-top: 20px;
         border: none;
+        border-radius: 8px;
         font-size: 1.1em;
         cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
     }
 
-        .btn-primary:hover, .btn-back:hover {
-            background-color: #3e77f8;
-        }
+    .btn-primary {
+        background-color: #234449;
+        color: white;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #3e77f8;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }
 </style>
