@@ -1,44 +1,26 @@
 ﻿@model Analisis.BD.Ventas
-
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Confirmación de Venta";
+    Layout = null;
+    ViewBag.Title = "Detalle del Recibo";
 }
 
 <div class="confirmation-container" id="recibo">
-    <h1>¡Venta Registrada Exitosamente!</h1>
+    <h1>Recibo de Venta</h1>
 
-    <p>La venta con número de recibo <strong>#@Model.NumeroRecibo</strong> ha sido registrada exitosamente.</p>
+    <p><strong>Número de Recibo:</strong> #@Model.NumeroRecibo</p>
+    <p><strong>Cliente:</strong> @(Model.Clientes != null ? Model.Clientes.nombre : "No disponible")</p>
 
-    @if (Model.Clientes != null)
-    {
-        <p><strong>Cliente:</strong> @Model.Clientes.nombre</p>
-    }
-    else
-    {
-        <p><strong>Cliente:</strong> <span style="color: red;">No disponible</span></p>
-    }
-
-    @if (Model.fecha != null)
-    {
-        <p><strong>Fecha:</strong> @Model.fecha.Value.ToString("dd/MM/yyyy hh:mm tt")</p>
-    }
-    else
-    {
-        <p><strong>Fecha:</strong> <span style="color: red;">No disponible</span></p>
-    }
-
-    <p><strong>Total:</strong> ₡@string.Format("{0:N2}", Model.monto)</p>
+    <p><strong>Fecha:</strong> @(Model.fecha.HasValue ? Model.fecha.Value.ToString("dd/MM/yyyy hh:mm tt") : "Sin fecha")</p>
+    <p><strong>Detalle:</strong> @Model.detalle</p>
+    <p><strong>Tipo:</strong> @(Model.servicio == "True" ? "Servicio" : "Producto")</p>
+    <p><strong>Monto Total:</strong> ₡@string.Format("{0:N2}", Model.monto)</p>
 
     <div class="confirmation-actions">
         <button class="btn btn-primary" onclick="window.print()">
-            <i class="bi bi-printer"></i> Imprimir Recibo
+            <i class="bi bi-printer"></i> Descargar PDF
         </button>
-        <a href="@Url.Action("Sales", "Ventas")" class="btn btn-secondary">
-            <i class="bi bi-arrow-left"></i> Volver al Listado
-        </a>
-        <a href="@Url.Action("Details", "Recibos", new { id = Model.id })" class="btn btn-success">
-            <i class="bi bi-file-earmark-text"></i> Ver Detalle de Recibo
+        <a href="@Url.Action("ListReceipts", "Recibos")" class="btn btn-secondary">
+            <i class="bi bi-arrow-left-circle"></i> Volver
         </a>
     </div>
 </div>
@@ -98,21 +80,12 @@
         color: white;
     }
 
-    .btn-success {
-        background-color: #198754;
-        color: white;
-    }
-
     .btn-primary:hover {
         background-color: #3e77f8;
     }
 
     .btn-secondary:hover {
         background-color: #5a6268;
-    }
-
-    .btn-success:hover {
-        background-color: #157347;
     }
 
     @@media print {

@@ -1,0 +1,53 @@
+﻿@model Analisis.BD.Ventas
+@{
+    Layout = null; 
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Recibo de Venta</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px;
+        }
+
+        .recibo {
+            max-width: 600px;
+            margin: auto;
+            border: 1px solid #ccc;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #28a745;
+        }
+
+        p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        @@media print {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body onload="window.print();">
+    <div class="recibo">
+        <h2>Recibo de Venta</h2>
+        <p><strong>Número de Recibo:</strong> #@Model.NumeroRecibo</p>
+        <p><strong>Cliente:</strong> @Model.Clientes?.nombre</p>
+        <p><strong>Fecha:</strong> @(Model.fecha?.ToString("dd/MM/yyyy hh:mm tt"))</p>
+        <p><strong>Detalle:</strong> @Model.detalle</p>
+        <p><strong>Tipo:</strong> @(Model.servicio == "True" ? "Servicio" : "Producto")</p>
+        <p><strong>Monto Total:</strong> ₡@string.Format("{0:N2}", Model.monto)</p>
+    </div>
+</body>
+</html>

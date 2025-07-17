@@ -1,0 +1,43 @@
+﻿@model Analisis.BD.Ventas
+@{
+    ViewBag.Title = "Editar Venta";
+}
+
+<h2>Editar Venta</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.HiddenFor(model => model.id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_cliente, "Cliente")
+            @Html.DropDownList("id_cliente", ViewBag.Clientes as SelectList, htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.detalle)
+            @Html.TextBoxFor(model => model.detalle, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.monto)
+            @Html.TextBoxFor(model => model.monto, new { @class = "form-control", type = "number", step = "0.01" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fecha)
+            @Html.TextBoxFor(model => model.fecha, "{0:yyyy-MM-ddTHH:mm}", new { @class = "form-control", type = "datetime-local" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.servicio)
+            @Html.TextBoxFor(model => model.servicio, new { @class = "form-control" })
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        @Html.ActionLink("Volver a la lista", "ListSales", null, new { @class = "btn btn-secondary" })
+    </div>
+}

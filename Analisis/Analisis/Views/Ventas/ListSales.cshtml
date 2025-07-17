@@ -1,35 +1,41 @@
-﻿@{
+﻿@model List<Analisis.BD.Ventas>
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Lista de Ventas";
 }
 
 <div class="sales-container">
-    <h1>Lista de Ventas</h1>
+    <h1>📋 Lista de Ventas</h1>
     <p>A continuación se muestra un resumen de las ventas registradas en el sistema.</p>
 
     <table class="sales-table">
         <thead>
             <tr>
-                <th>Número de Venta</th>
+                <th>Número</th>
                 <th>Cliente</th>
+                <th>Servicio / Producto</th>
+                <th>Detalle</th>
+                <th>Monto</th>
                 <th>Fecha</th>
-                <th>Monto Total</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            @if (ViewBag.Sales != null && ViewBag.Sales.Count > 0)
+            @if (Model != null && Model.Count > 0)
             {
-                foreach (var sale in ViewBag.Sales)
+                foreach (var sale in Model)
                 {
                     <tr>
-                        <td>@sale.SaleNumber</td>
-                        <td>@sale.ClientName</td>
-                        <td>@sale.Date.ToString("dd/MM/yyyy")</td>
-                        <td>@sale.Total.ToString("C")</td>
+                        <td>@sale.id</td>
+                        <td>@(sale.Clientes != null ? sale.Clientes.nombre : "Sin cliente")</td>
+                        <td>@(sale.servicio == "True" ? "Servicio" : "Producto")</td>
+                        <td>@sale.detalle</td>
+                        <td>@sale.monto.ToString("C2")</td>
+                        <td>@(sale.fecha?.ToString("dd/MM/yyyy HH:mm"))</td>
                         <td>
-                            <a href="@Url.Action("EditSale", "Ventas", new { id = sale.SaleNumber })" class="btn-edit">Editar</a>
-                            <a href="@Url.Action("DeleteSale", "Ventas", new { id = sale.SaleNumber })" class="btn-delete">Eliminar</a>
+                            <a href="@Url.Action("EditSale", "Ventas", new { id = sale.id })" class="btn-edit">Editar</a>
+                            <a href="@Url.Action("DeleteSale", "Ventas", new { id = sale.id })" class="btn-delete" onclick="return confirm('¿Estás seguro de eliminar esta venta?');">Eliminar</a>
                         </td>
                     </tr>
                 }
@@ -37,7 +43,7 @@
             else
             {
                 <tr>
-                    <td colspan="5">No hay ventas registradas.</td>
+                    <td colspan="7">❗ No se encontraron ventas registradas con los criterios actuales.</td>
                 </tr>
             }
         </tbody>
@@ -49,7 +55,7 @@
 <!-- Estilos CSS -->
 <style>
     .sales-container {
-        max-width: 900px;
+        max-width: 1000px;
         margin: 40px auto;
         background-color: #ffffff;
         padding: 40px;
@@ -60,22 +66,24 @@
 
     h1 {
         color: #234449;
+        margin-bottom: 10px;
     }
 
     p {
-        font-size: 1.2em;
+        font-size: 1.1em;
         color: #555;
+        margin-bottom: 30px;
     }
 
     .sales-table {
         width: 100%;
         border-collapse: collapse;
-        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
         .sales-table th, .sales-table td {
             border: 1px solid #ccc;
-            padding: 12px;
+            padding: 10px;
             text-align: center;
         }
 
@@ -86,11 +94,11 @@
 
     .btn-add, .btn-edit, .btn-delete {
         display: inline-block;
-        padding: 10px 20px;
+        padding: 10px 18px;
         border-radius: 8px;
         text-decoration: none;
         color: white;
-        margin: 5px;
+        margin: 5px 3px;
     }
 
     .btn-add {

@@ -9,7 +9,7 @@ namespace Analisis.Controllers
 {
     public class EmpleadosController : Controller
     {
-        private QuiroFeetEntities1 db = new QuiroFeetEntities1();
+        private QuiroFeetEntities5 db = new QuiroFeetEntities5();
 
         // GET: Empleados (opcional, se puede usar como dashboard)
         public ActionResult Empleados()

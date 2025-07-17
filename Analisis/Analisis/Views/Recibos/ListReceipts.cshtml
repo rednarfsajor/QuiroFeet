@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<Analisis.BD.Ventas>
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Lista de Recibos";
 }
@@ -18,19 +20,19 @@
             </tr>
         </thead>
         <tbody>
-            @if (ViewBag.Receipts != null && ViewBag.Receipts.Count > 0)
+            @if (Model != null && Model.Any())
             {
-                foreach (var receipt in ViewBag.Receipts)
+                foreach (var receipt in Model)
                 {
-                    <tr>
-                        <td>@receipt.ReceiptNumber</td>
-                        <td>@receipt.ClientName</td>
-                        <td>@receipt.Date.ToString("dd/MM/yyyy")</td>
-                        <td>@receipt.Total.ToString("C")</td>
-                        <td>
-                            <a href="@Url.Action("EditReceipt", "Recibos", new { id = receipt.ReceiptNumber })" class="btn-edit">Editar</a>
-                            <a href="@Url.Action("CancelReceipt", "Recibos", new { id = receipt.ReceiptNumber })" class="btn-cancel">Anular</a>
-                            <a href="@Url.Action("DetailsReceipt", "Recibos", new { id = receipt.ReceiptNumber })" class="btn-details">Detalles</a>
+                    var rowId = "row-" + receipt.id;
+                    <tr id="@rowId">
+                        <td>@receipt.NumeroRecibo</td>
+                        <td>@(receipt.Clientes != null ? receipt.Clientes.nombre : "Sin nombre")</td>
+                        <td>@(receipt.fecha.HasValue ? receipt.fecha.Value.ToString("dd/MM/yyyy hh:mm tt") : "")</td>
+                        <td>₡@string.Format("{0:N2}", receipt.monto)</td>
+                        <td id="acciones-@receipt.id">
+                            <a href="@Url.Action("Details", "Recibos", new { id = receipt.id })" class="btn-details">Detalles</a>
+                            <button type="button" class="btn-cancel" onclick="anularVisual(@receipt.id)">Anular</button>
                         </td>
                     </tr>
                 }
@@ -43,11 +45,19 @@
             }
         </tbody>
     </table>
-
-    <a href="@Url.Action("Receipts", "Recibos")" class="btn-back">Volver al Panel de Recibos</a>
 </div>
 
-<!-- Estilos CSS -->
+@section Scripts {
+    <script>
+        function anularVisual(id) {
+            const accionesTd = document.getElementById("acciones-" + id);
+            if (accionesTd) {
+                accionesTd.innerHTML = '<span class="badge-anulado">Anulado</span>';
+            }
+        }
+    </script>
+}
+
 <style>
     .receipts-container {
         max-width: 900px;
@@ -74,7 +84,8 @@
         margin-top: 20px;
     }
 
-        .receipts-table th, .receipts-table td {
+        .receipts-table th,
+        .receipts-table td {
             border: 1px solid #ccc;
             padding: 12px;
             text-align: center;
@@ -85,7 +96,10 @@
             color: white;
         }
 
-    .btn-edit, .btn-cancel, .btn-details, .btn-back {
+    .btn-edit,
+    .btn-cancel,
+    .btn-details,
+    .btn-back {
         display: inline-block;
         padding: 10px 20px;
         border-radius: 8px;
@@ -100,6 +114,7 @@
 
     .btn-cancel {
         background-color: #dc3545;
+        border: none;
     }
 
     .btn-details {
@@ -124,5 +139,14 @@
 
     .btn-back:hover {
         background-color: #3e77f8;
+    }
+
+    .badge-anulado {
+        background-color: #6c757d;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-weight: bold;
+        font-size: 0.95em;
     }
 </style>
