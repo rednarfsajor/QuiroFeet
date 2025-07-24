@@ -1,4 +1,6 @@
-﻿@{
+﻿@model System.Data.DataTable
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Estado de Stock";
 }
@@ -62,31 +64,26 @@
         <table>
             <thead>
                 <tr>
-                    <th>Producto</th>
-                    <th>Descripción</th>
-                    <th>Stock Disponible</th>
+                    @foreach (System.Data.DataColumn col in Model.Columns)
+                    {
+                        <th>@col.ColumnName</th>
+                    }
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Aquí insertas los datos del inventario -->
-                <tr>
-                    <td>Producto A</td>
-                    <td>Descripción del Producto A</td>
-                    <td>150 unidades</td>
-                    <td>
-                        <a>Ver Detalles</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Producto B</td>
-                    <td>Descripción del Producto B</td>
-                    <td>50 unidades</td>
-                    <td>
-                        <a>Ver Detalles</a>
-                    </td>
-                </tr>
-                <!-- Agregar más productos según sea necesario -->
+                @foreach (System.Data.DataRow row in Model.Rows)
+                {
+                    <tr>
+                        @foreach (var item in row.ItemArray)
+                        {
+                            <td>@item</td>
+                        }
+                        <td>
+                            <a href="#">Ver Detalles</a>
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>
