@@ -118,7 +118,7 @@
           <Property Name="fecha" Type="datetime" />
           <Property Name="NumeroRecibo" Type="nvarchar" MaxLength="20" />
         </EntityType>
-        <Association Name="FK__Citas__id_client__03F0984C">
+        <Association Name="FK__Citas__id_client__4F7CD00D">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
           <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -130,7 +130,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios__RolId__74AE54BC">
+        <Association Name="FK__Citas__id_client__6383C8BA">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+          <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Citas">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuarios__RolId__5441852A">
           <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -142,7 +154,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ventas__id_clien__5DCAEF64">
+        <Association Name="FK__Usuarios__RolId__6477ECF3">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="RolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ventas__id_clien__5535A963">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ventas">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ventas__id_clien__656C112C">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
           <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -214,15 +250,27 @@
           <EntitySet Name="Servicios" EntityType="Self.Servicios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ventas" EntityType="Self.Ventas" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Citas__id_client__03F0984C" Association="Self.FK__Citas__id_client__03F0984C">
+          <AssociationSet Name="FK__Citas__id_client__4F7CD00D" Association="Self.FK__Citas__id_client__4F7CD00D">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Citas" EntitySet="Citas" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__RolId__74AE54BC" Association="Self.FK__Usuarios__RolId__74AE54BC">
+          <AssociationSet Name="FK__Citas__id_client__6383C8BA" Association="Self.FK__Citas__id_client__6383C8BA">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Citas" EntitySet="Citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuarios__RolId__5441852A" Association="Self.FK__Usuarios__RolId__5441852A">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ventas__id_clien__5DCAEF64" Association="Self.FK__Ventas__id_clien__5DCAEF64">
+          <AssociationSet Name="FK__Usuarios__RolId__6477ECF3" Association="Self.FK__Usuarios__RolId__6477ECF3">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ventas__id_clien__5535A963" Association="Self.FK__Ventas__id_clien__5535A963">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Ventas" EntitySet="Ventas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ventas__id_clien__656C112C" Association="Self.FK__Ventas__id_clien__656C112C">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Ventas" EntitySet="Ventas" />
           </AssociationSet>
@@ -259,7 +307,8 @@
           <Property Name="id_profesional" Type="Int32" Nullable="false" />
           <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="id_servicio" Type="Int32" />
-          <NavigationProperty Name="Clientes" Relationship="Self.FK__Citas__id_client__03F0984C" FromRole="Citas" ToRole="Clientes" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK__Citas__id_client__4F7CD00D" FromRole="Citas" ToRole="Clientes" />
+          <NavigationProperty Name="Clientes1" Relationship="Self.FK__Citas__id_client__6383C8BA" FromRole="Citas" ToRole="Clientes" />
           <NavigationProperty Name="Servicios" Relationship="Self.FK_Citas_Servicios" FromRole="Citas" ToRole="Servicios" />
           <NavigationProperty Name="Empleados" Relationship="Self.FK_Citasid_profes_4D94879B" FromRole="Citas" ToRole="Empleados" />
         </EntityType>
@@ -271,8 +320,10 @@
           <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Citas" Relationship="Self.FK__Citas__id_client__03F0984C" FromRole="Clientes" ToRole="Citas" />
-          <NavigationProperty Name="Ventas" Relationship="Self.FK__Ventas__id_clien__5DCAEF64" FromRole="Clientes" ToRole="Ventas" />
+          <NavigationProperty Name="Citas" Relationship="Self.FK__Citas__id_client__4F7CD00D" FromRole="Clientes" ToRole="Citas" />
+          <NavigationProperty Name="Citas1" Relationship="Self.FK__Citas__id_client__6383C8BA" FromRole="Clientes" ToRole="Citas" />
+          <NavigationProperty Name="Ventas" Relationship="Self.FK__Ventas__id_clien__5535A963" FromRole="Clientes" ToRole="Ventas" />
+          <NavigationProperty Name="Ventas1" Relationship="Self.FK__Ventas__id_clien__656C112C" FromRole="Clientes" ToRole="Ventas" />
         </EntityType>
         <EntityType Name="Empleados">
           <Key>
@@ -337,7 +388,8 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__RolId__74AE54BC" FromRole="Roles" ToRole="Usuarios" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__RolId__5441852A" FromRole="Roles" ToRole="Usuarios" />
+          <NavigationProperty Name="Usuarios1" Relationship="Self.FK__Usuarios__RolId__6477ECF3" FromRole="Roles" ToRole="Usuarios" />
         </EntityType>
         <EntityType Name="Servicios">
           <Key>
@@ -360,7 +412,8 @@
           <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="RolId" Type="Int32" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__RolId__74AE54BC" FromRole="Usuarios" ToRole="Roles" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__RolId__5441852A" FromRole="Usuarios" ToRole="Roles" />
+          <NavigationProperty Name="Roles1" Relationship="Self.FK__Usuarios__RolId__6477ECF3" FromRole="Usuarios" ToRole="Roles" />
         </EntityType>
         <EntityType Name="Ventas">
           <Key>
@@ -373,9 +426,22 @@
           <Property Name="monto" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="fecha" Type="DateTime" Precision="3" />
           <Property Name="NumeroRecibo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Clientes" Relationship="Self.FK__Ventas__id_clien__5DCAEF64" FromRole="Ventas" ToRole="Clientes" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK__Ventas__id_clien__5535A963" FromRole="Ventas" ToRole="Clientes" />
+          <NavigationProperty Name="Clientes1" Relationship="Self.FK__Ventas__id_clien__656C112C" FromRole="Ventas" ToRole="Clientes" />
         </EntityType>
-        <Association Name="FK__Citas__id_client__03F0984C">
+        <Association Name="FK__Citas__id_client__4F7CD00D">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+          <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Citas">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Citas__id_client__6383C8BA">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
           <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -411,7 +477,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ventas__id_clien__5DCAEF64">
+        <Association Name="FK__Ventas__id_clien__5535A963">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ventas">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ventas__id_clien__656C112C">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
           <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -447,7 +525,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios__RolId__74AE54BC">
+        <Association Name="FK__Usuarios__RolId__5441852A">
           <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -459,7 +537,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="QuiroFeetEntities5" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK__Usuarios__RolId__6477ECF3">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="RolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QuiroFeetEntities6" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Citas" EntityType="Self.Citas" />
           <EntitySet Name="Clientes" EntityType="Self.Clientes" />
           <EntitySet Name="Empleados" EntityType="Self.Empleados" />
@@ -471,7 +561,11 @@
           <EntitySet Name="Servicios" EntityType="Self.Servicios" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
           <EntitySet Name="Ventas" EntityType="Self.Ventas" />
-          <AssociationSet Name="FK__Citas__id_client__03F0984C" Association="Self.FK__Citas__id_client__03F0984C">
+          <AssociationSet Name="FK__Citas__id_client__4F7CD00D" Association="Self.FK__Citas__id_client__4F7CD00D">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Citas" EntitySet="Citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Citas__id_client__6383C8BA" Association="Self.FK__Citas__id_client__6383C8BA">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Citas" EntitySet="Citas" />
           </AssociationSet>
@@ -483,7 +577,11 @@
             <End Role="Empleados" EntitySet="Empleados" />
             <End Role="Citas" EntitySet="Citas" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ventas__id_clien__5DCAEF64" Association="Self.FK__Ventas__id_clien__5DCAEF64">
+          <AssociationSet Name="FK__Ventas__id_clien__5535A963" Association="Self.FK__Ventas__id_clien__5535A963">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Ventas" EntitySet="Ventas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ventas__id_clien__656C112C" Association="Self.FK__Ventas__id_clien__656C112C">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Ventas" EntitySet="Ventas" />
           </AssociationSet>
@@ -495,7 +593,11 @@
             <End Role="Proveedores" EntitySet="Proveedores" />
             <End Role="Productos" EntitySet="Productos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__RolId__74AE54BC" Association="Self.FK__Usuarios__RolId__74AE54BC">
+          <AssociationSet Name="FK__Usuarios__RolId__5441852A" Association="Self.FK__Usuarios__RolId__5441852A">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuarios__RolId__6477ECF3" Association="Self.FK__Usuarios__RolId__6477ECF3">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
@@ -505,7 +607,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="QuiroFeetModelStoreContainer" CdmEntityContainer="QuiroFeetEntities5">
+        <EntityContainerMapping StorageEntityContainer="QuiroFeetModelStoreContainer" CdmEntityContainer="QuiroFeetEntities6">
           <EntitySetMapping Name="Citas">
             <EntityTypeMapping TypeName="QuiroFeetModel.Citas">
               <MappingFragment StoreEntitySet="Citas">

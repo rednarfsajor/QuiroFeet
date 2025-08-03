@@ -22,5 +22,6 @@ namespace Analisis.BD
         public bool Activo { get; set; }
     
         public virtual Roles Roles { get; set; }
+        public virtual Roles Roles1 { get; set; }
     }
 }

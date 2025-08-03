@@ -14,7 +14,7 @@ namespace Analisis.Jobs
 
         public void NotificarArticulosSinStock()
         {
-            using (var db = new QuiroFeetEntities5())
+            using (var db = new QuiroFeetEntities6())
             {
                 var productosSinStock = (from inv in db.Inventario
                                          join prod in db.Productos on inv.id_producto equals prod.id
@@ -81,3 +81,4 @@ namespace Analisis.Jobs
         }
     }
 }
+

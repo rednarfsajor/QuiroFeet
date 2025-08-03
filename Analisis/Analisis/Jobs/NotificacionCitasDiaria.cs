@@ -15,7 +15,7 @@ namespace Analisis.Jobs
     {
         public void NotificarCitasDelDia()
         {
-            using (var db = new QuiroFeetEntities5())
+            using (var db = new QuiroFeetEntities6())
             {
                 var hoy = DateTime.Today;
 

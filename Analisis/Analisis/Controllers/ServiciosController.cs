@@ -8,7 +8,7 @@ namespace Analisis.Controllers
 {
     public class ServiciosController : Controller
     {
-        private QuiroFeetEntities5 db = new QuiroFeetEntities5();
+        private QuiroFeetEntities6 db = new QuiroFeetEntities6();
 
         public ActionResult ServiceIndex()
         {

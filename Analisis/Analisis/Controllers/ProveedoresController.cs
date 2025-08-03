@@ -9,7 +9,7 @@ namespace Analisis.Controllers
 {
     public class ProveedoresController : Controller
     {
-        private QuiroFeetEntities5 db = new QuiroFeetEntities5();
+        private QuiroFeetEntities6 db = new QuiroFeetEntities6();
 
         // GET: Proveedores (opcional, se puede usar como dashboard)
         public ActionResult Proveedores()
