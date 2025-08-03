@@ -10,7 +10,7 @@ namespace Analisis.Controllers
 {
     public class RecibosController : Controller
     {
-        private QuiroFeetEntities5 db = new QuiroFeetEntities5();
+        private QuiroFeetEntities6 db = new QuiroFeetEntities6();
 
         // GET: Recibos/ListReceipts
 

@@ -16,7 +16,7 @@ namespace Analisis.Controllers
 {
     public class CitasController : Controller
     {
-        private QuiroFeetEntities5 db = new QuiroFeetEntities5();
+        private QuiroFeetEntities6 db = new QuiroFeetEntities6();
 
         // GET: Citas/Calendar
         public ActionResult Calendar()

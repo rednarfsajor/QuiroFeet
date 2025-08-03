@@ -18,6 +18,7 @@ namespace Analisis.BD
         public Roles()
         {
             this.Usuarios = new HashSet<Usuarios>();
+            this.Usuarios1 = new HashSet<Usuarios>();
         }
     
         public int Id { get; set; }
@@ -25,5 +26,7 @@ namespace Analisis.BD
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Usuarios> Usuarios { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Usuarios> Usuarios1 { get; set; }
     }
 }

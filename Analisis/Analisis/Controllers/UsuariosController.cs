@@ -7,7 +7,7 @@ namespace Analisis.Controllers
 {
     public class UsuariosController : Controller
     {
-        private QuiroFeetEntities5 db = new QuiroFeetEntities5();
+        private QuiroFeetEntities6 db = new QuiroFeetEntities6();
 
         // GET: Usuarios/Users (MENÚ)
         public ActionResult Users()
@@ -32,8 +32,9 @@ namespace Analisis.Controllers
                                       .Where(u => u.Activo == true)
                                       .ToList();
 
-            return View(usuarios);
+            return View("ListUser", usuarios); 
         }
+
 
         // GET: Usuarios/ListInactiveUsers
         public ActionResult ListInactiveUsers()

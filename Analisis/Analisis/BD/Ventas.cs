@@ -23,5 +23,6 @@ namespace Analisis.BD
         public string NumeroRecibo { get; set; }
     
         public virtual Clientes Clientes { get; set; }
+        public virtual Clientes Clientes1 { get; set; }
     }
 }

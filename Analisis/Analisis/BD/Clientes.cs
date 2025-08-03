@@ -18,7 +18,9 @@ namespace Analisis.BD
         public Clientes()
         {
             this.Citas = new HashSet<Citas>();
+            this.Citas1 = new HashSet<Citas>();
             this.Ventas = new HashSet<Ventas>();
+            this.Ventas1 = new HashSet<Ventas>();
         }
     
         public int id { get; set; }
@@ -29,6 +31,10 @@ namespace Analisis.BD
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Citas> Citas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Citas> Citas1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ventas> Ventas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Ventas> Ventas1 { get; set; }
     }
 }

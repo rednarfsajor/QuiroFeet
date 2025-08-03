@@ -23,6 +23,7 @@ namespace Analisis.BD
         public Nullable<int> id_servicio { get; set; }
     
         public virtual Clientes Clientes { get; set; }
+        public virtual Clientes Clientes1 { get; set; }
         public virtual Servicios Servicios { get; set; }
         public virtual Empleados Empleados { get; set; }
     }
