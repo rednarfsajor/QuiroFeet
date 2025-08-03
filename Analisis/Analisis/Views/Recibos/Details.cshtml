@@ -1,95 +1,245 @@
 ﻿@model Analisis.BD.Ventas
 @{
     Layout = null;
-    ViewBag.Title = "Detalle del Recibo";
+    ViewBag.Title = "Recibo de Venta";
 }
 
-<div class="confirmation-container" id="recibo">
-    <h1>Recibo de Venta</h1>
+<div class="invoice-box" id="recibo">
+    <div class="header">
+        <div class="logo-container">
+            <img src="~/Imagenes/Logo.png" alt="Logo Quiropie" class="logo-fixed" />
+        </div>
+    </div>
 
-    <p><strong>Número de Recibo:</strong> #@Model.NumeroRecibo</p>
-    <p><strong>Cliente:</strong> @(Model.Clientes != null ? Model.Clientes.nombre : "No disponible")</p>
+    <table cellpadding="0" cellspacing="0">
+        <tr class="top">
+            <td colspan="4">
+                <table>
+                    <tr>
+                        <td class="info">
+                            <strong>Recibo #: </strong> @Model.NumeroRecibo<br />
+                            <strong>Fecha: </strong> @(Model.fecha?.ToString("dd/MM/yyyy") ?? "Sin fecha")<br />
+                            <strong>Hora: </strong> @(Model.fecha?.ToString("hh:mm tt") ?? "Sin hora")
+                        </td>
+                        <td class="title">
+                            <h1>Quiropie By Lucy</h1>
+                            <p>www.quirofeet.com</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
 
-    <p><strong>Fecha:</strong> @(Model.fecha.HasValue ? Model.fecha.Value.ToString("dd/MM/yyyy hh:mm tt") : "Sin fecha")</p>
-    <p><strong>Detalle:</strong> @Model.detalle</p>
-    <p><strong>Tipo:</strong> @(Model.servicio == "True" ? "Servicio" : "Producto")</p>
-    <p><strong>Monto Total:</strong> ₡@string.Format("{0:N2}", Model.monto)</p>
+        <tr class="information">
+            <td colspan="4">
+                <table>
+                    <tr>
+                        <td>
+                            <strong>Cliente:</strong><br />
+                            @(Model.Clientes?.nombre ?? "No disponible")
+                        </td>
 
-    <div class="confirmation-actions">
-        <button class="btn btn-primary" onclick="window.print()">
-            <i class="bi bi-printer"></i> Descargar PDF
+                        <td>
+                            <strong>Tipo:</strong> @(Model.servicio == "True" ? "Servicio" : "Producto")<br />
+                            <strong>Detalle:</strong> @Model.detalle
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr class="heading">
+            <td>Código</td>
+            <td>Descripción</td>
+            <td>Cantidad</td>
+            <td>Monto</td>
+        </tr>
+
+        <tr class="item">
+            <td>
+                @(Model.servicio == "True" ? "Servicio" : (Model.detalle.Contains(",") ? "Varios Productos" : "Producto"))
+            </td>
+            <td>@Model.detalle</td>
+            <td>1</td>
+            <td>₡@string.Format("{0:N2}", Model.monto)</td>
+        </tr>
+
+        <tr class="total">
+            <td colspan="3" style="text-align: right;">Total:</td>
+            <td><strong>₡@string.Format("{0:N2}", Model.monto)</strong></td>
+        </tr>
+    </table>
+
+    <p class="thank-you">¡Gracias por confiar en Quiropie By Lucy!</p>
+
+    <div class="actions no-print">
+        <button class="btn btn-print" onclick="window.print()">
+            <i class="bi bi-printer"></i> Imprimir
         </button>
-        <a href="@Url.Action("ListReceipts", "Recibos")" class="btn btn-secondary">
+        <button class="btn btn-download" onclick="downloadPDF()">
+            <i class="bi bi-file-earmark-pdf"></i> Descargar PDF
+        </button>
+        <a href="@Url.Action("ListReceipts", "Recibos")" class="btn btn-back">
             <i class="bi bi-arrow-left-circle"></i> Volver
         </a>
     </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script>
+    async function downloadPDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        const receipt = document.getElementById("recibo");
+        const hiddenElements = document.querySelectorAll(".no-print");
+        hiddenElements.forEach(el => el.style.display = "none");
+
+        const canvas = await html2canvas(receipt, { scale: 2 });
+        const imgData = canvas.toDataURL('image/png');
+        const pdfWidth = doc.internal.pageSize.getWidth();
+        const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+        doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        doc.save("Recibo_QuiropieByLucy.pdf");
+
+        hiddenElements.forEach(el => el.style.display = "");
+    }
+</script>
+
 <style>
-    .confirmation-container {
-        max-width: 700px;
-        margin: 80px auto;
-        background-color: #ffffff;
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: #f9fafb;
+        padding: 20px;
+    }
+
+    .invoice-box {
+        max-width: 800px;
+        margin: auto;
         padding: 40px;
-        border-radius: 12px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        position: relative;
     }
 
-    h1 {
-        color: #28a745;
-        font-size: 2.2em;
-        margin-bottom: 20px;
-    }
-
-    p {
-        font-size: 1.2em;
-        color: #444;
-        margin: 10px 0;
-    }
-
-    .confirmation-actions {
+    .header {
         display: flex;
-        justify-content: center;
-        gap: 20px;
-        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    .logo-container {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+
+    .logo-fixed {
+        width: 50px;
+        height: auto;
+    }
+
+    .invoice-box table {
+        width: 100%;
+        line-height: 1.5;
+        text-align: left;
+        border-collapse: collapse;
+    }
+
+        .invoice-box table td {
+            padding: 8px;
+            vertical-align: top;
+        }
+
+    .invoice-box .title {
+        text-align: center;
+    }
+
+    .invoice-box h1 {
+        font-size: 1.8em;
+        color: #234449;
+        margin: 0;
+    }
+
+    .invoice-box p {
+        font-size: 0.95em;
+        color: #555;
+        margin: 4px 0 0;
+    }
+
+    .invoice-box table tr.heading td {
+        background: #234449;
+        color: white;
+        font-weight: bold;
+    }
+
+    .invoice-box table tr.item td {
+        border-bottom: 1px solid #eee;
+    }
+
+    .invoice-box table tr.total td {
+        border-top: 2px solid #234449;
+        font-weight: bold;
+        font-size: 1.1em;
+    }
+
+    .thank-you {
+        text-align: center;
         margin-top: 30px;
+        font-style: italic;
+        color: #555;
+    }
+
+    .actions {
+        text-align: center;
+        margin-top: 20px;
     }
 
     .btn {
-        padding: 12px 24px;
-        border: none;
-        border-radius: 8px;
-        font-size: 1.1em;
-        cursor: pointer;
+        padding: 10px 20px;
+        margin: 5px;
         text-decoration: none;
-        transition: background-color 0.3s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .btn-primary {
-        background-color: #234449;
+        border-radius: 6px;
         color: white;
+        font-size: 1em;
+        display: inline-block;
+        border: none;
+        cursor: pointer;
     }
 
-    .btn-secondary {
-        background-color: #6c757d;
-        color: white;
+    .btn-print {
+        background: #234449;
     }
 
-    .btn-primary:hover {
-        background-color: #3e77f8;
+    .btn-download {
+        background: #28a745;
     }
 
-    .btn-secondary:hover {
-        background-color: #5a6268;
+    .btn-back {
+        background: #6c757d;
+        text-decoration: none;
+    }
+
+    .btn-print:hover {
+        background: #3e77f8;
+    }
+
+    .btn-download:hover {
+        background: #218838;
+    }
+
+    .btn-back:hover {
+        background: #5a6268;
+    }
+
+    .no-print {
+        display: block;
     }
 
     @@media print {
-        .btn, nav, header, footer {
+        .no-print {
             display: none !important;
         }
 
@@ -97,9 +247,13 @@
             background: white;
         }
 
-        .confirmation-container {
+        .invoice-box {
             box-shadow: none;
-            border: none;
+            margin: 0;
+        }
+
+        @@page {
+            margin: 0;
         }
     }
 </style>

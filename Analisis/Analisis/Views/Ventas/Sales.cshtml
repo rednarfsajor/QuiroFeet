@@ -4,29 +4,29 @@
 }
 
 <div class="sales-container">
-    <h1>🧾 Gestión de Ventas</h1>
+    <h1>Gestión de Ventas</h1>
     <p>Seleccione una opción para continuar.</p>
 
     <div class="options">
-        <!-- Botón para Registrar Venta de Productos -->
+        <!-- Registrar Venta de Productos -->
         <a href="@Url.Action("RegisterSale", "Ventas")" class="option-card">
-            <i class="bi bi-cart-plus"></i>
-            <h3>Registrar Venta de Productos</h3>
-            <p>Registra una nueva venta de productos con control de stock.</p>
+            <i class="bi bi-cart-plus-fill"></i>
+            <h3>Venta de Productos</h3>
+            <p>Registra una nueva venta con control de stock de productos.</p>
         </a>
 
-        <!-- Botón para Registrar Venta de Servicios -->
+        <!-- Registrar Venta de Servicios -->
         <a href="@Url.Action("RegisterServiceSale", "Ventas")" class="option-card">
-            <i class="bi bi-person-workspace"></i>
-            <h3>Registrar Venta de Servicios</h3>
-            <p>Registra una venta asociada a servicios ofrecidos por profesionales.</p>
+            <i class="bi bi-person-badge-fill"></i>
+            <h3>Venta de Servicios</h3>
+            <p>Registra una venta de servicios ofrecidos por profesionales.</p>
         </a>
 
-        <!-- Botón para Ver Ventas Existentes -->
+        <!-- Consultar Ventas -->
         <a href="@Url.Action("ListSales", "Ventas")" class="option-card">
-            <i class="bi bi-receipt"></i>
+            <i class="bi bi-receipt-cutoff"></i>
             <h3>Consultar Ventas</h3>
-            <p>Consulta el historial y detalles de ventas realizadas.</p>
+            <p>Consulta el historial y los detalles de ventas realizadas.</p>
         </a>
     </div>
 </div>
@@ -37,16 +37,18 @@
         max-width: 1000px;
         margin: 80px auto;
         text-align: center;
+        font-family: 'Poppins', sans-serif;
     }
 
     h1 {
         color: #234449;
-        font-size: 2.8em;
+        font-size: 2.5em;
+        font-weight: bold;
         margin-bottom: 10px;
     }
 
     p {
-        font-size: 1.1em;
+        font-size: 1.15em;
         color: #555;
         margin-bottom: 40px;
     }
@@ -63,24 +65,36 @@
         background-color: #ffffff;
         padding: 35px;
         border-radius: 12px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
         text-decoration: none;
         color: #234449;
-        transition: transform 0.3s, background-color 0.3s;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-        .option-card:hover {
-            transform: translateY(-8px);
-            background-color: #eef9fc;
-        }
+    .option-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    }
 
-        .option-card i {
-            font-size: 3em;
-            color: #3e77f8;
-            margin-bottom: 15px;
-        }
+    .option-card i {
+        font-size: 2.8em;
+        color: #3e77f8;
+        margin-bottom: 15px;
+    }
 
-        .option-card h3 {
-            margin-bottom: 10px;
+    .option-card h3 {
+        margin-bottom: 10px;
+        font-size: 1.3em;
+    }
+
+    .option-card p {
+        font-size: 0.95em;
+        color: #555;
+    }
+
+    @@media (max-width: 768px) {
+        .option-card {
+            width: 90%;
         }
+    }
 </style>

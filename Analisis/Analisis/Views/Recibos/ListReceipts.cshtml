@@ -6,16 +6,16 @@
 }
 
 <div class="receipts-container">
-    <h1>Lista de Recibos</h1>
-    <p>A continuación se muestra un resumen de los recibos registrados en el sistema.</p>
+    <h1><i class="bi bi-receipt"></i> Lista de Recibos</h1>
+    <p class="subtitle">Resumen de los recibos registrados en el sistema.</p>
 
     <table class="receipts-table">
         <thead>
             <tr>
-                <th>Número de Recibo</th>
+                <th># Recibo</th>
                 <th>Cliente</th>
                 <th>Fecha</th>
-                <th>Monto Total</th>
+                <th>Monto</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -25,14 +25,29 @@
                 foreach (var receipt in Model)
                 {
                     var rowId = "row-" + receipt.id;
+                    var isAnulado = receipt.Estado == "Anulado";
+
                     <tr id="@rowId">
-                        <td>@receipt.NumeroRecibo</td>
+                        <td>
+                            <strong>@receipt.NumeroRecibo</strong>
+                            @if (isAnulado)
+                            {
+                                <div class="text-anulado">Anulado</div>
+                            }
+                        </td>
                         <td>@(receipt.Clientes != null ? receipt.Clientes.nombre : "Sin nombre")</td>
-                        <td>@(receipt.fecha.HasValue ? receipt.fecha.Value.ToString("dd/MM/yyyy hh:mm tt") : "")</td>
+                        <td>@(receipt.fecha?.ToString("dd/MM/yyyy hh:mm tt") ?? "Sin fecha")</td>
                         <td>₡@string.Format("{0:N2}", receipt.monto)</td>
                         <td id="acciones-@receipt.id">
-                            <a href="@Url.Action("Details", "Recibos", new { id = receipt.id })" class="btn-details">Detalles</a>
-                            <button type="button" class="btn-cancel" onclick="anularVisual(@receipt.id)">Anular</button>
+                            <a href="@Url.Action("Details", "Recibos", new { id = receipt.id })" class="btn btn-details">
+                                <i class="bi bi-eye"></i> Detalles
+                            </a>
+                            @if (!isAnulado)
+                            {
+                                <button type="button" class="btn btn-cancel" onclick="anularRecibo(@receipt.id)">
+                                    <i class="bi bi-x-circle"></i> Anular
+                                </button>
+                            }
                         </td>
                     </tr>
                 }
@@ -49,19 +64,48 @@
 
 @section Scripts {
     <script>
-        function anularVisual(id) {
-            const accionesTd = document.getElementById("acciones-" + id);
-            if (accionesTd) {
-                accionesTd.innerHTML = '<span class="badge-anulado">Anulado</span>';
-            }
+        function anularRecibo(id) {
+            if (!confirm("¿Estás seguro que deseas anular este recibo?")) return;
+
+            $.ajax({
+                url: '/Recibos/Anular/' + id,
+                type: 'POST',
+                success: function (data) {
+                    if (data.success) {
+                        const row = document.getElementById("row-" + id);
+                        if (row) {
+                            const numCell = row.querySelector("td:first-child");
+                            const accionesTd = document.getElementById("acciones-" + id);
+                            if (numCell && !numCell.querySelector('.text-anulado')) {
+                                const span = document.createElement("div");
+                                span.className = "text-anulado";
+                                span.innerText = "Anulado";
+                                numCell.appendChild(span);
+                            }
+                            if (accionesTd) {
+                                accionesTd.innerHTML = '<a href="/Recibos/Details/' + id + '" class="btn btn-details"><i class="bi bi-eye"></i> Detalles</a>';
+                            }
+                        }
+                    } else {
+                        alert("No se pudo anular el recibo.");
+                    }
+                },
+                error: function () {
+                    alert("Error al intentar anular el recibo.");
+                }
+            });
         }
     </script>
 }
 
 <style>
+    body {
+        font-family: 'Poppins', sans-serif;
+    }
+
     .receipts-container {
-        max-width: 900px;
-        margin: 40px auto;
+        max-width: 950px;
+        margin: 60px auto;
         background-color: #ffffff;
         padding: 40px;
         border-radius: 12px;
@@ -71,22 +115,25 @@
 
     h1 {
         color: #234449;
+        font-size: 2em;
+        margin-bottom: 10px;
     }
 
-    p {
-        font-size: 1.2em;
-        color: #555;
+    .subtitle {
+        font-size: 1.1em;
+        color: #666;
+        margin-bottom: 30px;
     }
 
     .receipts-table {
         width: 100%;
         border-collapse: collapse;
-        margin-top: 20px;
+        font-size: 0.95em;
     }
 
         .receipts-table th,
         .receipts-table td {
-            border: 1px solid #ccc;
+            border: 1px solid #ddd;
             padding: 12px;
             text-align: center;
         }
@@ -96,57 +143,40 @@
             color: white;
         }
 
-    .btn-edit,
-    .btn-cancel,
-    .btn-details,
-    .btn-back {
-        display: inline-block;
-        padding: 10px 20px;
-        border-radius: 8px;
+    .btn {
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 0.85em;
         text-decoration: none;
         color: white;
-        margin: 5px;
-    }
-
-    .btn-edit {
-        background-color: #007bff;
-    }
-
-    .btn-cancel {
-        background-color: #dc3545;
-        border: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin: 2px;
     }
 
     .btn-details {
         background-color: #17a2b8;
     }
 
-    .btn-back {
-        background-color: #234449;
-    }
-
-    .btn-edit:hover {
-        background-color: #0056b3;
-    }
-
-    .btn-cancel:hover {
-        background-color: #c82333;
+    .btn-cancel {
+        background-color: #dc3545;
+        border: none;
+        cursor: pointer;
     }
 
     .btn-details:hover {
         background-color: #138496;
     }
 
-    .btn-back:hover {
-        background-color: #3e77f8;
+    .btn-cancel:hover {
+        background-color: #c82333;
     }
 
-    .badge-anulado {
-        background-color: #6c757d;
-        color: white;
-        padding: 8px 12px;
-        border-radius: 6px;
+    .text-anulado {
+        color: #dc3545;
+        font-size: 0.8em;
         font-weight: bold;
-        font-size: 0.95em;
+        margin-top: 4px;
     }
 </style>

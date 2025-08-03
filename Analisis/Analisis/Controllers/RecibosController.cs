@@ -128,13 +128,22 @@ public ActionResult ListReceipts()
             return View();
         }
 
-       /* public ActionResult ListAnularReceipt()
+        // POST: Recibos/Anular/5
+        [HttpPost]
+        public ActionResult Anular(int id)
         {
-            if (Session["UsuarioId"] == null)
-                return RedirectToAction("Login", "Account");
+            var venta = db.Ventas.Find(id);
+            if (venta == null)
+            {
+                return HttpNotFound();
+            }
 
-            var anulables = db.Ventas.Where(v => v.fecha >= DateTime.Today.AddDays(-30)).ToList(); // ejemplo
-            return View(anulables);
-        }*/
+            // Marca la venta como anulada
+            venta.Estado = "Anulado"; 
+            db.SaveChanges();
+
+            return Json(new { success = true });
+        }
+
     }
 }

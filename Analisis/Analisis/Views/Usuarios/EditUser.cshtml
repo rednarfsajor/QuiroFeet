@@ -5,83 +5,127 @@
     ViewBag.Title = "Editar Usuario";
 }
 
-<div class="container">
-    <h1>Editar Usuario</h1>
+<div class="user-edit-container">
+    <h1><i class="bi bi-pencil-square"></i> Editar Usuario</h1>
     <p>Modifica la información del usuario y guarda los cambios.</p>
 
     @using (Html.BeginForm("EditUser", "Usuarios", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
-
         @Html.HiddenFor(model => model.Id)
 
-        <label>Nombre Completo</label>
-        @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", placeholder = "Ingrese el nombre completo", required = "required" })
+        <!-- Nombre Completo -->
+        <div class="form-group">
+            <label for="Nombre" class="form-label"><i class="bi bi-person-fill"></i> Nombre Completo</label>
+            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", placeholder = "Ingrese el nombre completo", required = "required" })
+        </div>
 
-        <label>Correo Electrónico</label>
-        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Ingrese el correo electrónico", required = "required" })
+        <!-- Correo Electrónico -->
+        <div class="form-group">
+            <label for="Email" class="form-label"><i class="bi bi-envelope-fill"></i> Correo Electrónico</label>
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Ingrese el correo electrónico", required = "required" })
+        </div>
 
-        <label>Rol del Usuario</label>
-        @Html.DropDownList("RolId", null, htmlAttributes: new { @class = "form-control" })
+        <!-- Rol del Usuario -->
+        <div class="form-group">
+            <label for="RolId" class="form-label"><i class="bi bi-person-gear"></i> Rol del Usuario</label>
+            @Html.DropDownList("RolId", null, htmlAttributes: new { @class = "form-control", required = "required" })
+        </div>
 
-        <button type="submit" class="btn-save">Guardar Cambios</button>
-        <a href="@Url.Action("ListUser", "Usuarios")" class="btn-cancel">Cancelar</a>
+        <!-- Botones -->
+        <div class="form-actions">
+            <button type="submit" class="btn btn-save">
+                <i class="bi bi-save2-fill"></i> Guardar Cambios
+            </button>
+            <a href="@Url.Action("ListUser", "Usuarios")" class="btn btn-cancel">
+                <i class="bi bi-x-circle-fill"></i> Cancelar
+            </a>
+        </div>
     }
 </div>
 
+<!-- CSS Estilizado -->
 <style>
-    .container {
-        max-width: 600px;
-        margin: 50px auto;
-        background-color: #ffffff;
+    body {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .user-edit-container {
+        max-width: 650px;
+        margin: 60px auto;
+        background: #ffffff;
         padding: 40px;
         border-radius: 12px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        text-align: center;
     }
 
     h1 {
         color: #234449;
+        font-size: 2em;
+        margin-bottom: 10px;
     }
 
-    label {
-        display: block;
-        margin-top: 20px;
-        font-weight: bold;
+    p {
+        font-size: 1.1em;
+        color: #555;
+        margin-bottom: 30px;
     }
 
-    input, select {
-        width: 100%;
-        padding: 12px;
-        margin-top: 8px;
+    .form-group {
+        text-align: left;
         margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-weight: 500;
+        margin-bottom: 6px;
+        display: block;
+        color: #234449;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        font-size: 1em;
         border: 1px solid #ccc;
         border-radius: 8px;
     }
 
-    .btn-save {
-        background-color: #3e77f8;
-        color: white;
-        padding: 12px 20px;
-        border: none;
+    .form-actions {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 1em;
         border-radius: 8px;
         cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: none;
+    }
+
+    .btn-save {
+        background-color: #234449;
+        color: white;
     }
 
     .btn-cancel {
-        background-color: #e74c3c;
+        background-color: #6c757d;
         color: white;
-        padding: 12px 20px;
-        border: none;
-        border-radius: 8px;
-        text-decoration: none;
-        margin-left: 10px;
     }
 
     .btn-save:hover {
-        background-color: #234449;
+        background-color: #3e77f8;
     }
 
     .btn-cancel:hover {
-        background-color: #c0392b;
+        background-color: #5a6268;
     }
 </style>

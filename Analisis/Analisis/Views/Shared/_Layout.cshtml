@@ -1,5 +1,4 @@
 ﻿@inherits System.Web.Mvc.WebViewPage
-
 @using System.Web.Mvc
 @using System.Web.Optimization
 @using System.Web.Routing
@@ -27,27 +26,26 @@
             font-family: 'Poppins', sans-serif;
             background-color: #f9fafb;
             color: #234449;
-            overflow: hidden; /* Elimina barra lateral innecesaria */
-        }
-
-        .wrapper {
-            display: flex;
-            height: 100vh;
+            overflow-x: hidden;
         }
 
         .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 260px;
+            height: 100vh;
             background-color: #234449;
             color: white;
             padding: 20px 15px;
-            overflow-y: hidden; /* Elimina scroll */
-            flex-shrink: 0;
+            overflow-y: auto;
+            z-index: 1000;
         }
 
             .sidebar h1 a {
                 color: #93ded7;
-                font-size: 1em; /* REDUCIDO más aún */
-                margin-bottom: 10px; /* Más compacto */
+                font-size: 1em;
+                margin-bottom: 10px;
                 font-weight: 700;
                 text-decoration: none;
                 display: inline-block;
@@ -86,60 +84,58 @@
         }
 
         .content {
-            flex-grow: 1;
-            overflow-y: auto;
+            margin-left: 260px;
             padding: 40px;
+            min-height: 100vh;
             background-color: #ffffff;
+            overflow-y: auto;
         }
     </style>
-
 </head>
 <body>
-    <div class="wrapper">
-        <div class="sidebar">
-            <h1><a href="@Url.Action("Index", "Home")">QuiroFeet</a></h1>
-            <ul>
-                @if (Session["RolNombre"]?.ToString() == "Administrador")
-                {
-                    <li><a href="@Url.Action("ClientIndex", "Clientes")"><i class="bi bi-person"></i> Clientes</a></li>
-                    <li><a href="@Url.Action("Inventario", "Inventario")"><i class="bi bi-box-seam"></i> Inventario</a></li>
-                    <li><a href="@Url.Action("Receipts", "Recibos")"><i class="bi bi-receipt"></i> Recibos</a></li>
-                    <li><a href="@Url.Action("Calendar", "Citas")"><i class="bi bi-calendar2-week"></i> Citas</a></li>
-                    <li><a href="@Url.Action("Index", "Reportes")"><i class="bi bi-bar-chart-line"></i> Reportes</a></li>
-                    <li><a href="@Url.Action("ListarOrdenes", "OrdenCompra")"><i class="bi bi-clipboard-data"></i> Órdenes Compra</a></li>
-                    <li><a href="@Url.Action("ServiceIndex", "Servicios")"><i class="bi bi-gear"></i> Servicios</a></li>
-                    <li><a href="@Url.Action("Proveedores", "Proveedores")"><i class="bi bi-truck"></i> Proveedores</a></li>
-                    <li><a href="@Url.Action("Users", "Usuarios")"><i class="bi bi-people"></i> Usuarios</a></li>
-                    <li><a href="@Url.Action("Sales", "Ventas")"><i class="bi bi-cart-check"></i> Ventas</a></li>
-                    <li><a href="@Url.Action("Empleados", "Empleados")"><i class="bi bi-briefcase"></i> Empleados</a></li>
-                }
-                else if (Session["RolNombre"]?.ToString() == "Recepcionista")
-                {
-                    <li><a href="@Url.Action("ClientIndex", "Clientes")"><i class="bi bi-person"></i> Clientes</a></li>
-                    <li><a href="@Url.Action("Receipts", "Recibos")"><i class="bi bi-receipt"></i> Recibos</a></li>
-                    <li><a href="@Url.Action("Calendar", "Citas")"><i class="bi bi-calendar2-week"></i> Citas</a></li>
-                    <li><a href="@Url.Action("Sales", "Ventas")"><i class="bi bi-cart-check"></i> Ventas</a></li>
-                }
-                else if (Session["RolNombre"]?.ToString() == "Profesional")
-                {
-                    <li><a href="@Url.Action("ClientIndex", "Clientes")"><i class="bi bi-person"></i> Clientes</a></li>
-                    <li><a href="@Url.Action("Calendar", "Citas")"><i class="bi bi-calendar2-week"></i> Citas</a></li>
-                }
+    <div class="sidebar">
+        <h1><a href="@Url.Action("Index", "Home")">QuiroFeet</a></h1>
+        <ul>
+            @if (Session["RolNombre"]?.ToString() == "Administrador")
+            {
+                <li><a href="@Url.Action("ClientIndex", "Clientes")"><i class="bi bi-person"></i> Clientes</a></li>
+                <li><a href="@Url.Action("Inventario", "Inventario")"><i class="bi bi-box-seam"></i> Inventario</a></li>
+                <li><a href="@Url.Action("Receipts", "Recibos")"><i class="bi bi-receipt"></i> Recibos</a></li>
+                <li><a href="@Url.Action("Calendar", "Citas")"><i class="bi bi-calendar2-week"></i> Citas</a></li>
+                <li><a href="@Url.Action("Index", "Reportes")"><i class="bi bi-bar-chart-line"></i> Reportes</a></li>
+                <li><a href="@Url.Action("ListarOrdenes", "OrdenCompra")"><i class="bi bi-clipboard-data"></i> Órdenes Compra</a></li>
+                <li><a href="@Url.Action("ServiceIndex", "Servicios")"><i class="bi bi-gear"></i> Servicios</a></li>
+                <li><a href="@Url.Action("Proveedores", "Proveedores")"><i class="bi bi-truck"></i> Proveedores</a></li>
+                <li><a href="@Url.Action("Users", "Usuarios")"><i class="bi bi-people"></i> Usuarios</a></li>
+                <li><a href="@Url.Action("Sales", "Ventas")"><i class="bi bi-cart-check"></i> Ventas</a></li>
+                <li><a href="@Url.Action("Empleados", "Empleados")"><i class="bi bi-briefcase"></i> Empleados</a></li>
+            }
+            else if (Session["RolNombre"]?.ToString() == "Recepcionista")
+            {
+                <li><a href="@Url.Action("ClientIndex", "Clientes")"><i class="bi bi-person"></i> Clientes</a></li>
+                <li><a href="@Url.Action("Receipts", "Recibos")"><i class="bi bi-receipt"></i> Recibos</a></li>
+                <li><a href="@Url.Action("Calendar", "Citas")"><i class="bi bi-calendar2-week"></i> Citas</a></li>
+                <li><a href="@Url.Action("Sales", "Ventas")"><i class="bi bi-cart-check"></i> Ventas</a></li>
+            }
+            else if (Session["RolNombre"]?.ToString() == "Profesional")
+            {
+                <li><a href="@Url.Action("ClientIndex", "Clientes")"><i class="bi bi-person"></i> Clientes</a></li>
+                <li><a href="@Url.Action("Calendar", "Citas")"><i class="bi bi-calendar2-week"></i> Citas</a></li>
+            }
 
-                @if (Session["RolNombre"] != null)
-                {
-                    <li>
-                        <a href="@Url.Action("Logout", "Account")">
-                            <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
-                        </a>
-                    </li>
-                }
-            </ul>
-        </div>
+            @if (Session["RolNombre"] != null)
+            {
+                <li>
+                    <a href="@Url.Action("Logout", "Account")">
+                        <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
 
-        <div class="content">
-            @RenderBody()
-        </div>
+    <div class="content">
+        @RenderBody()
     </div>
 
     @Scripts.Render("~/bundles/jquery")

@@ -370,6 +370,7 @@
     <Content Include="Imagenes\3.jpg" />
     <Content Include="Imagenes\4.jpeg" />
     <Content Include="Imagenes\Fondo.jpg" />
+    <Content Include="Imagenes\Logo.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -499,7 +500,6 @@
     <Content Include="Views\Recibos\Receipts.cshtml" />
     <Content Include="Views\Ventas\ListSales.cshtml" />
     <Content Include="Views\Recibos\ListReceipts.cshtml" />
-    <Content Include="Views\Recibos\ListAnularReceipt.cshtml" />
     <Content Include="Views\Ventas\EditSale.cshtml" />
     <Content Include="Views\Ventas\RegisterServiceSale.cshtml" />
   </ItemGroup>

@@ -5,14 +5,14 @@
     ViewBag.Title = "Usuarios Inactivos";
 }
 
-<div class="container">
-    <h1>Usuarios Inactivos</h1>
-    <p>A continuación, se muestran los usuarios inactivos en el sistema.</p>
+<div class="user-container">
+    <h1><i class="bi bi-person-dash-fill"></i> Usuarios Inactivos</h1>
+    <p>Usuarios inactivos actualmente en el sistema.</p>
 
     @if (TempData["ActivateSuccess"] != null)
     {
-        <div class="alert alert-success">
-            @TempData["ActivateSuccess"]
+        <div class="success-message">
+            <i class="bi bi-check-circle-fill"></i> @TempData["ActivateSuccess"]
         </div>
     }
 
@@ -35,13 +35,15 @@
                         <td>@item.Id</td>
                         <td>@item.Nombre</td>
                         <td>@item.Email</td>
-                        <td>@item.Roles.Nombre</td>
+                        <td>@(item.Roles != null ? item.Roles.Nombre : "Sin Rol")</td>
                         <td>
                             @using (Html.BeginForm("ActivarUser", "Usuarios", FormMethod.Post, new { @class = "inline-form" }))
                             {
                                 @Html.AntiForgeryToken()
                                 @Html.Hidden("id", item.Id)
-                                <button type="submit" class="btn-activar">Activar</button>
+                                <button type="submit" class="btn btn-activate">
+                                    <i class="bi bi-person-check-fill"></i> Activar
+                                </button>
                             }
                         </td>
                     </tr>
@@ -60,23 +62,36 @@
 
 <!-- Estilos CSS -->
 <style>
-    .container {
-        max-width: 900px;
-        margin: 50px auto;
-        background-color: #ffffff;
+    body {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .user-container {
+        max-width: 950px;
+        margin: 60px auto;
+        background: #ffffff;
         padding: 40px;
         border-radius: 12px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        text-align: center;
     }
 
     h1 {
         color: #234449;
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 1.1em;
+        color: #555;
+        margin-bottom: 30px;
     }
 
     .user-table {
         width: 100%;
         border-collapse: collapse;
-        margin-top: 20px;
+        font-size: 0.95em;
     }
 
         .user-table th, .user-table td {
@@ -90,17 +105,50 @@
             color: white;
         }
 
-    .btn-activar {
-        background-color: #28a745;
-        border: none;
-        color: white;
-        padding: 8px 12px;
-        border-radius: 8px;
+        .user-table tbody tr:hover {
+            background-color: #f4f9ff;
+        }
+
+    .btn {
+        padding: 8px 14px;
+        border-radius: 6px;
+        font-size: 0.9em;
         text-decoration: none;
+        color: white;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin: 2px;
+        border: none;
+        cursor: pointer;
     }
 
-        .btn-activar:hover {
+    .btn-activate {
+        background-color: #28a745;
+    }
+
+        .btn-activate:hover {
             background-color: #218838;
+        }
+
+    .success-message {
+        background-color: #e6f4ea;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+        border-radius: 10px;
+        padding: 14px 20px;
+        font-size: 1em;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+        .success-message i {
+            font-size: 1.2em;
+            color: #28a745;
         }
 
     .no-data-message {
@@ -110,24 +158,16 @@
         border: 1px solid #f5c6cb;
         border-radius: 10px;
         padding: 16px 24px;
-        font-size: 1.1em;
+        font-size: 1em;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 12px;
+        gap: 10px;
         font-weight: 600;
     }
 
-    .alert {
-        background-color: #d4edda;
-        color: #155724;
-        padding: 15px;
-        margin-bottom: 25px;
-        border: 1px solid #c3e6cb;
-        border-radius: 8px;
-        font-size: 1.1em;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-    }
+        .no-data-message i {
+            font-size: 1.3em;
+            color: #e74c3c;
+        }
 </style>

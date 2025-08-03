@@ -17,14 +17,10 @@ namespace Analisis.Controllers
                 return RedirectToAction("Login", "Account");
 
             var venta = TempData["ReciboVenta"] as Ventas;
-
             if (venta == null)
                 return RedirectToAction("ErrorSale");
 
-            var ventaConCliente = db.Ventas
-                .Include(v => v.Clientes)
-                .FirstOrDefault(v => v.id == venta.id);
-
+            var ventaConCliente = db.Ventas.Include(v => v.Clientes).FirstOrDefault(v => v.id == venta.id);
             return View(ventaConCliente);
         }
 
@@ -34,14 +30,26 @@ namespace Analisis.Controllers
             if (Session["UsuarioId"] == null)
                 return RedirectToAction("Login", "Account");
 
-            venta.fecha = DateTime.Now;
-            venta.NumeroRecibo = new Random().Next(100000, 999999).ToString();
-            db.Ventas.Add(venta);
-            db.SaveChanges();
+            try
+            {
+                venta.fecha = DateTime.Now;
+                venta.NumeroRecibo = new Random().Next(100000, 999999).ToString();
+                venta.Estado = "Activo";
 
-            TempData["ReciboVenta"] = venta;
+                db.Ventas.Add(venta);
+                db.SaveChanges();
 
-            return RedirectToAction("ConfirmSale");
+                TempData["ReciboVenta"] = venta;
+                return RedirectToAction("ConfirmSale");
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException ex)
+            {
+                foreach (var error in ex.EntityValidationErrors.SelectMany(e => e.ValidationErrors))
+                {
+                    System.Diagnostics.Debug.WriteLine($"Propiedad: {error.PropertyName}, Error: {error.ErrorMessage}");
+                }
+                return RedirectToAction("ErrorSale");
+            }
         }
 
         public ActionResult ErrorSale()
@@ -61,9 +69,7 @@ namespace Analisis.Controllers
 
             if (!string.IsNullOrEmpty(busqueda))
             {
-                ventas = ventas.Where(v =>
-                    v.Clientes.nombre.Contains(busqueda) ||
-                    v.detalle.Contains(busqueda));
+                ventas = ventas.Where(v => v.Clientes.nombre.Contains(busqueda) || v.detalle.Contains(busqueda));
             }
 
             return View(ventas.OrderByDescending(v => v.fecha).ToList());
@@ -83,7 +89,6 @@ namespace Analisis.Controllers
                 .ToList();
 
             ViewBag.Productos = productos;
-
             return View();
         }
 
@@ -108,8 +113,7 @@ namespace Analisis.Controllers
                 int idProducto = productosSeleccionados[i];
                 int cantidad = cantidades[i];
 
-                var inventario = db.Inventario
-                    .Include(inv => inv.Productos)
+                var inventario = db.Inventario.Include(inv => inv.Productos)
                     .FirstOrDefault(inv => inv.id_producto == idProducto);
 
                 if (inventario == null || inventario.stock < cantidad)
@@ -129,34 +133,42 @@ namespace Analisis.Controllers
                 detalle = detalle.TrimEnd(',', ' '),
                 monto = total,
                 fecha = DateTime.Now,
-                NumeroRecibo = new Random().Next(100000, 999999).ToString()
+                NumeroRecibo = new Random().Next(100000, 999999).ToString(),
+                Estado = "Activo"
             };
 
-            db.Ventas.Add(venta);
-            db.SaveChanges();
-
-            // Actualización de inventario
-            for (int j = 0; j < productosSeleccionados.Count; j++)
+            try
             {
-                int idProducto = productosSeleccionados[j];
-                int cantidad = cantidades[j];
+                db.Ventas.Add(venta);
+                db.SaveChanges();
 
-                var inventario = db.Inventario.FirstOrDefault(inv => inv.id_producto == idProducto);
-                if (inventario != null)
+                for (int j = 0; j < productosSeleccionados.Count; j++)
                 {
-                    inventario.stock -= cantidad;
-                    db.Entry(inventario).State = EntityState.Modified;
+                    int idProducto = productosSeleccionados[j];
+                    int cantidad = cantidades[j];
+
+                    var inventario = db.Inventario.FirstOrDefault(inv => inv.id_producto == idProducto);
+                    if (inventario != null)
+                    {
+                        inventario.stock -= cantidad;
+                        db.Entry(inventario).State = EntityState.Modified;
+                    }
                 }
+
+                db.SaveChanges();
+
+                venta.Clientes = db.Clientes.FirstOrDefault(c => c.id == id_cliente);
+                TempData["ReciboVenta"] = venta;
+                return RedirectToAction("ConfirmSale");
             }
-
-            db.SaveChanges();
-
-            // Asignación explícita del cliente para evitar errores en la vista
-            venta.Clientes = db.Clientes.FirstOrDefault(c => c.id == id_cliente);
-
-            TempData["ReciboVenta"] = venta;
-
-            return RedirectToAction("ConfirmSale");
+            catch (System.Data.Entity.Validation.DbEntityValidationException ex)
+            {
+                foreach (var error in ex.EntityValidationErrors.SelectMany(e => e.ValidationErrors))
+                {
+                    System.Diagnostics.Debug.WriteLine($"Propiedad: {error.PropertyName}, Error: {error.ErrorMessage}");
+                }
+                return RedirectToAction("ErrorSale");
+            }
         }
 
         [HttpGet]
@@ -167,7 +179,6 @@ namespace Analisis.Controllers
 
             ViewBag.Clientes = new SelectList(db.Clientes, "id", "nombre");
             ViewBag.Servicios = new SelectList(db.Servicios, "Id", "Nombre");
-
             return View();
         }
 
@@ -192,18 +203,27 @@ namespace Analisis.Controllers
                 detalle = servicio.Nombre,
                 monto = servicio.Precio,
                 fecha = DateTime.Now,
-                NumeroRecibo = new Random().Next(100000, 999999).ToString()
+                NumeroRecibo = new Random().Next(100000, 999999).ToString(),
+                Estado = "Activo"
             };
 
-            db.Ventas.Add(venta);
-            db.SaveChanges();
+            try
+            {
+                db.Ventas.Add(venta);
+                db.SaveChanges();
 
-            // Cargar cliente manualmente para evitar error en la vista
-            venta.Clientes = db.Clientes.FirstOrDefault(c => c.id == id_cliente);
-
-            TempData["ReciboVenta"] = venta;
-
-            return RedirectToAction("ConfirmSale");
+                venta.Clientes = db.Clientes.FirstOrDefault(c => c.id == id_cliente);
+                TempData["ReciboVenta"] = venta;
+                return RedirectToAction("ConfirmSale");
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException ex)
+            {
+                foreach (var error in ex.EntityValidationErrors.SelectMany(e => e.ValidationErrors))
+                {
+                    System.Diagnostics.Debug.WriteLine($"Propiedad: {error.PropertyName}, Error: {error.ErrorMessage}");
+                }
+                return RedirectToAction("ErrorSale");
+            }
         }
 
         public ActionResult Sales()
