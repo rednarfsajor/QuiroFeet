@@ -383,6 +383,8 @@
     <Content Include="BD\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\heymmy-001-site1 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\heymmy-001-site1 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
