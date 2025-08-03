@@ -36,7 +36,7 @@
                         <td>@item.Id</td>
                         <td>@item.Nombre</td>
                         <td>@item.Email</td>
-                        <td>@item.Roles?.Nombre</td>
+                        <td>@(item.Roles != null ? item.Roles.Nombre : "Sin Rol")</td>
                         <td>
                             <a href="@Url.Action("EditUser", "Usuarios", new { id = item.Id })" class="btn-edit">Editar</a>
                             <a href="@Url.Action("InactivarUser", "Usuarios", new { id = item.Id })" class="btn-inactivate">Inactivar</a>

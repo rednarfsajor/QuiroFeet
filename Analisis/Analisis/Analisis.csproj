@@ -492,7 +492,7 @@
     <Content Include="Views\Recibos\Details.cshtml" />
     <Content Include="Views\Recibos\Print.cshtml" />
     <Content Include="Views\Reportes\Index.cshtml" />
-    <None Include="Views\Usuarios\ListUser.cshtml" />
+    <Content Include="Views\Usuarios\ListUser.cshtml" />
     <Content Include="Views\Usuarios\Users.cshtml" />
     <Content Include="Views\Ventas\Sales.cshtml" />
     <Content Include="Views\Ventas\RegisterSale.cshtml" />

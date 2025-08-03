@@ -3,6 +3,7 @@ using System.Net;
 using System.Web.Mvc;
 using Analisis.BD;
 
+
 namespace Analisis.Controllers
 {
     public class UsuariosController : Controller
@@ -28,13 +29,11 @@ namespace Analisis.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            var usuarios = db.Usuarios.Include("Roles")
-                                      .Where(u => u.Activo == true)
-                                      .ToList();
-
-            return View("ListUser", usuarios); 
+            var activos = db.Usuarios.Include("Roles") 
+                          .Where(u => u.Activo == true)
+                          .ToList();
+            return View(activos);
         }
-
 
         // GET: Usuarios/ListInactiveUsers
         public ActionResult ListInactiveUsers()

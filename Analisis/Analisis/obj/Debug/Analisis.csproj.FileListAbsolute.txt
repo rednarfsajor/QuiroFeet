@@ -814,8 +814,9 @@ C:\QuiroFeet\Analisis\Analisis\bin\ru\Microsoft.Data.SqlClient.resources.dll
 C:\QuiroFeet\Analisis\Analisis\bin\tr\Microsoft.Data.SqlClient.resources.dll
 C:\QuiroFeet\Analisis\Analisis\bin\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 C:\QuiroFeet\Analisis\Analisis\bin\zh-Hant\Microsoft.Data.SqlClient.resources.dll
-C:\Users\heymm\Documents\QuiroFeet\Analisis\Analisis\bin\Analisis.dll.config
 C:\Users\heymm\Documents\QuiroFeet\Analisis\Analisis\bin\Analisis.dll
+C:\Users\heymm\Documents\QuiroFeet\Analisis\Analisis\bin\Antlr3.Runtime.dll
+C:\Users\heymm\Documents\QuiroFeet\Analisis\Analisis\bin\Analisis.dll.config
 C:\Users\heymm\Documents\QuiroFeet\Analisis\Analisis\bin\Analisis.pdb
 C:\Users\heymm\Documents\QuiroFeet\Analisis\Analisis\bin\roslyn\csc.exe
 C:\Users\heymm\Documents\QuiroFeet\Analisis\Analisis\bin\roslyn\csc.exe.config
@@ -848,7 +849,6 @@ C:\Users\heymm\Documents\QuiroFeet\Analisis\Analisis\bin\roslyn\vbc.exe.config
 C:\Users\heymm\Documents\QuiroFeet\Analisis\Analisis\bin\roslyn\vbc.rsp
 C:\Users\heymm\Documents\QuiroFeet\Analisis\Analisis\bin\roslyn\VBCSCompiler.exe
 C:\Users\heymm\Documents\QuiroFeet\Analisis\Analisis\bin\roslyn\VBCSCompiler.exe.config
-C:\Users\heymm\Documents\QuiroFeet\Analisis\Analisis\bin\Antlr3.Runtime.dll
 C:\Users\heymm\Documents\QuiroFeet\Analisis\Analisis\bin\Azure.Core.dll
 C:\Users\heymm\Documents\QuiroFeet\Analisis\Analisis\bin\Azure.Identity.dll
 C:\Users\heymm\Documents\QuiroFeet\Analisis\Analisis\bin\BouncyCastle.Cryptography.dll
