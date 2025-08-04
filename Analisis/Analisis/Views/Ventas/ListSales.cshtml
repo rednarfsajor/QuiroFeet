@@ -6,15 +6,15 @@
 }
 
 <div class="sales-container">
-    <h1>📋 Lista de Ventas</h1>
-    <p>A continuación se muestra un resumen de las ventas registradas en el sistema.</p>
+    <h1><i class="bi bi-cart-check"></i> Lista de Ventas</h1>
+    <p>Resumen de las ventas registradas en el sistema.</p>
 
     <table class="sales-table">
         <thead>
             <tr>
-                <th>Número</th>
+                <th># Venta</th>
                 <th>Cliente</th>
-                <th>Servicio / Producto</th>
+                <th>Tipo</th>
                 <th>Detalle</th>
                 <th>Monto</th>
                 <th>Fecha</th>
@@ -26,16 +26,32 @@
             {
                 foreach (var sale in Model)
                 {
-                    <tr>
-                        <td>@sale.id</td>
+                    var isAnulado = sale.Estado == "Anulado";
+                    var rowId = "row-" + sale.id;
+
+                    <tr id="@rowId">
+                        <td>
+                            <strong>@sale.id</strong>
+                            @if (isAnulado)
+                            {
+                                <div class="text-anulado">Anulado</div>
+                            }
+                        </td>
                         <td>@(sale.Clientes != null ? sale.Clientes.nombre : "Sin cliente")</td>
                         <td>@(sale.servicio == "True" ? "Servicio" : "Producto")</td>
                         <td>@sale.detalle</td>
-                        <td>@sale.monto.ToString("C2")</td>
-                        <td>@(sale.fecha?.ToString("dd/MM/yyyy HH:mm"))</td>
-                        <td>
-                            <a href="@Url.Action("EditSale", "Ventas", new { id = sale.id })" class="btn-edit">Editar</a>
-                            <a href="@Url.Action("DeleteSale", "Ventas", new { id = sale.id })" class="btn-delete" onclick="return confirm('¿Estás seguro de eliminar esta venta?');">Eliminar</a>
+                        <td>₡@string.Format("{0:N2}", sale.monto)</td>
+                        <td>@(sale.fecha?.ToString("dd/MM/yyyy HH:mm") ?? "Sin fecha")</td>
+                        <td id="acciones-@sale.id">
+                            <a href="@Url.Action("Details", "Recibos", new { id = sale.id })" class="btn btn-details">
+                                <i class="bi bi-eye"></i> Ver Detalles
+                            </a>
+                            @if (!isAnulado)
+                            {
+                                <button type="button" class="btn btn-cancel" onclick="anularVenta(@sale.id)">
+                                    <i class="bi bi-x-circle"></i> Anular
+                                </button>
+                            }
                         </td>
                     </tr>
                 }
@@ -43,21 +59,64 @@
             else
             {
                 <tr>
-                    <td colspan="7">❗ No se encontraron ventas registradas con los criterios actuales.</td>
+                    <td colspan="7" class="no-data">
+                        <i class="bi bi-info-circle"></i> No se encontraron ventas registradas.
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
 
-    <a href="@Url.Action("RegisterSale", "Ventas")" class="btn-add">Registrar Nueva Venta</a>
+    <a href="@Url.Action("RegisterSale", "Ventas")" class="btn btn-add">
+        <i class="bi bi-cart-plus"></i> Registrar Nueva Venta
+    </a>
 </div>
 
-<!-- Estilos CSS -->
+@section Scripts {
+    <script>
+        function anularVenta(id) {
+            if (!confirm("¿Estás seguro que deseas anular esta venta?")) return;
+
+            $.ajax({
+                url: '/Recibos/Anular/' + id, // Se usa el endpoint de Recibos para anular la venta
+                type: 'POST',
+                success: function (data) {
+                    if (data.success) {
+                        const row = document.getElementById("row-" + id);
+                        if (row) {
+                            const numCell = row.querySelector("td:first-child");
+                            const accionesTd = document.getElementById("acciones-" + id);
+                            if (numCell && !numCell.querySelector('.text-anulado')) {
+                                const span = document.createElement("div");
+                                span.className = "text-anulado";
+                                span.innerText = "Anulado";
+                                numCell.appendChild(span);
+                            }
+                            if (accionesTd) {
+                                accionesTd.innerHTML = '<a href="/Recibos/Details/' + id + '" class="btn btn-details"><i class="bi bi-eye"></i> Ver Detalles</a>';
+                            }
+                        }
+                    } else {
+                        alert("No se pudo anular la venta.");
+                    }
+                },
+                error: function () {
+                    alert("Error al intentar anular la venta.");
+                }
+            });
+        }
+    </script>
+}
+
 <style>
+    body {
+        font-family: 'Poppins', sans-serif;
+    }
+
     .sales-container {
         max-width: 1000px;
-        margin: 40px auto;
-        background-color: #ffffff;
+        margin: 60px auto;
+        background: #ffffff;
         padding: 40px;
         border-radius: 12px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
@@ -66,6 +125,7 @@
 
     h1 {
         color: #234449;
+        font-size: 2em;
         margin-bottom: 10px;
     }
 
@@ -78,10 +138,11 @@
     .sales-table {
         width: 100%;
         border-collapse: collapse;
-        margin-bottom: 20px;
+        font-size: 0.95em;
     }
 
-        .sales-table th, .sales-table td {
+        .sales-table th,
+        .sales-table td {
             border: 1px solid #ccc;
             padding: 10px;
             text-align: center;
@@ -92,24 +153,30 @@
             color: white;
         }
 
-    .btn-add, .btn-edit, .btn-delete {
-        display: inline-block;
-        padding: 10px 18px;
-        border-radius: 8px;
+    .btn {
+        padding: 8px 14px;
+        border-radius: 6px;
+        font-size: 0.9em;
         text-decoration: none;
         color: white;
-        margin: 5px 3px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin: 2px;
+        border: none;
+        cursor: pointer;
     }
 
     .btn-add {
         background-color: #28a745;
+        margin-top: 20px;
     }
 
-    .btn-edit {
-        background-color: #007bff;
+    .btn-details {
+        background-color: #17a2b8;
     }
 
-    .btn-delete {
+    .btn-cancel {
         background-color: #dc3545;
     }
 
@@ -117,11 +184,25 @@
         background-color: #218838;
     }
 
-    .btn-edit:hover {
-        background-color: #0056b3;
+    .btn-details:hover {
+        background-color: #138496;
     }
 
-    .btn-delete:hover {
+    .btn-cancel:hover {
         background-color: #c82333;
+    }
+
+    .text-anulado {
+        color: #6c757d;
+        font-size: 0.8em;
+        font-weight: bold;
+        margin-top: 4px;
+    }
+
+    .no-data {
+        color: #dc3545;
+        font-weight: bold;
+        font-size: 1em;
+        text-align: center;
     }
 </style>

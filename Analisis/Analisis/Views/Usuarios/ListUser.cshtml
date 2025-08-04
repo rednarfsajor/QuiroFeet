@@ -5,20 +5,19 @@
     ViewBag.Title = "Lista de Usuarios";
 }
 
-<div class="container">
-    <h1>Usuarios Registrados</h1>
-    <p>A continuación, se muestran los usuarios existentes en el sistema.</p>
+<div class="user-container">
+    <h1><i class="bi bi-person-badge-fill"></i> Lista de Usuarios</h1>
+    <p>Visualiza los usuarios registrados en el sistema.</p>
 
     @if (TempData["SuccessMessage"] != null)
     {
         <div class="success-message">
-            @TempData["SuccessMessage"]
+            <i class="bi bi-check-circle-fill"></i> @TempData["SuccessMessage"]
         </div>
     }
 
     @if (Model != null && Model.Any())
     {
-        <!-- Tabla de Usuarios -->
         <table class="user-table">
             <thead>
                 <tr>
@@ -38,8 +37,12 @@
                         <td>@item.Email</td>
                         <td>@(item.Roles != null ? item.Roles.Nombre : "Sin Rol")</td>
                         <td>
-                            <a href="@Url.Action("EditUser", "Usuarios", new { id = item.Id })" class="btn-edit">Editar</a>
-                            <a href="@Url.Action("InactivarUser", "Usuarios", new { id = item.Id })" class="btn-inactivate">Inactivar</a>
+                            <a href="@Url.Action("EditUser", "Usuarios", new { id = item.Id })" class="btn btn-edit">
+                                <i class="bi bi-pencil-square"></i> Editar
+                            </a>
+                            <a href="@Url.Action("InactivarUser", "Usuarios", new { id = item.Id })" class="btn btn-inactivate">
+                                <i class="bi bi-person-x-fill"></i> Inactivar
+                            </a>
                         </td>
                     </tr>
                 }
@@ -48,7 +51,6 @@
     }
     else
     {
-        <!-- Mensaje si no hay usuarios -->
         <div class="no-data-message">
             <i class="bi bi-exclamation-triangle-fill"></i>
             No hay usuarios registrados en el sistema.
@@ -58,25 +60,35 @@
 
 <!-- Estilos CSS -->
 <style>
-    .container {
-        max-width: 900px;
-        margin: 50px auto;
-        background-color: #ffffff;
+    body {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .user-container {
+        max-width: 950px;
+        margin: 60px auto;
+        background: #ffffff;
         padding: 40px;
         border-radius: 12px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        text-align: center;
     }
 
     h1 {
         color: #234449;
-        font-weight: 700;
-        margin-bottom: 20px;
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 1.1em;
+        color: #555;
+        margin-bottom: 30px;
     }
 
     .user-table {
         width: 100%;
         border-collapse: collapse;
-        margin-top: 20px;
         font-size: 0.95em;
     }
 
@@ -91,29 +103,54 @@
             color: white;
         }
 
-    .btn-edit {
-        background-color: #3e77f8;
-        color: white;
-        padding: 8px 16px;
+        .user-table tbody tr:hover {
+            background-color: #f4f9ff;
+        }
+
+    .btn {
+        padding: 8px 12px;
         border-radius: 6px;
+        font-size: 0.85em;
         text-decoration: none;
-        font-weight: 500;
-        margin-right: 6px;
+        color: white;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin: 2px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-edit {
+        background-color: #007bff;
     }
 
     .btn-inactivate {
-        background-color: #e74c3c;
-        color: white;
-        padding: 8px 16px;
-        border-radius: 6px;
-        text-decoration: none;
-        font-weight: 500;
+        background-color: #dc3545;
     }
 
-        .btn-edit:hover,
-        .btn-inactivate:hover {
-            opacity: 0.9;
-        }
+    .btn-edit:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-inactivate:hover {
+        background-color: #c82333;
+    }
+
+    .success-message {
+        background-color: #e6f4ea;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+        border-radius: 10px;
+        padding: 14px 20px;
+        font-size: 1em;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
 
     .no-data-message {
         margin-top: 30px;
@@ -122,29 +159,21 @@
         border: 1px solid #f5c6cb;
         border-radius: 10px;
         padding: 16px 24px;
-        font-size: 1.1em;
+        font-size: 1em;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 12px;
+        gap: 10px;
         font-weight: 600;
     }
 
         .no-data-message i {
+            font-size: 1.3em;
             color: #e74c3c;
-            font-size: 1.4em;
         }
 
-    .success-message {
-        margin-top: 10px;
-        background-color: #e6f4ea;
-        color: #155724;
-        border: 1px solid #c3e6cb;
-        border-radius: 10px;
-        padding: 14px 20px;
-        font-size: 1em;
-        font-weight: 600;
-        text-align: center;
-        margin-bottom: 20px;
+    .success-message i {
+        font-size: 1.2em;
+        color: #28a745;
     }
 </style>

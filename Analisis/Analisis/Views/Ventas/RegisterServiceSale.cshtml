@@ -1,26 +1,118 @@
 ﻿@{
     ViewBag.Title = "Registrar Venta de Servicio";
-    Layout = "~/Views/Shared/_Layout.cshtml"; // Usa tu layout general
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container mt-5">
-    <h2 class="mb-4">Registrar Venta de Servicio</h2>
+<div class="register-service-container">
+    <h1><i class="bi bi-person-workspace"></i> Registrar Venta de Servicio</h1>
+    <p>Complete la información para registrar la venta del servicio ofrecido.</p>
 
     @using (Html.BeginForm("RegisterServiceSale", "Ventas", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
 
-        <div class="mb-3">
-            <label for="id_cliente" class="form-label">Cliente</label>
-            @Html.DropDownList("id_cliente", (SelectList)ViewBag.Clientes, "-- Seleccione un cliente --", new { @class = "form-control" })
+        <div class="form-group">
+            <label for="id_cliente" class="form-label"><i class="bi bi-person-fill"></i> Cliente</label>
+            @Html.DropDownList("id_cliente", (SelectList)ViewBag.Clientes, "-- Seleccione un cliente --", new { @class = "form-control", required = "required" })
         </div>
 
-        <div class="mb-3">
-            <label for="id_servicio" class="form-label">Servicio</label>
-            @Html.DropDownList("id_servicio", (SelectList)ViewBag.Servicios, "-- Seleccione un servicio --", new { @class = "form-control" })
+        <div class="form-group">
+            <label for="id_servicio" class="form-label"><i class="bi bi-gear-fill"></i> Servicio</label>
+            @Html.DropDownList("id_servicio", (SelectList)ViewBag.Servicios, "-- Seleccione un servicio --", new { @class = "form-control", required = "required" })
         </div>
 
-        <button type="submit" class="btn btn-primary">Registrar Venta</button>
-        <a href="@Url.Action("ListSales", "Ventas")" class="btn btn-secondary ms-2">Volver</a>
+        <div class="actions">
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-check-circle"></i> Registrar Venta
+            </button>
+            <a href="@Url.Action("ListSales", "Ventas")" class="btn btn-secondary">
+                <i class="bi bi-arrow-left-circle"></i> Volver
+            </a>
+        </div>
     }
 </div>
+
+<!-- Estilos CSS -->
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .register-service-container {
+        max-width: 600px;
+        margin: 60px auto;
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    h1 {
+        color: #234449;
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 1.1em;
+        color: #555;
+        margin-bottom: 30px;
+    }
+
+    .form-group {
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-weight: 500;
+        color: #234449;
+        margin-bottom: 6px;
+        display: block;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        font-size: 1em;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 1em;
+        border: none;
+        border-radius: 8px;
+        color: white;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background-color: #234449;
+    }
+
+        .btn-primary:hover {
+            background-color: #3e77f8;
+        }
+
+    .btn-secondary {
+        background-color: #6c757d;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+</style>

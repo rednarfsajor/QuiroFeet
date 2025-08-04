@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QuiroFeetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QuiroFeetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Citas">
           <Key>
             <PropertyRef Name="id" />
@@ -25,6 +25,16 @@
           <Property Name="nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="correo" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="telefono" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="DetalleVenta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_venta" Type="int" Nullable="false" />
+          <Property Name="id_producto" Type="int" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+          <Property Name="monto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Empleados">
           <Key>
@@ -117,6 +127,7 @@
           <Property Name="monto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="fecha" Type="datetime" />
           <Property Name="NumeroRecibo" Type="nvarchar" MaxLength="20" />
+          <Property Name="Estado" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <Association Name="FK__Citas__id_client__4F7CD00D">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
@@ -139,6 +150,30 @@
             </Principal>
             <Dependent Role="Citas">
               <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetalleVe__id_pr__6A30C649">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DetalleVenta">
+              <PropertyRef Name="id_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetalleVe__id_ve__693CA210">
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="1" />
+          <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DetalleVenta">
+              <PropertyRef Name="id_venta" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -241,6 +276,7 @@
         <EntityContainer Name="QuiroFeetModelStoreContainer">
           <EntitySet Name="Citas" EntityType="Self.Citas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetalleVenta" EntityType="Self.DetalleVenta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empleados" EntityType="Self.Empleados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inventario" EntityType="Self.Inventario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ordenes" EntityType="Self.Ordenes" Schema="dbo" store:Type="Tables" />
@@ -257,6 +293,14 @@
           <AssociationSet Name="FK__Citas__id_client__6383C8BA" Association="Self.FK__Citas__id_client__6383C8BA">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Citas" EntitySet="Citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetalleVe__id_pr__6A30C649" Association="Self.FK__DetalleVe__id_pr__6A30C649">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetalleVe__id_ve__693CA210" Association="Self.FK__DetalleVe__id_ve__693CA210">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="DetalleVenta" EntitySet="DetalleVenta" />
           </AssociationSet>
           <AssociationSet Name="FK__Usuarios__RolId__5441852A" Association="Self.FK__Usuarios__RolId__5441852A">
             <End Role="Roles" EntitySet="Roles" />
@@ -291,8 +335,7 @@
             <End Role="Productos" EntitySet="Productos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QuiroFeetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -370,6 +413,7 @@
           <Property Name="activo" Type="Int32" />
           <NavigationProperty Name="Inventario" Relationship="Self.FK_Inventario_Producto" FromRole="Productos" ToRole="Inventario" />
           <NavigationProperty Name="Proveedores" Relationship="Self.FK_Productos_Proveedores" FromRole="Productos" ToRole="Proveedores" />
+          <NavigationProperty Name="DetalleVenta" Relationship="QuiroFeetModel.FK__DetalleVe__id_pr__6A30C649" FromRole="Productos" ToRole="DetalleVenta" />
         </EntityType>
         <EntityType Name="Proveedores">
           <Key>
@@ -428,6 +472,8 @@
           <Property Name="NumeroRecibo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Clientes" Relationship="Self.FK__Ventas__id_clien__5535A963" FromRole="Ventas" ToRole="Clientes" />
           <NavigationProperty Name="Clientes1" Relationship="Self.FK__Ventas__id_clien__656C112C" FromRole="Ventas" ToRole="Clientes" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DetalleVenta" Relationship="QuiroFeetModel.FK__DetalleVe__id_ve__693CA210" FromRole="Ventas" ToRole="DetalleVenta" />
         </EntityType>
         <Association Name="FK__Citas__id_client__4F7CD00D">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
@@ -601,7 +647,52 @@
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
+          <EntitySet Name="DetalleVenta" EntityType="QuiroFeetModel.DetalleVenta" />
+          <AssociationSet Name="FK__DetalleVe__id_pr__6A30C649" Association="QuiroFeetModel.FK__DetalleVe__id_pr__6A30C649">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetalleVe__id_ve__693CA210" Association="QuiroFeetModel.FK__DetalleVe__id_ve__693CA210">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="DetalleVenta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_venta" Type="Int32" Nullable="false" />
+          <Property Name="id_producto" Type="Int32" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="monto" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <NavigationProperty Name="Productos" Relationship="QuiroFeetModel.FK__DetalleVe__id_pr__6A30C649" FromRole="DetalleVenta" ToRole="Productos" />
+          <NavigationProperty Name="Ventas" Relationship="QuiroFeetModel.FK__DetalleVe__id_ve__693CA210" FromRole="DetalleVenta" ToRole="Ventas" />
+        </EntityType>
+        <Association Name="FK__DetalleVe__id_pr__6A30C649">
+          <End Type="QuiroFeetModel.Productos" Role="Productos" Multiplicity="1" />
+          <End Type="QuiroFeetModel.DetalleVenta" Role="DetalleVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DetalleVenta">
+              <PropertyRef Name="id_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetalleVe__id_ve__693CA210">
+          <End Type="QuiroFeetModel.Ventas" Role="Ventas" Multiplicity="1" />
+          <End Type="QuiroFeetModel.DetalleVenta" Role="DetalleVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DetalleVenta">
+              <PropertyRef Name="id_venta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -722,6 +813,7 @@
           <EntitySetMapping Name="Ventas">
             <EntityTypeMapping TypeName="QuiroFeetModel.Ventas">
               <MappingFragment StoreEntitySet="Ventas">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
                 <ScalarProperty Name="servicio" ColumnName="servicio" />
@@ -729,6 +821,17 @@
                 <ScalarProperty Name="monto" ColumnName="monto" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="NumeroRecibo" ColumnName="NumeroRecibo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetalleVenta">
+            <EntityTypeMapping TypeName="QuiroFeetModel.DetalleVenta">
+              <MappingFragment StoreEntitySet="DetalleVenta">
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+                <ScalarProperty Name="id_venta" ColumnName="id_venta" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -3,9 +3,9 @@
     ViewBag.Title = "Registrar Venta";
 }
 
-<div class="container">
-    <h1>Registrar Venta</h1>
-    <p>Complete la información para procesar la venta.</p>
+<div class="register-sale-container">
+    <h1><i class="bi bi-cash-coin"></i> Registrar Venta</h1>
+    <p>Complete la información para procesar la venta de productos.</p>
 
     @using (Html.BeginForm("RegisterSale", "Ventas", FormMethod.Post))
     {
@@ -13,13 +13,13 @@
 
         <!-- Cliente -->
         <div class="form-group">
-            <label for="id_cliente">Cliente</label>
+            <label for="id_cliente" class="form-label"><i class="bi bi-person-fill"></i> Cliente</label>
             @Html.DropDownList("id_cliente", ViewBag.Clientes as SelectList, "Seleccione un cliente", new { @class = "form-control", required = "required" })
         </div>
 
         <!-- Productos disponibles -->
-        <div id="productosContainer">
-            <label>Productos</label>
+        <div id="productosContainer" class="product-list">
+            <label class="form-label"><i class="bi bi-box-seam"></i> Productos Disponibles</label>
             @{
                 var productos = ViewBag.Productos as List<Analisis.BD.Productos>;
             }
@@ -30,24 +30,21 @@
                 foreach (var producto in productos)
                 {
                     var inventario = producto.Inventario.FirstOrDefault(i => i.stock.HasValue && i.stock > 0);
-                    if (inventario == null) { continue; }
 
-                    string tipo = inventario.publico == 1 ? "Público" : "Prescripción";
-                    int stock = inventario.stock ?? 0;
+                    if (inventario != null)
+                    {
+                        int stock = inventario.stock ?? 0;
 
-                    <div class="form-check mb-2">
-                        <input class="form-check-input producto-checkbox" type="checkbox" name="productosSeleccionados[@index]" value="@producto.id" id="producto_@producto.id" />
-                        <label class="form-check-label" for="producto_@producto.id">
-                            @producto.nombre – ₡@producto.precio (@tipo) – Stock: @stock
-                        </label>
-                        <input type="number" class="form-control mt-1 cantidad-input" name="cantidades[@index]" placeholder="Cantidad" min="1" disabled />
-                    </div>
-                    index++;
+                        <div class="form-check mb-2 product-item">
+                            <input class="form-check-input producto-checkbox" type="checkbox" name="productosSeleccionados[@index]" value="@producto.id" id="producto_@producto.id" />
+                            <label class="form-check-label" for="producto_@producto.id">
+                                @producto.nombre – ₡@producto.precio – Stock: @stock
+                            </label>
+                            <input type="number" class="form-control mt-1 cantidad-input" name="cantidades[@index]" placeholder="Cantidad" min="1" disabled />
+                        </div>
+                        index++;
+                    }
                 }
-
-                <small id="alertaPrescripcion" class="text-danger" style="display:none;">
-                    <i class="bi bi-exclamation-triangle-fill"></i> Validar que el cliente cuente con prescripción para productos seleccionados.
-                </small>
             }
             else
             {
@@ -58,16 +55,20 @@
         </div>
 
         <!-- Botones -->
-        <div class="mt-4">
-            <button type="submit" class="btn btn-primary">Registrar Venta</button>
-            <a href="@Url.Action("ListSales", "Ventas")" class="btn btn-secondary">Cancelar</a>
+        <div class="actions mt-4">
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-check-circle"></i> Registrar Venta
+            </button>
+            <a href="@Url.Action("ListSales", "Ventas")" class="btn btn-secondary">
+                <i class="bi bi-x-circle"></i> Cancelar
+            </a>
         </div>
     }
 </div>
 
 <!-- Notificación -->
 <div id="notification" class="notification" style="display:none;">
-    Venta registrada exitosamente.
+    <i class="bi bi-check2-circle"></i> Venta registrada exitosamente.
 </div>
 
 @section Scripts {
@@ -81,20 +82,6 @@
                 });
             });
 
-            document.getElementById("productosContainer").addEventListener("change", function () {
-                const checkboxes = document.querySelectorAll(".producto-checkbox");
-                const alerta = document.getElementById("alertaPrescripcion");
-                let prescripcion = false;
-
-                checkboxes.forEach(cb => {
-                    if (cb.checked && cb.nextElementSibling.textContent.includes("Prescripción")) {
-                        prescripcion = true;
-                    }
-                });
-
-                alerta.style.display = prescripcion ? "block" : "none";
-            });
-
             if (window.location.href.includes("success=true")) {
                 const notification = document.getElementById("notification");
                 notification.style.display = "block";
@@ -106,30 +93,110 @@
     </script>
 }
 
+<!-- Estilos CSS -->
 <style>
-    .container {
-        max-width: 700px;
-        margin: 40px auto;
-        background: #fff;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    body {
+        font-family: 'Poppins', sans-serif;
     }
 
-    .form-group {
+    .register-sale-container {
+        max-width: 750px;
+        margin: 60px auto;
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    h1 {
+        color: #234449;
+        font-size: 2.2em;
         margin-bottom: 20px;
     }
+
+    p {
+        font-size: 1.1em;
+        color: #555;
+        margin-bottom: 30px;
+    }
+
+    .form-group, .product-list {
+        text-align: left;
+        margin-bottom: 25px;
+    }
+
+    .form-label {
+        font-weight: 500;
+        margin-bottom: 8px;
+        display: block;
+        color: #234449;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        font-size: 1em;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+    }
+
+    .product-item {
+        padding: 10px;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        background: #f9f9f9;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .btn {
+        padding: 12px 24px;
+        font-size: 1em;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        color: white;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary {
+        background-color: #234449;
+    }
+
+        .btn-primary:hover {
+            background-color: #3e77f8;
+        }
+
+    .btn-secondary {
+        background-color: #6c757d;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
 
     .notification {
         position: fixed;
         top: 20px;
         right: 20px;
-        background-color: #4CAF50;
+        background-color: #28a745;
         color: white;
         padding: 15px 30px;
         border-radius: 8px;
-        font-size: 16px;
+        font-size: 1em;
         z-index: 1000;
+        display: flex;
+        align-items: center;
+        gap: 10px;
         animation: fadeInOut 3s ease;
     }
 

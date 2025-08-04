@@ -26,6 +26,9 @@
         <AssociationConnector Association="QuiroFeetModel.FK_Productos_Proveedores" ManuallyRouted="false" />
         <AssociationConnector Association="QuiroFeetModel.FK__Usuarios__RolId__5441852A" ManuallyRouted="false" />
         <AssociationConnector Association="QuiroFeetModel.FK__Usuarios__RolId__6477ECF3" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QuiroFeetModel.DetalleVenta" Width="1.5" PointX="10.25" PointY="9.25" />
+        <AssociationConnector Association="QuiroFeetModel.FK__DetalleVe__id_pr__6A30C649" />
+        <AssociationConnector Association="QuiroFeetModel.FK__DetalleVe__id_ve__693CA210" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

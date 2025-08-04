@@ -37,11 +37,9 @@ public ActionResult ListReceipts()
 
         public ActionResult Details(int id)
         {
-            if (Session["UsuarioId"] == null)
-                return RedirectToAction("Login", "Account");
-
             var venta = db.Ventas
-                .Include(v => v.Clientes) 
+                .Include(v => v.Clientes)
+                .Include(v => v.DetalleVenta.Select(dv => dv.Productos)) 
                 .FirstOrDefault(v => v.id == id);
 
             if (venta == null)
@@ -50,13 +48,20 @@ public ActionResult ListReceipts()
             return View(venta);
         }
 
+
+
+
         public ActionResult Print(int id)
         {
-            var venta = db.Ventas.Include("Clientes").FirstOrDefault(v => v.id == id);
+            var venta = db.Ventas
+                .Include(v => v.Clientes)
+                .Include(v => v.DetalleVenta.Select(dv => dv.Productos)) 
+                .FirstOrDefault(v => v.id == id);
+
             if (venta == null)
                 return HttpNotFound();
 
-            return View("Print", venta); 
+            return View("Print", venta);
         }
 
 
@@ -128,13 +133,22 @@ public ActionResult ListReceipts()
             return View();
         }
 
-       /* public ActionResult ListAnularReceipt()
+        // POST: Recibos/Anular/5
+        [HttpPost]
+        public ActionResult Anular(int id)
         {
-            if (Session["UsuarioId"] == null)
-                return RedirectToAction("Login", "Account");
+            var venta = db.Ventas.Find(id);
+            if (venta == null)
+            {
+                return HttpNotFound();
+            }
 
-            var anulables = db.Ventas.Where(v => v.fecha >= DateTime.Today.AddDays(-30)).ToList(); // ejemplo
-            return View(anulables);
-        }*/
+            // Marca la venta como anulada
+            venta.Estado = "Anulado"; 
+            db.SaveChanges();
+
+            return Json(new { success = true });
+        }
+
     }
 }
