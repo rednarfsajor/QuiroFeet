@@ -20,8 +20,12 @@ namespace Analisis.Controllers
             if (venta == null)
                 return RedirectToAction("ErrorSale");
 
-            var ventaConCliente = db.Ventas.Include(v => v.Clientes).FirstOrDefault(v => v.id == venta.id);
-            return View(ventaConCliente);
+            var ventaConDetalle = db.Ventas
+                .Include(v => v.Clientes)
+                .Include(v => v.DetalleVenta.Select(dv => dv.Productos))
+                .FirstOrDefault(v => v.id == venta.id);
+
+            return View(ventaConDetalle);
         }
 
         [HttpPost]
@@ -92,6 +96,8 @@ namespace Analisis.Controllers
             return View();
         }
 
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult RegisterSale(int id_cliente, List<int> productosSeleccionados, List<int> cantidades)
@@ -108,56 +114,68 @@ namespace Analisis.Controllers
             decimal total = 0;
             string detalle = "";
 
-            for (int i = 0; i < productosSeleccionados.Count; i++)
-            {
-                int idProducto = productosSeleccionados[i];
-                int cantidad = cantidades[i];
-
-                var inventario = db.Inventario.Include(inv => inv.Productos)
-                    .FirstOrDefault(inv => inv.id_producto == idProducto);
-
-                if (inventario == null || inventario.stock < cantidad)
-                {
-                    TempData["Error"] = $"Stock insuficiente para producto ID {idProducto}";
-                    return RedirectToAction("ErrorSale");
-                }
-
-                total += inventario.Productos.precio.GetValueOrDefault() * cantidad;
-                detalle += $"{inventario.Productos.nombre} x{cantidad}, ";
-            }
-
             var venta = new Ventas
             {
                 id_cliente = id_cliente,
                 servicio = "False",
-                detalle = detalle.TrimEnd(',', ' '),
-                monto = total,
+                detalle = "", // se llenará más abajo
+                monto = 0,    // se calculará
                 fecha = DateTime.Now,
                 NumeroRecibo = new Random().Next(100000, 999999).ToString(),
-                Estado = "Activo"
+                Estado = "Activo",
+                DetalleVenta = new List<DetalleVenta>() // importante: inicializar
             };
 
             try
             {
+                // Procesar cada producto
+                for (int i = 0; i < productosSeleccionados.Count; i++)
+                {
+                    int idProducto = productosSeleccionados[i];
+                    int cantidad = cantidades[i];
+
+                    var inventario = db.Inventario.Include(inv => inv.Productos)
+                        .FirstOrDefault(inv => inv.id_producto == idProducto);
+
+                    if (inventario == null || inventario.stock < cantidad)
+                    {
+                        TempData["Error"] = $"Stock insuficiente para producto ID {idProducto}";
+                        return RedirectToAction("ErrorSale");
+                    }
+
+                    decimal precioUnitario = inventario.Productos.precio.GetValueOrDefault();
+                    decimal monto = precioUnitario * cantidad;
+
+                    // Agregar detalle de venta
+                    var detalleVenta = new DetalleVenta
+                    {
+                        id_producto = idProducto,
+                        cantidad = cantidad,
+                        monto = monto
+                    };
+                    venta.DetalleVenta.Add(detalleVenta);
+
+                    // Sumar al total
+                    total += monto;
+
+                    // Construir detalle en texto
+                    detalle += $"{inventario.Productos.nombre} x{cantidad}, ";
+
+                    // Actualizar inventario
+                    inventario.stock -= cantidad;
+                    db.Entry(inventario).State = EntityState.Modified;
+                }
+
+                venta.monto = total;
+                venta.detalle = detalle.TrimEnd(',', ' ');
+
+                // Guardar la venta y sus detalles
                 db.Ventas.Add(venta);
                 db.SaveChanges();
 
-                for (int j = 0; j < productosSeleccionados.Count; j++)
-                {
-                    int idProducto = productosSeleccionados[j];
-                    int cantidad = cantidades[j];
-
-                    var inventario = db.Inventario.FirstOrDefault(inv => inv.id_producto == idProducto);
-                    if (inventario != null)
-                    {
-                        inventario.stock -= cantidad;
-                        db.Entry(inventario).State = EntityState.Modified;
-                    }
-                }
-
-                db.SaveChanges();
-
+                // Asignar cliente para vista
                 venta.Clientes = db.Clientes.FirstOrDefault(c => c.id == id_cliente);
+
                 TempData["ReciboVenta"] = venta;
                 return RedirectToAction("ConfirmSale");
             }
@@ -170,6 +188,7 @@ namespace Analisis.Controllers
                 return RedirectToAction("ErrorSale");
             }
         }
+
 
         [HttpGet]
         public ActionResult RegisterServiceSale()
@@ -212,8 +231,12 @@ namespace Analisis.Controllers
                 db.Ventas.Add(venta);
                 db.SaveChanges();
 
-                venta.Clientes = db.Clientes.FirstOrDefault(c => c.id == id_cliente);
-                TempData["ReciboVenta"] = venta;
+                // Carga nuevamente la venta con el cliente relacionado para la vista ConfirmSale
+                var ventaCompleta = db.Ventas
+                    .Include(v => v.Clientes)
+                    .FirstOrDefault(v => v.id == venta.id);
+
+                TempData["ReciboVenta"] = ventaCompleta;
                 return RedirectToAction("ConfirmSale");
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException ex)
@@ -225,6 +248,7 @@ namespace Analisis.Controllers
                 return RedirectToAction("ErrorSale");
             }
         }
+
 
         public ActionResult Sales()
         {

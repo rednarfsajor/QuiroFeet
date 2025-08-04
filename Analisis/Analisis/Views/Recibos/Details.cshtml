@@ -38,7 +38,6 @@
                             <strong>Cliente:</strong><br />
                             @(Model.Clientes?.nombre ?? "No disponible")
                         </td>
-
                         <td>
                             <strong>Tipo:</strong> @(Model.servicio == "True" ? "Servicio" : "Producto")<br />
                             <strong>Detalle:</strong> @Model.detalle
@@ -49,20 +48,40 @@
         </tr>
 
         <tr class="heading">
-            <td>Código</td>
+            <td>Producto</td>
             <td>Descripción</td>
             <td>Cantidad</td>
             <td>Monto</td>
         </tr>
 
-        <tr class="item">
-            <td>
-                @(Model.servicio == "True" ? "Servicio" : (Model.detalle.Contains(",") ? "Varios Productos" : "Producto"))
-            </td>
-            <td>@Model.detalle</td>
-            <td>1</td>
-            <td>₡@string.Format("{0:N2}", Model.monto)</td>
-        </tr>
+        @if (Model.servicio == "True")
+        {
+            <tr class="item">
+                <td>Servicio</td>
+                <td>@Model.detalle</td>
+                <td>1</td>
+                <td>₡@string.Format("{0:N2}", Model.monto)</td>
+            </tr>
+        }
+        else if (Model.DetalleVenta != null && Model.DetalleVenta.Any())
+        {
+            foreach (var detalle in Model.DetalleVenta)
+            {
+                var producto = detalle.Productos;
+                <tr class="item">
+                    <td>@(producto?.nombre ?? "Producto N/D")</td>
+                    <td>@(producto?.descripcion ?? "Sin descripción")</td>
+                    <td>@detalle.cantidad</td>
+                    <td>₡@string.Format("{0:N2}", detalle.monto)</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" style="text-align:center;">No hay productos registrados.</td>
+            </tr>
+        }
 
         <tr class="total">
             <td colspan="3" style="text-align: right;">Total:</td>
@@ -87,7 +106,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
 <script>
     async function downloadPDF() {
         const { jsPDF } = window.jspdf;
@@ -107,6 +125,162 @@
         hiddenElements.forEach(el => el.style.display = "");
     }
 </script>
+
+<!-- Estilos se mantienen igual como ya tienes definidos -->
+<!-- Los estilos permanecen igual -->
+
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: #f9fafb;
+        padding: 20px;
+    }
+
+    .invoice-box {
+        max-width: 800px;
+        margin: auto;
+        padding: 40px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        position: relative;
+    }
+
+    .header {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .logo-container {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+
+    .logo-fixed {
+        width: 50px;
+        height: auto;
+    }
+
+    .invoice-box table {
+        width: 100%;
+        line-height: 1.5;
+        text-align: left;
+        border-collapse: collapse;
+    }
+
+        .invoice-box table td {
+            padding: 8px;
+            vertical-align: top;
+        }
+
+    .invoice-box .title {
+        text-align: center;
+    }
+
+    .invoice-box h1 {
+        font-size: 1.8em;
+        color: #234449;
+        margin: 0;
+    }
+
+    .invoice-box p {
+        font-size: 0.95em;
+        color: #555;
+        margin: 4px 0 0;
+    }
+
+    .invoice-box table tr.heading td {
+        background: #234449;
+        color: white;
+        font-weight: bold;
+    }
+
+    .invoice-box table tr.item td {
+        border-bottom: 1px solid #eee;
+    }
+
+    .invoice-box table tr.total td {
+        border-top: 2px solid #234449;
+        font-weight: bold;
+        font-size: 1.1em;
+    }
+
+    .thank-you {
+        text-align: center;
+        margin-top: 30px;
+        font-style: italic;
+        color: #555;
+    }
+
+    .actions {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        margin: 5px;
+        text-decoration: none;
+        border-radius: 6px;
+        color: white;
+        font-size: 1em;
+        display: inline-block;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-print {
+        background: #234449;
+    }
+
+    .btn-download {
+        background: #28a745;
+    }
+
+    .btn-back {
+        background: #6c757d;
+        text-decoration: none;
+    }
+
+    .btn-print:hover {
+        background: #3e77f8;
+    }
+
+    .btn-download:hover {
+        background: #218838;
+    }
+
+    .btn-back:hover {
+        background: #5a6268;
+    }
+
+    .no-print {
+        display: block;
+    }
+
+    @@media print {
+        .no-print {
+            display: none !important;
+        }
+
+        body {
+            background: white;
+        }
+
+        .invoice-box {
+            box-shadow: none;
+            margin: 0;
+        }
+
+        @@page {
+            margin: 0;
+        }
+    }
+</style>
+
+
 
 <style>
     body {

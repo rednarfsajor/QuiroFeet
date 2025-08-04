@@ -14,9 +14,32 @@
     <p>El número de recibo es <strong>#@Model.NumeroRecibo</strong></p>
 
     <div class="summary-box">
-        <p><strong>Cliente:</strong> @(Model.Clientes != null ? Model.Clientes.nombre : "<span style='color:red'>No disponible</span>")</p>
-        <p><strong>Fecha:</strong> @(Model.fecha.HasValue ? Model.fecha.Value.ToString("dd/MM/yyyy hh:mm tt") : "<span style='color:red'>No disponible</span>")</p>
+        <p><strong>Cliente:</strong> @(Model.Clientes != null ? Model.Clientes.nombre : Html.Raw("<span style='color:red'>No disponible</span>"))</p>
+        <p><strong>Fecha:</strong> @(Model.fecha.HasValue ? Model.fecha.Value.ToString("dd/MM/yyyy hh:mm tt") : Html.Raw("<span style='color:red'>No disponible</span>"))</p>
         <p><strong>Total:</strong> ₡@string.Format("{0:N2}", Model.monto)</p>
+
+        @if (Model.servicio == "True")
+        {
+            <p><strong>Servicio:</strong> @Model.detalle</p>
+        }
+        else if (Model.DetalleVenta != null && Model.DetalleVenta.Any())
+        {
+            <p><strong>Productos:</strong></p>
+            <ul style="text-align:left; margin-top:10px;">
+                @foreach (var detalle in Model.DetalleVenta)
+                {
+                    <li>
+                        @(detalle.Productos != null ? detalle.Productos.nombre : "Producto N/D")
+                        - Cantidad: @detalle.cantidad
+                        - Monto: ₡@string.Format("{0:N2}", detalle.monto)
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p style="color:red;">No hay productos registrados.</p>
+        }
     </div>
 
     <div class="confirmation-actions">
@@ -65,11 +88,12 @@
         padding: 20px;
         border-radius: 10px;
         border: 1px solid #ddd;
+        text-align: left;
     }
 
-    .summary-box p {
-        margin: 6px 0;
-    }
+        .summary-box p, .summary-box ul {
+            margin: 6px 0;
+        }
 
     .confirmation-actions {
         margin-top: 30px;
@@ -96,17 +120,17 @@
         background-color: #6c757d;
     }
 
-    .btn-back:hover {
-        background-color: #5a6268;
-    }
+        .btn-back:hover {
+            background-color: #5a6268;
+        }
 
     .btn-success {
         background-color: #198754;
     }
 
-    .btn-success:hover {
-        background-color: #157347;
-    }
+        .btn-success:hover {
+            background-color: #157347;
+        }
 
     @@media (max-width: 480px) {
         .confirmation-card {

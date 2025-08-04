@@ -18,6 +18,7 @@ namespace Analisis.BD
         public Productos()
         {
             this.Inventario = new HashSet<Inventario>();
+            this.DetalleVenta = new HashSet<DetalleVenta>();
         }
     
         public int id { get; set; }
@@ -30,5 +31,7 @@ namespace Analisis.BD
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Inventario> Inventario { get; set; }
         public virtual Proveedores Proveedores { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DetalleVenta> DetalleVenta { get; set; }
     }
 }

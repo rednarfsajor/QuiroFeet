@@ -37,11 +37,9 @@ public ActionResult ListReceipts()
 
         public ActionResult Details(int id)
         {
-            if (Session["UsuarioId"] == null)
-                return RedirectToAction("Login", "Account");
-
             var venta = db.Ventas
-                .Include(v => v.Clientes) 
+                .Include(v => v.Clientes)
+                .Include(v => v.DetalleVenta.Select(dv => dv.Productos)) 
                 .FirstOrDefault(v => v.id == id);
 
             if (venta == null)
@@ -50,13 +48,20 @@ public ActionResult ListReceipts()
             return View(venta);
         }
 
+
+
+
         public ActionResult Print(int id)
         {
-            var venta = db.Ventas.Include("Clientes").FirstOrDefault(v => v.id == id);
+            var venta = db.Ventas
+                .Include(v => v.Clientes)
+                .Include(v => v.DetalleVenta.Select(dv => dv.Productos)) 
+                .FirstOrDefault(v => v.id == id);
+
             if (venta == null)
                 return HttpNotFound();
 
-            return View("Print", venta); 
+            return View("Print", venta);
         }
 
 

@@ -36,5 +36,6 @@ namespace Analisis.BD
         public virtual DbSet<Servicios> Servicios { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<Ventas> Ventas { get; set; }
+        public virtual DbSet<DetalleVenta> DetalleVenta { get; set; }
     }
 }
