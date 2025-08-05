@@ -1,0 +1,133 @@
+﻿@{
+    ViewBag.Title = "Estadísticas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="mb-4">Estadísticas Generales</h2>
+
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card text-white bg-success shadow">
+            <div class="card-body">
+                <h5 class="card-title">Total Ingresos</h5>
+                <p class="card-text">@ViewBag.TotalIngresos.ToString("C")</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-primary shadow">
+            <div class="card-body">
+                <h5 class="card-title">Venta más alta</h5>
+                <p>@(ViewBag.VentaMasAlta != null ? ((decimal)ViewBag.VentaMasAlta.monto).ToString("C") : "No hay ventas")</p>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-danger shadow">
+            <div class="card-body">
+                <h5 class="card-title">Venta más baja</h5>
+                <p>@(ViewBag.VentaMasBaja != null ? ((decimal)ViewBag.VentaMasBaja.monto).ToString("C") : "No hay ventas")</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+
+
+<h4>Citas por Profesional</h4>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID Profesional</th>
+            <th>Total Citas</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.CitasPorProfesional)
+        {
+            <tr>
+                <td>@item.Profesional</td>
+                <td>@item.Total</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h4>Citas por Servicio</h4>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID Servicio</th>
+            <th>Total Citas</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.CitasPorServicio)
+        {
+            <tr>
+                <td>@item.Servicio</td>
+                <td>@item.Total</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h4>Clientes con más Citas</h4>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID Cliente</th>
+            <th>Total Citas</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.ClientesConMasCitas)
+        {
+            <tr>
+                <td>@item.Cliente</td>
+                <td>@item.Total</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h4>Citas por Día</h4>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Día</th>
+            <th>Total Citas</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.CitasPorDia)
+        {
+            <tr>
+                <td>@item.Dia</td>
+                <td>@item.Total</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h4>Citas por Mes</h4>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Mes</th>
+            <th>Total Citas</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.CitasPorMes)
+        {
+            <tr>
+                <td>@item.Mes</td>
+                <td>@item.Total</td>
+            </tr>
+        }
+    </tbody>
+</table>
