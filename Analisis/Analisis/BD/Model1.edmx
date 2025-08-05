@@ -26,6 +26,17 @@
           <Property Name="correo" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="telefono" Type="nvarchar" MaxLength="15" />
         </EntityType>
+        <EntityType Name="DetalleOrden">
+          <Key>
+            <PropertyRef Name="id_detalle" />
+          </Key>
+          <Property Name="id_detalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_orden" Type="int" Nullable="false" />
+          <Property Name="id_producto" Type="int" Nullable="false" />
+          <Property Name="qty" Type="int" Nullable="false" />
+          <Property Name="precio_unidad" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="subtotal" Type="decimal" Precision="29" Scale="2" StoreGeneratedPattern="Computed" />
+        </EntityType>
         <EntityType Name="DetalleVenta">
           <Key>
             <PropertyRef Name="id" />
@@ -66,6 +77,17 @@
           <Property Name="fecha_creacion" Type="date" Nullable="false" />
           <Property Name="fecha_recepcion" Type="date" />
           <Property Name="estado" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrdenesCompra">
+          <Key>
+            <PropertyRef Name="id_orden" />
+          </Key>
+          <Property Name="id_orden" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="proveedor_id" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="fecha_recepcion" Type="datetime" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" />
+          <Property Name="total" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="Productos">
           <Key>
@@ -153,6 +175,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__DetalleOr__id_or__6FE99F9F">
+          <End Role="OrdenesCompra" Type="Self.OrdenesCompra" Multiplicity="1" />
+          <End Role="DetalleOrden" Type="Self.DetalleOrden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenesCompra">
+              <PropertyRef Name="id_orden" />
+            </Principal>
+            <Dependent Role="DetalleOrden">
+              <PropertyRef Name="id_orden" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__DetalleVe__id_pr__6A30C649">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
           <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
@@ -174,6 +208,18 @@
             </Principal>
             <Dependent Role="DetalleVenta">
               <PropertyRef Name="id_venta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrdenesCo__prove__6D0D32F4">
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="1" />
+          <End Role="OrdenesCompra" Type="Self.OrdenesCompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OrdenesCompra">
+              <PropertyRef Name="proveedor_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -276,10 +322,12 @@
         <EntityContainer Name="QuiroFeetModelStoreContainer">
           <EntitySet Name="Citas" EntityType="Self.Citas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetalleOrden" EntityType="Self.DetalleOrden" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DetalleVenta" EntityType="Self.DetalleVenta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empleados" EntityType="Self.Empleados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inventario" EntityType="Self.Inventario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ordenes" EntityType="Self.Ordenes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrdenesCompra" EntityType="Self.OrdenesCompra" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proveedores" EntityType="Self.Proveedores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
@@ -294,6 +342,10 @@
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Citas" EntitySet="Citas" />
           </AssociationSet>
+          <AssociationSet Name="FK__DetalleOr__id_or__6FE99F9F" Association="Self.FK__DetalleOr__id_or__6FE99F9F">
+            <End Role="OrdenesCompra" EntitySet="OrdenesCompra" />
+            <End Role="DetalleOrden" EntitySet="DetalleOrden" />
+          </AssociationSet>
           <AssociationSet Name="FK__DetalleVe__id_pr__6A30C649" Association="Self.FK__DetalleVe__id_pr__6A30C649">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="DetalleVenta" EntitySet="DetalleVenta" />
@@ -301,6 +353,10 @@
           <AssociationSet Name="FK__DetalleVe__id_ve__693CA210" Association="Self.FK__DetalleVe__id_ve__693CA210">
             <End Role="Ventas" EntitySet="Ventas" />
             <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrdenesCo__prove__6D0D32F4" Association="Self.FK__OrdenesCo__prove__6D0D32F4">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="OrdenesCompra" EntitySet="OrdenesCompra" />
           </AssociationSet>
           <AssociationSet Name="FK__Usuarios__RolId__5441852A" Association="Self.FK__Usuarios__RolId__5441852A">
             <End Role="Roles" EntitySet="Roles" />
@@ -425,6 +481,7 @@
           <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="numero" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Productos" Relationship="Self.FK_Productos_Proveedores" FromRole="Proveedores" ToRole="Productos" />
+          <NavigationProperty Name="OrdenesCompra" Relationship="QuiroFeetModel.FK__OrdenesCo__prove__6D0D32F4" FromRole="Proveedores" ToRole="OrdenesCompra" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -656,7 +713,17 @@
             <End Role="Ventas" EntitySet="Ventas" />
             <End Role="DetalleVenta" EntitySet="DetalleVenta" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="DetalleOrden" EntityType="QuiroFeetModel.DetalleOrden" />
+          <EntitySet Name="OrdenesCompra" EntityType="QuiroFeetModel.OrdenesCompra" />
+          <AssociationSet Name="FK__DetalleOr__id_or__6FE99F9F" Association="QuiroFeetModel.FK__DetalleOr__id_or__6FE99F9F">
+            <End Role="OrdenesCompra" EntitySet="OrdenesCompra" />
+            <End Role="DetalleOrden" EntitySet="DetalleOrden" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrdenesCo__prove__6D0D32F4" Association="QuiroFeetModel.FK__OrdenesCo__prove__6D0D32F4">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="OrdenesCompra" EntitySet="OrdenesCompra" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="DetalleVenta">
           <Key>
             <PropertyRef Name="id" />
@@ -693,7 +760,56 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <EntityType Name="DetalleOrden">
+          <Key>
+            <PropertyRef Name="id_detalle" />
+          </Key>
+          <Property Name="id_detalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_orden" Type="Int32" Nullable="false" />
+          <Property Name="id_producto" Type="Int32" Nullable="false" />
+          <Property Name="qty" Type="Int32" Nullable="false" />
+          <Property Name="precio_unidad" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="subtotal" Type="Decimal" Precision="29" Scale="2" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="OrdenesCompra" Relationship="QuiroFeetModel.FK__DetalleOr__id_or__6FE99F9F" FromRole="DetalleOrden" ToRole="OrdenesCompra" />
+        </EntityType>
+        <EntityType Name="OrdenesCompra">
+          <Key>
+            <PropertyRef Name="id_orden" />
+          </Key>
+          <Property Name="id_orden" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="proveedor_id" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fecha_recepcion" Type="DateTime" Precision="3" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="DetalleOrden" Relationship="QuiroFeetModel.FK__DetalleOr__id_or__6FE99F9F" FromRole="OrdenesCompra" ToRole="DetalleOrden" />
+          <NavigationProperty Name="Proveedores" Relationship="QuiroFeetModel.FK__OrdenesCo__prove__6D0D32F4" FromRole="OrdenesCompra" ToRole="Proveedores" />
+        </EntityType>
+        <Association Name="FK__DetalleOr__id_or__6FE99F9F">
+          <End Type="QuiroFeetModel.OrdenesCompra" Role="OrdenesCompra" Multiplicity="1" />
+          <End Type="QuiroFeetModel.DetalleOrden" Role="DetalleOrden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenesCompra">
+              <PropertyRef Name="id_orden" />
+            </Principal>
+            <Dependent Role="DetalleOrden">
+              <PropertyRef Name="id_orden" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrdenesCo__prove__6D0D32F4">
+          <End Type="QuiroFeetModel.Proveedores" Role="Proveedores" Multiplicity="1" />
+          <End Type="QuiroFeetModel.OrdenesCompra" Role="OrdenesCompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OrdenesCompra">
+              <PropertyRef Name="proveedor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -832,6 +948,30 @@
                 <ScalarProperty Name="id_producto" ColumnName="id_producto" />
                 <ScalarProperty Name="id_venta" ColumnName="id_venta" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetalleOrden">
+            <EntityTypeMapping TypeName="QuiroFeetModel.DetalleOrden">
+              <MappingFragment StoreEntitySet="DetalleOrden">
+                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+                <ScalarProperty Name="precio_unidad" ColumnName="precio_unidad" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+                <ScalarProperty Name="id_orden" ColumnName="id_orden" />
+                <ScalarProperty Name="id_detalle" ColumnName="id_detalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrdenesCompra">
+            <EntityTypeMapping TypeName="QuiroFeetModel.OrdenesCompra">
+              <MappingFragment StoreEntitySet="OrdenesCompra">
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="fecha_recepcion" ColumnName="fecha_recepcion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="proveedor_id" ColumnName="proveedor_id" />
+                <ScalarProperty Name="id_orden" ColumnName="id_orden" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

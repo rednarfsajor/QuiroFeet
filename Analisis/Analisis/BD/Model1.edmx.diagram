@@ -29,7 +29,11 @@
         <EntityTypeShape EntityType="QuiroFeetModel.DetalleVenta" Width="1.5" PointX="10.25" PointY="9.25" />
         <AssociationConnector Association="QuiroFeetModel.FK__DetalleVe__id_pr__6A30C649" />
         <AssociationConnector Association="QuiroFeetModel.FK__DetalleVe__id_ve__693CA210" />
-      </Diagram>
+        <EntityTypeShape EntityType="QuiroFeetModel.DetalleOrden" Width="1.5" PointX="10.25" PointY="13.125" />
+        <EntityTypeShape EntityType="QuiroFeetModel.OrdenesCompra" Width="1.5" PointX="8" PointY="13" />
+        <AssociationConnector Association="QuiroFeetModel.FK__DetalleOr__id_or__6FE99F9F" />
+        <AssociationConnector Association="QuiroFeetModel.FK__OrdenesCo__prove__6D0D32F4" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
