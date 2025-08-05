@@ -28,7 +28,7 @@ namespace Analisis.BD
         public Nullable<System.DateTime> fecha { get; set; }
         public string NumeroRecibo { get; set; }
         public string Estado { get; set; }
-
+    
         public virtual Clientes Clientes { get; set; }
         public virtual Clientes Clientes1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

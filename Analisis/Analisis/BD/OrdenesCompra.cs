@@ -12,24 +12,23 @@ namespace Analisis.BD
     using System;
     using System.Collections.Generic;
     
-    public partial class Proveedores
+    public partial class OrdenesCompra
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Proveedores()
+        public OrdenesCompra()
         {
-            this.Productos = new HashSet<Productos>();
-            this.OrdenesCompra = new HashSet<OrdenesCompra>();
+            this.DetalleOrden = new HashSet<DetalleOrden>();
         }
     
-        public int id { get; set; }
-        public string nombre { get; set; }
-        public string contacto { get; set; }
-        public string correo { get; set; }
-        public string numero { get; set; }
+        public int id_orden { get; set; }
+        public int proveedor_id { get; set; }
+        public System.DateTime fecha_creacion { get; set; }
+        public Nullable<System.DateTime> fecha_recepcion { get; set; }
+        public string status { get; set; }
+        public Nullable<decimal> total { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Productos> Productos { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrdenesCompra> OrdenesCompra { get; set; }
+        public virtual ICollection<DetalleOrden> DetalleOrden { get; set; }
+        public virtual Proveedores Proveedores { get; set; }
     }
 }
