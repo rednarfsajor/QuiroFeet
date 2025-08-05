@@ -505,6 +505,7 @@
     <Content Include="Views\Recibos\ListReceipts.cshtml" />
     <Content Include="Views\Ventas\EditSale.cshtml" />
     <Content Include="Views\Ventas\RegisterServiceSale.cshtml" />
+    <Content Include="Views\Reportes\Estadisticas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
