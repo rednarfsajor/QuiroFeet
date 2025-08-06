@@ -5,20 +5,22 @@
     ViewBag.Title = "Listado de Órdenes de Compra";
 }
 
-<div class="container mt-5">
-    <!-- Título -->
-    <h2 class="text-center mb-4">@ViewBag.Title</h2>
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+
+<div class="ordenes-container">
+    <h2><i class="bi bi-list-check"></i> @ViewBag.Title</h2>
 
     @if (!Model.Any())
     {
-        <div class="alert alert-info text-center">
-            No se encontraron órdenes de compra.
+        <div class="mensaje-vacio">
+            <i class="bi bi-info-circle-fill me-2"></i> No se encontraron órdenes de compra.
         </div>
     }
     else
     {
-        <table class="table table-striped text-center">
-            <thead class="bg-dark text-white">
+        <table class="ordenes-tabla">
+            <thead>
                 <tr>
                     <th>ID</th>
                     <th>Proveedor</th>
@@ -37,18 +39,15 @@
                         <td>@orden.fecha_creacion.ToString("dd/MM/yyyy HH:mm")</td>
                         <td>@orden.status</td>
                         <td>₡@(orden.total.HasValue ? orden.total.Value.ToString("N2") : "0.00")</td>
-                        <td class="d-flex justify-content-center gap-2">
-                            <a href="@Url.Action("DetallesOrdenCompra","OrdenCompra", new { id = orden.id_orden })"
-                               class="btn btn-ver">
-                                <i class="bi bi-eye"></i> Ver
+                        <td class="acciones">
+                            <a href="@Url.Action("DetallesOrdenCompra","OrdenCompra", new { id = orden.id_orden })" class="btn-ver" title="Ver Detalles">
+                                <i class="bi bi-eye-fill"></i>
                             </a>
-                            <a href="@Url.Action("EditarOrdenCompra","OrdenCompra", new { id = orden.id_orden })"
-                               class="btn btn-editar">
-                                <i class="bi bi-pencil-square"></i> Editar
+                            <a href="@Url.Action("EditarOrdenCompra","OrdenCompra", new { id = orden.id_orden })" class="btn-editar" title="Editar Orden">
+                                <i class="bi bi-pencil-square"></i>
                             </a>
-                            <a href="@Url.Action("EliminarOrdenCompra","OrdenCompra", new { id = orden.id_orden })"
-                               class="btn btn-eliminar">
-                                <i class="bi bi-trash-fill"></i> Eliminar
+                            <a href="@Url.Action("EliminarOrdenCompra","OrdenCompra", new { id = orden.id_orden })" class="btn-eliminar" title="Eliminar Orden">
+                                <i class="bi bi-trash-fill"></i>
                             </a>
                         </td>
                     </tr>
@@ -58,43 +57,73 @@
     }
 </div>
 
+<!-- Estilos -->
 <style>
-    .container {
-        max-width: 1000px;
-        background-color: #ffffff;
+    .ordenes-container {
+        max-width: 1100px;
+        margin: 50px auto;
         padding: 30px;
-        margin: 40px auto;
+        background: #ffffff;
         border-radius: 12px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
-    }
-
-    h2 {
+        font-family: 'Segoe UI', sans-serif;
         color: #234449;
     }
 
-    .table th {
-        background-color: #234449 !important;
+    h2 {
+        text-align: center;
+        font-size: 2.2em;
+        margin-bottom: 25px;
+        color: #234449;
     }
 
-    .table td,
-    .table th {
-        vertical-align: middle;
+    .mensaje-vacio {
+        text-align: center;
+        background: #ffe6e6;
+        color: #b02a37;
+        padding: 20px;
+        font-size: 1.2em;
+        border-radius: 10px;
+        margin-top: 20px;
     }
 
-    .btn {
+    .ordenes-tabla {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 30px;
+    }
+
+        .ordenes-tabla th,
+        .ordenes-tabla td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .ordenes-tabla thead {
+            background-color: #234449;
+            color: white;
+        }
+
+    .acciones {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .btn-ver,
+    .btn-editar,
+    .btn-eliminar {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
-        padding: 6px 12px;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
         border-radius: 8px;
-        font-weight: 600;
-        font-size: 0.9em;
-        cursor: pointer;
-        transition: background-color 0.3s ease, color 0.3s ease;
-        border: none;
+        font-size: 1.1em;
+        color: white;
+        transition: background-color 0.3s ease;
         text-decoration: none;
-        user-select: none;
-        color: white !important;
     }
 
     .btn-ver {
@@ -115,14 +144,9 @@
 
     .btn-eliminar {
         background-color: #b02a37;
-        color: white !important;
     }
 
         .btn-eliminar:hover {
             background-color: #7a1c24;
         }
-
-    .btn i {
-        color: white !important;
-    }
 </style>

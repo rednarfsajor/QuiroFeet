@@ -5,7 +5,8 @@ using System.Web.Mvc;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Analisis.BD;
-using System.Globalization; // Asegúrate que este namespace es correcto para tu EDMX
+using System.Globalization;
+using Analisis.Models;
 
 namespace Analisis.Controllers
 {
@@ -30,35 +31,20 @@ namespace Analisis.Controllers
             var ventaMasAlta = ventas.OrderByDescending(v => v.monto).FirstOrDefault();
             var ventaMasBaja = ventas.OrderBy(v => v.monto).FirstOrDefault();
 
-            // Total de ventas por mes
-            var ventasPorMes = ventas
-            .Where(v => v.fecha.HasValue)
-            .GroupBy(v => new { v.fecha.Value.Year, v.fecha.Value.Month })
-            .Select(g => new
-            {
-                Mes = new DateTime(g.Key.Year, g.Key.Month, 1).ToString("MMMM yyyy", new CultureInfo("es-ES")),
-                Total = g.Sum(v => v.monto)
-            })
-            .ToList(); // <- Muy importante
-
-            ViewBag.VentasPorMes = ventasPorMes;
-
-
-
             // Citas por profesional
             var citasPorProfesional = citas
-                .GroupBy(c => c.id_profesional)
-                .Select(g => new
+                .GroupBy(c => c.Empleados.nombre)
+                .Select(g => new EstadisticaProfesionalDTO
                 {
                     Profesional = g.Key,
                     Total = g.Count()
                 })
                 .ToList();
 
-            // Citas por servicio
+            // Citas por servicio 
             var citasPorServicio = citas
-                .GroupBy(c => c.id_servicio)
-                .Select(g => new
+                .GroupBy(c => c.Servicios.Nombre)
+                .Select(g => new EstadisticaServicioDTO
                 {
                     Servicio = g.Key,
                     Total = g.Count()
@@ -67,8 +53,8 @@ namespace Analisis.Controllers
 
             // Clientes con más citas
             var clientesConMasCitas = citas
-                .GroupBy(c => c.id_cliente)
-                .Select(g => new
+                .GroupBy(c => c.Clientes.nombre)
+                .Select(g => new EstadisticaClienteDTO
                 {
                     Cliente = g.Key,
                     Total = g.Count()
@@ -79,7 +65,7 @@ namespace Analisis.Controllers
             // Citas por día
             var citasPorDia = citas
                 .GroupBy(c => c.fecha.Date)
-                .Select(g => new
+                .Select(g => new EstadisticaDiaDTO
                 {
                     Dia = g.Key.ToString("dd/MM/yyyy"),
                     Total = g.Count()
@@ -89,26 +75,40 @@ namespace Analisis.Controllers
             // Citas por mes
             var citasPorMes = citas
                 .GroupBy(c => new { c.fecha.Year, c.fecha.Month })
-                .Select(g => new
+                .Select(g => new EstadisticaMesDTO
                 {
                     Mes = new DateTime(g.Key.Year, g.Key.Month, 1).ToString("MMMM yyyy", new CultureInfo("es-ES")),
                     Total = g.Count()
                 })
                 .ToList();
 
-            // Pasar a la vista usando ViewBag o un ViewModel
+            // Citas por Profesional y Servicio (para el gráfico)
+            var citasPorProfesionalServicio = citas
+                .GroupBy(c => new { Profesional = c.Empleados.nombre, Servicio = c.Servicios.Nombre })
+                .Select(g => new EstadisticaProfServDTO
+                {
+                    Profesional = g.Key.Profesional,
+                    Servicio = g.Key.Servicio,
+                    Total = g.Count()
+                })
+                .ToList();
+
+            // Pasar datos a la vista usando ViewBag
             ViewBag.TotalIngresos = totalIngresos;
             ViewBag.VentaMasAlta = ventaMasAlta;
             ViewBag.VentaMasBaja = ventaMasBaja;
-            ViewBag.VentasPorMes = ventasPorMes;
+
             ViewBag.CitasPorProfesional = citasPorProfesional;
             ViewBag.CitasPorServicio = citasPorServicio;
             ViewBag.ClientesConMasCitas = clientesConMasCitas;
             ViewBag.CitasPorDia = citasPorDia;
             ViewBag.CitasPorMes = citasPorMes;
+            ViewBag.CitasPorProfesionalServicio = citasPorProfesionalServicio;
 
             return View();
         }
+
+
 
 
         // ---------------------
@@ -122,6 +122,38 @@ namespace Analisis.Controllers
             Document doc = new Document(PageSize.A4, 25, 25, 30, 30);
             PdfWriter.GetInstance(doc, ms);
             doc.Open();
+
+            // Encabezado quemado estilo recibo
+            PdfPTable encabezado = new PdfPTable(2);
+            encabezado.WidthPercentage = 100;
+            encabezado.SetWidths(new float[] { 1f, 3f });
+
+            string logoPath = Server.MapPath("~/Imagenes/Logo.png");
+            iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(logoPath);
+            logo.ScaleAbsolute(50f, 50f);
+
+            PdfPCell celdaLogo = new PdfPCell(logo)
+            {
+                Border = Rectangle.NO_BORDER,
+                HorizontalAlignment = Element.ALIGN_LEFT,
+                PaddingBottom = 10f
+            };
+
+            Font fontTitulo = new Font(Font.FontFamily.HELVETICA, 16f, Font.BOLD, new BaseColor(35, 68, 73));
+            Font fontWeb = new Font(Font.FontFamily.HELVETICA, 10f, Font.NORMAL, BaseColor.GRAY);
+
+            PdfPCell celdaTexto = new PdfPCell
+            {
+                Border = Rectangle.NO_BORDER,
+                HorizontalAlignment = Element.ALIGN_RIGHT,
+                PaddingBottom = 10f
+            };
+            celdaTexto.AddElement(new Paragraph("Quiropie By Lucy\n", fontTitulo));
+            celdaTexto.AddElement(new Paragraph("www.quirofeet.com", fontWeb));
+
+            encabezado.AddCell(celdaLogo);
+            encabezado.AddCell(celdaTexto);
+            doc.Add(encabezado);
 
             var titulo = new Paragraph("Reporte Total de Órdenes de Compra", new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD));
             titulo.Alignment = Element.ALIGN_CENTER;
@@ -152,6 +184,7 @@ namespace Analisis.Controllers
                 tabla.AddCell(new Phrase(o.id.ToString(), fontBody));
                 tabla.AddCell(new Phrase(o.productos ?? "", fontBody));
                 tabla.AddCell(new Phrase(o.fecha_creacion.ToShortDateString(), fontBody));
+                tabla.AddCell(new Phrase(o.fecha_recepcion?.ToShortDateString() ?? "", fontBody));
             }
 
             doc.Add(tabla);
@@ -162,6 +195,7 @@ namespace Analisis.Controllers
 
             return File(byteInfo, "application/pdf", "ReporteOrdenes.pdf");
         }
+
 
         // ---------------------
         // Proveedores PDF
@@ -174,6 +208,38 @@ namespace Analisis.Controllers
             Document doc = new Document(PageSize.A4, 25, 25, 30, 30);
             PdfWriter.GetInstance(doc, ms);
             doc.Open();
+
+            // Encabezado quemado estilo recibo
+            PdfPTable encabezado = new PdfPTable(2);
+            encabezado.WidthPercentage = 100;
+            encabezado.SetWidths(new float[] { 1f, 3f });
+
+            string logoPath = Server.MapPath("~/Imagenes/Logo.png");
+            iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(logoPath);
+            logo.ScaleAbsolute(50f, 50f);
+
+            PdfPCell celdaLogo = new PdfPCell(logo)
+            {
+                Border = Rectangle.NO_BORDER,
+                HorizontalAlignment = Element.ALIGN_LEFT,
+                PaddingBottom = 10f
+            };
+
+            Font fontTitulo = new Font(Font.FontFamily.HELVETICA, 16f, Font.BOLD, new BaseColor(35, 68, 73));
+            Font fontWeb = new Font(Font.FontFamily.HELVETICA, 10f, Font.NORMAL, BaseColor.GRAY);
+
+            PdfPCell celdaTexto = new PdfPCell
+            {
+                Border = Rectangle.NO_BORDER,
+                HorizontalAlignment = Element.ALIGN_RIGHT,
+                PaddingBottom = 10f
+            };
+            celdaTexto.AddElement(new Paragraph("Quiropie By Lucy\n", fontTitulo));
+            celdaTexto.AddElement(new Paragraph("www.quirofeet.com", fontWeb));
+
+            encabezado.AddCell(celdaLogo);
+            encabezado.AddCell(celdaTexto);
+            doc.Add(encabezado);
 
             var titulo = new Paragraph("Reporte de Proveedores Registrados", new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD));
             titulo.Alignment = Element.ALIGN_CENTER;
@@ -217,6 +283,7 @@ namespace Analisis.Controllers
             return File(byteInfo, "application/pdf", "ReporteProveedores.pdf");
         }
 
+
         // ---------------------
         // Usuarios PDF
         // ---------------------
@@ -228,6 +295,38 @@ namespace Analisis.Controllers
             Document doc = new Document(PageSize.A4, 25, 25, 30, 30);
             PdfWriter.GetInstance(doc, ms);
             doc.Open();
+
+            // Encabezado visual quemado
+            PdfPTable encabezado = new PdfPTable(2);
+            encabezado.WidthPercentage = 100;
+            encabezado.SetWidths(new float[] { 1f, 3f });
+
+            string logoPath = Server.MapPath("~/Imagenes/Logo.png");
+            iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(logoPath);
+            logo.ScaleAbsolute(50f, 50f);
+
+            PdfPCell celdaLogo = new PdfPCell(logo)
+            {
+                Border = Rectangle.NO_BORDER,
+                HorizontalAlignment = Element.ALIGN_LEFT,
+                PaddingBottom = 10f
+            };
+
+            Font fontTitulo = new Font(Font.FontFamily.HELVETICA, 16f, Font.BOLD, new BaseColor(35, 68, 73));
+            Font fontWeb = new Font(Font.FontFamily.HELVETICA, 10f, Font.NORMAL, BaseColor.GRAY);
+
+            PdfPCell celdaTexto = new PdfPCell
+            {
+                Border = Rectangle.NO_BORDER,
+                HorizontalAlignment = Element.ALIGN_RIGHT,
+                PaddingBottom = 10f
+            };
+            celdaTexto.AddElement(new Paragraph("Quiropie By Lucy\n", fontTitulo));
+            celdaTexto.AddElement(new Paragraph("www.quirofeet.com", fontWeb));
+
+            encabezado.AddCell(celdaLogo);
+            encabezado.AddCell(celdaTexto);
+            doc.Add(encabezado);
 
             var titulo = new Paragraph("Reporte de Usuarios", new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD));
             titulo.Alignment = Element.ALIGN_CENTER;
@@ -282,6 +381,38 @@ namespace Analisis.Controllers
             PdfWriter.GetInstance(doc, ms);
             doc.Open();
 
+            // Encabezado visual quemado
+            PdfPTable encabezado = new PdfPTable(2);
+            encabezado.WidthPercentage = 100;
+            encabezado.SetWidths(new float[] { 1f, 3f });
+
+            string logoPath = Server.MapPath("~/Imagenes/Logo.png");
+            iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(logoPath);
+            logo.ScaleAbsolute(50f, 50f);
+
+            PdfPCell celdaLogo = new PdfPCell(logo)
+            {
+                Border = Rectangle.NO_BORDER,
+                HorizontalAlignment = Element.ALIGN_LEFT,
+                PaddingBottom = 10f
+            };
+
+            Font fontTitulo = new Font(Font.FontFamily.HELVETICA, 16f, Font.BOLD, new BaseColor(35, 68, 73));
+            Font fontWeb = new Font(Font.FontFamily.HELVETICA, 10f, Font.NORMAL, BaseColor.GRAY);
+
+            PdfPCell celdaTexto = new PdfPCell
+            {
+                Border = Rectangle.NO_BORDER,
+                HorizontalAlignment = Element.ALIGN_RIGHT,
+                PaddingBottom = 10f
+            };
+            celdaTexto.AddElement(new Paragraph("Quiropie By Lucy\n", fontTitulo));
+            celdaTexto.AddElement(new Paragraph("www.quirofeet.com", fontWeb));
+
+            encabezado.AddCell(celdaLogo);
+            encabezado.AddCell(celdaTexto);
+            doc.Add(encabezado);
+
             var titulo = new Paragraph("Reporte de Inventario", new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD));
             titulo.Alignment = Element.ALIGN_CENTER;
             titulo.SpacingAfter = 20f;
@@ -333,6 +464,38 @@ namespace Analisis.Controllers
             Document doc = new Document(PageSize.A4, 25, 25, 30, 30);
             PdfWriter.GetInstance(doc, ms);
             doc.Open();
+
+            // Encabezado visual quemado
+            PdfPTable encabezado = new PdfPTable(2);
+            encabezado.WidthPercentage = 100;
+            encabezado.SetWidths(new float[] { 1f, 3f });
+
+            string logoPath = Server.MapPath("~/Imagenes/Logo.png");
+            iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(logoPath);
+            logo.ScaleAbsolute(50f, 50f);
+
+            PdfPCell celdaLogo = new PdfPCell(logo)
+            {
+                Border = Rectangle.NO_BORDER,
+                HorizontalAlignment = Element.ALIGN_LEFT,
+                PaddingBottom = 10f
+            };
+
+            Font fontTitulo = new Font(Font.FontFamily.HELVETICA, 16f, Font.BOLD, new BaseColor(35, 68, 73));
+            Font fontWeb = new Font(Font.FontFamily.HELVETICA, 10f, Font.NORMAL, BaseColor.GRAY);
+
+            PdfPCell celdaTexto = new PdfPCell
+            {
+                Border = Rectangle.NO_BORDER,
+                HorizontalAlignment = Element.ALIGN_RIGHT,
+                PaddingBottom = 10f
+            };
+            celdaTexto.AddElement(new Paragraph("Quiropie By Lucy\n", fontTitulo));
+            celdaTexto.AddElement(new Paragraph("www.quirofeet.com", fontWeb));
+
+            encabezado.AddCell(celdaLogo);
+            encabezado.AddCell(celdaTexto);
+            doc.Add(encabezado);
 
             var titulo = new Paragraph("Reporte de Clientes", new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD));
             titulo.Alignment = Element.ALIGN_CENTER;
@@ -387,6 +550,38 @@ namespace Analisis.Controllers
             PdfWriter.GetInstance(doc, ms);
             doc.Open();
 
+            // Encabezado visual quemado
+            PdfPTable encabezado = new PdfPTable(2);
+            encabezado.WidthPercentage = 100;
+            encabezado.SetWidths(new float[] { 1f, 3f });
+
+            string logoPath = Server.MapPath("~/Imagenes/Logo.png");
+            iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(logoPath);
+            logo.ScaleAbsolute(50f, 50f);
+
+            PdfPCell celdaLogo = new PdfPCell(logo)
+            {
+                Border = Rectangle.NO_BORDER,
+                HorizontalAlignment = Element.ALIGN_LEFT,
+                PaddingBottom = 10f
+            };
+
+            Font fontTitulo = new Font(Font.FontFamily.HELVETICA, 16f, Font.BOLD, new BaseColor(35, 68, 73));
+            Font fontWeb = new Font(Font.FontFamily.HELVETICA, 10f, Font.NORMAL, BaseColor.GRAY);
+
+            PdfPCell celdaTexto = new PdfPCell
+            {
+                Border = Rectangle.NO_BORDER,
+                HorizontalAlignment = Element.ALIGN_RIGHT,
+                PaddingBottom = 10f
+            };
+            celdaTexto.AddElement(new Paragraph("Quiropie By Lucy\n", fontTitulo));
+            celdaTexto.AddElement(new Paragraph("www.quirofeet.com", fontWeb));
+
+            encabezado.AddCell(celdaLogo);
+            encabezado.AddCell(celdaTexto);
+            doc.Add(encabezado);
+
             var titulo = new Paragraph("Reporte de Ventas", new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD));
             titulo.Alignment = Element.ALIGN_CENTER;
             titulo.SpacingAfter = 20f;
@@ -433,15 +628,46 @@ namespace Analisis.Controllers
         // ---------------------
         // Citas PDF
         // ---------------------
-
         public ActionResult ExportarCitasPdf()
         {
             var citas = db.Citas.ToList();
 
             MemoryStream ms = new MemoryStream();
-            Document doc = new Document(PageSize.A4.Rotate(), 25, 25, 30, 30); // Usamos horizontal por el número de columnas
+            Document doc = new Document(PageSize.A4.Rotate(), 25, 25, 30, 30);
             PdfWriter.GetInstance(doc, ms);
             doc.Open();
+
+            // Encabezado visual quemado
+            PdfPTable encabezado = new PdfPTable(2);
+            encabezado.WidthPercentage = 100;
+            encabezado.SetWidths(new float[] { 1f, 3f });
+
+            string logoPath = Server.MapPath("~/Imagenes/Logo.png");
+            iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(logoPath);
+            logo.ScaleAbsolute(50f, 50f);
+
+            PdfPCell celdaLogo = new PdfPCell(logo)
+            {
+                Border = Rectangle.NO_BORDER,
+                HorizontalAlignment = Element.ALIGN_LEFT,
+                PaddingBottom = 10f
+            };
+
+            Font fontTitulo = new Font(Font.FontFamily.HELVETICA, 16f, Font.BOLD, new BaseColor(35, 68, 73));
+            Font fontWeb = new Font(Font.FontFamily.HELVETICA, 10f, Font.NORMAL, BaseColor.GRAY);
+
+            PdfPCell celdaTexto = new PdfPCell
+            {
+                Border = Rectangle.NO_BORDER,
+                HorizontalAlignment = Element.ALIGN_RIGHT,
+                PaddingBottom = 10f
+            };
+            celdaTexto.AddElement(new Paragraph("Quiropie By Lucy\n", fontTitulo));
+            celdaTexto.AddElement(new Paragraph("www.quirofeet.com", fontWeb));
+
+            encabezado.AddCell(celdaLogo);
+            encabezado.AddCell(celdaTexto);
+            doc.Add(encabezado);
 
             var titulo = new Paragraph("Reporte de Citas", new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD));
             titulo.Alignment = Element.ALIGN_CENTER;
@@ -488,12 +714,10 @@ namespace Analisis.Controllers
         }
 
         // ---------------------
-        // ProductosmasvendidosPDF
-        // ------------------
-
+        // Productos Más Vendidos PDF
+        // ---------------------
         public ActionResult ExportarProductosMasVendidosPdf()
         {
-            // Agrupar los productos por el campo "detalle" y contarlos
             var productosMasVendidos = db.Ventas
                 .GroupBy(v => v.detalle)
                 .Select(g => new {
@@ -508,6 +732,38 @@ namespace Analisis.Controllers
             Document doc = new Document(PageSize.A4, 25, 25, 30, 30);
             PdfWriter.GetInstance(doc, ms);
             doc.Open();
+
+            // Encabezado visual quemado
+            PdfPTable encabezado = new PdfPTable(2);
+            encabezado.WidthPercentage = 100;
+            encabezado.SetWidths(new float[] { 1f, 3f });
+
+            string logoPath = Server.MapPath("~/Imagenes/Logo.png");
+            iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(logoPath);
+            logo.ScaleAbsolute(50f, 50f);
+
+            PdfPCell celdaLogo = new PdfPCell(logo)
+            {
+                Border = Rectangle.NO_BORDER,
+                HorizontalAlignment = Element.ALIGN_LEFT,
+                PaddingBottom = 10f
+            };
+
+            Font fontTitulo = new Font(Font.FontFamily.HELVETICA, 16f, Font.BOLD, new BaseColor(35, 68, 73));
+            Font fontWeb = new Font(Font.FontFamily.HELVETICA, 10f, Font.NORMAL, BaseColor.GRAY);
+
+            PdfPCell celdaTexto = new PdfPCell
+            {
+                Border = Rectangle.NO_BORDER,
+                HorizontalAlignment = Element.ALIGN_RIGHT,
+                PaddingBottom = 10f
+            };
+            celdaTexto.AddElement(new Paragraph("Quiropie By Lucy\n", fontTitulo));
+            celdaTexto.AddElement(new Paragraph("www.quirofeet.com", fontWeb));
+
+            encabezado.AddCell(celdaLogo);
+            encabezado.AddCell(celdaTexto);
+            doc.Add(encabezado);
 
             var titulo = new Paragraph("Reporte de Productos Más Vendidos", new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD));
             titulo.Alignment = Element.ALIGN_CENTER;
@@ -550,7 +806,6 @@ namespace Analisis.Controllers
         }
 
 
-
         // ---------------------
         // Servicios PDF
         // ---------------------
@@ -563,11 +818,45 @@ namespace Analisis.Controllers
             PdfWriter.GetInstance(doc, ms);
             doc.Open();
 
+            // Encabezado visual quemado
+            PdfPTable encabezado = new PdfPTable(2);
+            encabezado.WidthPercentage = 100;
+            encabezado.SetWidths(new float[] { 1f, 3f });
+
+            string logoPath = Server.MapPath("~/Imagenes/Logo.png");
+            iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(logoPath);
+            logo.ScaleAbsolute(50f, 50f);
+
+            PdfPCell celdaLogo = new PdfPCell(logo)
+            {
+                Border = Rectangle.NO_BORDER,
+                HorizontalAlignment = Element.ALIGN_LEFT,
+                PaddingBottom = 10f
+            };
+
+            Font fontTitulo = new Font(Font.FontFamily.HELVETICA, 16f, Font.BOLD, new BaseColor(35, 68, 73));
+            Font fontWeb = new Font(Font.FontFamily.HELVETICA, 10f, Font.NORMAL, BaseColor.GRAY);
+
+            PdfPCell celdaTexto = new PdfPCell
+            {
+                Border = Rectangle.NO_BORDER,
+                HorizontalAlignment = Element.ALIGN_RIGHT,
+                PaddingBottom = 10f
+            };
+            celdaTexto.AddElement(new Paragraph("Quiropie By Lucy\n", fontTitulo));
+            celdaTexto.AddElement(new Paragraph("www.quirofeet.com", fontWeb));
+
+            encabezado.AddCell(celdaLogo);
+            encabezado.AddCell(celdaTexto);
+            doc.Add(encabezado);
+
+            // Título del reporte
             var titulo = new Paragraph("Reporte de Servicios", new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD));
             titulo.Alignment = Element.ALIGN_CENTER;
             titulo.SpacingAfter = 20f;
             doc.Add(titulo);
 
+            // Tabla de servicios
             PdfPTable tabla = new PdfPTable(5) { WidthPercentage = 100 };
             tabla.SetWidths(new float[] { 10f, 25f, 30f, 15f, 20f });
 
@@ -604,5 +893,10 @@ namespace Analisis.Controllers
 
             return File(byteInfo, "application/pdf", "ReporteServicios.pdf");
         }
+
+
+
+
+
     }
 }
