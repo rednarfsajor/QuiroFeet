@@ -28,9 +28,54 @@ namespace Analisis.Jobs
                     var cliente = db.Clientes.FirstOrDefault(c => c.id == cita.id_cliente);
                     if (cliente != null && !string.IsNullOrEmpty(cliente.telefono))
                     {
-                        string mensaje = $"Hola {cliente.nombre}, te recordamos tu cita hoy a las {cita.hora.ToString(@"hh\:mm")}. ¡Te esperamos!";
-                        EnviarWhatsapp(cliente.telefono, mensaje);
+                        string mensaje = $@"
+<html>
+<head>
+  <style>
+    body {{
+      font-family: Arial, sans-serif;
+      background-color: #f6f6f6;
+      margin: 0;
+      padding: 0;
+    }}
+    .container {{
+      max-width: 600px;
+      margin: auto;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }}
+    h2 {{
+      color: #2c3e50;
+    }}
+    p {{
+      font-size: 16px;
+      color: #555555;
+      line-height: 1.5;
+    }}
+    .footer {{
+      font-size: 12px;
+      color: #999999;
+      margin-top: 20px;
+    }}
+  </style>
+</head>
+<body>
+  <div class='container'>
+    <h2>Recordatorio de Cita</h2>
+    <p>Hola <strong>{cliente.nombre}</strong>,</p>
+    <p>Te recordamos que tienes una cita programada para <strong>hoy a las {cita.hora.ToString(@"hh\:mm")}</strong>.</p>
+    <p>¡Te esperamos!</p>
+    <div class='footer'>
+      Este es un mensaje automático, por favor no responda a este correo.
+    </div>
+  </div>
+</body>
+</html>";
+                        //EnviarWhatsapp(cliente.telefono, mensaje);
                         EnviarEmail(cliente.nombre, cliente.correo, mensaje);
+
                     }
                 }
             }
@@ -56,8 +101,8 @@ namespace Analisis.Jobs
                 mail.From.Add(new MailboxAddress("QuiroFeet", "2027prueba2027@gmail.com"));
                 mail.To.Add(new MailboxAddress(name, correo));
                 mail.Subject = "QuiroFeet | Recordatorio de Cita del dia de hoy";
-                mail.Body = new TextPart("plain") { Text = mensaje };
-
+                mail.Body = new TextPart("html") { Text = mensaje };
+                
                 using (var client = new SmtpClient())
                 {
                     client.Connect("smtp.gmail.com", 587, false);
