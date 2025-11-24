@@ -3,80 +3,193 @@
     ViewBag.Title = "Gestión de Clientes";
 }
 
-<div class="receipts-container" style="font-family: 'Poppins', sans-serif;">
-    <h1>Gestión de Clientes</h1>
-    <p>Seleccione una opción para continuar.</p>
+<section class="qf-hub" style="font-family:'Poppins',sans-serif;">
+    <header class="qf-header">
+        <h1>Gestión de Clientes</h1>
+        <p class="qf-subtitle">Seleccione una opción para continuar.</p>
+    </header>
 
-    <div class="options">
-        <!-- Botón para Crear Clientes -->
-        <a href="@Url.Action("CreateClient", "Clientes")" class="option-card">
-            <i class="bi bi-person-fill-add"></i>
-            <h3>Registrar Cliente</h3>
-            <p>Ingresar nuevos clientes en el sistema</p>
+    <div class="qf-grid">
+        <!-- Registrar Cliente -->
+        <a href="@Url.Action("CreateClient", "Clientes")" class="qf-card" aria-label="Registrar Cliente">
+            <div class="qf-card-icon">
+                <i class="bi bi-person-fill-add" aria-hidden="true"></i>
+            </div>
+            <div class="qf-card-body">
+                <h3 class="qf-card-title">Registrar Cliente</h3>
+                <p class="qf-card-text">Ingresar nuevos clientes en el sistema</p>
+            </div>
+            <span class="qf-chevron bi bi-arrow-right-short" aria-hidden="true"></span>
         </a>
 
-        <!-- Botón para Ver Clientes -->
-        <a href="@Url.Action("ListClients", "Clientes")" class="option-card">
-            <i class="bi bi-people-fill"></i>
-            <h3>Ver Clientes</h3>
-            <p>Consultar el listado de clientes</p>
+        <!-- Ver Clientes -->
+        <a href="@Url.Action("ListClients", "Clientes")" class="qf-card" aria-label="Ver Clientes">
+            <div class="qf-card-icon">
+                <i class="bi bi-people-fill" aria-hidden="true"></i>
+            </div>
+            <div class="qf-card-body">
+                <h3 class="qf-card-title">Ver Clientes</h3>
+                <p class="qf-card-text">Consultar el listado de clientes</p>
+            </div>
+            <span class="qf-chevron bi bi-arrow-right-short" aria-hidden="true"></span>
         </a>
     </div>
-</div>
+</section>
 
 <style>
-    .receipts-container {
-        max-width: 900px;
-        margin: 80px auto;
+    :root {
+        --qf-brand: #213435; /* header/footer */
+        --qf-accent: #0FC57C; /* acento */
+        --qf-ink: #223032; /* texto principal */
+        --qf-ink-muted: #5a6a6d; /* texto secundario */
+        --qf-border: rgba(33,52,53,.14);
+        --qf-surface: #ffffff;
+        --qf-shadow: 0 10px 28px rgba(0,0,0,.10);
+        --qf-radius: 18px;
+    }
+
+    .qf-hub {
+        max-width: 1180px;
+        margin: clamp(28px,5vh,64px) auto;
+        padding: 10px 14px 40px;
+        color: var(--qf-ink);
+        background: radial-gradient(900px 520px at 12% -20%, rgba(15,197,124,.08), transparent 60%), radial-gradient(900px 520px at 110% 110%, rgba(33,52,53,.06), transparent 55%);
+        border-radius: 20px;
+    }
+
+    .qf-header {
         text-align: center;
-        padding: 20px;
+        margin: 0 auto 22px;
+        padding: 18px 16px;
+        max-width: 980px;
+        background: linear-gradient(180deg, rgba(33,52,53,.06), rgba(33,52,53,0));
+        border: 1px solid var(--qf-border);
+        border-radius: 18px;
     }
 
-    h1 {
-        color: #234449;
-        font-size: 2.5em;
-        margin-bottom: 10px;
+        .qf-header h1 {
+            margin: 0 0 6px 0;
+            color: var(--qf-brand);
+            font-weight: 800;
+            letter-spacing: .3px;
+            font-size: clamp(1.6rem,1.2rem + 1.4vw,2.1rem);
+        }
+
+    .qf-subtitle {
+        margin: 0;
+        color: var(--qf-ink-muted);
+        font-size: clamp(.98rem,.95rem + .2vw,1.05rem);
     }
 
-    p {
-        font-size: 1.2em;
-        color: #555;
-        margin-bottom: 40px;
+    .qf-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(260px,1fr));
+        gap: 18px;
+        margin-top: 12px;
     }
 
-    .options {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 30px;
-    }
-
-    .option-card {
-        width: 280px;
-        background-color: #ffffff;
-        padding: 35px 30px;
-        border-radius: 12px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    .qf-card {
+        position: relative;
+        display: grid;
+        grid-template-columns: 64px 1fr 24px;
+        align-items: center;
+        gap: 14px;
+        padding: 18px 18px;
+        background: var(--qf-surface);
+        border: 1px solid var(--qf-border);
+        border-radius: var(--qf-radius);
+        box-shadow: var(--qf-shadow);
         text-decoration: none;
-        color: #234449;
-        transition: transform 0.3s, background-color 0.3s;
+        color: var(--qf-ink);
+        overflow: hidden;
+        transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background-color .18s ease;
     }
 
-        .option-card:hover {
-            transform: translateY(-10px);
-            background-color: #f0f6ff;
+        .qf-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(240px 120px at 120% -20%, rgba(15,197,124,.10), transparent 60%);
+            pointer-events: none;
+            transition: opacity .18s ease;
+            opacity: .7;
         }
 
-        .option-card i {
-            font-size: 3.2em;
-            color: #3e77f8;
-            margin-bottom: 20px;
+        .qf-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 34px rgba(0,0,0,.12);
+            border-color: rgba(15,197,124,.25);
+            background-color: #fbfefc;
         }
 
-    h3 {
-        margin-bottom: 10px;
-        font-size: 1.5em;
+    .qf-card-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 16px;
+        display: grid;
+        place-items: center;
+        background: color-mix(in srgb, var(--qf-accent) 18%, #fff 82%);
+        border: 1px solid rgba(15,197,124,.22);
+    }
+
+        .qf-card-icon i {
+            font-size: 1.9rem;
+            color: #1f9f72;
+        }
+
+    .qf-card-title {
+        margin: 0;
+        font-size: 1.12rem;
+        font-weight: 800;
+        color: var(--qf-brand);
+    }
+
+    .qf-card-text {
+        margin: 2px 0 0 0;
+        color: var(--qf-ink-muted);
+        font-size: .95rem;
+    }
+
+    .qf-chevron {
+        font-size: 1.6rem;
+        color: #8aa3a6;
+        transition: transform .18s ease, color .18s ease;
+    }
+
+    .qf-card:hover .qf-chevron {
+        transform: translateX(4px);
+        color: #1f9f72;
+    }
+
+    /* ---------- Responsive (en Razor usa @@media) ---------- */
+    @@media (max-width: 860px) {
+        .qf-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @@media (max-width: 560px) {
+        .qf-card {
+            grid-template-columns: 52px 1fr 20px;
+            padding: 16px 14px;
+        }
+
+        .qf-card-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+        }
+
+            .qf-card-icon i {
+                font-size: 1.5rem;
+            }
+
+        .qf-card-title {
+            font-size: 1.04rem;
+        }
+
+        .qf-card-text {
+            font-size: .92rem;
+        }
     }
 </style>
-
-

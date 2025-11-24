@@ -2,62 +2,291 @@
 @model List<Analisis.ViewModel.DateViewModel>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Dia";
+    ViewBag.Title = "Citas del Día";
 }
 
-<div class="container mt-5">
-    <h1 class="text-center">Eventos del día @ViewBag.Fecha</h1>
+<div class="day-shell">
+    <div class="day-card">
 
-    <table class="table table-striped mt-4">
-        <thead>
-            <tr>
-                <th>Fecha</th>
-                <th>Hora</th>
-                <th>Cliente</th>
-                <th>Servicio</th>
-                <th>Profesional</th>
-                <th>Estado</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model != null && Model.Any())
-            {
-                foreach (Analisis.ViewModel.DateViewModel cita in Model)
-                {
-                    <tr style="cursor:pointer" onclick="location.href='@Url.Action("ModifyDate", "Citas", new { id = cita.id })'">>
-                        <td>@cita.fecha.ToString("dd/MM/yyyy")</td>
-                        <td>@cita.hora</td>
-                        <td>@cita.NombreCliente</td>
-                        <td>@cita.NombreServicio</td>
-                        <td>@cita.NombreProfesional</td>
-                        <td>@cita.Estado</td>
+        <div class="day-header">
+            <h1 class="day-title">
+                <i class="bi bi-calendar2-week me-2"></i> Citas del día @ViewBag.Fecha
+            </h1>
+
+            <div class="day-actions">
+                <a href="@Url.Action("CreateDate","Citas", new { fecha = ViewBag.Fecha })" class="btn-action btn-primary">
+                    <i class="bi bi-plus-lg me-1"></i> Agregar Evento
+                </a>
+                <a href="@Url.Action("Calendar","Citas")" class="btn-action btn-secondary">
+                    <i class="bi bi-arrow-left-short me-1"></i> Volver
+                </a>
+            </div>
+        </div>
+
+        <div class="table-responsive pretty-scroll">
+            <table class="table day-table align-middle">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Cliente</th>
+                        <th>Servicio</th>
+                        <th>Profesional</th>
+                        <th>Estado</th>
                     </tr>
-                }
-            }
-            else
-            {
-                <tr>
-                    <td colspan="2" class="text-center">No hay eventos programados para este día.</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-    <br />
-    <a href="CreateDate?fecha=@ViewBag.Fecha" class="btn-back">Agregar Evento</a>
-    <a href="Calendar" class="btn-back">Volver al Calendario</a>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var cita in Model)
+                        {
+                            var href = Url.Action("ModifyDate", "Citas", new { id = cita.id });
+                            string estado = (cita.Estado ?? "").Trim().ToLowerInvariant();
+                            string estadoClass =
+                                estado.Contains("atendida") ? "badge-success" :
+                                estado.Contains("cancel") ? "badge-danger" :
+                                "badge-warning";
 
+                            <tr class="row-link" data-href="@href">
+                                <td>@cita.fecha.ToString("dd/MM/yyyy")</td>
+                                <td>@cita.hora</td>
+                                <td class="truncate">@cita.NombreCliente</td>
+                                <td class="truncate">@cita.NombreServicio</td>
+                                <td class="truncate">@cita.NombreProfesional</td>
+                                <td>
+                                    <span class="estado-badge @estadoClass">@cita.Estado</span>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center text-muted py-4">
+                                <i class="bi bi-inbox me-1"></i> No hay eventos registrados para este día.
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
+@section Scripts{
+    <script>
+        document.querySelectorAll('.row-link').forEach(row => {
+            row.addEventListener('click', () => {
+                window.location = row.dataset.href;
+            });
+        });
+    </script>
+}
 
 <style>
+    :root {
+        --qf-bg: #f6f8f9;
+        --qf-card: #ffffff;
+        --qf-text: #1f2d2f;
+        --qf-border: #e6ecef;
+        --qf-primary: #14532D;
+        --qf-primary-light: #E5F1EA;
+        --qf-secondary: #1b8da4;
+        --qf-muted: #6b7a7d;
+        --qf-shadow: 0 4px 14px rgba(0,0,0,.06);
+    }
 
-    .btn-back {
-        background-color: #3e77f8;
-        border: none;
-        color: white;
-        padding: 8px 12px;
+    .day-shell {
+        background: var(--qf-bg);
+        padding: clamp(20px,3vw,36px);
+    }
+
+    .day-card {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: var(--qf-card);
+        border-radius: 14px;
+        box-shadow: var(--qf-shadow);
+        border: 1px solid var(--qf-border);
+        padding: clamp(18px,2vw,24px);
+    }
+
+    .day-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+        border-bottom: 1px solid var(--qf-border);
+        padding-bottom: .8rem;
+        margin-bottom: 1rem;
+    }
+
+    .day-title {
+        margin: 0;
+        font-weight: 800;
+        font-size: 1.6rem;
+        color: var(--qf-text);
+    }
+
+    .day-actions {
+        display: flex;
+        gap: .6rem;
+        flex-wrap: wrap;
+    }
+
+    .btn-action {
         border-radius: 8px;
+        font-weight: 700;
+        padding: .5rem .9rem;
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        gap: .4rem;
         text-decoration: none;
-        margin-right: 5px;
+        cursor: pointer;
+        box-shadow: 0 1px 3px rgba(0,0,0,.08);
+        transition: background .15s ease,transform .1s ease;
+    }
+
+        .btn-action:hover {
+            transform: translateY(-1px);
+        }
+
+    .btn-primary {
+        background: var(--qf-primary);
+        color: #fff;
+    }
+
+        .btn-primary:hover {
+            background: #104026;
+        }
+
+    .btn-secondary {
+        background: var(--qf-secondary);
+        color: #fff;
+    }
+
+        .btn-secondary:hover {
+            background: #157589;
+        }
+
+    .table-responsive {
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--qf-border);
+    }
+
+    .day-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+
+        .day-table thead th {
+            background: var(--qf-primary);
+            color: #fff;
+            padding: 12px 14px;
+            font-weight: 600;
+        }
+
+        .day-table tbody td {
+            padding: 14px;
+            vertical-align: middle;
+            border-top: 1px solid var(--qf-border);
+        }
+
+        .day-table tbody tr:nth-child(even) td {
+            background: #fbfdfe;
+        }
+
+        .day-table tbody tr.row-link {
+            cursor: pointer;
+            transition: background .15s ease;
+        }
+
+            .day-table tbody tr.row-link:hover td {
+                background: var(--qf-primary-light);
+            }
+
+    .truncate {
+        max-width: 280px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .estado-badge {
+        display: inline-block;
+        font-size: .8rem;
+        font-weight: 700;
+        padding: .3rem .65rem;
+        border-radius: 999px;
+    }
+
+    .badge-success {
+        background: #e8f7ef;
+        color: #0e7a45;
+    }
+
+    .badge-warning {
+        background: #fff6e1;
+        color: #8c6a00;
+    }
+
+    .badge-danger {
+        background: #fdecef;
+        color: #b63745;
+    }
+
+    .text-muted {
+        color: var(--qf-muted) !important;
+    }
+
+    /* Responsive */
+    @@media(max-width:768px) {
+        .day-title {
+            font-size: 1.3rem;
+        }
+
+        .truncate {
+            max-width: 55vw;
+        }
+
+        .day-table, .day-table thead, .day-table tbody, .day-table th, .day-table td, .day-table tr {
+            display: block;
+            width: 100%;
+        }
+
+            .day-table thead {
+                display: none;
+            }
+
+            .day-table tbody tr {
+                border: 1px solid var(--qf-border);
+                border-radius: 10px;
+                margin: 10px 0;
+                box-shadow: var(--qf-shadow);
+                overflow: hidden;
+            }
+
+            .day-table tbody td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border: none;
+                border-top: 1px solid #eef3f6;
+            }
+
+                .day-table tbody td:first-child {
+                    background: linear-gradient(180deg,rgba(20,83,45,.05),rgba(27,141,164,.03));
+                    border-top: 0;
+                }
+
+                .day-table tbody td::before {
+                    content: attr(data-label);
+                    font-weight: 700;
+                    color: #4c5b5e;
+                }
     }
 </style>

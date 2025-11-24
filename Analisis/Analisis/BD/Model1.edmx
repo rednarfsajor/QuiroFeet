@@ -25,6 +25,7 @@
           <Property Name="nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="correo" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="telefono" Type="nvarchar" MaxLength="15" />
+          <Property Name="activo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="DetalleOrden">
           <Key>
@@ -57,6 +58,7 @@
           <Property Name="especialidad" Type="varchar" MaxLength="50" />
           <Property Name="correo" Type="varchar" MaxLength="100" />
           <Property Name="telefono" Type="varchar" MaxLength="12" />
+          <Property Name="activo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Inventario">
           <Key>
@@ -223,6 +225,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__OrdenesCo__prove__71D1E811">
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="1" />
+          <End Role="OrdenesCompra" Type="Self.OrdenesCompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OrdenesCompra">
+              <PropertyRef Name="proveedor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Usuarios__RolId__5441852A">
           <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
@@ -358,6 +372,10 @@
             <End Role="Proveedores" EntitySet="Proveedores" />
             <End Role="OrdenesCompra" EntitySet="OrdenesCompra" />
           </AssociationSet>
+          <AssociationSet Name="FK__OrdenesCo__prove__71D1E811" Association="Self.FK__OrdenesCo__prove__71D1E811">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="OrdenesCompra" EntitySet="OrdenesCompra" />
+          </AssociationSet>
           <AssociationSet Name="FK__Usuarios__RolId__5441852A" Association="Self.FK__Usuarios__RolId__5441852A">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
@@ -423,6 +441,7 @@
           <NavigationProperty Name="Citas1" Relationship="Self.FK__Citas__id_client__6383C8BA" FromRole="Clientes" ToRole="Citas" />
           <NavigationProperty Name="Ventas" Relationship="Self.FK__Ventas__id_clien__5535A963" FromRole="Clientes" ToRole="Ventas" />
           <NavigationProperty Name="Ventas1" Relationship="Self.FK__Ventas__id_clien__656C112C" FromRole="Clientes" ToRole="Ventas" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Empleados">
           <Key>
@@ -435,6 +454,7 @@
           <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="telefono" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Citas" Relationship="Self.FK_Citasid_profes_4D94879B" FromRole="Empleados" ToRole="Citas" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Inventario">
           <Key>
@@ -831,6 +851,7 @@
           <EntitySetMapping Name="Clientes">
             <EntityTypeMapping TypeName="QuiroFeetModel.Clientes">
               <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="activo" ColumnName="activo" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="correo" ColumnName="correo" />
@@ -841,6 +862,7 @@
           <EntitySetMapping Name="Empleados">
             <EntityTypeMapping TypeName="QuiroFeetModel.Empleados">
               <MappingFragment StoreEntitySet="Empleados">
+                <ScalarProperty Name="activo" ColumnName="activo" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="tipo" ColumnName="tipo" />

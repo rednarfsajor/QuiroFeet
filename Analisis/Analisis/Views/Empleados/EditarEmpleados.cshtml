@@ -4,132 +4,280 @@
     ViewBag.Title = "Editar Empleado";
 }
 
-<div class="container">
-    <h1>Editar Empleado</h1>
-    <p>Modifica la información del empleado</p>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-    @using (Html.BeginForm("EditarEmpleados", "Empleados", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
+<section class="qf-edit" style="font-family:'Poppins',sans-serif;">
+    <header class="qf-header">
+        <h1>Editar Empleado</h1>
+        <p class="qf-subtitle">Modifica la información del empleado.</p>
+    </header>
 
+    <div class="qf-card">
+        @* Resumen de validación si hay errores *@
+        @if (!ViewData.ModelState.IsValid && ViewData.ModelState.Values.Any(v => v.Errors.Count > 0))
+        {
+            <div class="qf-alert qf-alert-error" role="alert">
+                <i class="bi bi-exclamation-octagon-fill"></i>
+                <span>Por favor corrige los campos marcados.</span>
+            </div>
+        }
 
-        <div class="form-group">
-            <label>Nombre</label>
-            @Html.TextBoxFor(m => m.nombre, new { @class = "form-control", placeholder = "Ingrese el nombre del empleado", required = "required" })
-        </div>
+        @using (Html.BeginForm("EditarEmpleados", "Empleados", FormMethod.Post, new { @class = "qf-form", autocomplete = "off" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.id)
 
-        <div class="form-group">
-            <label>Contacto</label>
-            @Html.TextBoxFor(m => m.tipo, new { @class = "form-control", placeholder = "Ingrese el tipo", required = "required" })
-        </div>
+            <div class="qf-grid">
+                <div class="qf-field">
+                    @Html.LabelFor(m => m.nombre, new { @class = "qf-label" })
+                    <div class="qf-inputwrap">
+                        @Html.TextBoxFor(m => m.nombre, new
+                        {
+                            @class = "qf-input",
+                            placeholder = "Ingrese el nombre del empleado",
+                            required = "required",
+                            maxlength = "100"
+                        })
+                    </div>
+                    <span class="qf-error">@Html.ValidationMessageFor(m => m.nombre)</span>
+                </div>
 
-        <div class="form-group">
-            <label>Correo</label>
-            @Html.TextBoxFor(m => m.correo, new { @class = "form-control", placeholder = "Ingrese el correo", required = "required" })
-        </div>
+                <div class="qf-field">
+                    @Html.LabelFor(m => m.tipo, new { @class = "qf-label" })
+                    <div class="qf-inputwrap">
+                        @Html.TextBoxFor(m => m.tipo, new
+                        {
+                            @class = "qf-input",
+                            placeholder = "Ingrese el tipo",
+                            required = "required",
+                            maxlength = "50"
+                        })
+                    </div>
+                    <span class="qf-error">@Html.ValidationMessageFor(m => m.tipo)</span>
+                </div>
 
+                <div class="qf-field">
+                    @Html.LabelFor(m => m.correo, new { @class = "qf-label" })
+                    <div class="qf-inputwrap">
+                        @Html.TextBoxFor(m => m.correo, new
+                        {
+                            @class = "qf-input",
+                            placeholder = "Ingrese el correo",
+                            required = "required",
+                            type = "email"
+                        })
+                    </div>
+                    <span class="qf-error">@Html.ValidationMessageFor(m => m.correo)</span>
+                </div>
 
+                <div class="qf-field">
+                    @Html.LabelFor(m => m.telefono, new { @class = "qf-label" })
+                    <div class="qf-inputwrap">
+                        @Html.TextBoxFor(m => m.telefono, new
+                        {
+                            @class = "qf-input",
+                            placeholder = "Ingrese el teléfono",
+                            required = "required",
+                            inputmode = "numeric",
+                            maxlength = "12"
+                        })
+                    </div>
+                    <span class="qf-error">@Html.ValidationMessageFor(m => m.telefono)</span>
+                </div>
+            </div>
 
-        <div class="form-group">
-            <label>Número</label>
-            @Html.TextBoxFor(m => m.telefono, new { @class = "form-control", placeholder = "Ingrese el telefono", required = "required" })
-        </div>
+            <div class="qf-actions">
+                <button type="submit" class="btn-pill btn-primary">
+                    <i class="bi bi-check-circle-fill" aria-hidden="true"></i> Guardar Cambios
+                </button>
+                <a href="@Url.Action("Empleados","Empleados")" class="btn-pill btn-secondary">
+                    <i class="bi bi-x-circle-fill" aria-hidden="true"></i> Cancelar
+                </a>
+            </div>
+        }
+    </div>
+</section>
 
-        <div class="form-buttons">
-            <button type="submit" class="btn-save"><i class="bi bi-check-circle-fill"></i> Guardar Cambios</button>
-            <a href="@Url.Action("Empleados", "Empleados")" class="btn-cancel"><i class="bi bi-x-circle-fill"></i> Cancelar</a>
-        </div>
-    }
-</div>
-
-<!-- Estilos CSS -->
 <style>
-    .container {
-        max-width: 600px;
-        margin: 50px auto;
-        background-color: #ffffff;
-        padding: 40px;
-        border-radius: 12px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        font-family: 'Poppins', sans-serif;
+    :root {
+        --qf-brand: #213435;
+        --qf-accent: #0FC57C;
+        --qf-ink: #223032;
+        --qf-ink-muted: #5a6a6d;
+        --qf-border: rgba(33,52,53,.14);
+        --qf-surface: #ffffff;
+        --qf-surface-2: #f7faf9;
+        --qf-shadow: 0 12px 28px rgba(0,0,0,.10);
+        --qf-radius: 18px;
+        --qf-focus: #17b67a;
+    }
+
+    .qf-edit {
+        max-width: 980px;
+        margin: clamp(28px,5vh,64px) auto;
+        padding: 10px 14px 40px;
+        color: var(--qf-ink);
+        background: radial-gradient(900px 520px at 12% -20%, rgba(15,197,124,.08), transparent 60%), radial-gradient(900px 520px at 110% 110%, rgba(33,52,53,.06), transparent 55%);
+        border-radius: 20px;
+    }
+
+    .qf-header {
         text-align: center;
+        margin: 0 auto 18px;
+        padding: 18px 16px;
+        max-width: 900px;
+        background: linear-gradient(180deg, rgba(33,52,53,.06), rgba(33,52,53,0));
+        border: 1px solid var(--qf-border);
+        border-radius: 18px;
     }
 
-    h1 {
-        color: #234449;
-        margin-bottom: 10px;
+        .qf-header h1 {
+            margin: 0 0 6px 0;
+            color: var(--qf-brand);
+            font-weight: 800;
+            letter-spacing: .3px;
+            font-size: clamp(1.6rem,1.2rem + 1.4vw,2.1rem);
+        }
+
+    .qf-subtitle {
+        margin: 0;
+        color: var(--qf-ink-muted);
+        font-size: clamp(.98rem,.95rem + .2vw,1.05rem);
     }
 
-    p {
-        color: #3e77f8;
-        margin-bottom: 30px;
+    .qf-card {
+        background: var(--qf-surface);
+        border: 1px solid var(--qf-border);
+        border-radius: var(--qf-radius);
+        box-shadow: var(--qf-shadow);
+        padding: clamp(18px,2.4vw,26px);
     }
 
-    .form-group {
+    /* Alertas */
+    .qf-alert {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        margin-bottom: 12px;
+        font-weight: 700;
+    }
+
+        .qf-alert i {
+            font-size: 1.05rem;
+        }
+
+    .qf-alert-error {
+        background: #fdecec;
+        color: #7c2b2b;
+        border: 1px solid #f4d1d1;
+    }
+
+    /* Formulario */
+    .qf-form {
+        width: 100%;
+    }
+
+    .qf-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0,1fr));
+        gap: 16px 18px;
+    }
+
+    .qf-field {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
+        gap: 6px;
     }
 
-        .form-group label {
-            font-weight: bold;
-            color: #234449;
-            margin-bottom: 5px;
-        }
-
-    .form-control {
-        width: 80%;
-        max-width: 350px;
-        padding: 10px 12px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        font-size: 1em;
-        transition: border-color 0.3s;
-        text-align: center;
+    .qf-label {
+        font-weight: 700;
+        color: var(--qf-brand);
     }
 
-        .form-control:focus {
-            border-color: #3e77f8;
-            outline: none;
-        }
+    .qf-inputwrap {
+        position: relative;
+        background: #fff;
+        border: 1px solid #e6eceb;
+        border-radius: 12px;
+        padding: 2px;
+        transition: border-color .2s ease, box-shadow .2s ease;
+    }
 
-    .form-buttons {
+    .qf-input {
+        width: 100%;
+        border: 0;
+        outline: 0;
+        padding: 12px 14px;
+        border-radius: 10px;
+        font-size: 1rem;
+        color: var(--qf-ink);
+        background: transparent;
+        text-align: left;
+        font-family: 'Poppins',sans-serif;
+    }
+
+    .qf-inputwrap:focus-within {
+        border-color: var(--qf-focus);
+        box-shadow: 0 0 0 3px rgba(23,182,122,.15);
+    }
+
+    .qf-error span, .qf-error {
+        color: #b03030;
+        font-size: .85rem;
+        min-height: 18px;
+    }
+
+    .qf-actions {
         display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
         justify-content: center;
-        gap: 10px;
-        margin-top: 20px;
+        margin-top: 18px;
     }
 
-    .btn-save, .btn-cancel {
+    .btn-pill {
         display: inline-flex;
         align-items: center;
-        gap: 5px;
-        text-align: center;
-        padding: 12px 20px;
-        border: none;
-        border-radius: 8px;
-        font-weight: 600;
-        cursor: pointer;
-        font-family: 'Poppins', sans-serif;
+        gap: 8px;
+        padding: 11px 18px;
+        border-radius: 999px;
+        font-weight: 800;
+        font-size: .95rem;
         text-decoration: none;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease;
     }
 
-    .btn-save {
-        background-color: #3e77f8;
+    .btn-primary {
         color: #fff;
+        background: linear-gradient(180deg, #1e6a55, #17b67a);
+        border-color: rgba(15,197,124,.25);
     }
 
-        .btn-save:hover {
-            background-color: #234449;
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(23,182,122,.22);
         }
 
-    .btn-cancel {
-        background-color: #f0f0f0;
-        color: #234449;
+    .btn-secondary {
+        color: #fff;
+        background: #213435;
+        border-color: #1b2b2c;
     }
 
-        .btn-cancel:hover {
-            background-color: #e0e0e0;
+        .btn-secondary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(33,52,53,.20);
+            background: #1a2b2c;
         }
+
+    /* Responsive (en Razor usa @@media) */
+    @@media (max-width: 820px) {
+        .qf-grid {
+            grid-template-columns: 1fr;
+        }
+    }
 </style>

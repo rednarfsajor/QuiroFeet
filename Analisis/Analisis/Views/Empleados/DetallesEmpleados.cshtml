@@ -5,136 +5,286 @@
     ViewBag.Title = "Lista de Empleados";
 }
 
-<!-- Vincula la fuente Poppins -->
+<!-- Tipografía (si ya está en _Layout, puedes quitar esta línea) -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-<div class="container">
-    <h1>Empleados Registrados</h1>
-    <p>Reporte del listado de empleados</p>
+<section class="qf-empleados-list" style="font-family:'Poppins',sans-serif;">
+    <header class="qf-header">
+        <h1>Empleados Registrados</h1>
+        <p class="qf-subtitle">Reporte del listado de empleados</p>
+    </header>
 
-    <!-- Tabla de empleados -->
-    <table class="service-table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Tipo</th>
-                <th>Correo</th>
-                <th>Telefono</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var empleados in Model)
-            {
+    <div class="table-wrap">
+        <table class="service-table" role="table">
+            <thead>
                 <tr>
-                    <td>@empleados.id</td>
-                    <td>@empleados.nombre</td>
-                    <td>@empleados.tipo</td>
-                    <td>@empleados.correo</td>
-
-                    <td>@empleados.telefono</td>
-                    <td>
-                        <!-- Enlace Editar con ID -->
-                        <a href="@Url.Action("EditarEmpleados", "Empleados", new { id = empleados.id })" class="btn-edit">
-                            <i class="bi bi-pencil-fill"></i> Editar
-                        </a>
-                        <!-- Enlace Eliminar con ID -->
-                        <a href="@Url.Action("DeleteEmpleados", "Empleados", new { id = empleados.id })" class="btn-delete" onclick="return confirm('¿Está seguro que desea eliminar este Empleado?');">
-                            <i class="bi bi-trash-fill"></i> Eliminar
-                        </a>
-                    </td>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col" class="col-actions">Acciones</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var empleados in Model)
+                    {
+                        <tr>
+                            <td data-label="ID">@empleados.id</td>
+                            <td data-label="Nombre" class="td-clip">@empleados.nombre</td>
+                            <td data-label="Tipo">@empleados.tipo</td>
+                            <td data-label="Correo" class="td-clip">@empleados.correo</td>
+                            <td data-label="Telefono">@empleados.telefono</td>
+                            <td data-label="Acciones" class="actions">
+                                <a href="@Url.Action("EditarEmpleados","Empleados", new { id = empleados.id })"
+                                   class="btn-pill btn-edit">
+                                    <i class="bi bi-pencil-fill" aria-hidden="true"></i> Editar
+                                </a>
+                                <!-- Eliminar SIN confirm() nativo: va a la página de confirmación -->
+                                <a href="@Url.Action("ConfirmarEliminarEmpleados","Empleados", new { id = empleados.id })"
+                                   class="btn-pill btn-delete">
+                                    <i class="bi bi-trash-fill" aria-hidden="true"></i> Inactivar
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" style="text-align:center; color:#5a6a6d; padding:18px;">
+                            No hay empleados registrados.
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
 
-<!-- Estilos CSS -->
 <style>
-    body {
-        font-family: 'Poppins', sans-serif;
-        background: #f9fafb;
+    :root {
+        --qf-brand: #213435; /* verde profundo de tu header/footer */
+        --qf-accent: #0FC57C; /* acento sutil */
+        --qf-ink: #223032;
+        --qf-ink-muted: #5a6a6d;
+        --qf-border: rgba(33,52,53,.14);
+        --qf-surface: #ffffff;
+        --qf-surface-2: #f7faf9;
+        --qf-shadow: 0 8px 22px rgba(0,0,0,.08);
+        --qf-radius: 16px;
     }
 
-    .container {
-        max-width: 950px;
-        margin: 60px auto;
-        background-color: #ffffff;
-        padding: 40px 30px;
-        border-radius: 15px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    .qf-empleados-list {
+        max-width: 1180px;
+        margin: clamp(28px,5vh,64px) auto;
+        padding: 10px 14px 40px;
+        color: var(--qf-ink);
+        background: radial-gradient(900px 520px at 12% -20%, rgba(15,197,124,.08), transparent 60%), radial-gradient(900px 520px at 110% 110%, rgba(33,52,53,.06), transparent 55%);
+        border-radius: 20px;
+    }
+
+    .qf-header {
         text-align: center;
+        margin: 0 auto 18px;
+        padding: 18px 16px;
+        max-width: 980px;
+        background: linear-gradient(180deg, rgba(33,52,53,.06), rgba(33,52,53,0));
+        border: 1px solid var(--qf-border);
+        border-radius: 18px;
     }
 
-    h1 {
-        color: #234449;
-        font-weight: 700;
-        margin-bottom: 5px;
+        .qf-header h1 {
+            margin: 0 0 6px 0;
+            color: var(--qf-brand);
+            font-weight: 800;
+            letter-spacing: .3px;
+            font-size: clamp(1.6rem,1.2rem + 1.4vw,2.1rem);
+        }
+
+    .qf-subtitle {
+        margin: 0;
+        color: var(--qf-ink-muted);
+        font-size: clamp(.98rem,.95rem + .2vw,1.05rem);
     }
 
-    p {
-        color: #3e77f8;
-        margin-bottom: 30px;
+    /* ---------- Tabla ---------- */
+    .table-wrap {
+        background: var(--qf-surface);
+        border: 1px solid var(--qf-border);
+        border-radius: var(--qf-radius);
+        box-shadow: var(--qf-shadow);
+        padding: 8px;
+        overflow: hidden; /* bordes redondeados también al scroll */
     }
 
     .service-table {
         width: 100%;
-        border-collapse: collapse;
-        margin: 20px 0;
+        border-collapse: separate;
+        border-spacing: 0;
+        font-size: 0.96rem;
     }
 
-        .service-table th, .service-table td {
-            border: 1px solid #e0e0e0;
-            padding: 12px;
-            text-align: center;
-            font-size: 0.95em;
+        .service-table thead th {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            background: color-mix(in srgb, var(--qf-brand) 92%, #fff 8%);
+            color: #fff;
+            text-align: left;
+            padding: 14px 16px;
+            font-weight: 700;
+            letter-spacing: .2px;
+            border-bottom: 1px solid rgba(255,255,255,.15);
         }
 
-        .service-table th {
-            background-color: #234449;
-            color: #ffffff;
-            font-weight: 600;
+            .service-table thead th:first-child {
+                border-top-left-radius: 10px;
+            }
+
+            .service-table thead th:last-child {
+                border-top-right-radius: 10px;
+            }
+
+        .service-table tbody td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #eef2f1;
+            vertical-align: middle;
+            color: var(--qf-ink);
         }
 
         .service-table tbody tr:nth-child(even) {
-            background-color: #f4f9f9;
+            background: #fbfdfc;
+        }
+        /* zebra muy sutil */
+        .service-table tbody tr:hover {
+            background: color-mix(in srgb, var(--qf-accent) 12%, #fff 88%);
         }
 
-    .btn-edit, .btn-delete {
+    .td-clip {
+        max-width: 320px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .col-actions {
+        width: 260px;
+    }
+
+    .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+    }
+
+    /* Botones */
+    .btn-pill {
         display: inline-flex;
         align-items: center;
-        gap: 5px;
-        padding: 8px 14px;
-        border-radius: 8px;
-        font-size: 0.9em;
-        font-weight: 600;
+        gap: 8px;
+        padding: 9px 14px;
+        border-radius: 999px;
+        font-size: .92rem;
+        font-weight: 700;
         text-decoration: none;
-        color: white;
-        transition: background-color 0.3s, box-shadow 0.3s;
-        margin-bottom: 5px; /* separación vertical si hay dos filas */
-        margin-right: 5px; /* separación horizontal entre ellos */
+        border: 1px solid transparent;
+        transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease;
+        will-change: transform;
+        color: #fff;
     }
 
     .btn-edit {
-        background-color: #3e77f8;
+        background: color-mix(in srgb, var(--qf-brand) 35%, var(--qf-accent) 65%);
+        /* Fallback por si el navegador no soporta color-mix */
+        background: linear-gradient(180deg, #1e6a55, #17b67a);
+        border-color: rgba(15,197,124,.25);
     }
 
         .btn-edit:hover {
-            background-color: #234449;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(23,182,122,.22);
+            background: color-mix(in srgb, var(--qf-brand) 25%, var(--qf-accent) 75%);
         }
 
     .btn-delete {
-        background-color: #3e77f8;
+        background: #e04b4b;
+        border-color: rgba(224,75,75,.25);
     }
 
         .btn-delete:hover {
-            background-color: #234449;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(224,75,75,.22);
+            background: #c63f3f;
         }
 
     i.bi {
-        font-size: 1em;
+        font-size: 1rem;
+    }
+
+    /* Scroll horizontal suave en pantallas pequeñas */
+    .table-wrap {
+        overflow-x: auto;
+        scrollbar-width: thin;
+    }
+
+    /* ---------- Responsive (en Razor usa @@media) ---------- */
+    @@media (max-width: 1024px) {
+        .qf-empleados-list {
+            padding: 6px 10px 26px;
+        }
+
+        .td-clip {
+            max-width: 260px;
+        }
+
+        .col-actions {
+            width: 230px;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .service-table {
+            font-size: .94rem;
+        }
+
+            .service-table thead th,
+            .service-table tbody td {
+                padding: 10px 12px;
+            }
+
+        .td-clip {
+            max-width: 200px;
+        }
+
+        .actions {
+            gap: 6px;
+        }
+
+        .btn-pill {
+            padding: 8px 12px;
+            font-size: .9rem;
+        }
+    }
+
+    @@media (max-width: 560px) {
+        .qf-header {
+            margin-bottom: 12px;
+        }
+
+        .td-clip {
+            max-width: 160px;
+        }
+
+        .col-actions {
+            width: 100%;
+        }
+
+        .actions {
+            justify-content: flex-start;
+        }
     }
 </style>

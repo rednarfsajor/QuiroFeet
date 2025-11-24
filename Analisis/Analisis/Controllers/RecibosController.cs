@@ -4,8 +4,6 @@ using System.Web.Mvc;
 using Analisis.BD;
 using System.Data.Entity;
 
-
-
 namespace Analisis.Controllers
 {
     public class RecibosController : Controller
@@ -13,21 +11,38 @@ namespace Analisis.Controllers
         private QuiroFeetEntities6 db = new QuiroFeetEntities6();
 
         // GET: Recibos/ListReceipts
+        // Soporta paginación por querystring: ?page=1&pageSize=10
+        public ActionResult ListReceipts(int page = 1, int pageSize = 10)
+        {
+            // Query base (orden estable y relaciones necesarias)
+            var query = db.Ventas
+                          .Include(r => r.Clientes)
+                          .OrderByDescending(r => r.fecha);
 
-public ActionResult ListReceipts()
-    {
-        var recibos = db.Ventas
-            .Include(r => r.Clientes) 
-            .OrderByDescending(r => r.fecha)
-            .ToList();
+            // Totales para paginación
+            var totalCount = query.Count();
+            var totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
+            if (totalPages == 0) totalPages = 1; // evita división por cero cuando no hay registros
 
-        return View(recibos);
-    }
+            // Normaliza la página solicitada
+            page = Math.Max(1, Math.Min(page, totalPages));
 
+            // Página de elementos
+            var recibos = query.Skip((page - 1) * pageSize)
+                               .Take(pageSize)
+                               .ToList();
 
+            // Datos para la vista (UI de paginación)
+            ViewBag.Page = page;
+            ViewBag.PageSize = pageSize;
+            ViewBag.TotalPages = totalPages;
+            ViewBag.TotalCount = totalCount;
 
-    // GET: Recibos/Receipts/
-    public ActionResult Receipts()
+            return View(recibos);
+        }
+
+        // GET: Recibos/Receipts/
+        public ActionResult Receipts()
         {
             if (Session["UsuarioId"] == null)
                 return RedirectToAction("Login", "Account");
@@ -39,7 +54,7 @@ public ActionResult ListReceipts()
         {
             var venta = db.Ventas
                 .Include(v => v.Clientes)
-                .Include(v => v.DetalleVenta.Select(dv => dv.Productos)) 
+                .Include(v => v.DetalleVenta.Select(dv => dv.Productos))
                 .FirstOrDefault(v => v.id == id);
 
             if (venta == null)
@@ -48,14 +63,11 @@ public ActionResult ListReceipts()
             return View(venta);
         }
 
-
-
-
         public ActionResult Print(int id)
         {
             var venta = db.Ventas
                 .Include(v => v.Clientes)
-                .Include(v => v.DetalleVenta.Select(dv => dv.Productos)) 
+                .Include(v => v.DetalleVenta.Select(dv => dv.Productos))
                 .FirstOrDefault(v => v.id == id);
 
             if (venta == null)
@@ -63,8 +75,6 @@ public ActionResult ListReceipts()
 
             return View("Print", venta);
         }
-
-
 
         // GET: Recibos/EditReceipt/{id}
         public ActionResult EditReceipt(int id)
@@ -144,11 +154,10 @@ public ActionResult ListReceipts()
             }
 
             // Marca la venta como anulada
-            venta.Estado = "Anulado"; 
+            venta.Estado = "Anulado";
             db.SaveChanges();
 
             return Json(new { success = true });
         }
-
     }
 }

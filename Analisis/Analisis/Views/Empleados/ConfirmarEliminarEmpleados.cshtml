@@ -1,14 +1,13 @@
-﻿@model Analisis.BD.Clientes
-
+﻿@model Analisis.BD.Empleados
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Inactivar Cliente";
+    ViewBag.Title = "Confirmar Inactivación";
 }
 
 <section class="qf-confirm" style="font-family:'Poppins',sans-serif;">
     <header class="qf-header">
-        <h1>Inactivar Cliente</h1>
-        <p class="qf-subtitle">Confirma que deseas inactivar este cliente del sistema.</p>
+        <h1>Inactivar Empleado</h1>
+        <p class="qf-subtitle">Confirma que deseas inactivar este usuario.</p>
     </header>
 
     <div class="confirm-card" role="region" aria-labelledby="confirm-title">
@@ -16,32 +15,90 @@
             <i class="bi bi-exclamation-triangle-fill"></i>
         </div>
 
-        <h2 id="confirm-title" class="confirm-title">¿Está seguro que desea inactivar este cliente?</h2>
+        <h2 id="confirm-title" class="confirm-title">¿Está seguro que desea inactivar este usuario?</h2>
         <p class="confirm-text">
-            Esta acción inactivará el cliente. Asegúrese antes de continuar.
+            Esta acción <strong>no eliminará</strong> sus datos históricos (citas y registros se conservan).
         </p>
 
         <div class="emp-info">
+            <div class="emp-row"><span class="lbl">ID:</span> <span>@Model.id</span></div>
             <div class="emp-row"><span class="lbl">Nombre:</span> <span>@Model.nombre</span></div>
+            <div class="emp-row"><span class="lbl">Tipo:</span> <span>@Model.tipo</span></div>
             <div class="emp-row"><span class="lbl">Correo:</span> <span>@Model.correo</span></div>
             <div class="emp-row"><span class="lbl">Teléfono:</span> <span>@Model.telefono</span></div>
         </div>
 
-        @using (Html.BeginForm("DeleteConfirmed", "Clientes", FormMethod.Post, new { @class = "confirm-actions" }))
+        @* Enviamos por fetch para mostrar el toast de éxito *@
+        @using (Html.BeginForm("DeleteEmpleados", "Empleados", FormMethod.Post, new { @class = "confirm-actions", id = "frmInactivar" }))
         {
             @Html.AntiForgeryToken()
             @Html.HiddenFor(m => m.id)
 
-            <button type="submit" class="btn-pill btn-danger" aria-label="Confirmar eliminación">
-                <i class="bi bi-trash-fill" aria-hidden="true"></i> Inactivar Cliente
+            <button type="submit" class="btn-pill btn-warning" aria-label="Confirmar inactivación" id="btnInactivar">
+                <i class="bi bi-person-slash" aria-hidden="true"></i> Inactivar usuario
             </button>
 
-            <a href="@Url.Action("ListClients","Clientes")" class="btn-pill btn-secondary" aria-label="Cancelar y regresar">
+            <a href="@Url.Action("DetallesEmpleados","Empleados")" class="btn-pill btn-secondary" aria-label="Cancelar y regresar">
                 <i class="bi bi-arrow-left" aria-hidden="true"></i> Cancelar
             </a>
         }
     </div>
 </section>
+
+@* --- Toasts (éxito / error) --- *@
+<div id="toastSuccess" class="toast-message">
+    <i class="bi bi-check-circle-fill"></i>
+    <span>Usuario inactivado correctamente.</span>
+</div>
+<div id="toastError" class="toast-message toast-error">
+    <i class="bi bi-x-circle-fill"></i>
+    <span>Ocurrió un error al inactivar. Inténtalo nuevamente.</span>
+</div>
+
+<script>
+    (function () {
+        const form = document.getElementById('frmInactivar');
+        const btn = document.getElementById('btnInactivar');
+        const toastOk = document.getElementById('toastSuccess');
+        const toastErr = document.getElementById('toastError');
+
+        function showToast(el) {
+            el.classList.add('show');
+            setTimeout(() => el.classList.remove('show'), 3500);
+        }
+
+        if (form) {
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                btn.disabled = true;
+
+                try {
+                    const fd = new FormData(form); // incluye __RequestVerificationToken e id
+                    const resp = await fetch(form.action, {
+                        method: 'POST',
+                        body: fd,
+                        credentials: 'same-origin'
+                    });
+
+                    if (resp.ok) {
+                        showToast(toastOk);
+                        // redirige al listado (solo activos) tras el toast
+                        setTimeout(() => {
+                            window.location.href = '@Url.Action("DetallesEmpleados","Empleados", new { incluirInactivos = false })';
+                        }, 900);
+                    } else {
+                        showToast(toastErr);
+                        btn.disabled = false;
+                    }
+                } catch (err) {
+                    showToast(toastErr);
+                    btn.disabled = false;
+                    console.error(err);
+                }
+            });
+        }
+    })();
+</script>
 
 <style>
     :root {
@@ -178,36 +235,69 @@
         cursor: pointer;
     }
 
-    .btn-danger {
-        color: #fff;
-        background: #e04b4b;
-        border-color: rgba(224,75,75,.25);
+    .btn-warning {
+        color: #4b3a13;
+        background: #f6c76c;
+        border-color: #e7b85d;
     }
 
-        .btn-danger:hover {
+        .btn-warning:hover {
             transform: translateY(-1px);
-            box-shadow: 0 8px 18px rgba(224,75,75,.22);
-            background: #c63f3f;
+            box-shadow: 0 8px 18px rgba(246,199,108,.26);
+            background: #ecb74b;
         }
 
     .btn-secondary {
         color: #fff;
-        background: color-mix(in srgb, var(--qf-brand) 85%, var(--qf-accent) 15%);
-        border-color: rgba(33,52,53,.25);
-        text-decoration: none;
+        background: #213435;
+        border-color: #1b2b2c;
     }
 
         .btn-secondary:hover {
             transform: translateY(-1px);
             box-shadow: 0 8px 18px rgba(33,52,53,.20);
-            background: color-mix(in srgb, var(--qf-brand) 75%, var(--qf-accent) 25%);
+            background: #1a2b2c;
         }
 
     .btn-pill:focus-visible {
         outline: none;
-        box-shadow: 0 0 0 4px color-mix(in srgb, var(--qf-accent) 35%, transparent);
+        box-shadow: 0 0 0 4px rgba(15,197,124,.35);
     }
 
+    /* Toasts */
+    .toast-message {
+        position: fixed;
+        top: 26px;
+        right: 26px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: #0fc57c;
+        color: #fff;
+        padding: 12px 16px;
+        border-radius: 12px;
+        box-shadow: 0 10px 24px rgba(0,0,0,.18);
+        z-index: 9999;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all .35s ease;
+        pointer-events: none;
+    }
+
+        .toast-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .toast-message i {
+            font-size: 1.2rem;
+        }
+
+    .toast-error {
+        background: #e04b4b;
+    }
+
+    /* Responsive (en Razor usa @@media) */
     @@media (max-width: 640px) {
         .emp-row .lbl {
             width: 96px;

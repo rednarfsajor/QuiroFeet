@@ -3,80 +3,178 @@
     ViewBag.Title = "Gestión de Empleados";
 }
 
-<div class="receipts-container" style="font-family: 'Poppins', sans-serif;">
-    <h1>Gestión de Empleados</h1>
-    <p>Seleccione una opción para continuar.</p>
+<section class="qf-empleados" style="font-family:'Poppins',sans-serif;">
+    <header class="qf-header">
+        <h1>Gestión de Empleados</h1>
+        <p class="qf-subtitle">Seleccione una opción para continuar.</p>
+    </header>
 
-    <div class="options">
-        <!-- Botón para Crear Prov -->
-        <a href="@Url.Action("RegistrarEmpleados", "Empleados")" class="option-card">
-            <i class="bi bi-person-fill-add"></i>
-            <h3>Registrar Empleado</h3>
-            <p>Ingresar nuevos profesionales en el sistema</p>
-        </a>
+    <!-- Contenedor centrado -->
+    <div class="options-wrap">
+        <div class="options" role="list">
+            <!-- Registrar -->
+            <a href="@Url.Action("RegistrarEmpleados","Empleados")"
+               class="option-card" role="listitem" aria-label="Registrar Empleado">
+                <i class="bi bi-person-fill-add" aria-hidden="true"></i>
+                <h3>Registrar Empleado</h3>
+                <p>Ingresar nuevos profesionales en el sistema</p>
+            </a>
 
-        <!-- Botón para Ver Prov -->
-        <a href="@Url.Action("DetallesEmpleados", "Empleados")" class="option-card">
-            <i class="bi bi-people-fill"></i>
-            <h3>Ver Empleados</h3>
-            <p>Consultar el listado de Empleados</p>
-        </a>
+            <!-- Ver -->
+            <a href="@Url.Action("DetallesEmpleados","Empleados")"
+               class="option-card" role="listitem" aria-label="Ver Empleados">
+                <i class="bi bi-people-fill" aria-hidden="true"></i>
+                <h3>Ver Empleados</h3>
+                <p>Consultar el listado de Empleados</p>
+            </a>
+        </div>
     </div>
-</div>
+</section>
 
 <style>
-    .receipts-container {
-        max-width: 900px;
-        margin: 80px auto;
-        text-align: center;
-        padding: 20px;
+    :root{
+        --qf-brand:#213435;          /* color de header/footer que usas */
+        --qf-accent:#0FC57C;         /* acento sutil */
+        --qf-ink:#223032;
+        --qf-ink-muted:#5a6a6d;
+        --qf-border:rgba(33,52,53,.12);
+        --qf-surface:#fff;
+        --qf-shadow:0 8px 22px rgba(0,0,0,.10);
+        --qf-radius:16px;
+        --qf-card-w: 340px;
     }
 
-    h1 {
-        color: #234449;
-        font-size: 2.5em;
-        margin-bottom: 10px;
+    .qf-empleados{
+        max-width: 1180px;
+        margin: clamp(28px,5vh,64px) auto;
+        padding: 10px 14px 40px 14px;
+        color:var(--qf-ink);
+        background:
+          radial-gradient(900px 520px at 12% -20%, rgba(15,197,124,.08), transparent 60%),
+          radial-gradient(900px 520px at 110% 110%, rgba(33,52,53,.06), transparent 55%);
+        border-radius: 20px;
     }
 
-    p {
-        font-size: 1.2em;
-        color: #555;
-        margin-bottom: 40px;
+    .qf-header{
+        text-align:center;
+        margin: 0 auto 18px auto;
+        padding: 18px 16px;
+        max-width: 980px;
+        background: linear-gradient(180deg, rgba(33,52,53,.06), rgba(33,52,53,0));
+        border:1px solid var(--qf-border);
+        border-radius: 18px;
+    }
+    .qf-header h1{
+        margin:0 0 6px 0;
+        color:var(--qf-brand);
+        font-weight:800;
+        letter-spacing:.3px;
+        font-size: clamp(1.6rem,1.2rem + 1.4vw,2.1rem);
+    }
+    .qf-subtitle{
+        margin:0;
+        color:var(--qf-ink-muted);
+        font-size: clamp(.98rem,.95rem + .2vw,1.05rem);
     }
 
-    .options {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 30px;
+    /* --- CENTRADO REAL DE LAS TARJETAS --- */
+    .options-wrap{
+        /* limita el ancho total para que el bloque quede centrado y compacto */
+        max-width: calc(var(--qf-card-w) * 2 + 56px); /* 2 cards + gap */
+        margin: 26px auto 0 auto; /* esto centra el grupo dentro de la sección */
+    }
+    .options{
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;   /* centra horizontalmente */
+        gap: 28px;                /* separación constante */
     }
 
-    .option-card {
-        width: 280px;
-        background-color: #ffffff;
-        padding: 35px 30px;
-        border-radius: 12px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        text-decoration: none;
-        color: #234449;
-        transition: transform 0.3s, background-color 0.3s;
+    .option-card{
+        width: 100%;
+        max-width: var(--qf-card-w);
+        background:var(--qf-surface);
+        border:1px solid var(--qf-border);
+        border-radius: var(--qf-radius);
+        padding: 28px 26px;
+        text-decoration:none;
+        color:inherit;
+        box-shadow: var(--qf-shadow);
+        transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, background-color .2s ease;
+        position:relative;
+        overflow:hidden;
+        isolation:isolate;
+    }
+    .option-card::after{
+        content:"";
+        position:absolute; inset:0;
+        background: radial-gradient(800px 400px at var(--mx,50%) var(--my,50%),
+                    color-mix(in srgb, var(--qf-accent) 16%, transparent), transparent 55%);
+        opacity:0; transition:opacity .25s ease; z-index:-1;
+    }
+    .option-card:hover{
+        transform: translateY(-4px);
+        box-shadow: 0 12px 28px rgba(0,0,0,.12);
+        border-color: color-mix(in srgb, var(--qf-accent) 20%, var(--qf-border));
+    }
+    .option-card:hover::after{ opacity:1; }
+    .option-card:focus-visible{
+        outline:none;
+        box-shadow: 0 0 0 4px color-mix(in srgb, var(--qf-accent) 35%, transparent);
     }
 
-        .option-card:hover {
-            transform: translateY(-10px);
-            background-color: #f0f6ff;
-        }
+    .option-card i{
+        display:inline-block;
+        font-size: clamp(2.2rem,1.6rem + 1.2vw,2.8rem);
+        color: color-mix(in srgb, var(--qf-brand) 60%, var(--qf-accent) 40%);
+        margin-bottom: 14px;
+    }
+    .option-card h3{
+        margin: 0 0 6px 0;
+        font-size: clamp(1.05rem,1rem + .4vw,1.25rem);
+        font-weight:800;
+        color: var(--qf-brand);
+        letter-spacing:.2px;
+    }
+    .option-card p{
+        margin:0;
+        color:var(--qf-ink-muted);
+        font-size: clamp(.95rem,.92rem + .2vw,1rem);
+        line-height:1.45;
+    }
+    .option-card:active{ transform: translateY(-1px) scale(.998); }
 
-        .option-card i {
-            font-size: 3.2em;
-            color: #3e77f8;
-            margin-bottom: 20px;
-        }
+    /* Respeto a reducción de movimiento */
+    @@media (prefers-reduced-motion: reduce){
+        .option-card, .option-card::after { transition:none; }
+        .option-card:hover { transform:none; }
+    }
 
-    h3 {
-        margin-bottom: 10px;
-        font-size: 1.5em;
+    /* ----------------- RESPONSIVE -----------------
+       (En Razor usa @@media)
+    */
+    @@media (max-width: 1024px){
+        .options-wrap{ max-width: min(92vw, 760px); }
+    }
+    @@media (max-width: 768px){
+        .qf-empleados{ padding: 4px 10px 26px 10px; }
+        .qf-header{ margin-bottom: 12px; }
+        .options{ gap: 18px; }
+        .option-card{ padding: 22px 20px; }
+    }
+    @@media (max-width: 480px){
+        .options-wrap{ max-width: 420px; }
+        .option-card{ border-radius: 14px; }
     }
 </style>
 
-
+<script>
+    // Efecto halo que sigue el mouse (sutil)
+    document.querySelectorAll('.option-card').forEach(card => {
+        card.addEventListener('pointermove', e => {
+            const r = card.getBoundingClientRect();
+            card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+            card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+        });
+    });
+</script>

@@ -5,171 +5,229 @@
     ViewBag.Title = "Editar Cliente";
 }
 
-<div class="form-container">
-    <h2 class="form-title">Editar Cliente</h2>
-    <p class="form-subtitle">Por favor, modifica la información del cliente</p>
+<section class="qf-form" style="font-family:'Poppins',sans-serif;">
+    <header class="qf-header">
+        <h1>Editar Cliente</h1>
+        <p class="qf-subtitle">Modifique la información del cliente y guarde los cambios.</p>
+    </header>
 
-    @using (Html.BeginForm("EditClient", "Clientes", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.id)
+    <div class="qf-card">
+        @using (Html.BeginForm("EditClient", "Clientes", FormMethod.Post, new { @class = "qf-body", autocomplete = "off" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.id)
 
-        <div class="form-group">
-            <label class="form-label">Nombre</label>
-            @Html.TextBoxFor(model => model.nombre, new
-            {
-                @class = "form-input text-center",
-                placeholder = "Ingrese el nombre"
-            })
-            @Html.ValidationMessageFor(model => model.nombre, null, new { @class = "text-danger" })
-        </div>
+            <div class="qf-field">
+                @Html.LabelFor(model => model.nombre, "Nombre", new { @class = "qf-label" })
+                @Html.TextBoxFor(model => model.nombre, new
+                {
+                    @class = "qf-input",
+                    placeholder = "Ingrese el nombre",
+                    required = "required"
+                })
+                @Html.ValidationMessageFor(model => model.nombre, null, new { @class = "qf-error" })
+            </div>
 
-        <div class="form-group">
-            <label class="form-label">Correo Electrónico</label>
-            @Html.TextBoxFor(model => model.correo, new
-            {
-                @class = "form-input text-center",
-                placeholder = "Ingrese el correo electrónico"
-            })
-            @Html.ValidationMessageFor(model => model.correo, null, new { @class = "text-danger" })
-        </div>
+            <div class="qf-field">
+                @Html.LabelFor(model => model.correo, "Correo Electrónico", new { @class = "qf-label" })
+                @Html.TextBoxFor(model => model.correo, new
+                {
+                    @class = "qf-input",
+                    placeholder = "Ingrese el correo electrónico",
+                    type = "email",
+                    required = "required",
+                    pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
+                    title = "Ingrese un correo electrónico válido (ejemplo@dominio.com)"
+                })
+                @Html.ValidationMessageFor(model => model.correo, null, new { @class = "qf-error" })
+            </div>
 
-        <div class="form-group">
-            <label class="form-label">Teléfono</label>
-            @Html.TextBoxFor(model => model.telefono, new
-            {
-                @class = "form-input text-center",
-                placeholder = "Ingrese el número de teléfono",
-                pattern = "\\d{8}",
-                title = "Debe tener 8 dígitos"
-            })
-            @Html.ValidationMessageFor(model => model.telefono, null, new { @class = "text-danger" })
-        </div>
+            <div class="qf-field">
+                @Html.LabelFor(model => model.telefono, "Teléfono", new { @class = "qf-label" })
+                @Html.TextBoxFor(model => model.telefono, new
+                {
+                    @class = "qf-input",
+                    placeholder = "Ingrese el número de teléfono",
+                    pattern = "\\d{8}",
+                    title = "Debe tener 8 dígitos",
+                    required = "required"
+                })
+                @Html.ValidationMessageFor(model => model.telefono, null, new { @class = "qf-error" })
+            </div>
 
-        <div class="form-button-group">
-            <button type="submit" class="btn-submit">Guardar Cambios</button>
-            <a href="@Url.Action("ListClients", "Clientes")" class="btn-cancel">
-                <span class="cancel-icon-circle"><span class="x-char">X</span></span>
-                <span>Cancelar</span>
-            </a>
-        </div>
-    }
-</div>
+            <div class="qf-actions">
+                <button type="submit" class="btn-pill btn-primary">
+                    <i class="bi bi-check-circle-fill"></i> Guardar Cambios
+                </button>
+                <a href="@Url.Action("ListClients", "Clientes")" class="btn-pill btn-secondary">
+                    <i class="bi bi-x-circle"></i> Cancelar
+                </a>
+            </div>
+        }
+    </div>
+</section>
 
 <style>
-    body {
-        font-family: 'Poppins', sans-serif;
-        background-color: #f9f9f9;
+    :root {
+        --qf-brand: #213435;
+        --qf-accent: #0FC57C;
+        --qf-ink: #223032;
+        --qf-ink-muted: #5a6a6d;
+        --qf-border: rgba(33, 52, 53, 0.14);
+        --qf-surface: #ffffff;
+        --qf-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+        --qf-radius: 18px;
+        --qf-focus: #17b67a;
     }
 
-    .form-container {
-        max-width: 500px;
-        margin: 50px auto;
-        background-color: #ffffff;
-        padding: 40px;
+    .qf-form {
+        max-width: 800px;
+        margin: clamp(28px, 5vh, 64px) auto;
+        padding: 10px 14px 40px;
+        color: var(--qf-ink);
+        background: radial-gradient(900px 520px at 12% -20%, rgba(15,197,124,.08), transparent 60%), radial-gradient(900px 520px at 110% 110%, rgba(33,52,53,.06), transparent 55%);
         border-radius: 20px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .qf-header {
+        text-align: center;
+        margin: 0 auto 20px;
+        padding: 20px 16px;
+        background: linear-gradient(180deg, rgba(33,52,53,.06), rgba(33,52,53,0));
+        border: 1px solid var(--qf-border);
+        border-radius: 18px;
+    }
+
+        .qf-header h1 {
+            margin: 0 0 6px 0;
+            color: var(--qf-brand);
+            font-weight: 800;
+            letter-spacing: .3px;
+            font-size: clamp(1.7rem, 1.3rem + 1.4vw, 2.2rem);
+            text-transform: capitalize;
+            text-align: center;
+        }
+
+    .qf-subtitle {
+        margin: 0;
+        color: var(--qf-ink-muted);
+        font-size: clamp(1rem, .96rem + .2vw, 1.08rem);
         text-align: center;
     }
 
-    .form-title {
-        color: #234449;
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
-
-    .form-subtitle {
-        color: #5a73fc;
-        margin-bottom: 30px;
-    }
-
-    .form-group {
+    .qf-card {
+        background: var(--qf-surface);
+        border: 1px solid var(--qf-border);
+        border-radius: var(--qf-radius);
+        box-shadow: var(--qf-shadow);
+        padding: clamp(22px, 2.4vw, 36px);
         text-align: center;
+    }
+
+    .qf-field {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* centra label + input */
+        gap: 10px;
         margin-bottom: 20px;
     }
 
-    .form-label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 8px;
-    }
-
-    .form-input {
-        width: 100%;
-        padding: 12px;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        background-color: #ffffff;
+    .qf-label {
+        font-weight: 700;
+        color: var(--qf-brand);
         text-align: center;
+        font-size: 1rem;
+        text-transform: capitalize; /* Nombre, Correo Electrónico, Teléfono */
+        width: 100%;
     }
 
-    .form-button-group {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-top: 30px;
-    }
-
-    .btn-submit {
-        background-color: #3e77f8;
-        color: white;
-        border: none;
-        padding: 12px 20px;
-        border-radius: 10px;
-        font-size: 16px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: background-color 0.2s;
-    }
-
-        .btn-submit:hover {
-            background-color: #234449;
-        }
-
-    .btn-cancel {
-        background-color: #f1f1f1;
-        color: #234449;
-        padding: 12px 20px;
-        border-radius: 10px;
-        font-size: 16px;
-        font-weight: bold;
-        text-decoration: none;
+    .qf-input {
+        width: 80%;
+        max-width: 400px;
+        padding: 12px 14px;
         border: 1px solid #ccc;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        transition: background-color 0.2s;
+        border-radius: 10px;
+        font-size: 1rem;
+        text-align: center;
+        font-family: 'Poppins', sans-serif;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
-        .btn-cancel:hover {
-            background-color: #e0e0e0;
+        .qf-input:focus {
+            border-color: var(--qf-focus);
+            outline: none;
+            box-shadow: 0 0 5px rgba(23,182,122,0.3);
         }
 
-    .cancel-icon-circle {
-        background-color: #3e77f8;
-        color: #ffffff;
-        border-radius: 50%;
-        width: 24px;
-        height: 24px;
+    .qf-error {
+        color: #b03030;
+        font-size: 0.9rem;
+        text-align: center; /* mensajes de validación centrados */
+        width: 100%;
+    }
+
+    .qf-actions {
         display: flex;
-        align-items: center;
         justify-content: center;
+        gap: 14px;
+        margin-top: 30px;
+        flex-wrap: wrap;
     }
 
-    .x-char {
-        font-size: 14px;
-        font-weight: 500;
-        font-family: 'Poppins', sans-serif;
-        line-height: 1;
+    .btn-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        justify-content: center;
+        padding: 12px 20px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: .95rem;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease;
     }
 
-    .text-danger {
-        color: red;
-        font-size: 14px;
+    .btn-primary {
+        background: linear-gradient(180deg, #1e6a55, #17b67a);
+        color: #fff;
+        border: 1px solid rgba(15,197,124,.25);
+    }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(23,182,122,.22);
+        }
+
+    .btn-secondary {
+        background: #213435;
+        color: #fff;
+        border: 1px solid #1b2b2c;
+    }
+
+        .btn-secondary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(33,52,53,.20);
+            background: #1a2b2c;
+        }
+
+    @@media (max-width: 640px) {
+        .qf-card {
+            padding: 18px 14px;
+        }
+
+        .qf-input {
+            width: 100%;
+        }
+
+        .qf-actions {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn-pill {
+            width: 100%;
+        }
     }
 </style>
-
-
-
-
-

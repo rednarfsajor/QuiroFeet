@@ -520,6 +520,8 @@
     <Content Include="Views\Ventas\EditSale.cshtml" />
     <Content Include="Views\Ventas\RegisterServiceSale.cshtml" />
     <Content Include="Views\Reportes\Estadisticas.cshtml" />
+    <Content Include="Views\Empleados\ConfirmarEliminarEmpleados.cshtml" />
+    <Content Include="Views\Clientes\DeteledConfirmed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

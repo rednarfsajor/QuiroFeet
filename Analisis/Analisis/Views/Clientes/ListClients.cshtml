@@ -5,123 +5,307 @@
     ViewBag.Title = "Lista de Clientes";
 }
 
-<div class="container">
-    <h2 class="text-center">Clientes Registrados</h2>
-    <p class="text-center subtitulo">Reporte del listado de clientes en el sistema</p>
+<section class="qf-clientes-list" style="font-family:'Poppins',sans-serif;">
+    <header class="qf-header">
+        <h1>Clientes Registrados</h1>
+        <p class="qf-subtitle">Reporte del listado de clientes en el sistema</p>
+    </header>
 
-    @if (!Model.Any())
+    @if (Model == null || !Model.Any())
     {
-        <div class="alert alert-info text-center mt-4">
-            No hay clientes registrados en la base de datos.
+        <div class="qf-empty">
+            <div class="empty-icon"><i class="bi bi-people"></i></div>
+            <h3>No hay clientes registrados</h3>
+            <p>Puedes registrar un nuevo cliente desde el módulo correspondiente.</p>
+            <a class="btn-pill btn-primary" href="@Url.Action("CreateClient","Clientes")">
+                <i class="bi bi-person-plus-fill"></i> Registrar Cliente
+            </a>
         </div>
     }
     else
     {
-        <table class="tabla-estilo">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                    <th>Teléfono</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var cliente in Model)
-                {
+        <div class="table-wrap">
+            <table class="service-table" role="table">
+                <thead>
                     <tr>
-                        <td>@cliente.id</td>
-                        <td>@cliente.nombre</td>
-                        <td>@cliente.correo</td>
-                        <td>@cliente.telefono</td>
-                        <td class="acciones-columna">
-                            <a href="@Url.Action("EditClient", "Clientes", new { id = cliente.id })" class="btn-azul">Editar</a>
-                            <a href="@Url.Action("DeleteClient", "Clientes", new { id = cliente.id })" class="btn-azul btn-delete">Eliminar</a>
-                        </td>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Teléfono</th>
+                        <th scope="col" class="col-actions">Acciones</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var cliente in Model)
+                    {
+                        <tr>
+                            <td data-label="ID">@cliente.id</td>
+                            <td data-label="Nombre" class="td-clip">@cliente.nombre</td>
+                            <td data-label="Correo" class="td-clip">@cliente.correo</td>
+                            <td data-label="Teléfono">@cliente.telefono</td>
+                            <td data-label="Acciones" class="actions">
+                                <a href="@Url.Action("EditClient", "Clientes", new { id = cliente.id })" class="btn-pill btn-edit">
+                                    <i class="bi bi-pencil-fill" aria-hidden="true"></i> Editar
+                                </a>
+                                <a href="@Url.Action("DeleteClient", "Clientes", new { id = cliente.id })" class="btn-pill btn-delete">
+                                    <i class="bi bi-trash-fill" aria-hidden="true"></i> Inactivar
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     }
-</div>
+</section>
 
 <style>
-    body {
-        font-family: 'Poppins', sans-serif;
-        background-color: #f9f9f9;
+    :root {
+        --qf-brand: #213435;
+        --qf-accent: #0FC57C;
+        --qf-ink: #223032;
+        --qf-ink-muted: #5a6a6d;
+        --qf-border: rgba(33,52,53,.14);
+        --qf-surface: #ffffff;
+        --qf-shadow: 0 10px 28px rgba(0,0,0,.10);
+        --qf-radius: 18px;
     }
 
-    .container {
-        max-width: 1100px;
-        margin: 50px auto;
-        background-color: #ffffff;
-        padding: 40px;
+    .qf-clientes-list {
+        max-width: 1180px;
+        margin: clamp(28px,5vh,64px) auto;
+        padding: 10px 14px 40px;
+        color: var(--qf-ink);
+        background: radial-gradient(900px 520px at 12% -20%, rgba(15,197,124,.08), transparent 60%), radial-gradient(900px 520px at 110% 110%, rgba(33,52,53,.06), transparent 55%);
         border-radius: 20px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     }
 
-    h2 {
-        color: #234449;
-        font-weight: bold;
+    .qf-header {
+        text-align: center;
+        margin: 0 auto 18px;
+        padding: 18px 16px;
+        max-width: 980px;
+        background: linear-gradient(180deg, rgba(33,52,53,.06), rgba(33,52,53,0));
+        border: 1px solid var(--qf-border);
+        border-radius: 18px;
     }
 
-    .subtitulo {
-        color: #6c757d;
-        margin-bottom: 30px;
+        .qf-header h1 {
+            margin: 0 0 6px 0;
+            color: var(--qf-brand);
+            font-weight: 800;
+            letter-spacing: .3px;
+            font-size: clamp(1.6rem,1.2rem + 1.4vw,2.1rem);
+        }
+
+    .qf-subtitle {
+        margin: 0;
+        color: var(--qf-ink-muted);
+        font-size: clamp(.98rem,.95rem + .2vw,1.05rem);
     }
 
-    .tabla-estilo {
+    /* Empty state */
+    .qf-empty {
+        background: var(--qf-surface);
+        border: 1px solid var(--qf-border);
+        border-radius: var(--qf-radius);
+        box-shadow: var(--qf-shadow);
+        text-align: center;
+        padding: clamp(22px,2.6vw,34px);
+        max-width: 860px;
+        margin: 0 auto;
+    }
+
+    .empty-icon {
+        width: 64px;
+        height: 64px;
+        display: grid;
+        place-items: center;
+        border-radius: 16px;
+        background: color-mix(in srgb, var(--qf-accent) 18%, #fff 82%);
+        border: 1px solid rgba(15,197,124,.22);
+        margin: 0 auto 10px;
+        color: #1f9f72;
+        font-size: 1.6rem;
+    }
+
+    .qf-empty h3 {
+        margin: 8px 0 6px 0;
+        color: var(--qf-brand);
+        font-weight: 800;
+    }
+
+    .qf-empty p {
+        margin: 0 0 12px 0;
+        color: var(--qf-ink-muted);
+    }
+
+    .btn-primary {
+        color: #fff;
+        background: linear-gradient(180deg, #1e6a55, #17b67a);
+        border: 1px solid rgba(15,197,124,.25);
+    }
+
+    /* Tabla */
+    .table-wrap {
+        background: var(--qf-surface);
+        border: 1px solid var(--qf-border);
+        border-radius: var(--qf-radius);
+        box-shadow: var(--qf-shadow);
+        padding: 8px;
+        overflow-x: auto; /* scroll horizontal suave */
+        scrollbar-width: thin;
+    }
+
+    .service-table {
         width: 100%;
-        border-collapse: collapse;
-        font-size: 16px;
+        border-collapse: separate;
+        border-spacing: 0;
+        font-size: .96rem;
     }
 
-        .tabla-estilo thead tr {
-            background-color: #234449;
-            color: white;
+        .service-table thead th {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            background: color-mix(in srgb, var(--qf-brand) 92%, #fff 8%);
+            color: #fff;
+            text-align: left;
+            padding: 14px 16px;
+            font-weight: 700;
+            letter-spacing: .2px;
+            border-bottom: 1px solid rgba(255,255,255,.15);
         }
 
-        .tabla-estilo th,
-        .tabla-estilo td {
-            padding: 15px;
-            text-align: center;
-            border: 1px solid #ddd;
+            .service-table thead th:first-child {
+                border-top-left-radius: 10px;
+            }
+
+            .service-table thead th:last-child {
+                border-top-right-radius: 10px;
+            }
+
+        .service-table tbody td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #eef2f1;
+            vertical-align: middle;
+            color: var(--qf-ink);
+            text-align: left;
         }
 
-        .tabla-estilo tbody tr:nth-child(even) {
-            background-color: #f2f9ff;
+        .service-table tbody tr:nth-child(even) {
+            background: #fbfdfc;
         }
 
-        .tabla-estilo tbody tr:hover {
-            background-color: #eaf1ff;
+        .service-table tbody tr:hover {
+            background: color-mix(in srgb, var(--qf-accent) 12%, #fff 88%);
         }
 
-    .acciones-columna {
+    .td-clip {
+        max-width: 320px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .col-actions {
+        width: 260px;
+    }
+
+    .actions {
         display: flex;
-        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+    }
+
+    /* Botones acción */
+    .btn-pill {
+        display: inline-flex;
         align-items: center;
         gap: 8px;
-    }
-
-    .btn-azul {
-        display: inline-block;
-        background-color: #3e77f8;
-        color: white;
-        padding: 8px 14px;
-        border-radius: 10px;
+        padding: 9px 14px;
+        border-radius: 999px;
+        font-size: .92rem;
+        font-weight: 700;
         text-decoration: none;
-        font-weight: 500;
-        transition: background-color 0.2s ease;
+        border: 1px solid transparent;
+        color: #fff;
+        transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease;
+        will-change: transform;
     }
 
-        .btn-azul:hover {
-            background-color: #234449;
+    .btn-edit {
+        background: color-mix(in srgb, var(--qf-brand) 35%, var(--qf-accent) 65%);
+        background: linear-gradient(180deg, #1e6a55, #17b67a);
+        border-color: rgba(15,197,124,.25);
+    }
+
+        .btn-edit:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(23,182,122,.22);
         }
 
     .btn-delete {
-        background-color: #3e77f8;
+        background: #e04b4b;
+        border-color: rgba(224,75,75,.25);
+    }
+
+        .btn-delete:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(224,75,75,.22);
+            background: #c63f3f;
+        }
+
+    /* Responsive (en Razor usa @@media) */
+    @@media (max-width: 1024px) {
+        .td-clip {
+            max-width: 260px;
+        }
+
+        .col-actions {
+            width: 230px;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .service-table {
+            font-size: .94rem;
+        }
+
+            .service-table thead th, .service-table tbody td {
+                padding: 10px 12px;
+            }
+
+        .td-clip {
+            max-width: 200px;
+        }
+
+        .actions {
+            gap: 6px;
+        }
+
+        .btn-pill {
+            padding: 8px 12px;
+            font-size: .9rem;
+        }
+    }
+
+    @@media (max-width: 560px) {
+        .qf-header {
+            margin-bottom: 12px;
+        }
+
+        .td-clip {
+            max-width: 160px;
+        }
+
+        .col-actions {
+            width: 100%;
+        }
+
+        .actions {
+            justify-content: flex-start;
+        }
     }
 </style>
-
-

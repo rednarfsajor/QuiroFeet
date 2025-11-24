@@ -11,38 +11,42 @@ namespace Analisis.Controllers
     {
         private QuiroFeetEntities6 db = new QuiroFeetEntities6();
 
-        // GET: Empleados (opcional, se puede usar como dashboard)
+        // --- Helpers de sesión ---
+        private bool IsLogged() => Session["UsuarioId"] != null;
+        private ActionResult GoLogin() => RedirectToAction("Login", "Account");
+
+        // GET: Empleados (dashboard simple)
         public ActionResult Empleados()
         {
-            if (Session["UsuarioId"] == null)
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
+            if (!IsLogged()) return GoLogin();
             return View();
         }
 
-        // LISTAR Empleados
-        public ActionResult DetallesEmpleados()
+        // LISTAR Empleados (por defecto: solo activos)
+        // Para ver también inactivos: /Empleados/DetallesEmpleados?incluirInactivos=true
+        public ActionResult DetallesEmpleados(bool incluirInactivos = false)
         {
-            if (Session["UsuarioId"] == null)
-            {
-                return RedirectToAction("Login", "Account");
-            }
+            if (!IsLogged()) return GoLogin();
 
-            var Empleados = db.Empleados.ToList();
-            return View(Empleados);
+            IQueryable<Empleados> query = db.Empleados;
+
+            if (!incluirInactivos)
+                query = query.Where(e => e.activo == true);
+
+            var empleados = query.ToList();
+
+            ViewBag.ToastMessage = TempData["ToastMessage"];
+            ViewBag.ToastError = TempData["ToastError"];
+            ViewBag.IncluirInactivos = incluirInactivos;
+
+            return View(empleados);
         }
 
         // CREAR Empleado - GET
         [HttpGet]
         public ActionResult RegistrarEmpleados()
         {
-            if (Session["UsuarioId"] == null)
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
+            if (!IsLogged()) return GoLogin();
             return View();
         }
 
@@ -51,41 +55,48 @@ namespace Analisis.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult RegistrarEmpleados(Empleados nuevoEmpleado)
         {
-            if (Session["UsuarioId"] == null)
-            {
-                return RedirectToAction("Login", "Account");
-            }
+            if (!IsLogged()) return GoLogin();
 
-            // Verifica si el correo ya existe
-            bool correoExistente = db.Empleados.Any(p => p.correo == nuevoEmpleado.correo);
+            // Ejemplo: correo único entre activos
+            if (db.Empleados.Any(p => p.correo == nuevoEmpleado.correo && p.activo == true))
+                ModelState.AddModelError("correo", "Ya existe un profesional activo con este correo.");
 
-            if (correoExistente)
-            {
-                ModelState.AddModelError("Correo", "Ya existe un profesional con este correo.");
-            }
+            if (!ModelState.IsValid) return View(nuevoEmpleado);
 
-            if (ModelState.IsValid)
+            try
             {
+                // Siempre crear como ACTIVO
+                nuevoEmpleado.activo = true;
+
                 db.Empleados.Add(nuevoEmpleado);
                 db.SaveChanges();
+
+                TempData["ToastMessage"] = "Empleado registrado correctamente.";
                 return RedirectToAction("DetallesEmpleados");
             }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var set in ex.EntityValidationErrors)
+                    foreach (var err in set.ValidationErrors)
+                        ModelState.AddModelError(err.PropertyName, err.ErrorMessage);
 
-            return View(nuevoEmpleado);
+                return View(nuevoEmpleado);
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("", "Ocurrió un error al guardar el empleado: " + e.Message);
+                return View(nuevoEmpleado);
+            }
         }
 
         // EDITAR Empleado - GET
         [HttpGet]
         public ActionResult EditarEmpleados(int id)
         {
-            if (Session["UsuarioId"] == null)
-            {
-                return RedirectToAction("Login", "Account");
-            }
+            if (!IsLogged()) return GoLogin();
 
             var profesional = db.Empleados.Find(id);
-            if (profesional == null)
-                return HttpNotFound();
+            if (profesional == null) return HttpNotFound();
 
             return View(profesional);
         }
@@ -95,68 +106,122 @@ namespace Analisis.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditarEmpleados(Empleados profesionalEditado)
         {
-            if (Session["UsuarioId"] == null)
-            {
-                return RedirectToAction("Login", "Account");
-            }
+            if (!IsLogged()) return GoLogin();
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    db.Entry(profesionalEditado).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("DetallesEmpleados");
-                }
-                catch (DbEntityValidationException ex)
-                {
-                    foreach (var validationErrors in ex.EntityValidationErrors)
-                    {
-                        foreach (var validationError in validationErrors.ValidationErrors)
-                        {
-                            System.Diagnostics.Debug.WriteLine($"Propiedad: {validationError.PropertyName} - Error: {validationError.ErrorMessage}");
-                            ModelState.AddModelError(validationError.PropertyName, validationError.ErrorMessage);
-                        }
-                    }
-                }
-            }
+            if (!ModelState.IsValid) return View(profesionalEditado);
 
-            return View(profesionalEditado);
+            try
+            {
+                db.Entry(profesionalEditado).State = EntityState.Modified;
+                db.SaveChanges();
+
+                TempData["ToastMessage"] = "Empleado actualizado correctamente.";
+                return RedirectToAction("DetallesEmpleados");
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var set in ex.EntityValidationErrors)
+                    foreach (var err in set.ValidationErrors)
+                        ModelState.AddModelError(err.PropertyName, err.ErrorMessage);
+
+                return View(profesionalEditado);
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("", "Ocurrió un error al actualizar: " + e.Message);
+                return View(profesionalEditado);
+            }
         }
 
-        // ELIMINAR Empleado - GET
-        [HttpGet]
-        public ActionResult DeleteEmpleados(int id)
+        // CONFIRMAR (muestra tarjeta; el botón "Inactivar usuario" postea aquí)
+        public ActionResult ConfirmarEliminarEmpleados(int id)
         {
-            if (Session["UsuarioId"] == null)
-            {
-                return RedirectToAction("Login", "Account");
-            }
+            if (!IsLogged()) return GoLogin();
 
-            var profesional = db.Empleados.Find(id);
-            if (profesional == null)
-                return HttpNotFound();
+            var empleado = db.Empleados.Find(id);
+            if (empleado == null) return HttpNotFound();
 
-            return View(profesional);
+            ViewBag.ToastError = TempData["ToastError"];
+            ViewBag.ToastMessage = TempData["ToastMessage"];
+
+            return View(empleado);
         }
 
-        // ELIMINAR Empleado - POST
+        // "Eliminar" -> INACTIVAR (soft-delete)
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteEmpleados(int id, FormCollection form)
+        public ActionResult DeleteEmpleados(int id)
         {
-            if (Session["UsuarioId"] == null)
+            if (!IsLogged()) return GoLogin();
+
+            var empleado = db.Empleados.Find(id);
+            if (empleado == null) return HttpNotFound();
+
+            try
             {
-                return RedirectToAction("Login", "Account");
+                if (empleado.activo == false)
+                {
+                    TempData["ToastMessage"] = "Este empleado ya estaba inactivo.";
+                }
+                else
+                {
+                    empleado.activo = false;
+                    db.Entry(empleado).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    TempData["ToastMessage"] = "Empleado inactivado correctamente.";
+                }
+
+                // Vuelve al listado filtrando solo activos: el inactivado ya no se mostrará
+                return RedirectToAction("DetallesEmpleados", new { incluirInactivos = false });
             }
+            catch (Exception ex)
+            {
+                TempData["ToastError"] = "No fue posible inactivar: " + ex.Message;
+                return RedirectToAction("ConfirmarEliminarEmpleados", new { id });
+            }
+        }
 
-            var profesional = db.Empleados.Find(id);
-            if (profesional == null)
-                return HttpNotFound();
+        // ACTIVAR (para reingresarlo al staff)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ActivarEmpleado(int id)
+        {
+            if (!IsLogged()) return GoLogin();
 
-            db.Empleados.Remove(profesional);
-            db.SaveChanges();
-            return RedirectToAction("DetallesEmpleados");
+            var empleado = db.Empleados.Find(id);
+            if (empleado == null) return HttpNotFound();
+
+            try
+            {
+                if (empleado.activo == true)
+                {
+                    TempData["ToastMessage"] = "Este empleado ya estaba activo.";
+                }
+                else
+                {
+                    empleado.activo = true;
+                    db.Entry(empleado).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    TempData["ToastMessage"] = "Empleado activado correctamente.";
+                }
+
+                // Muestra inactivos para que lo veas reactivado si lo necesitas
+                return RedirectToAction("DetallesEmpleados", new { incluirInactivos = true });
+            }
+            catch (Exception ex)
+            {
+                TempData["ToastError"] = "No fue posible activar: " + ex.Message;
+                return RedirectToAction("DetallesEmpleados", new { incluirInactivos = true });
+            }
+        }
+
+        // Limpia recursos
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing) db.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

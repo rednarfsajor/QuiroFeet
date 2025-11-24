@@ -3,63 +3,165 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Lista de Recibos";
+
+    int page = ViewBag.Page ?? 1;
+    int pageSize = ViewBag.PageSize ?? 10;
+    int totalPages = ViewBag.TotalPages ?? 1;
+    int totalCount = ViewBag.TotalCount ?? (Model?.Count ?? 0);
+
+    int from = totalCount == 0 ? 0 : ((page - 1) * pageSize) + 1;
+    int to = Math.Min(page * pageSize, totalCount);
+
+    Func<int, string> pageUrl = p => Url.Action("ListReceipts", "Recibos", new { page = p, pageSize = pageSize });
 }
 
-<div class="receipts-container">
-    <h1><i class="bi bi-receipt"></i> Lista de Recibos</h1>
-    <p class="subtitle">Resumen de los recibos registrados en el sistema.</p>
+<div class="receipts-shell">
+    <div class="receipts-card">
 
-    <table class="receipts-table">
-        <thead>
-            <tr>
-                <th># Recibo</th>
-                <th>Cliente</th>
-                <th>Fecha</th>
-                <th>Monto</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model != null && Model.Any())
-            {
-                foreach (var receipt in Model)
-                {
-                    var rowId = "row-" + receipt.id;
-                    var isAnulado = receipt.Estado == "Anulado";
+        <!-- Botón Volver -->
+        <div class="receipts-nav">
+            <a href="@Url.Action("Receipts", "Recibos")" class="btn-back">
+                <i class="bi bi-arrow-left-circle me-1"></i> Volver a Gestión
+            </a>
+        </div>
 
-                    <tr id="@rowId">
-                        <td>
-                            <strong>@receipt.NumeroRecibo</strong>
-                            @if (isAnulado)
-                            {
-                                <div class="text-anulado">Anulado</div>
-                            }
-                        </td>
-                        <td>@(receipt.Clientes != null ? receipt.Clientes.nombre : "Sin nombre")</td>
-                        <td>@(receipt.fecha?.ToString("dd/MM/yyyy hh:mm tt") ?? "Sin fecha")</td>
-                        <td>₡@string.Format("{0:N2}", receipt.monto)</td>
-                        <td id="acciones-@receipt.id">
-                            <a href="@Url.Action("Details", "Recibos", new { id = receipt.id })" class="btn btn-details">
-                                <i class="bi bi-eye"></i> Detalles
-                            </a>
-                            @if (!isAnulado)
-                            {
-                                <button type="button" class="btn btn-cancel" onclick="anularRecibo(@receipt.id)">
-                                    <i class="bi bi-x-circle"></i> Anular
-                                </button>
-                            }
-                        </td>
+        <div class="receipts-header banner">
+            <div>
+                <h1 class="receipts-title">
+                    <i class="bi bi-receipt-cutoff me-2"></i> Lista de Recibos
+                </h1>
+                <p class="receipts-subtitle">Resumen de los recibos registrados en el sistema.</p>
+            </div>
+
+            <div class="receipts-meta">
+                <small class="range">
+                    Mostrando <strong>@from–@to</strong> de <strong>@totalCount</strong>
+                </small>
+            </div>
+        </div>
+
+        <div class="table-responsive pretty-scroll">
+            <table class="table receipts-table align-middle">
+                <thead>
+                    <tr>
+                        <th class="col-recibo"># Recibo</th>
+                        <th>Cliente</th>
+                        <th>Fecha</th>
+                        <th class="text-end">Monto</th>
+                        <th class="col-acciones">Acciones</th>
                     </tr>
-                }
-            }
-            else
-            {
-                <tr>
-                    <td colspan="5">No hay recibos registrados.</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var receipt in Model)
+                        {
+                            var rowId = "row-" + receipt.id;
+                            var isAnulado = (receipt.Estado ?? string.Empty).Trim().Equals("Anulado", StringComparison.OrdinalIgnoreCase);
+
+                            <tr id="@rowId" class="receipt-row @(isAnulado ? "is-anulado" : "")">
+                                <td data-label="# Recibo">
+                                    <div class="d-flex flex-column">
+                                        <strong class="recibo-num">@receipt.NumeroRecibo</strong>
+                                        @if (isAnulado)
+                                        {
+                                            <span class="badge estado-badge badge-anulado mt-1">
+                                                <i class="bi bi-x-circle me-1"></i>Anulado
+                                            </span>
+                                        }
+                                    </div>
+                                </td>
+                                <td data-label="Cliente" class="truncate">
+                                    @(receipt.Clientes != null ? receipt.Clientes.nombre : "Sin nombre")
+                                </td>
+                                <td data-label="Fecha" class="text-nowrap">
+                                    @((receipt.fecha.HasValue ? receipt.fecha.Value.ToString("dd/MM/yyyy hh:mm tt") : "Sin fecha"))
+                                </td>
+                                <td data-label="Monto" class="text-end monto">₡@string.Format("{0:N2}", receipt.monto)</td>
+                                <td data-label="Acciones" id="acciones-@receipt.id">
+                                    <a href="@Url.Action("Details", "Recibos", new { id = receipt.id })" class="btn btn-action btn-details">
+                                        <i class="bi bi-eye me-1"></i> Detalles
+                                    </a>
+                                    @if (!isAnulado)
+                                    {
+                                        <button type="button" class="btn btn-action btn-cancel" onclick="anularRecibo(@receipt.id)">
+                                            <i class="bi bi-slash-circle me-1"></i> Anular
+                                        </button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5">
+                                <div class="empty-state">
+                                    <i class="bi bi-inbox display-6 d-block mb-2"></i>
+                                    No hay recibos registrados.
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        @* Paginación *@
+        @if (totalPages > 1)
+        {
+            <nav aria-label="Paginación de recibos" class="qf-pagination mt-3">
+                <ul class="pagination justify-content-center mb-0">
+                    <li class="page-item @(page == 1 ? "disabled" : "")">
+                        <a class="page-link" href="@(page == 1 ? "#" : pageUrl(1))" aria-label="Primero">«</a>
+                    </li>
+                    <li class="page-item @(page == 1 ? "disabled" : "")">
+                        <a class="page-link" href="@(page == 1 ? "#" : pageUrl(page - 1))" aria-label="Anterior">‹</a>
+                    </li>
+
+                    @{
+                        int window = 2;
+                        int start = Math.Max(1, page - window);
+                        int end = Math.Min(totalPages, page + window);
+
+                        if (start > 1)
+                        {
+                            <li class="page-item"><a class="page-link" href="@pageUrl(1)">1</a></li>
+                            if (start > 2)
+                            {
+                                <li class="page-item disabled"><span class="page-link">…</span></li>
+                                ;
+                            }
+                        }
+
+                        for (int i = start; i <= end; i++)
+                        {
+                            <li class="page-item @(i == page ? "active" : "")">
+                                <a class="page-link" href="@pageUrl(i)">@i</a>
+                            </li>
+                        }
+
+                        if (end < totalPages)
+                        {
+                            if (end < totalPages - 1)
+                            {
+                                <li class="page-item disabled"><span class="page-link">…</span></li>
+                                ;
+                            }
+                            <li class="page-item"><a class="page-link" href="@pageUrl(totalPages)">@totalPages</a></li>
+                        }
+                    }
+
+                    <li class="page-item @(page == totalPages ? "disabled" : "")">
+                        <a class="page-link" href="@(page == totalPages ? "#" : pageUrl(page + 1))" aria-label="Siguiente">›</a>
+                    </li>
+                    <li class="page-item @(page == totalPages ? "disabled" : "")">
+                        <a class="page-link" href="@(page == totalPages ? "#" : pageUrl(totalPages))" aria-label="Último">»</a>
+                    </li>
+                </ul>
+            </nav>
+        }
+    </div>
 </div>
 
 @section Scripts {
@@ -71,19 +173,23 @@
                 url: '/Recibos/Anular/' + id,
                 type: 'POST',
                 success: function (data) {
-                    if (data.success) {
+                    if (data && data.success) {
                         const row = document.getElementById("row-" + id);
                         if (row) {
+                            row.classList.add("is-anulado");
+
                             const numCell = row.querySelector("td:first-child");
-                            const accionesTd = document.getElementById("acciones-" + id);
-                            if (numCell && !numCell.querySelector('.text-anulado')) {
-                                const span = document.createElement("div");
-                                span.className = "text-anulado";
-                                span.innerText = "Anulado";
-                                numCell.appendChild(span);
+                            if (numCell && !numCell.querySelector('.estado-badge')) {
+                                const badge = document.createElement("span");
+                                badge.className = "badge estado-badge badge-anulado mt-1";
+                                badge.innerHTML = '<i class="bi bi-x-circle me-1"></i>Anulado';
+                                numCell.querySelector('.d-flex')?.appendChild(badge);
                             }
+
+                            const accionesTd = document.getElementById("acciones-" + id);
                             if (accionesTd) {
-                                accionesTd.innerHTML = '<a href="/Recibos/Details/' + id + '" class="btn btn-details"><i class="bi bi-eye"></i> Detalles</a>';
+                                accionesTd.innerHTML =
+                                    '<a href="/Recibos/Details/' + id + '" class="btn btn-action btn-details"><i class="bi bi-eye me-1"></i> Detalles</a>';
                             }
                         }
                     } else {
@@ -99,84 +205,451 @@
 }
 
 <style>
+    :root {
+        /* Paleta mejor contrastada y elegante */
+        --qf-bg: #f6f8f9;
+        --qf-card: #ffffff;
+        --qf-text: #1f2d2f;
+        --qf-muted: #6b7a7d;
+        --qf-primary: #14532D; /* verde más oscuro */
+        --qf-primary-100: #E5F1EA; /* hover suave */
+        --qf-info: #1b8da4;
+        --qf-danger: #d33d4c;
+        --qf-danger-soft: #fae5e8;
+        --qf-border: #e6ecef;
+        --qf-border-strong: #cfd9de;
+        --qf-shadow: 0 8px 24px rgba(27, 37, 44, .08);
+    }
+
     body {
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
     }
 
-    .receipts-container {
-        max-width: 950px;
-        margin: 60px auto;
-        background-color: #ffffff;
-        padding: 40px;
-        border-radius: 12px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        text-align: center;
+    /* Contenedor general */
+    .receipts-shell {
+        background: var(--qf-bg);
+        padding: clamp(20px, 3vw, 36px);
     }
 
-    h1 {
-        color: #234449;
-        font-size: 2em;
-        margin-bottom: 10px;
+    .receipts-card {
+        max-width: 1400px; /* aprovecha más ancho */
+        margin: 0 auto;
+        background: var(--qf-card);
+        border-radius: 18px;
+        padding: clamp(18px, 2.2vw, 28px);
+        box-shadow: var(--qf-shadow);
+        border: 1px solid var(--qf-border);
     }
 
-    .subtitle {
-        font-size: 1.1em;
-        color: #666;
-        margin-bottom: 30px;
+    /* ===== Botón Volver ===== */
+    .receipts-nav {
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 12px;
     }
+
+    .btn-back {
+        background: linear-gradient(90deg, #14532D, #20784E);
+        color: #fff;
+        font-weight: 700;
+        border-radius: 10px;
+        padding: .55rem 1rem;
+        display: inline-flex;
+        align-items: center;
+        gap: .4rem;
+        text-decoration: none;
+        box-shadow: 0 3px 8px rgba(20,83,45,.25);
+        transition: all .2s ease;
+    }
+
+        .btn-back:hover {
+            background: #104026;
+            color: #fff;
+            transform: translateY(-1px);
+            box-shadow: 0 5px 10px rgba(20,83,45,.3);
+        }
+
+        .btn-back i {
+            font-size: 1.2rem;
+        }
+
+    /* Header con banner */
+    .banner {
+        position: relative;
+        border-radius: 14px;
+        padding: 18px 16px;
+        margin-bottom: 14px;
+        overflow: hidden;
+        background: linear-gradient(135deg, rgba(20,83,45,.08) 0%, rgba(27,141,164,.06) 100%);
+        border: 1px solid var(--qf-border);
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 16px;
+    }
+
+        .banner:before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            background: radial-gradient(600px 200px at -10% -20%, rgba(20,83,45,.18) 0%, transparent 60%), radial-gradient(400px 160px at 110% -10%, rgba(27,141,164,.16) 0%, transparent 55%);
+            pointer-events: none;
+            opacity: .8;
+        }
+
+    .receipts-title {
+        color: var(--qf-text);
+        font-weight: 800;
+        font-size: clamp(1.2rem, 2.4vw, 1.9rem);
+        margin: 0;
+        letter-spacing: .2px;
+    }
+
+    .receipts-subtitle {
+        color: var(--qf-muted);
+        margin: 4px 0 0 0;
+        font-size: .98rem;
+    }
+
+    .receipts-meta .range {
+        color: var(--qf-muted);
+        background: #f2f6f4;
+        border: 1px solid var(--qf-border);
+        padding: .4rem .6rem;
+        border-radius: 10px;
+        font-weight: 600;
+    }
+
+    /* Tabla */
+    .table-responsive {
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid var(--qf-border);
+    }
+
+    .pretty-scroll {
+        scrollbar-width: thin;
+    }
+
+        .pretty-scroll::-webkit-scrollbar {
+            height: 10px;
+            width: 10px;
+        }
+
+        .pretty-scroll::-webkit-scrollbar-thumb {
+            background: #d7e2e6;
+            border-radius: 999px;
+        }
 
     .receipts-table {
         width: 100%;
-        border-collapse: collapse;
-        font-size: 0.95em;
+        border-collapse: separate;
+        border-spacing: 0;
+        font-size: .96rem;
     }
 
-        .receipts-table th,
-        .receipts-table td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: center;
+        .receipts-table thead th {
+            position: sticky;
+            top: 0;
+            z-index: 2; /* sticky header */
+            background: var(--qf-primary);
+            color: #fff;
+            font-weight: 600;
+            border: 0;
+            padding: 12px 14px;
+            letter-spacing: .2px;
         }
 
-        .receipts-table th {
-            background-color: #234449;
-            color: white;
+            .receipts-table thead th:first-child {
+                border-top-left-radius: 10px;
+            }
+
+            .receipts-table thead th:last-child {
+                border-top-right-radius: 10px;
+            }
+
+        .receipts-table tbody td {
+            padding: 14px 14px;
+            border-top: 1px solid var(--qf-border);
+            color: var(--qf-text);
+            vertical-align: middle;
+            background: #fff;
         }
 
-    .btn {
-        padding: 6px 12px;
-        border-radius: 6px;
-        font-size: 0.85em;
-        text-decoration: none;
-        color: white;
+        /* Zebra + hover */
+        .receipts-table tbody tr:nth-child(even) td {
+            background: #fbfdfe;
+        }
+
+        .receipts-table tbody tr:hover td {
+            background: var(--qf-primary-100);
+            transition: background .18s ease;
+            box-shadow: inset 0 1px 0 var(--qf-border-strong), inset 0 -1px 0 var(--qf-border-strong);
+        }
+
+    .receipt-row.is-anulado .recibo-num {
+        opacity: .9;
+    }
+
+    .receipt-row.is-anulado .monto {
+        opacity: .9;
+    }
+
+    .col-recibo {
+        width: 200px;
+    }
+
+    .col-acciones {
+        width: 260px;
+    }
+
+    /* Texto y truncado elegante para nombres largos */
+    .truncate {
+        max-width: 520px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* Números */
+    .monto {
+        font-variant-numeric: tabular-nums;
+        letter-spacing: .2px;
+        font-weight: 700;
+    }
+
+    /* Badges de estado (fallback móvil) */
+    .estado-badge {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
-        margin: 2px;
+        gap: .35rem;
+        font-weight: 700;
+        font-size: .75rem;
+        border-radius: 999px;
+        padding: .25rem .6rem;
+        letter-spacing: .2px;
     }
+
+    .badge-anulado {
+        color: var(--qf-danger);
+        background: var(--qf-danger-soft);
+        border: 1px solid #f0c8cf;
+    }
+
+    /* Botones */
+    .btn-action {
+        border-radius: 10px;
+        padding: .48rem .8rem;
+        font-weight: 700;
+        font-size: .88rem;
+        display: inline-flex;
+        align-items: center;
+        line-height: 1;
+        gap: .4rem;
+        border: 1px solid transparent;
+        box-shadow: 0 1px 3px rgba(0,0,0,.06);
+        transition: transform .12s ease, box-shadow .12s ease, background .12s ease, opacity .12s ease;
+        text-decoration: none;
+    }
+
+        .btn-action:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(0,0,0,.10);
+        }
+
+        .btn-action:active {
+            transform: translateY(0);
+            opacity: .95;
+        }
 
     .btn-details {
-        background-color: #17a2b8;
+        background: var(--qf-info);
+        color: #fff;
     }
+
+        .btn-details:hover {
+            background: #167a8e;
+            color: #fff;
+        }
 
     .btn-cancel {
-        background-color: #dc3545;
+        background: var(--qf-danger);
+        color: #fff;
+        border-color: transparent;
+    }
+
+        .btn-cancel:hover {
+            background: #b83542;
+            color: #fff;
+        }
+
+    /* Empty state */
+    .empty-state {
+        color: var(--qf-muted);
+        padding: 40px 8px;
+        background: linear-gradient(180deg, #ffffff 0%, #fbfdfe 100%);
+        border-top: 1px solid var(--qf-border);
+    }
+
+    /* Paginación */
+    .qf-pagination .pagination .page-link {
+        color: #14532D;
         border: none;
-        cursor: pointer;
+        font-weight: 700;
+        background: #eff5f2;
+        border-radius: 10px;
+        margin: 0 4px;
+        padding: .5rem .75rem;
+        transition: all .18s ease;
     }
 
-    .btn-details:hover {
-        background-color: #138496;
+        .qf-pagination .pagination .page-link:hover {
+            background: #14532D;
+            color: #fff;
+        }
+
+    .qf-pagination .pagination .active .page-link {
+        background: #14532D;
+        color: #fff;
     }
 
-    .btn-cancel:hover {
-        background-color: #c82333;
+    .qf-pagination .pagination .disabled .page-link {
+        opacity: .5;
+        cursor: not-allowed;
     }
 
-    .text-anulado {
-        color: #dc3545;
-        font-size: 0.8em;
-        font-weight: bold;
-        margin-top: 4px;
+    /* Responsive: tabla -> cards visuales (solo CSS) */
+    @@media (max-width: 820px) {
+        .col-acciones {
+            width: 1%;
+            white-space: nowrap;
+        }
+
+        .col-recibo {
+            width: 1%;
+        }
+
+        .receipts-card {
+            padding: 16px;
+        }
+
+        .receipts-table, .receipts-table thead, .receipts-table tbody, .receipts-table th, .receipts-table td, .receipts-table tr {
+            display: block;
+            width: 100%;
+        }
+
+            .receipts-table thead {
+                display: none;
+            }
+
+            .receipts-table tbody tr {
+                border: 1px solid var(--qf-border);
+                border-radius: 12px;
+                margin: 12px 0;
+                box-shadow: var(--qf-shadow);
+                overflow: hidden;
+            }
+
+            .receipts-table tbody td {
+                border: 0;
+                border-top: 1px solid #eef3f6;
+                display: flex;
+                justify-content: space-between;
+                gap: 12px;
+                align-items: center;
+                background: #fff;
+            }
+
+                .receipts-table tbody td:first-child {
+                    border-top: 0;
+                    background: linear-gradient(180deg, rgba(20,83,45,.05), rgba(27,141,164,.03));
+                }
+
+                .receipts-table tbody td::before {
+                    content: attr(data-label);
+                    font-weight: 700;
+                    color: #4c5b5e;
+                }
+
+        .truncate {
+            max-width: 60%;
+        }
+
+        .monto {
+            font-size: 1.05rem;
+        }
+
+        .btn-action {
+            padding: .5rem .7rem;
+            font-size: .86rem;
+        }
+    }
+
+    /* ===== Estado ANULADO pequeño en la primera columna ===== */
+    .receipt-row.is-anulado {
+        position: relative;
+        border-left: 6px solid #F2C6CD;
+        background-clip: padding-box;
+    }
+
+        .receipt-row.is-anulado td:first-child {
+            position: relative;
+        }
+
+            /* Sello discreto en la esquina superior izquierda de la 1ª celda */
+            .receipt-row.is-anulado td:first-child::after {
+                content: "ANULADO";
+                position: absolute;
+                top: 8px;
+                left: 10px;
+                transform: rotate(-10deg);
+                font-weight: 800;
+                letter-spacing: .18rem;
+                font-size: .85rem;
+                color: #C83F4A;
+                opacity: .22;
+                padding: .12rem .45rem;
+                border: 1.4px solid #C83F4A;
+                border-radius: 4px;
+                pointer-events: none;
+                z-index: 0; /* por debajo del contenido */
+            }
+
+        .receipt-row.is-anulado .recibo-num,
+        .receipt-row.is-anulado .monto,
+        .receipt-row.is-anulado td {
+            filter: grayscale(.25);
+        }
+
+    /* El chip “Anulado” no se duplica en desktop */
+    .receipt-row .estado-badge.badge-anulado {
+        background: transparent;
+        border: none;
+        color: #b35b63;
+        font-weight: 700;
+        padding: 0;
+    }
+
+    @@media (min-width: 821px) {
+        .receipt-row.is-anulado .estado-badge.badge-anulado {
+            display: none;
+        }
+    }
+    /* Móvil: sello un poco más pequeño */
+    @@media (max-width: 820px) {
+        .receipt-row.is-anulado td:first-child::after {
+            top: 6px;
+            left: 8px;
+            font-size: .75rem;
+            opacity: .18;
+        }
+
+        .receipt-row .estado-badge.badge-anulado {
+            display: inline-flex;
+            background: #fdecef;
+            border: 1px solid #f3c9d0;
+            border-radius: 999px;
+            padding: .2rem .5rem;
+        }
     }
 </style>
