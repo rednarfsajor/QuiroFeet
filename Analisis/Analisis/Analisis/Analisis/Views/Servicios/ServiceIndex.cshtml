@@ -1,0 +1,142 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Gestión de Servicios";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+
+<div class="services-dashboard-wrapper">
+
+    <div class="dashboard-header">
+        <h1 class="dashboard-title">
+            <i class="bi bi-tools"></i> Gestión de Servicios
+        </h1>
+        <p class="dashboard-subtitle">
+            Seleccione una opción para continuar con la administración de servicios.
+        </p>
+    </div>
+
+    <div class="services-options-grid">
+
+        <!-- Crear -->
+        <a href="@Url.Action("CreateService", "Servicios")" class="option-card">
+            <div class="option-icon">
+                <i class="bi bi-plus-circle-fill"></i>
+            </div>
+            <h3 class="option-title">Registrar Servicio</h3>
+            <p class="option-text">Ingrese nuevos servicios al sistema.</p>
+        </a>
+
+        <!-- Listar -->
+        <a href="@Url.Action("ListServices", "Servicios")" class="option-card">
+            <div class="option-icon">
+                <i class="bi bi-collection"></i>
+            </div>
+            <h3 class="option-title">Ver Servicios</h3>
+            <p class="option-text">Consulte el listado completo de servicios.</p>
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: #f3f5f7 !important; /* más moderno que el fondo marmoleado */
+    }
+
+    .services-dashboard-wrapper {
+        max-width: 1100px;
+        margin: 60px auto;
+        padding: 0 20px 40px;
+    }
+
+    /* ENCABEZADO */
+    .dashboard-header {
+        margin-bottom: 30px;
+        text-align: left;
+    }
+
+    .dashboard-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #234449;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .dashboard-title i {
+        font-size: 2rem;
+    }
+
+    .dashboard-subtitle {
+        margin-top: 6px;
+        color: #6b7280;
+        font-size: 0.95rem;
+    }
+
+    /* TARJETAS */
+    .services-options-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 26px;
+    }
+
+    .option-card {
+        background: white;
+        border-radius: 18px;
+        padding: 28px 24px;
+        text-decoration: none;
+        color: #234449;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+        border: 1px solid #e5e7eb;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        transition: all 0.25s ease;
+    }
+
+    .option-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        background: #f8fafc;
+    }
+
+    .option-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        background: rgba(35, 68, 73, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #234449;
+        font-size: 1.9rem;
+    }
+
+    .option-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin: 0;
+        color: #111827;
+    }
+
+    .option-text {
+        font-size: 0.95rem;
+        color: #6b7280;
+        margin: 0;
+    }
+
+    @@media (max-width: 620px) {
+        .dashboard-header {
+            text-align: center;
+        }
+        .option-card {
+            align-items: center;
+            text-align: center;
+        }
+    }
+</style>

@@ -1,0 +1,163 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Editar Recibo";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+
+<div class="edit-wrapper">
+    <div class="edit-card">
+
+        <h1 class="title">
+            <i class="bi bi-pencil-square"></i> Editar Recibo
+        </h1>
+        <p class="subtitle">Modifique los detalles del recibo y guarde los cambios.</p>
+
+        <form action="/Recibos/ConfirmReceiptUpdate" method="post" class="form-area">
+
+            <!-- Número de Recibo -->
+            <div class="form-group">
+                <label for="numeroRecibo" class="form-label">Número de Recibo</label>
+                <input type="text" class="form-input" id="numeroRecibo" value="123456" disabled>
+            </div>
+
+            <!-- Descripción -->
+            <div class="form-group">
+                <label for="descripcion" class="form-label">Descripción del Servicio</label>
+                <textarea class="form-input textarea" id="descripcion" rows="4">Descripción actual del servicio</textarea>
+            </div>
+
+            <!-- Fecha -->
+            <div class="form-group">
+                <label for="fechaEmision" class="form-label">Fecha de Emisión</label>
+                <input type="date" class="form-input" id="fechaEmision" value="2024-03-30">
+            </div>
+
+            <!-- Botones -->
+            <div class="btn-group">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-check-circle"></i> Guardar Cambios
+                </button>
+
+                <a href="/Recibos/ListReceipts" class="btn btn-secondary">
+                    <i class="bi bi-x-circle"></i> Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    body {
+        font-family: 'Poppins', system-ui, sans-serif;
+        background: #f3f5f7;
+    }
+
+    .edit-wrapper {
+        display: flex;
+        justify-content: center;
+        padding: 50px 20px;
+    }
+
+    .edit-card {
+        max-width: 600px;
+        width: 100%;
+        background: white;
+        padding: 35px 40px;
+        border-radius: 18px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        animation: fadeIn 0.4s ease;
+    }
+
+    .title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #234449;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .subtitle {
+        color: #6b7280;
+        font-size: 0.95rem;
+        margin-bottom: 25px;
+    }
+
+    .form-group {
+        margin-bottom: 22px;
+    }
+
+    .form-label {
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: #1f2937;
+        margin-bottom: 6px;
+        display: block;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 10px;
+        border: 1px solid #cdd4dc;
+        background: #f9fafb;
+        font-size: 0.95rem;
+        outline: none;
+        transition: 0.2s ease;
+    }
+
+    .form-input:focus {
+        border-color: #234449;
+        background: #ffffff;
+        box-shadow: 0 0 0 3px rgba(35,68,73,0.15);
+    }
+
+    .textarea {
+        resize: vertical;
+    }
+
+    .btn-group {
+        display: flex;
+        gap: 12px;
+        margin-top: 10px;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 12px 22px;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        text-decoration: none;
+        transition: 0.2s ease;
+    }
+
+    .btn-primary {
+        background: #234449;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background: #1b2f37;
+    }
+
+    .btn-secondary {
+        background: #6b7280;
+        color: white;
+    }
+
+    .btn-secondary:hover {
+        background: #4b5563;
+    }
+
+    @@media fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>

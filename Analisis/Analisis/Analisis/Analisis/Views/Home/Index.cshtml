@@ -1,0 +1,130 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="welcome-container">
+
+    @if (TempData["LoginSuccess"] != null)
+    {
+        <p class="login-success">@TempData["LoginSuccess"]</p>
+    }
+
+    <h1 class="welcome-title">Bienvenido a Quiropie By Lucy</h1>
+    <svg viewBox="0 0 120 20" preserveAspectRatio="none" class="separator-svg">
+        <path d="M0 10 Q 60 20 120 10 T 240 10" fill="none" stroke="#3e77f8" stroke-width="2" />
+    </svg>
+    <p class="welcome-subtitle">Cuidado profesional para tus pies</p>
+
+    <div class="image-collage">
+        <div class="card">
+            <img src="@Url.Content("~/Imagenes/1.jpg")" alt="Quiropodia 1" class="collage-image" />
+        </div>
+        <div class="card">
+            <img src="@Url.Content("~/Imagenes/2.jpg")" alt="Quiropodia 2" class="collage-image" />
+        </div>
+        <div class="card">
+            <img src="@Url.Content("~/Imagenes/3.jpg")" alt="Quiropodia 3" class="collage-image" />
+        </div>
+        <div class="card">
+            <img src="@Url.Content("~/Imagenes/4.jpeg")" alt="Quiropodia 4" class="collage-image" />
+        </div>
+    </div>
+
+    <p class="about-text">
+        En Quiropie By Lucy nos especializamos en cuidar y consentir tus pies con tratamientos profesionales, garantizando comodidad y bienestar en cada paso.
+    </p>
+
+</div>
+
+<style>
+    body {
+        background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+    }
+
+    .welcome-container {
+        text-align: center;
+        padding: 60px 20px;
+    }
+
+    .login-success {
+        font-size: 1.3em;
+        font-weight: 600;
+        color: #234449;
+        margin-bottom: 20px;
+    }
+
+    .welcome-title {
+        font-size: 2.5em;
+        font-weight: 700;
+        color: #234449;
+        margin-bottom: 10px;
+    }
+
+    .separator-svg {
+        display: block;
+        margin: 20px auto;
+        width: 120px;
+        height: 20px;
+    }
+
+    .welcome-subtitle {
+        font-size: 1.2em;
+        color: #3e77f8;
+        margin-bottom: 30px;
+    }
+
+    .image-collage {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        flex-wrap: wrap;
+    }
+
+    .card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+    .collage-image {
+        width: 250px;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .about-text {
+        max-width: 600px;
+        margin: 30px auto 0;
+        font-size: 1.1em;
+        color: #555;
+        line-height: 1.5;
+    }
+
+    .btn-cta {
+        display: inline-block;
+        margin-top: 30px;
+        background-color: #93ded7;
+        color: #234449;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-weight: 500;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+        .btn-cta:hover {
+            background-color: #3e77f8;
+            color: #ffffff;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+        }
+</style>

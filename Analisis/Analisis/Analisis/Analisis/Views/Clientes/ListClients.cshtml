@@ -1,0 +1,171 @@
+﻿@model IEnumerable<Analisis.BD.Clientes>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Clientes Registrados";
+}
+
+<div class="container my-5" style="font-family: 'Poppins', sans-serif; max-width:1200px;">
+
+    <!-- Encabezado -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold" style="color:#234449;">
+                <i class="bi bi-people-fill me-2"></i>Clientes Registrados
+            </h2>
+            <p class="text-muted" style="color:#54717a !important;">
+                Listado completo de clientes activos en el sistema
+            </p>
+        </div>
+
+        <a href="@Url.Action("CreateClient", "Clientes")"
+           class="btn text-white px-4 py-2 shadow-sm btn-add-client"
+           style="border-radius:10px;">
+            <i class="bi bi-person-fill-add me-2"></i>Nuevo Cliente
+        </a>
+    </div>
+
+    <!-- Si no hay datos -->
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info text-center mt-4" style="background:#e6eef2; border:none; color:#234449;">
+            <i class="bi bi-info-circle me-2"></i>No hay clientes registrados.
+        </div>
+    }
+    else
+    {
+        <div class="card shadow-sm border-0" style="border-radius:14px; background:#f7fafd;">
+            <div class="card-body p-0">
+
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle text-center mb-0">
+                        <thead style="background-color:#e6eef2;">
+                            <tr>
+                                <th>ID</th>
+                                <th>Cédula</th>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Teléfono</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var cliente in Model)
+                            {
+                                <tr>
+                                    <td>@cliente.id</td>
+                                    <td>@(cliente.cedula ?? "--")</td>
+                                    <td>@cliente.nombre</td>
+                                    <td>@cliente.correo</td>
+                                    <td>@(cliente.telefono ?? "--")</td>
+
+                                    <td>
+                                        @if (cliente.activo)
+                                        {
+                                            <span class="badge px-3 py-2 badge-activo">
+                                                <i class="bi bi-check-circle-fill me-1"></i>Activo
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge px-3 py-2 badge-inactivo">
+                                                <i class="bi bi-x-circle-fill me-1"></i>Inactivo
+                                            </span>
+                                        }
+                                    </td>
+
+                                    <td>
+                                        <a href="@Url.Action("EditClient", "Clientes", new { id = cliente.id })"
+                                           class="btn btn-sm me-2 btn-edit">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+
+                                        @if (cliente.activo)
+                                        {
+                                            <a href="@Url.Action("InactivarClient", "Clientes", new { id = cliente.id })"
+                                               class="btn btn-sm btn-inactivar">
+                                                <i class="bi bi-slash-circle"></i>
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted" style="font-size:.85rem; color:#7b8d96 !important;">
+                                                Inactivo
+                                            </span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    /* Botón Nuevo Cliente */
+    .btn-add-client {
+        background-color: #3e77f8;
+        border: none;
+        font-weight: 500;
+    }
+
+        .btn-add-client:hover {
+            background-color: #234449;
+            color: #ffffff;
+        }
+
+    /* Hover filas */
+    table tbody tr:hover {
+        background-color: #f0f6ff !important;
+        transition: .2s ease-in-out;
+    }
+
+    .table thead th {
+        font-weight: 600;
+        color: #234449;
+    }
+
+    /* Badges de estado en tonos fríos */
+    .badge-activo {
+        background-color: #2ecc71;
+        color: #ffffff;
+        border-radius: 999px;
+    }
+
+    .badge-inactivo {
+        background-color: #95a5a6;
+        color: #ffffff;
+        border-radius: 999px;
+    }
+
+    /* Botones de acción fríos */
+    .btn-edit {
+        background-color: #ecf3ff;
+        border: 1px solid #3e77f8;
+        color: #234449;
+        border-radius: 8px;
+    }
+
+        .btn-edit:hover {
+            background-color: #3e77f8;
+            color: #ffffff;
+        }
+
+    .btn-inactivar {
+        background-color: #e6eef2;
+        border: 1px solid #c0392b;
+        color: #c0392b;
+        border-radius: 8px;
+    }
+
+        .btn-inactivar:hover {
+            background-color: #c0392b;
+            color: #ffffff;
+        }
+</style>

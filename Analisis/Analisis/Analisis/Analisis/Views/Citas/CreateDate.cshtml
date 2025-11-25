@@ -1,0 +1,160 @@
+﻿@model Analisis.BD.Citas
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Agendar Cita";
+}
+
+<div class="container">
+    <h1>Agendar Cita</h1>
+    <p>Por favor, completa el formulario para agendar una nueva cita el día  @ViewBag.Fecha</p>
+
+    @using (Html.BeginForm("CreateDate", "Citas", FormMethod.Post, new { @class = "formulario" }))
+    {
+        @Html.AntiForgeryToken()
+<div class="form-group">
+    @Html.LabelFor(model => model.fecha)
+    <input type="text" name="fecha" class="form-control" value="@Model.fecha.ToString("dd/MM/yyyy")" readonly />
+    @Html.ValidationMessageFor(model => model.fecha)
+</div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.hora)
+            @Html.TextBoxFor(model => model.hora, new
+            {
+                @class = "form-control",
+                @type = "time", // Cambia el tipo a time
+                @min = "07:00",
+                @max = "19:00",
+                @step = "900", // Paso de 15 minutos (opcional)
+                @required = "required"
+            })
+            @Html.ValidationMessageFor(model => model.hora)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_servicio, "Servicio")
+            <div class="input-icon">
+                <i class="bi bi-truck"></i>
+                @Html.DropDownListFor(model => model.id_servicio, ViewBag.Servicios as SelectList, "-- Seleccione un servicio --", new { @class = "form-control", required = "required" })
+            </div>
+            @Html.ValidationMessageFor(model => model.id_servicio)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_cliente, "Cliente")
+            <div class="input-icon">
+                <i class="bi bi-truck"></i>
+                @Html.DropDownListFor(model => model.id_cliente, ViewBag.Clientes as SelectList, "-- Seleccione un cliente --", new { @class = "form-control", required = "required" })
+            </div>
+            @Html.ValidationMessageFor(model => model.id_cliente)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_profesional, "Profesional")
+            <div class="input-icon">
+                <i class="bi bi-truck"></i>
+                @Html.DropDownListFor(model => model.id_profesional, ViewBag.Profesionales as SelectList, "-- Seleccione un profesional --", new { @class = "form-control", required = "required" })
+            </div>
+            @Html.ValidationMessageFor(model => model.id_profesional)
+        </div>
+
+        <div class="form-buttons">
+            <button type="submit" class="btn-submit"><i class="bi bi-check-circle-fill"></i> Registrar Cita</button>
+            <a href="@Url.Action("Calendar", "Citas")" class="btn-cancel"><i class="bi bi-x-circle-fill"></i> Cancelar</a>
+        </div>
+    }
+</div>
+
+<!-- Notificación Estilizada -->
+<div id="notification" class="notification" style="display:none;">
+    Cita Agendada Correctamente
+</div>
+
+<script>
+    function handleSubmit(event) {
+        event.preventDefault();
+        const notification = document.getElementById('notification');
+        notification.style.display = 'block';
+        setTimeout(() => {
+            notification.style.display = 'none';
+            window.location.href = '/Citas/Calendar';
+        }, 3000);
+        return false;
+    }
+</script>
+
+<!-- Estilos para Centrar y Expandir -->
+<style>
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        color: #234449;
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+    }
+
+    button, .btn-secondary {
+        background-color: #3e77f8;
+        border-color: #3e77f8;
+        color: white;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-right: 10px;
+        text-decoration: none;
+    }
+
+        button:hover, .btn-secondary:hover {
+            background-color: #234449;
+        }
+
+    .notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 15px 30px;
+        border-radius: 8px;
+        font-size: 16px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        z-index: 1000;
+        animation: fadeInOut 3s ease;
+    }
+
+    @@keyframes fadeInOut {
+        0% {
+            opacity: 0;
+        }
+
+        10% {
+            opacity: 1;
+        }
+
+        90% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+</style>

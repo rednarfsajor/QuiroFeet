@@ -1,0 +1,259 @@
+﻿@model Analisis.BD.Usuarios
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Crear Usuario";
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+
+<div class="user-create-wrapper">
+    <div class="user-create-card">
+
+        <div class="user-create-icon">
+            <i class="bi bi-person-plus-fill"></i>
+        </div>
+
+        <h1 class="user-create-title">Crear Usuario</h1>
+        <p class="user-create-subtitle">Complete la información para registrar un nuevo usuario.</p>
+
+        @using (Html.BeginForm("CreateUser", "Usuarios", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <!-- Nombre Completo -->
+            <div class="form-group">
+                <label class="form-label">
+                    <i class="bi bi-person-fill"></i> Nombre Completo
+                </label>
+                <div class="input-icon">
+                    @Html.TextBoxFor(model => model.Nombre,
+                        new { @class = "form-control", placeholder = "Ej. Juan Pérez", required = "required" })
+                </div>
+            </div>
+
+            <!-- Correo -->
+            <div class="form-group">
+                <label class="form-label">
+                    <i class="bi bi-envelope-fill"></i> Correo Electrónico
+                </label>
+                <div class="input-icon">
+                    @Html.TextBoxFor(model => model.Email,
+                        new
+                        {
+                            @class = "form-control",
+                            placeholder = "correo@ejemplo.com",
+                            required = "required",
+                            type = "email",
+                            pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
+                            title = "Debe ingresar un correo válido"
+                        })
+                </div>
+            </div>
+
+            <!-- Rol -->
+            <div class="form-group">
+                <label class="form-label">
+                    <i class="bi bi-person-gear"></i> Rol del Usuario
+                </label>
+                <div class="input-icon">
+                    @Html.DropDownList("RolId",
+                        ViewBag.RolId as SelectList,
+                        "Seleccione un rol",
+                        new { @class = "form-control", required = "required" })
+                </div>
+            </div>
+
+            <!-- Contraseña -->
+            <div class="form-group">
+                <label class="form-label">
+                    <i class="bi bi-key-fill"></i> Contraseña
+                </label>
+                <div class="input-icon">
+                    @Html.PasswordFor(model => model.Password,
+                        new
+                        {
+                            @class = "form-control",
+                            placeholder = "Ingrese la contraseña",
+                            required = "required",
+                            minlength = "6"
+                        })
+                </div>
+            </div>
+
+            <!-- Confirmación -->
+            <div class="form-group">
+                <label class="form-label">
+                    <i class="bi bi-key"></i> Confirmar Contraseña
+                </label>
+                <div class="input-icon">
+                    <input type="password"
+                           id="confirmPassword"
+                           class="form-control"
+                           placeholder="Repita la contraseña"
+                           required minlength="6" />
+                </div>
+                <span id="passwordError" class="validation-error"></span>
+            </div>
+
+            <!-- Botones -->
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">
+                    <i class="bi bi-check-circle-fill"></i> Crear Usuario
+                </button>
+
+                <a href="@Url.Action("ListUser", "Usuarios")" class="btn-cancel">
+                    <i class="bi bi-x-circle-fill"></i> Cancelar
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    // Validación de contraseñas coincidan
+    document.querySelector("form").addEventListener("submit", function (e) {
+        const pass = document.getElementById("Password")?.value;
+        const conf = document.getElementById("confirmPassword")?.value;
+
+        if (pass !== conf) {
+            e.preventDefault();
+            document.getElementById("passwordError").innerText = "Las contraseñas no coinciden.";
+        }
+    });
+</script>
+
+<style>
+    .user-create-wrapper {
+        min-height: calc(100vh - 80px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 20px;
+        background: #f3f6fb;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .user-create-card {
+        background: #ffffff;
+        max-width: 540px;
+        width: 100%;
+        padding: 40px 35px;
+        border-radius: 20px;
+        box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+        text-align: center;
+    }
+
+    .user-create-icon {
+        width: 72px;
+        height: 72px;
+        background: #e8f0ff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 15px;
+    }
+
+        .user-create-icon i {
+            font-size: 2.3rem;
+            color: #3e77f8;
+        }
+
+    .user-create-title {
+        font-size: 1.9rem;
+        color: #234449;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+
+    .user-create-subtitle {
+        font-size: 1rem;
+        color: #6c757d;
+        margin-bottom: 25px;
+    }
+
+    .form-group {
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #234449;
+        margin-bottom: 6px;
+        display: block;
+    }
+
+    .input-icon {
+        display: flex;
+        align-items: center;
+        background: #f9f9f9;
+        border: 1px solid #d7d7d7;
+        padding: 10px 14px;
+        border-radius: 10px;
+    }
+
+        .input-icon input,
+        .input-icon select {
+            border: none;
+            outline: none;
+            width: 100%;
+            background: transparent;
+            font-size: 1rem;
+        }
+
+        .input-icon i {
+            font-size: 1.2rem;
+            margin-right: 10px;
+            color: #3e77f8;
+        }
+
+    .form-actions {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        margin-top: 25px;
+    }
+
+    .btn-submit,
+    .btn-cancel {
+        padding: 12px 20px;
+        border-radius: 10px;
+        border: none;
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: 0.2s ease;
+    }
+
+    .btn-submit {
+        background: #234449;
+        color: white;
+    }
+
+        .btn-submit:hover {
+            background: #3e77f8;
+        }
+
+    .btn-cancel {
+        background: #6c757d;
+        color: white;
+    }
+
+        .btn-cancel:hover {
+            background: #5a6268;
+        }
+
+    .validation-error {
+        color: #d9534f;
+        font-size: 0.9rem;
+        margin-top: 5px;
+        display: block;
+        text-align: left;
+    }
+</style>

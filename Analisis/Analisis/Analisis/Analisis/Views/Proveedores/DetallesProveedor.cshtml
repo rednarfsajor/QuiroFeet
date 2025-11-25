@@ -1,0 +1,402 @@
+﻿@model IEnumerable<Analisis.BD.Proveedores>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Lista de Proveedores";
+}
+
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Fuente Poppins -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-xl-10 col-lg-11">
+            <div class="card proveedores-card shadow-sm border-0">
+                <div class="card-body p-4 p-md-5">
+
+                    <!-- Encabezado -->
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-3">
+                        <div>
+                            <h2 class="mb-1 proveedores-title">
+                                <span class="proveedores-icon me-3">
+                                    <i class="bi bi-truck"></i>
+                                </span>
+                                <span>Proveedores registrados</span>
+                            </h2>
+                            <p class="text-muted mb-0 proveedores-subtitle">
+                                Reporte del listado de proveedores actualmente disponibles.
+                            </p>
+                        </div>
+                        <div class="mt-2 mt-md-0 text-md-end d-flex flex-md-row flex-column gap-2 justify-content-md-end">
+                            <a href="@Url.Action("RegistrarProveedor", "Proveedores")"
+                               class="btn btn-primary btn-sm btn-add">
+                                <i class="bi bi-plus-circle me-2"></i>Registrar proveedor
+                            </a>
+                            <a href="@Url.Action("Index", "Home")"
+                               class="btn btn-outline-secondary btn-sm btn-back">
+                                <i class="bi bi-arrow-left-circle me-2"></i>Volver al menú
+                            </a>
+                        </div>
+                    </div>
+
+                    <hr class="proveedores-divider" />
+
+                    <!-- Tabla de proveedores -->
+                    <div class="table-responsive mt-3">
+                        <table class="table align-middle mb-0 proveedores-table" id="tablaProveedores">
+                            <thead class="table-header">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Correo</th>
+                                    <th>Contacto</th>
+                                    <th>Número</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var proveedores in Model)
+                                {
+                                    <tr>
+                                        <td>@proveedores.id</td>
+                                        <td>@proveedores.nombre</td>
+                                        <td>@proveedores.correo</td>
+                                        <td>@proveedores.contacto</td>
+                                        <td class="col-numero">@proveedores.numero</td>
+                                        <td class="text-center">
+                                            <div class="btn-group btn-group-sm" role="group">
+                                                <a href="@Url.Action("EditarProveedor", "Proveedores", new { id = proveedores.id })"
+                                                   class="btn btn-outline-primary btn-accion">
+                                                    <i class="bi bi-pencil-fill"></i>
+                                                </a>
+                                                <button type="button"
+                                                        class="btn btn-outline-danger btn-accion btn-eliminar"
+                                                        data-id="@proveedores.id"
+                                                        data-nombre="@proveedores.nombre">
+                                                    <i class="bi bi-trash-fill"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Paginación -->
+                    <div class="d-flex justify-content-between align-items-center mt-3 flex-column flex-md-row gap-2">
+                        <div class="text-muted small" id="infoPaginacion"></div>
+                        <nav>
+                            <ul class="pagination pagination-sm mb-0" id="paginacionProveedores"></ul>
+                        </nav>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hidden form solo para el AntiForgeryToken -->
+<form id="antiForgeryForm" style="display:none;">
+    @Html.AntiForgeryToken()
+</form>
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: #f3f6fb;
+    }
+
+    .proveedores-card {
+        border-radius: 22px;
+        background-color: #ffffff;
+    }
+
+    .proveedores-title {
+        font-size: 1.6rem;
+        color: #234449;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+    }
+
+    .proveedores-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .proveedores-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        background-color: #e8f0ff;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.35rem;
+        color: #234449;
+    }
+
+    .btn-add {
+        font-weight: 600;
+        border-radius: 999px;
+        padding-inline: 1.4rem;
+        box-shadow: 0 4px 10px rgba(62, 119, 248, 0.35);
+    }
+
+    .btn-back {
+        border-radius: 999px;
+        padding-inline: 1.4rem;
+    }
+
+    .proveedores-divider {
+        margin-top: 0.8rem;
+        margin-bottom: 0.2rem;
+        border: 0;
+        border-top: 1px solid #e2e7f0;
+    }
+
+    .table-header {
+        border-bottom: 1px solid #dde3ee;
+        background-color: #f8faff;
+    }
+
+    .table-header th {
+        border: none !important;
+        font-weight: 600;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #6b7a88;
+        text-align: center;
+    }
+
+    .proveedores-table tbody tr td {
+        font-size: 0.94rem;
+        vertical-align: middle;
+        border-top: 1px solid #f0f2f7;
+    }
+
+    .proveedores-table tbody tr:nth-child(even) {
+        background-color: #f8fbfb;
+    }
+
+    .proveedores-table tbody tr:hover {
+        background-color: #f5f8ff;
+    }
+
+    .col-numero {
+        min-width: 120px;
+        font-family: 'Poppins', monospace;
+        white-space: nowrap;
+    }
+
+    .btn-accion {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 32px;
+        border-radius: 10px;
+    }
+
+    .btn-accion i {
+        font-size: 0.9rem;
+    }
+
+    .btn-accion.btn-outline-primary {
+        border-color: #3e77f8;
+        color: #3e77f8;
+    }
+
+    .btn-accion.btn-outline-primary:hover {
+        background-color: #3e77f8;
+        color: #ffffff;
+    }
+
+    .btn-accion.btn-outline-danger {
+        border-color: #e74c3c;
+        color: #e74c3c;
+    }
+
+    .btn-accion.btn-outline-danger:hover {
+        background-color: #e74c3c;
+        color: #ffffff;
+    }
+
+    #paginacionProveedores .page-link {
+        border-radius: 999px !important;
+        border: none;
+        font-size: 0.8rem;
+        color: #234449;
+    }
+
+    #paginacionProveedores .page-item.active .page-link {
+        background-color: #3e77f8;
+        color: #ffffff;
+    }
+
+    @@media (max-width: 576px) {
+        .proveedores-title {
+            font-size: 1.35rem;
+        }
+
+        .proveedores-icon {
+            width: 36px;
+            height: 36px;
+            font-size: 1.1rem;
+        }
+
+        .btn-add,
+        .btn-back {
+            width: 100%;
+        }
+
+        .btn-group {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // --------- ELIMINAR PROVEEDOR CON SWEETALERT ---------
+        const botonesEliminar = document.querySelectorAll(".btn-eliminar");
+        const token = document.querySelector('#antiForgeryForm input[name="__RequestVerificationToken"]').value;
+
+        botonesEliminar.forEach(btn => {
+            btn.addEventListener("click", function (e) {
+                e.preventDefault();
+                const proveedorId = this.getAttribute("data-id");
+                const proveedorNombre = this.getAttribute("data-nombre");
+
+                Swal.fire({
+                    title: '¿Eliminar proveedor?',
+                    html: `<small>${proveedorNombre}</small>`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#234449',
+                    cancelButtonColor: '#aaa',
+                    confirmButtonText: 'Sí, eliminar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        fetch('@Url.Action("EliminarProveedor", "Proveedores")', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'RequestVerificationToken': token
+                            },
+                            body: JSON.stringify({ id: proveedorId })
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    Swal.fire(
+                                        '¡Eliminado!',
+                                        data.message || 'El proveedor se eliminó correctamente.',
+                                        'success'
+                                    ).then(() => {
+                                        location.reload();
+                                    });
+                                } else {
+                                    Swal.fire(
+                                        'No se pudo eliminar',
+                                        data.message || 'El proveedor está en uso y no puede eliminarse.',
+                                        'error'
+                                    );
+                                }
+                            })
+                            .catch(error => {
+                                Swal.fire(
+                                    'Error',
+                                    'Ocurrió un error al intentar eliminar el proveedor.',
+                                    'error'
+                                );
+                            });
+                    }
+                });
+            });
+        });
+
+        // --------- PAGINACIÓN FRONT-END ---------
+        const tabla = document.getElementById("tablaProveedores");
+        const filas = Array.from(tabla.querySelectorAll("tbody tr"));
+        const filasPorPagina = 10;
+        let paginaActual = 1;
+
+        function mostrarPagina(pagina) {
+            const totalFilas = filas.length;
+            const totalPaginas = Math.ceil(totalFilas / filasPorPagina) || 1;
+
+            if (pagina < 1) pagina = 1;
+            if (pagina > totalPaginas) pagina = totalPaginas;
+
+            const inicio = (pagina - 1) * filasPorPagina;
+            const fin = inicio + filasPorPagina;
+
+            filas.forEach((fila, index) => {
+                if (index >= inicio && index < fin) {
+                    fila.style.display = "";
+                } else {
+                    fila.style.display = "none";
+                }
+            });
+
+            paginaActual = pagina;
+            actualizarControlesPaginacion(totalPaginas, totalFilas);
+        }
+
+        function actualizarControlesPaginacion(totalPaginas, totalFilas) {
+            const paginacion = document.getElementById("paginacionProveedores");
+            const info = document.getElementById("infoPaginacion");
+
+            paginacion.innerHTML = "";
+
+            if (totalFilas === 0) {
+                info.textContent = "No hay proveedores registrados.";
+                return;
+            }
+
+            const inicio = (paginaActual - 1) * filasPorPagina + 1;
+            const fin = Math.min(inicio + filasPorPagina - 1, totalFilas);
+            info.textContent = `Mostrando ${inicio}-${fin} de ${totalFilas} proveedores`;
+
+            // Botón anterior
+            const prevItem = document.createElement("li");
+            prevItem.className = "page-item" + (paginaActual === 1 ? " disabled" : "");
+            prevItem.innerHTML = `<button class="page-link" type="button">&laquo;</button>`;
+            prevItem.onclick = () => { if (paginaActual > 1) mostrarPagina(paginaActual - 1); };
+            paginacion.appendChild(prevItem);
+
+            // Números de página (máx 5)
+            const maxPaginas = 5;
+            let inicioPagina = Math.max(1, paginaActual - 2);
+            let finPagina = Math.min(totalPaginas, inicioPagina + maxPaginas - 1);
+
+            if (finPagina - inicioPagina < maxPaginas - 1) {
+                inicioPagina = Math.max(1, finPagina - maxPaginas + 1);
+            }
+
+            for (let i = inicioPagina; i <= finPagina; i++) {
+                const item = document.createElement("li");
+                item.className = "page-item" + (i === paginaActual ? " active" : "");
+                item.innerHTML = `<button class="page-link" type="button">${i}</button>`;
+                item.onclick = () => mostrarPagina(i);
+                paginacion.appendChild(item);
+            }
+
+            // Botón siguiente
+            const nextItem = document.createElement("li");
+            nextItem.className = "page-item" + (paginaActual === totalPaginas ? " disabled" : "");
+            nextItem.innerHTML = `<button class="page-link" type="button">&raquo;</button>`;
+            nextItem.onclick = () => { if (paginaActual < totalPaginas) mostrarPagina(paginaActual + 1); };
+            paginacion.appendChild(nextItem);
+        }
+
+        mostrarPagina(1);
+    });
+</script>

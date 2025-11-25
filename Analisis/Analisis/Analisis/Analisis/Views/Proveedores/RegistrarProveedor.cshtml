@@ -1,0 +1,257 @@
+﻿@model Analisis.BD.Proveedores
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Registrar Proveedor";
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<div class="full-page-container">
+    <div class="form-container">
+        <h1><i class="bi bi-truck"></i> Nuevo proveedor</h1>
+        <p>Completa todos los campos para registrar un proveedor.</p>
+
+        @using (Html.BeginForm("RegistrarProveedor", "Proveedores", FormMethod.Post, new { @class = "formulario", autocomplete = "off" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(false, "", new { @class = "text-danger mb-3" })
+
+            <!-- Nombre -->
+            <div class="form-group">
+                @Html.LabelFor(model => model.nombre, "Nombre", new { @class = "form-label" })
+                <div class="input-icon">
+                    <i class="bi bi-person-fill"></i>
+                    @Html.TextBoxFor(model => model.nombre, new
+                    {
+                        @class = "form-control",
+                        placeholder = "Ej. Distribuidora XYZ",
+                        required = "required",
+                        autofocus = "autofocus"
+                    })
+                </div>
+                @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "field-validation-error" })
+            </div>
+
+            <!-- Correo -->
+            <div class="form-group">
+                @Html.LabelFor(model => model.correo, "Correo electrónico", new { @class = "form-label" })
+                <div class="input-icon">
+                    <i class="bi bi-envelope-fill"></i>
+                    @Html.TextBoxFor(model => model.correo, new
+                    {
+                        @class = "form-control",
+                        placeholder = "Ej. contacto@xyz.com",
+                        required = "required",
+                        type = "email",
+                        pattern = @".+@.+\.com$",
+                        title = "El correo debe ser válido y terminar en .com"
+                    })
+                </div>
+                @Html.ValidationMessageFor(model => model.correo, "", new { @class = "field-validation-error" })
+            </div>
+
+            <!-- Contacto -->
+            <div class="form-group">
+                @Html.LabelFor(model => model.contacto, "Contacto", new { @class = "form-label" })
+                <div class="input-icon">
+                    <i class="bi bi-person-lines-fill"></i>
+                    @Html.TextBoxFor(model => model.contacto, new
+                    {
+                        @class = "form-control",
+                        placeholder = "Nombre del contacto",
+                        required = "required"
+                    })
+                </div>
+                @Html.ValidationMessageFor(model => model.contacto, "", new { @class = "field-validation-error" })
+            </div>
+
+            <!-- Número -->
+            <div class="form-group">
+                @Html.LabelFor(model => model.numero, "Número telefónico", new { @class = "form-label" })
+                <div class="input-icon">
+                    <i class="bi bi-telephone-fill"></i>
+                    @Html.TextBoxFor(model => model.numero, new
+                    {
+                        @class = "form-control",
+                        placeholder = "Ej. 88888888",
+                        required = "required",
+                        type = "tel",
+                        pattern = @"\d{8,15}",
+                        title = "El número debe contener solo dígitos (mínimo 8, máximo 15)",
+                        inputmode = "numeric"
+                    })
+                </div>
+                @Html.ValidationMessageFor(model => model.numero, "", new { @class = "field-validation-error" })
+            </div>
+
+            <!-- Botones -->
+            <div class="form-buttons">
+                <button type="submit" class="btn-submit">
+                    <i class="bi bi-check-circle-fill"></i> Registrar
+                </button>
+                <a href="@Url.Action("DetallesProveedor", "Proveedores")" class="btn-cancel">
+                    <i class="bi bi-x-circle-fill"></i> Cancelar
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: url('@Url.Content("~/Imagenes/marmol2.jfif")') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .full-page-container {
+        min-height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .form-container {
+        background-color: rgba(255, 255, 255, 0.97);
+        padding: 40px 30px;
+        border-radius: 20px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        max-width: 500px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .form-container h1 {
+        font-size: 2em;
+        font-weight: 700;
+        color: #234449;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .form-container p {
+        color: #3e77f8;
+        margin-bottom: 25px;
+        font-size: 0.95rem;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+        text-align: left;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #234449;
+        margin-bottom: 6px;
+        display: block;
+    }
+
+    .input-icon {
+        display: flex;
+        align-items: center;
+        background-color: #f9f9f9;
+        border: 1px solid #d0d7dd;
+        border-radius: 10px;
+        padding: 8px 12px;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .input-icon i {
+        margin-right: 10px;
+        color: #3e77f8;
+        font-size: 1.2em;
+    }
+
+    .input-icon input {
+        border: none;
+        outline: none;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        background-color: transparent;
+        font-size: 0.95em;
+    }
+
+    .input-icon:focus-within {
+        border-color: #3e77f8;
+        box-shadow: 0 0 0 3px rgba(62, 119, 248, 0.20);
+        background-color: #ffffff;
+    }
+
+    .form-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 25px;
+        flex-wrap: wrap;
+    }
+
+    .btn-submit, .btn-cancel {
+        flex: 1;
+        min-width: 150px;
+        text-align: center;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 0.95rem;
+    }
+
+    .btn-submit {
+        background-color: #3e77f8;
+        color: #fff;
+        box-shadow: 0 4px 10px rgba(62, 119, 248, 0.35);
+    }
+
+    .btn-submit:hover {
+        background-color: #234449;
+        box-shadow: 0 4px 12px rgba(35, 68, 73, 0.45);
+    }
+
+    .btn-cancel {
+        background-color: #f0f0f0;
+        color: #234449;
+    }
+
+    .btn-cancel:hover {
+        background-color: #ddd;
+    }
+
+    .field-validation-error {
+        color: #dc3545;
+        font-size: 0.85em;
+        margin-top: 3px;
+        display: block;
+    }
+
+    .btn-submit i {
+        color: #fff;
+    }
+
+    @@media (max-width: 576px) {
+        .form-container {
+            padding: 28px 22px;
+        }
+
+        .form-container h1 {
+            font-size: 1.6em;
+        }
+    }
+</style>

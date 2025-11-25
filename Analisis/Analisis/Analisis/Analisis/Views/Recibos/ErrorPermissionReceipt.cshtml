@@ -1,0 +1,113 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Error de Permisos";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+
+<div class="error-wrapper">
+    <div class="error-card">
+
+        <div class="icon-circle error">
+            <i class="bi bi-x-octagon-fill"></i>
+        </div>
+
+        <h1 class="error-title">Acceso denegado</h1>
+
+        <p class="error-text">
+            No tienes permisos para modificar este recibo.
+        </p>
+        <p class="error-subtext">
+            Si crees que esto es un error, contacta al administrador del sistema.
+        </p>
+
+        <a href="/Recibos/ListReceipts" class="btn-error-back">
+            <i class="bi bi-arrow-left-circle"></i> Volver al historial de recibos
+        </a>
+
+    </div>
+</div>
+
+<style>
+    .error-wrapper {
+        display: flex;
+        justify-content: center;
+        padding: 60px 20px;
+    }
+
+    .error-card {
+        max-width: 520px;
+        width: 100%;
+        background: #ffffff;
+        padding: 40px 38px 34px;
+        border-radius: 18px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        text-align: center;
+        animation: fadeInError 0.45s ease-in-out;
+    }
+
+    .icon-circle {
+        width: 95px;
+        height: 95px;
+        border-radius: 50%;
+        margin: 0 auto 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .icon-circle.error {
+        background: rgba(231, 76, 60, 0.12);
+    }
+
+    .icon-circle.error i {
+        font-size: 52px;
+        color: #e74c3c;
+    }
+
+    .error-title {
+        font-size: 1.9rem;
+        font-weight: 700;
+        color: #e74c3c;
+        margin-bottom: 8px;
+    }
+
+    .error-text {
+        font-size: 1.05rem;
+        color: #374151;
+        margin-bottom: 4px;
+    }
+
+    .error-subtext {
+        font-size: 0.95rem;
+        color: #6b7280;
+        margin-bottom: 24px;
+    }
+
+    .btn-error-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 11px 22px;
+        border-radius: 10px;
+        background: #e74c3c;
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 0.98rem;
+        font-weight: 600;
+        transition: 0.2s ease;
+    }
+
+    .btn-error-back i {
+        font-size: 1.1rem;
+    }
+
+    .btn-error-back:hover {
+        background: #c0392b;
+    }
+
+    @@media fadeInError {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>

@@ -1,0 +1,137 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Consultar Agenda del Empleado";
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<div class="agenda-container">
+    <div class="agenda-card">
+        <h1><i class="bi bi-calendar-week"></i> Agenda del Empleado</h1>
+
+        <p class="agenda-subtitle">
+            Mostrando agenda del empleado:
+            <strong>@ViewBag.NombreEmpleado ?? ("ID: " + Request.QueryString["id"])</strong>
+        </p>
+
+        <div class="alert alert-primary agenda-alert">
+            Esta es una vista simulada de la agenda. Aquí podrás mostrar citas reales, horarios disponibles,
+            tiempos ocupados, bloqueos, etc.
+        </div>
+
+        <div class="schedule-list">
+            <div class="schedule-item">
+                <span class="day">Lunes</span>
+                <span class="hours">09:00 a 12:00</span>
+            </div>
+
+            <div class="schedule-item">
+                <span class="day">Miércoles</span>
+                <span class="hours">14:00 a 18:00</span>
+            </div>
+
+            <div class="schedule-item">
+                <span class="day">Viernes</span>
+                <span class="hours">10:00 a 13:00</span>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="@Url.Action("GestionEmpleados", "Empleados")" class="btn-back">
+                <i class="bi bi-arrow-left-circle"></i> Volver
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: #f4f7fa;
+    }
+
+    .agenda-container {
+        max-width: 850px;
+        margin: 60px auto;
+        padding: 20px;
+    }
+
+    .agenda-card {
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+        text-align: center;
+    }
+
+    h1 {
+        color: #234449;
+        font-weight: 700;
+        margin-bottom: 10px;
+        font-size: 2em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .agenda-subtitle {
+        color: #3e77f8;
+        font-size: 1.05em;
+        margin-bottom: 25px;
+    }
+
+    .agenda-alert {
+        font-size: 0.95em;
+        margin-bottom: 35px;
+    }
+
+    .schedule-list {
+        margin: 20px auto;
+        max-width: 500px;
+    }
+
+    .schedule-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 16px;
+        border-radius: 10px;
+        background: #f4f9f9;
+        margin-bottom: 10px;
+        font-weight: 500;
+        border: 1px solid #e0e0e0;
+    }
+
+    .day {
+        color: #234449;
+        font-weight: 600;
+    }
+
+    .hours {
+        color: #3e77f8;
+    }
+
+    .actions {
+        margin-top: 35px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .btn-back {
+        background-color: #234449;
+        color: #fff;
+        padding: 12px 20px;
+        border-radius: 10px;
+        font-size: 0.95em;
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: 0.3s;
+    }
+
+        .btn-back:hover {
+            background-color: #3e77f8;
+        }
+</style>

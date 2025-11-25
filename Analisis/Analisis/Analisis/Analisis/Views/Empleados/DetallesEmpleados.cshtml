@@ -1,0 +1,276 @@
+﻿@model IEnumerable<Analisis.BD.Empleados>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Lista de Empleados";
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<div class="empleados-container">
+    <div class="empleados-header">
+        <div>
+            <h1><i class="bi bi-people-fill"></i> Empleados registrados</h1>
+            <p>Reporte del listado de empleados registrados en el sistema.</p>
+        </div>
+        <div class="empleados-actions-header">
+            <a href="@Url.Action("Empleados", "Empleados")" class="btn-header-secondary">
+                <i class="bi bi-arrow-left-circle"></i> Gestión de Empleados
+            </a>
+            <a href="@Url.Action("RegistrarEmpleados", "Empleados")" class="btn-header-primary">
+                <i class="bi bi-person-plus-fill"></i> Nuevo empleado
+            </a>
+        </div>
+    </div>
+
+    <table class="service-table">
+        <thead>
+            <tr>
+                <th>Cédula</th>
+                <th>Nombre completo</th>
+                <th>Puesto</th>
+                <th>Correo electrónico</th>
+                <th>Teléfono</th>
+                <th>Estado</th>
+                <th style="width: 18%;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var empleados in Model)
+                {
+                    // 'activo' es bool en la BD
+                    bool activo = empleados.activo;
+
+                    <tr>
+                        <td>@empleados.id</td>
+                        <td>@empleados.nombre</td>
+                        <td>@empleados.tipo</td>
+                        <td>@empleados.correo</td>
+                        <td>@empleados.telefono</td>
+                        <td>
+                            @if (activo)
+                            {
+                                <span class="badge-estado badge-activo">Activo</span>
+                            }
+                            else
+                            {
+                                <span class="badge-estado badge-inactivo">Inactivo</span>
+                            }
+                        </td>
+                        <td>
+                            <a href="@Url.Action("EditarEmpleados", "Empleados", new { id = empleados.id })" class="btn-edit">
+                                <i class="bi bi-pencil-square"></i> Editar
+                            </a>
+
+                            @if (activo)
+                            {
+                                <a href="@Url.Action("DesactivarEmpleados", "Empleados", new { id = empleados.id })"
+                                   class="btn-deactivate">
+                                    <i class="bi bi-person-dash-fill"></i> Desactivar
+                                </a>
+                            }
+                            else
+                            {
+                                <span style="font-size:0.8rem; color:#6b7280;">Empleado inactivo</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="7" class="text-center">No hay empleados registrados.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: #f9fafb;
+    }
+
+    .empleados-container {
+        max-width: 1000px;
+        margin: 60px auto;
+        background-color: #ffffff;
+        padding: 32px 30px 40px;
+        border-radius: 15px;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .empleados-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 18px;
+        margin-bottom: 20px;
+    }
+
+        .empleados-header h1 {
+            color: #234449;
+            font-weight: 700;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.9rem;
+        }
+
+            .empleados-header h1 i {
+                font-size: 1.7rem;
+            }
+
+        .empleados-header p {
+            color: #3e77f8;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+    .empleados-actions-header {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .btn-header-primary,
+    .btn-header-secondary {
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: none;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        white-space: nowrap;
+    }
+
+    .btn-header-primary {
+        background-color: #234449;
+        color: #ffffff;
+    }
+
+        .btn-header-primary:hover {
+            background-color: #2d5760;
+            box-shadow: 0 5px 12px rgba(35, 68, 73, 0.25);
+        }
+
+    .btn-header-secondary {
+        background-color: #f3f4f6;
+        color: #234449;
+    }
+
+        .btn-header-secondary:hover {
+            background-color: #e5e7eb;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+    .service-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        font-size: 0.95rem;
+    }
+
+        .service-table th,
+        .service-table td {
+            border: 1px solid #e0e0e0;
+            padding: 10px 12px;
+            text-align: center;
+        }
+
+        .service-table th {
+            background-color: #234449;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .service-table tbody tr:nth-child(even) {
+            background-color: #f4f9f9;
+        }
+
+        .service-table tbody tr:hover {
+            background-color: #eef4ff;
+        }
+
+    .badge-estado {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .badge-activo {
+        background-color: #d1fae5;
+        color: #166534;
+    }
+
+    .badge-inactivo {
+        background-color: #e5e7eb;
+        color: #374151;
+    }
+
+    .btn-edit,
+    .btn-deactivate {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 7px 12px;
+        border-radius: 8px;
+        font-size: 0.85em;
+        font-weight: 600;
+        text-decoration: none;
+        color: #ffffff;
+        transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+        margin: 2px 3px;
+    }
+
+    .btn-edit {
+        background-color: #3e77f8;
+    }
+
+        .btn-edit:hover {
+            background-color: #234449;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+            transform: translateY(-1px);
+        }
+
+    .btn-deactivate {
+        background-color: #f97316;
+    }
+
+        .btn-deactivate:hover {
+            background-color: #c2410c;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+            transform: translateY(-1px);
+        }
+
+    @@media (max-width: 768px) {
+        .empleados-container {
+            margin: 30px 12px;
+            padding: 24px 18px;
+        }
+
+        .empleados-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .service-table th,
+        .service-table td {
+            font-size: 0.85rem;
+            padding: 8px;
+        }
+    }
+</style>

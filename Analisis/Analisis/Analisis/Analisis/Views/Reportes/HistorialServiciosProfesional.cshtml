@@ -1,0 +1,96 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Historial de Servicios Profesionales";
+}
+
+<!-- Estilos CSS -->
+<style>
+    .reportes-container {
+        max-width: 1000px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        color: #234449;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .table-container {
+        margin-top: 30px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #234449;
+        color: white;
+    }
+
+    td a {
+        color: #3e77f8;
+        text-decoration: none;
+    }
+
+        td a:hover {
+            color: #234449;
+        }
+</style>
+
+<div class="reportes-container">
+    <h2>Historial de Servicios Profesionales</h2>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Servicio</th>
+                    <th>Fecha</th>
+                    <th>Cliente</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Aquí insertas los datos del historial de servicios profesionales -->
+                <tr>
+                    <td>Servicio A</td>
+                    <td>01/04/2025</td>
+                    <td>Juan Pérez</td>
+                    <td>$150</td>
+                    <td>
+                        <a>Ver Detalles</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Servicio B</td>
+                    <td>29/03/2025</td>
+                    <td>María García</td>
+                    <td>$200</td>
+                    <td>
+                        <a>Ver Detalles</a>
+                    </td>
+                </tr>
+                <!-- Agregar más servicios profesionales -->
+            </tbody>
+        </table>
+    </div>
+</div>

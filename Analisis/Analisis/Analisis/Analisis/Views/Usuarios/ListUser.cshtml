@@ -1,0 +1,271 @@
+﻿@model IEnumerable<Analisis.BD.Usuarios>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Lista de Usuarios";
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="user-wrapper">
+
+    <!-- Encabezado -->
+    <div class="header-section">
+        <div class="header-left">
+            <h1><i class="bi bi-person-badge-fill"></i> Lista de Usuarios</h1>
+            <p>Usuarios activos registrados en el sistema.</p>
+        </div>
+
+        <div class="header-right">
+            <a href="@Url.Action("CreateUser", "Usuarios")" class="btn-add">
+                <i class="bi bi-person-plus-fill"></i> Registrar Usuario
+            </a>
+            <a href="@Url.Action("Users", "Usuarios")" class="btn-back">
+                <i class="bi bi-arrow-left-circle"></i> Volver
+            </a>
+        </div>
+    </div>
+
+    <!-- Mensaje de éxito -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert-success-box">
+            <i class="bi bi-check-circle-fill"></i> @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <!-- Tabla -->
+    @if (Model != null && Model.Any())
+    {
+        <table class="modern-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre Completo</th>
+                    <th>Correo</th>
+                    <th>Rol</th>
+                    <th style="width:160px;">Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Nombre</td>
+                        <td>@item.Email</td>
+                        <td>@(item.Roles != null ? item.Roles.Nombre : "Sin Rol")</td>
+
+                        <td class="action-cell">
+                            <a href="@Url.Action("EditUser", "Usuarios", new { id = item.Id })"
+                               class="btn-table btn-edit">
+                                <i class="bi bi-pencil-square"></i> Editar
+                            </a>
+
+                            <button type="button"
+                                    class="btn-table btn-inactivate"
+                                    data-id="@item.Id"
+                                    data-name="@item.Nombre">
+                                <i class="bi bi-person-x-fill"></i> Inactivar
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="no-data-box">
+            <i class="bi bi-exclamation-triangle-fill"></i> No hay usuarios registrados.
+        </div>
+    }
+</div>
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: #f4f6f9;
+    }
+
+    .user-wrapper {
+        max-width: 1000px;
+        margin: 60px auto;
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 18px;
+        box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+    }
+
+    /* Header */
+    .header-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .header-left h1 {
+        color: #234449;
+        font-size: 2rem;
+        margin: 0;
+        font-weight: 700;
+    }
+
+    .header-left p {
+        margin: 4px 0 0;
+        color: #6c757d;
+    }
+
+    .btn-add, .btn-back {
+        padding: 10px 18px;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: white;
+    }
+
+    .btn-add {
+        background: #3e77f8;
+    }
+
+        .btn-add:hover {
+            background: #234449;
+        }
+
+    .btn-back {
+        background: #6c757d;
+    }
+
+        .btn-back:hover {
+            background: #4f585f;
+        }
+
+    /* Success Alert */
+    .alert-success-box {
+        background: #e6f4ea;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+        border-radius: 12px;
+        padding: 14px;
+        font-size: 1em;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        justify-content: center;
+    }
+
+    /* Table */
+    .modern-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+        .modern-table th {
+            background: #234449;
+            color: white;
+            padding: 14px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .modern-table td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #e6e6e6;
+            font-size: 0.95rem;
+        }
+
+        .modern-table tr:hover td {
+            background: #f2f6fc;
+        }
+
+    .action-cell {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+    }
+
+    .btn-table {
+        padding: 7px 12px;
+        border-radius: 6px;
+        font-size: 0.82rem;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: white;
+        font-weight: 600;
+    }
+
+    .btn-edit {
+        background: #007bff;
+    }
+
+        .btn-edit:hover {
+            background: #0056b3;
+        }
+
+    .btn-inactivate {
+        background: #dc3545;
+    }
+
+        .btn-inactivate:hover {
+            background: #b71c1c;
+        }
+
+    /* No data */
+    .no-data-box {
+        margin-top: 35px;
+        padding: 16px;
+        background: #fff0f0;
+        color: #a94442;
+        border-radius: 12px;
+        border: 1px solid #f5c6cb;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 600;
+        gap: 10px;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const botones = document.querySelectorAll(".btn-inactivate");
+
+        botones.forEach(btn => {
+            btn.addEventListener("click", function () {
+                const id = this.getAttribute("data-id");
+                const nombre = this.getAttribute("data-name");
+
+                Swal.fire({
+                    title: "¿Inactivar usuario?",
+                    text: "El usuario " + nombre + " será movido a la lista de inactivos.",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#234449",
+                    cancelButtonColor: "#aaa",
+                    confirmButtonText: "Sí, inactivar",
+                    cancelButtonText: "Cancelar"
+                }).then(res => {
+                    if (res.isConfirmed) {
+                        window.location.href = "/Usuarios/InactivarUser/" + id;
+                    }
+                });
+            });
+        });
+    });
+</script>
