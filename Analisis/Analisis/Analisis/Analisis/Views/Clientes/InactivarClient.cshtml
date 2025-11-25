@@ -1,0 +1,69 @@
+﻿@model Analisis.BD.Clientes
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Inactivar Cliente";
+}
+
+<div class="container my-5" style="max-width: 600px; font-family: 'Poppins', sans-serif;">
+
+    <div class="card shadow-sm border-0" style="border-radius:16px; overflow:hidden; background:#f7fafd;">
+
+        <!-- Encabezado frío -->
+        <div class="text-white text-center p-4" style="background:#234449;">
+            <h3 class="fw-bold mb-0">
+                <i class="bi bi-person-fill-x me-2"></i>Inactivar Cliente
+            </h3>
+        </div>
+
+        <!-- Cuerpo -->
+        <div class="card-body text-center p-4">
+
+            <p class="mb-3 fs-5" style="color:#234449;">
+                ¿Está seguro de que desea inactivar este cliente?
+            </p>
+
+            <h4 class="fw-bold mb-3" style="color:#3e77f8;">
+                @Model.nombre
+            </h4>
+
+            <div class="text-start mx-auto" style="max-width: 340px;">
+                <p><strong style="color:#234449;">Correo:</strong> @Model.correo</p>
+                <p><strong style="color:#234449;">Teléfono:</strong> @(Model.telefono ?? "--")</p>
+                <p><strong style="color:#234449;">Cédula:</strong> @(Model.cedula ?? "--")</p>
+            </div>
+
+            <form method="post" class="mt-4">
+                @Html.AntiForgeryToken()
+
+                <!-- Botón inactivar (rojo frío) -->
+                <button type="submit"
+                        class="btn px-4 py-2 text-white fw-semibold me-2"
+                        style="background:#c0392b; border:none; border-radius:10px;">
+                    <i class="bi bi-slash-circle me-2"></i>Inactivar
+                </button>
+
+                <!-- Botón cancelar (gris frío) -->
+                <a href="@Url.Action("ClientIndex", "Clientes")"
+                   class="btn btn-cancel px-4 py-2 rounded-3">
+                    <i class="bi bi-arrow-left-circle me-2"></i>Cancelar
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Botón cancelar (gris frío) */
+    .btn-cancel {
+        background-color: #dce6ea !important;
+        color: #234449 !important;
+        border: 1px solid #bfcbd3;
+        font-weight: 500;
+    }
+
+        .btn-cancel:hover {
+            background-color: #c9d5db !important;
+            color: #234449 !important;
+        }
+</style>

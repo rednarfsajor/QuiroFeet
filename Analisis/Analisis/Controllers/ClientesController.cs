@@ -11,7 +11,7 @@ namespace Analisis.Controllers
     {
         QuiroFeetEntities6 db = new QuiroFeetEntities6();
 
-        // GET: Clientes (opcional, se puede usar como dashboard)
+        // GET: Clientes (opcional se puede usar como dashboard)
         public ActionResult ClientIndex()
         {
             if (Session["UsuarioId"] == null)

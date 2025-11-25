@@ -1,0 +1,175 @@
+﻿@model Analisis.BD.Empleados
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Editar Empleado";
+}
+
+<div class="edit-container">
+    <h1><i class="bi bi-pencil-square"></i> Editar Empleado</h1>
+    <p>Actualiza la información del empleado registrado.</p>
+
+    @using (Html.BeginForm("EditarEmpleados", "Empleados", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.id)
+
+        <!-- Cédula (no editable) -->
+        <div class="form-group">
+            <label>Cédula</label>
+            <input class="form-control" value="@Model.id" readonly />
+            <small class="text-muted">La cédula no puede modificarse.</small>
+        </div>
+
+        <!-- Nombre completo -->
+        <div class="form-group">
+            <label>Nombre completo</label>
+            @Html.TextBoxFor(m => m.nombre, new
+            {
+                @class = "form-control",
+                placeholder = "Ingrese el nombre completo",
+                required = "required"
+            })
+        </div>
+
+        <!-- Puesto -->
+        <div class="form-group">
+            <label>Puesto</label>
+            @Html.TextBoxFor(m => m.tipo, new
+            {
+                @class = "form-control",
+                placeholder = "Ingrese el puesto",
+                required = "required"
+            })
+        </div>
+
+        <!-- Correo -->
+        <div class="form-group">
+            <label>Correo electrónico</label>
+            @Html.TextBoxFor(m => m.correo, new
+            {
+                @class = "form-control",
+                placeholder = "Ingrese el correo",
+                required = "required",
+                type = "email"
+            })
+        </div>
+
+        <!-- Teléfono -->
+        <div class="form-group">
+            <label>Teléfono</label>
+            @Html.TextBoxFor(m => m.telefono, new
+            {
+                @class = "form-control",
+                placeholder = "Ingrese el teléfono",
+                required = "required"
+            })
+        </div>
+
+        <div class="form-buttons">
+            <button type="submit" class="btn-save">
+                <i class="bi bi-check-circle-fill"></i> Guardar cambios
+            </button>
+
+            <a href="@Url.Action("Empleados", "Empleados")" class="btn-cancel">
+                <i class="bi bi-arrow-left-circle"></i> Volver al listado
+            </a>
+        </div>
+    }
+</div>
+
+<style>
+    .edit-container {
+        max-width: 600px;
+        margin: 60px auto;
+        padding: 40px;
+        background: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+    }
+
+        .edit-container h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #234449;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .edit-container p {
+            color: #3e77f8;
+            margin-bottom: 25px;
+        }
+
+    .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+        .form-group label {
+            font-weight: 600;
+            color: #234449;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+    .form-control {
+        width: 100%;
+        padding: 11px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 1rem;
+        transition: border-color .2s ease, box-shadow .2s ease;
+    }
+
+        .form-control:focus {
+            border-color: #3e77f8;
+            box-shadow: 0 0 0 3px rgba(62,119,248,0.25);
+            outline: none;
+        }
+
+    .form-buttons {
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .btn-save, .btn-cancel {
+        padding: 12px 22px;
+        border-radius: 10px;
+        border: none;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        text-decoration: none;
+        font-size: 0.95rem;
+    }
+
+    .btn-save {
+        background: #234449;
+        color: #fff;
+    }
+
+        .btn-save:hover {
+            background: #355b60;
+            box-shadow: 0 5px 15px rgba(35,68,73,0.25);
+        }
+
+    .btn-cancel {
+        background: #e9ecef;
+        color: #234449;
+    }
+
+        .btn-cancel:hover {
+            background: #dce2e6;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+</style>

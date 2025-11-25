@@ -1,0 +1,411 @@
+﻿@model Analisis.Models.OrdenCompraViewModel
+@using Analisis.BD
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Crear Nueva Orden de Compra";
+
+    if (Model?.Productos == null || !Model.Productos.Any())
+    {
+        Model.Productos = new List<Analisis.Models.DetalleOrdenVM> { new Analisis.Models.DetalleOrdenVM() };
+    }
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<div class="order-wrapper container my-5">
+
+    <!-- HEADER -->
+    <div class="order-header d-flex align-items-center mb-4">
+        <div class="header-icon me-3">
+            <i class="bi bi-file-earmark-plus-fill"></i>
+        </div>
+        <div>
+            <h2 class="order-title">@ViewBag.Title</h2>
+            <p class="order-subtitle">Configure los detalles de la orden y agregue productos para la compra.</p>
+        </div>
+    </div>
+
+    <!-- CARD CONTENEDORA -->
+    <div class="card shadow-sm border-0 order-card">
+
+        <div class="card-body px-4 py-4">
+
+            @using (Html.BeginForm("CrearOrdenCompra", "OrdenCompra", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
+                <!-- PROVEEDOR -->
+                <div class="mb-4">
+                    <label class="form-label fw-semibold">Proveedor</label>
+                    <div class="input-icon">
+                        <i class="bi bi-truck"></i>
+                        @Html.DropDownListFor(m => m.proveedor_id,
+                            (SelectList)ViewBag.Proveedores,
+                            "-- Seleccione un proveedor --",
+                            new { @class = "form-control", id = "proveedor-select", required = "required" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.proveedor_id, null, new { @class = "text-danger" })
+                </div>
+
+                <!-- FECHA -->
+                <div class="mb-4">
+                    <label class="form-label fw-semibold">Fecha de Creación</label>
+                    <div class="input-icon">
+                        <i class="bi bi-calendar-event"></i>
+                        <input type="text" class="form-control" value="@Model.fecha_creacion.ToString("dd/MM/yyyy HH:mm")" readonly />
+                    </div>
+                </div>
+
+                <!-- PRODUCTOS -->
+                <h4 class="section-title mb-3">
+                    <i class="bi bi-box-seam-fill me-2"></i>Productos
+                </h4>
+
+                <div id="productos-container">
+                    @for (int i = 0; i < Model.Productos.Count; i++)
+                    {
+                        var precio = Model.Productos[i].precio ?? "0.00";
+
+                        <div class="producto-row shadow-sm">
+
+                            <div class="row g-3 align-items-end">
+
+                                <!-- PRODUCTO -->
+                                <div class="col-md-5">
+                                    <label class="form-label fw-semibold">Producto</label>
+                                    <div class="input-icon">
+                                        <i class="bi bi-box"></i>
+                                        <select name="Productos[@i].id_producto"
+                                                class="form-control producto-select"
+                                                required>
+                                            <option value="">-- Seleccione un producto --</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- CANTIDAD -->
+                                <div class="col-md-2">
+                                    <label class="form-label fw-semibold">Cantidad</label>
+                                    <div class="input-icon">
+                                        <i class="bi bi-123"></i>
+                                        <input type="number"
+                                               name="Productos[@i].qty"
+                                               class="form-control"
+                                               min="1" value="@Model.Productos[i].qty"
+                                               required />
+                                    </div>
+                                </div>
+
+                                <!-- PRECIO -->
+                                <div class="col-md-3">
+                                    <label class="form-label fw-semibold">Precio Unitario</label>
+                                    <div class="input-icon">
+                                        <i class="bi bi-cash"></i>
+                                        <input type="text" class="form-control precio-mostrado" value="@precio" readonly />
+                                        <input type="hidden" name="Productos[@i].precio"
+                                               class="precio-real" value="@precio" />
+                                    </div>
+                                </div>
+
+                                <!-- ELIMINAR -->
+                                <div class="col-md-2 text-end">
+                                    <button type="button" class="btn btn-remove">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                </div>
+
+                <!-- BOTÓN AÑADIR -->
+                <button type="button" id="add-product-btn" class="btn btn-add mt-3">
+                    <i class="bi bi-plus-circle"></i> Agregar Producto
+                </button>
+
+                <!-- TOTAL -->
+                <div class="total-box mt-4">
+                    Total General: <span id="totalGeneral">₡0.00</span>
+                </div>
+
+                <!-- ACCIONES -->
+                <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+                    <button type="submit" class="btn btn-submit">
+                        <i class="bi bi-save me-1"></i> Guardar Orden
+                    </button>
+
+                    <a href="@Url.Action("ListarOrdenes", "OrdenCompra")" class="btn btn-cancel">
+                        <i class="bi bi-arrow-left-circle me-1"></i> Cancelar
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- ================= ESTILOS ================= -->
+
+<style>
+    .order-wrapper {
+        max-width: 980px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .order-header {
+        margin-bottom: 20px;
+    }
+
+    .order-title {
+        color: #234449;
+        font-size: 1.9rem;
+        font-weight: 700;
+    }
+
+    .order-subtitle {
+        font-size: 0.92rem;
+        color: #64748b;
+    }
+
+    .header-icon {
+        width: 52px;
+        height: 52px;
+        background: linear-gradient(135deg, #234449, #3e77f8);
+        border-radius: 14px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+    }
+
+    .order-card {
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .section-title {
+        font-weight: 700;
+        color: #234449;
+    }
+
+    /* INPUT CON ICONO */
+    .input-icon {
+        display: flex;
+        align-items: center;
+        background: #f8fafc;
+        border: 1px solid #cbd5e1;
+        border-radius: 12px;
+        padding: 9px 12px;
+    }
+
+        .input-icon i {
+            margin-right: 10px;
+            color: #3e77f8;
+            font-size: 1.25rem;
+        }
+
+        .input-icon .form-control {
+            border: none !important;
+            background: transparent !important;
+            outline: none !important;
+            box-shadow: none;
+        }
+
+    /* FILAS DE PRODUCTO */
+    .producto-row {
+        background: #f1f5f9;
+        padding: 15px 20px;
+        border-radius: 14px;
+        margin-bottom: 18px;
+        transition: 0.2s ease;
+    }
+
+        .producto-row:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        }
+
+    /* BOTONES */
+    .btn-add,
+    .btn-submit,
+    .btn-cancel {
+        border-radius: 999px;
+        padding: 10px 22px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.2s ease;
+    }
+
+    .btn-add {
+        background-color: #3e77f8;
+        color: white;
+        border: none;
+    }
+
+        .btn-add:hover {
+            background-color: #234449;
+        }
+
+    .btn-submit {
+        background-color: #234449;
+        color: white;
+    }
+
+        .btn-submit:hover {
+            background-color: #3e77f8;
+        }
+
+    .btn-cancel {
+        background-color: #e2e8f0;
+        color: #1e293b;
+        border: 1px solid #cbd5e1;
+    }
+
+        .btn-cancel:hover {
+            background-color: #cbd5e1;
+        }
+
+    /* ELIMINAR FILA */
+    .btn-remove {
+        background-color: #ef4444;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 10px 12px;
+        transition: all 0.2s ease;
+    }
+
+        .btn-remove:hover {
+            background-color: #b91c1c;
+        }
+
+    /* TOTAL */
+    .total-box {
+        font-size: 1.2rem;
+        font-weight: 700;
+        background: #e0f2fe;
+        border: 1px solid #bae6fd;
+        color: #0c4a6e;
+        padding: 12px 20px;
+        border-radius: 14px;
+        text-align: center;
+    }
+</style>
+
+<!-- ================= SCRIPTS ================= -->
+
+<script>
+    let productosDisponibles = [];
+
+    function actualizarIndices() {
+        const filas = document.querySelectorAll(".producto-row");
+        filas.forEach((row, index) => {
+            row.querySelector("select").setAttribute("name", `Productos[${index}].id_producto`);
+            row.querySelector("input[name$='qty']").setAttribute("name", `Productos[${index}].qty`);
+            row.querySelector(".precio-real").setAttribute("name", `Productos[${index}].precio`);
+        });
+    }
+
+    function actualizarPrecioYTotal() {
+        const filas = document.querySelectorAll(".producto-row");
+        let total = 0;
+
+        filas.forEach((row) => {
+            const select = row.querySelector("select");
+            const precioMostrado = row.querySelector(".precio-mostrado");
+            const precioHidden = row.querySelector(".precio-real");
+            const qtyInput = row.querySelector("input[name$='qty']");
+
+            const selectedOption = select.options[select.selectedIndex];
+            const precio = parseFloat(selectedOption?.getAttribute("data-precio")) || 0;
+            const cantidad = parseInt(qtyInput.value) || 0;
+
+            precioMostrado.value = precio.toFixed(2);
+            precioHidden.value = precio.toFixed(2);
+
+            total += precio * cantidad;
+        });
+
+        document.getElementById("totalGeneral").innerText = "₡" + total.toFixed(2);
+    }
+
+    function attachRemove(row) {
+        row.querySelector(".btn-remove").addEventListener("click", function () {
+            if (document.querySelectorAll(".producto-row").length > 1) {
+                row.remove();
+                actualizarIndices();
+                actualizarPrecioYTotal();
+            }
+        });
+    }
+
+    // Agregar nuevas filas
+    document.getElementById("add-product-btn").addEventListener("click", function () {
+        const container = document.getElementById("productos-container");
+        const template = container.querySelector(".producto-row").cloneNode(true);
+
+        template.querySelector("input[name$='qty']").value = 1;
+        template.querySelector(".precio-mostrado").value = "0.00";
+        template.querySelector(".precio-real").value = "0.00";
+
+        const select = template.querySelector("select");
+        select.innerHTML = '<option value="">-- Seleccione un producto --</option>';
+
+        productosDisponibles.forEach(p => {
+            const opt = document.createElement("option");
+            opt.value = p.id;
+            opt.setAttribute("data-precio", p.precio);
+            opt.textContent = p.nombre;
+            select.appendChild(opt);
+        });
+
+        container.appendChild(template);
+        attachRemove(template);
+        actualizarIndices();
+    });
+
+    // Cargar productos según proveedor
+    document.getElementById("proveedor-select").addEventListener("change", function () {
+        const proveedorId = this.value;
+
+        if (!proveedorId) return;
+
+        fetch(`/OrdenCompra/GetProductosPorProveedor?proveedorId=${proveedorId}`)
+            .then(res => res.json())
+            .then(data => {
+                productosDisponibles = data;
+
+                const selects = document.querySelectorAll(".producto-select");
+                selects.forEach(select => {
+                    select.innerHTML = '<option value="">-- Seleccione un producto --</option>';
+                    productosDisponibles.forEach(p => {
+                        const opt = document.createElement("option");
+                        opt.value = p.id;
+                        opt.setAttribute("data-precio", p.precio);
+                        opt.textContent = p.nombre;
+                        select.appendChild(opt);
+                    });
+                });
+
+                actualizarPrecioYTotal();
+            });
+    });
+
+    // Actualizar precio y total al cambiar producto o cantidad
+    document.addEventListener("change", function (e) {
+        if (e.target.matches(".producto-select") || e.target.matches("input[name^='Productos']")) {
+            actualizarPrecioYTotal();
+        }
+    });
+
+    attachRemove(document.querySelector(".producto-row"));
+    actualizarIndices();
+    actualizarPrecioYTotal();
+</script>

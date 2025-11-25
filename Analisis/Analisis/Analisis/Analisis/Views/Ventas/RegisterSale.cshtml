@@ -1,0 +1,550 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Registrar Venta";
+}
+
+<div class="register-sale-container">
+    <div class="register-sale-header">
+        <div>
+            <h1><i class="bi bi-cash-coin"></i> Registrar Venta</h1>
+            <p>Complete la información para procesar la venta de productos.</p>
+        </div>
+        <div class="sale-badge">
+            <i class="bi bi-receipt"></i> Nueva venta
+        </div>
+    </div>
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger mb-3" })
+
+    @using (Html.BeginForm("RegisterSale", "Ventas", FormMethod.Post, new { @class = "sale-form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <!-- Cliente -->
+        <div class="form-group">
+            <label for="id_cliente" class="form-label">
+                <i class="bi bi-person-fill"></i> Cliente
+            </label>
+            @Html.DropDownList(
+                "id_cliente",
+                ViewBag.Clientes as SelectList,
+                "Seleccione un cliente",
+                new { @class = "form-control", required = "required" }
+            )
+            <small class="form-hint">
+                Seleccione el cliente al que se le realizará la venta.
+            </small>
+        </div>
+
+        <!-- Productos disponibles -->
+        <div class="product-list">
+            <div class="product-list-header">
+                <div>
+                    <label class="form-label">
+                        <i class="bi bi-box-seam"></i> Productos disponibles
+                    </label>
+                    <small class="form-hint">
+                        Marque los productos que desea vender y especifique la cantidad.
+                    </small>
+                </div>
+            </div>
+
+            @{
+                var productos = ViewBag.Productos as List<Analisis.BD.Productos>;
+            }
+
+            @if (productos != null && productos.Any())
+            {
+                int index = 0;
+
+                <div class="product-list-body">
+                    @foreach (var producto in productos)
+                    {
+                        var inventario = producto.Inventario
+                            .FirstOrDefault(i => i.stock.HasValue && i.stock > 0);
+
+                        if (inventario != null)
+                        {
+                            int stock = inventario.stock ?? 0;
+
+                            <div class="product-item">
+                                <div class="product-main">
+                                    <div class="product-check">
+                                        <input class="form-check-input producto-checkbox"
+                                               type="checkbox"
+                                               name="productosSeleccionados[@index]"
+                                               value="@producto.id"
+                                               id="producto_@producto.id"
+                                               data-precio="@producto.precio" />
+                                    </div>
+
+                                    <div class="product-info">
+                                        <label class="form-check-label product-name" for="producto_@producto.id">
+                                            @producto.nombre
+                                        </label>
+                                        <div class="product-meta">
+                                            <span class="product-price">
+                                                <i class="bi bi-tag-fill"></i> ₡@producto.precio
+                                            </span>
+                                            <span class="product-stock">
+                                                <i class="bi bi-stack"></i> Stock: @stock
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-qty">
+                                        <label class="qty-label">Cantidad</label>
+                                        <input type="number"
+                                               class="form-control cantidad-input"
+                                               name="cantidades[@index]"
+                                               placeholder="0"
+                                               min="1"
+                                               max="@stock"
+                                               disabled />
+                                    </div>
+                                </div>
+                            </div>
+
+                            index++;
+                        }
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="no-products">
+                    <p class="text-danger mb-0">
+                        <i class="bi bi-exclamation-circle-fill"></i>
+                        No hay productos disponibles en stock.
+                    </p>
+                </div>
+            }
+        </div>
+
+        <!-- Resumen de venta -->
+        <div class="sale-summary">
+            <div class="summary-title">
+                <i class="bi bi-clipboard-check"></i> Resumen de la venta
+            </div>
+            <div class="summary-body">
+                <div class="summary-row">
+                    <span>Productos seleccionados:</span>
+                    <span id="summary-count">0</span>
+                </div>
+                <div class="summary-row total-row">
+                    <span>Total estimado:</span>
+                    <span id="summary-total">₡0.00</span>
+                </div>
+                <small class="summary-note">
+                    El total es estimado. El monto final se calculará en el servidor.
+                </small>
+            </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="actions mt-4">
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-check-circle"></i> Registrar Venta
+            </button>
+            <a href="@Url.Action("ListSales", "Ventas")" class="btn btn-secondary">
+                <i class="bi bi-x-circle"></i> Cancelar
+            </a>
+        </div>
+    }
+</div>
+
+<!-- Notificación -->
+<div id="notification" class="notification" style="display:none;">
+    <i class="bi bi-check2-circle"></i> Venta registrada exitosamente.
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const checkboxes = document.querySelectorAll('.producto-checkbox');
+            const totalSpan = document.getElementById('summary-total');
+            const countSpan = document.getElementById('summary-count');
+
+            function recalcularResumen() {
+                let total = 0;
+                let count = 0;
+
+                checkboxes.forEach(cb => {
+                    const container = cb.closest('.product-item');
+                    const cantidadInput = container.querySelector('.cantidad-input');
+                    const precio = parseFloat(cb.getAttribute('data-precio')) || 0;
+                    const cantidad = parseFloat(cantidadInput.value) || 0;
+
+                    if (cb.checked && cantidad > 0) {
+                        total += precio * cantidad;
+                        count++;
+                    }
+                });
+
+                countSpan.textContent = count;
+                totalSpan.textContent = "₡" + total.toFixed(2);
+            }
+
+            checkboxes.forEach((checkbox) => {
+                checkbox.addEventListener('change', function () {
+                    const cantidadInput = this.closest('.product-item').querySelector('.cantidad-input');
+                    cantidadInput.disabled = !this.checked;
+
+                    if (this.checked && !cantidadInput.value) {
+                        cantidadInput.value = 1;
+                    }
+
+                    if (!this.checked) {
+                        cantidadInput.value = '';
+                    }
+
+                    recalcularResumen();
+                });
+            });
+
+            document.querySelectorAll('.cantidad-input').forEach(input => {
+                input.addEventListener('input', function () {
+                    if (this.value && this.value < 1) this.value = 1;
+                    recalcularResumen();
+                });
+            });
+
+            // Notificación por querystring ?success=true
+            if (window.location.href.includes("success=true")) {
+                const notification = document.getElementById("notification");
+                notification.style.display = "flex";
+                setTimeout(() => {
+                    notification.style.display = "none";
+                }, 3000);
+            }
+        });
+    </script>
+}
+
+<!-- Estilos CSS -->
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .register-sale-container {
+        max-width: 900px;
+        margin: 60px auto;
+        background: #ffffff;
+        padding: 32px 36px;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        color: #234449;
+    }
+
+    .register-sale-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 24px;
+    }
+
+    .register-sale-header h1 {
+        color: #234449;
+        font-size: 2rem;
+        margin-bottom: 6px;
+    }
+
+    .register-sale-header p {
+        font-size: 0.95rem;
+        color: #555;
+        margin: 0;
+    }
+
+    .sale-badge {
+        background: #e3f5f3;
+        color: #234449;
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        white-space: nowrap;
+    }
+
+    .sale-form {
+        margin-top: 10px;
+    }
+
+    .form-group,
+    .product-list {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-weight: 600;
+        margin-bottom: 6px;
+        display: block;
+        color: #234449;
+    }
+
+    .form-hint {
+        font-size: 0.8rem;
+        color: #777;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 9px 11px;
+        font-size: 0.95rem;
+        border: 1px solid #ced4da;
+        border-radius: 8px;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: #234449;
+        box-shadow: 0 0 0 3px rgba(35, 68, 73, 0.15);
+    }
+
+    .product-list-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 6px;
+    }
+
+    .product-list-body {
+        margin-top: 8px;
+        border-radius: 12px;
+        border: 1px solid #e9ecef;
+        max-height: 380px;
+        overflow-y: auto;
+        padding: 8px;
+        background: #fdfdfd;
+    }
+
+    .product-item {
+        padding: 10px 12px;
+        border-radius: 10px;
+        background: #f9fafb;
+        border: 1px solid transparent;
+        margin-bottom: 8px;
+        transition: background 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+    }
+
+    .product-item:hover {
+        background: #f1f5f7;
+        border-color: #d0dde2;
+        transform: translateY(-1px);
+    }
+
+    .product-main {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) 120px;
+        gap: 12px;
+        align-items: center;
+    }
+
+    .product-check {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .product-info {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .product-name {
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: #234449;
+    }
+
+    .product-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        font-size: 0.8rem;
+    }
+
+    .product-price {
+        background: #e6f2ff;
+        padding: 3px 8px;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .product-stock {
+        background: #f3f0ff;
+        padding: 3px 8px;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .product-qty {
+        text-align: right;
+    }
+
+    .qty-label {
+        font-size: 0.75rem;
+        color: #777;
+        display: block;
+        margin-bottom: 3px;
+    }
+
+    .cantidad-input {
+        max-width: 100%;
+        text-align: center;
+        padding-inline: 4px;
+    }
+
+    .no-products {
+        border-radius: 10px;
+        padding: 14px;
+        background: #fff1f0;
+        border: 1px solid #ffccc7;
+    }
+
+    .sale-summary {
+        margin-top: 10px;
+        margin-bottom: 16px;
+        border-radius: 12px;
+        border: 1px solid #e0e7ec;
+        background: #f8fafc;
+        padding: 12px 16px;
+    }
+
+    .summary-title {
+        font-weight: 600;
+        font-size: 0.95rem;
+        margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: #234449;
+    }
+
+    .summary-body {
+        font-size: 0.9rem;
+    }
+
+    .summary-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 4px;
+    }
+
+    .total-row span:last-child {
+        font-weight: 700;
+    }
+
+    .summary-note {
+        font-size: 0.75rem;
+        color: #777;
+        display: block;
+        margin-top: 4px;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 14px;
+        margin-top: 18px;
+    }
+
+    .btn {
+        padding: 10px 22px;
+        font-size: 0.95rem;
+        border: none;
+        border-radius: 999px;
+        cursor: pointer;
+        color: #fff;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+    }
+
+    .btn-primary {
+        background-color: #234449;
+    }
+
+    .btn-primary:hover {
+        background-color: #2d5760;
+        box-shadow: 0 6px 16px rgba(35, 68, 73, 0.25);
+        transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        box-shadow: 0 4px 12px rgba(92, 99, 106, 0.3);
+        transform: translateY(-1px);
+    }
+
+    .notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #28a745;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        animation: fadeInOut 3s ease;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    @@keyframes fadeInOut {
+        0% { opacity: 0; transform: translateY(-10px); }
+        10% { opacity: 1; transform: translateY(0); }
+        90% { opacity: 1; transform: translateY(0); }
+        100% { opacity: 0; transform: translateY(-10px); }
+    }
+
+    .text-danger {
+        color: #dc3545 !important;
+    }
+
+    @@media (max-width: 768px) {
+        .register-sale-container {
+            margin: 20px;
+            padding: 20px;
+        }
+
+        .product-main {
+            grid-template-columns: auto minmax(0, 1fr);
+            grid-template-rows: auto auto;
+        }
+
+        .product-qty {
+            grid-column: 2 / 3;
+            text-align: left;
+            margin-top: 6px;
+        }
+
+        .actions {
+            flex-direction: column-reverse;
+            align-items: stretch;
+        }
+
+        .actions .btn {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+</style>

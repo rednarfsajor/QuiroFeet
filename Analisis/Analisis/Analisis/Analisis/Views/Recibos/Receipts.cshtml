@@ -1,0 +1,152 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Gestión de Recibos";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+
+<div class="receipts-dashboard-wrapper">
+    <div class="receipts-dashboard-header">
+        <div>
+            <h1 class="page-title">
+                <i class="bi bi-receipt-cutoff"></i> Gestión de Recibos
+            </h1>
+            <p class="page-subtitle">
+                Seleccione una opción para continuar con la administración de sus recibos.
+            </p>
+        </div>
+    </div>
+
+    <div class="receipts-options-grid">
+        <!-- Ver Recibos -->
+        <a href="@Url.Action("ListReceipts", "Recibos")" class="option-card">
+            <div class="option-icon">
+                <i class="bi bi-file-earmark-text"></i>
+            </div>
+            <h3 class="option-title">Ver Recibos</h3>
+            <p class="option-text">Consulta el historial de recibos registrados en el sistema.</p>
+        </a>
+
+        @* Aquí luego puedes agregar más opciones, por ejemplo:
+            <a href="#" class="option-card disabled">
+                <div class="option-icon">
+                    <i class="bi bi-bar-chart-line"></i>
+                </div>
+                <h3 class="option-title">Reportes</h3>
+                <p class="option-text">Próximamente: reportes y estadísticas de recibos.</p>
+            </a>
+        *@
+    </div>
+</div>
+
+<style>
+    body {
+        font-family: 'Poppins', system-ui, sans-serif;
+        background: #f3f5f7;
+    }
+
+    .receipts-dashboard-wrapper {
+        max-width: 1100px;
+        margin: 50px auto;
+        padding: 0 20px 40px;
+    }
+
+    .receipts-dashboard-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 16px;
+    }
+
+    .page-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #234449;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 4px;
+    }
+
+    .page-title i {
+        font-size: 1.9rem;
+    }
+
+    .page-subtitle {
+        color: #6b7280;
+        font-size: 0.95rem;
+        margin: 0;
+    }
+
+    .receipts-options-grid {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 22px;
+    }
+
+    .option-card {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 22px 22px 20px;
+        box-shadow: 0 14px 35px rgba(15, 23, 42, 0.12);
+        text-decoration: none;
+        color: #234449;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+        border: 1px solid #e5e7eb;
+    }
+
+    .option-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.16);
+        background: #f8fafc;
+    }
+
+    .option-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(35, 68, 73, 0.08);
+        color: #234449;
+    }
+
+    .option-icon i {
+        font-size: 1.7rem;
+    }
+
+    .option-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin: 0;
+        color: #111827;
+    }
+
+    .option-text {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #6b7280;
+    }
+
+    .option-card.disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        box-shadow: 0 0 0 rgba(0,0,0,0);
+    }
+
+    @@media (max-width: 640px) {
+        .receipts-dashboard-wrapper {
+            margin-top: 30px;
+        }
+
+        .receipts-dashboard-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+</style>

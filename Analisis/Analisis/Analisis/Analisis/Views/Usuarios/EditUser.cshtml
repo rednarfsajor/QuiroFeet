@@ -1,0 +1,194 @@
+﻿@model Analisis.BD.Usuarios
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Editar Usuario";
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+
+<div class="user-edit-wrapper">
+    <div class="user-edit-card">
+
+        <div class="edit-icon">
+            <i class="bi bi-pencil-square"></i>
+        </div>
+
+        <h1 class="edit-title">Editar Usuario</h1>
+        <p class="edit-subtitle">Modifica la información del usuario y guarda los cambios.</p>
+
+        @using (Html.BeginForm("EditUser", "Usuarios", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.Id)
+
+            <!-- NOMBRE COMPLETO -->
+            <div class="form-group">
+                <label class="form-label"><i class="bi bi-person-fill"></i> Nombre Completo</label>
+                @Html.TextBoxFor(model => model.Nombre, new
+                {
+                    @class = "form-control",
+                    placeholder = "Ingrese el nombre completo",
+                    required = "required"
+                })
+            </div>
+
+            <!-- CORREO -->
+            <div class="form-group">
+                <label class="form-label"><i class="bi bi-envelope-fill"></i> Correo Electrónico</label>
+                @Html.TextBoxFor(model => model.Email, new
+                {
+                    @class = "form-control",
+                    placeholder = "usuario@ejemplo.com",
+                    required = "required",
+                    type = "email",
+                    pattern = ".+@.+\\..+",
+                    title = "Ingrese un correo válido con @ y dominio (.com)"
+                })
+            </div>
+
+            <!-- ROL -->
+            <div class="form-group">
+                <label class="form-label"><i class="bi bi-person-gear"></i> Rol del Usuario</label>
+                @Html.DropDownList("RolId", null, "Seleccione un rol",
+                    new { @class = "form-control", required = "required" })
+            </div>
+
+            <!-- BOTONES -->
+            <div class="edit-actions">
+                <button type="submit" class="btn-save">
+                    <i class="bi bi-save2-fill"></i> Guardar Cambios
+                </button>
+
+                <a href="@Url.Action("ListUser", "Usuarios")" class="btn-cancel">
+                    <i class="bi bi-x-circle-fill"></i> Cancelar
+                </a>
+            </div>
+
+        }
+    </div>
+</div>
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f4f6f9;
+    }
+
+    .user-edit-wrapper {
+        min-height: calc(100vh - 80px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 16px;
+    }
+
+    .user-edit-card {
+        max-width: 650px;
+        width: 100%;
+        background: #ffffff;
+        padding: 40px 30px;
+        border-radius: 18px;
+        box-shadow: 0 10px 22px rgba(0,0,0,0.10);
+        text-align: center;
+    }
+
+    .edit-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: #e8efff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto 15px;
+    }
+
+        .edit-icon i {
+            font-size: 2.2rem;
+            color: #3e77f8;
+        }
+
+    .edit-title {
+        font-size: 1.9rem;
+        font-weight: 700;
+        color: #234449;
+        margin-bottom: 8px;
+    }
+
+    .edit-subtitle {
+        color: #4e6270;
+        margin-bottom: 28px;
+        font-size: 1rem;
+    }
+
+    .form-group {
+        text-align: left;
+        margin-bottom: 22px;
+    }
+
+    .form-label {
+        font-weight: 600;
+        display: block;
+        color: #234449;
+        margin-bottom: 6px;
+    }
+
+    .form-control {
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid #cfd6dd;
+        padding: 12px;
+        font-size: 1rem;
+        background-color: #f9fbfd;
+    }
+
+        .form-control:focus {
+            border-color: #3e77f8;
+            box-shadow: 0 0 0 3px rgba(62,119,248,0.20);
+            outline: none;
+        }
+
+    .edit-actions {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 25px;
+    }
+
+    .btn-save, .btn-cancel {
+        min-width: 150px;
+        padding: 12px 18px;
+        border-radius: 999px;
+        border: none;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 1rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        text-decoration: none;
+        transition: all .25s ease-in-out;
+    }
+
+    .btn-save {
+        background-color: #234449;
+        color: #fff;
+    }
+
+        .btn-save:hover {
+            background-color: #3e77f8;
+            transform: translateY(-2px);
+        }
+
+    .btn-cancel {
+        background-color: #dfe5ea;
+        color: #234449;
+    }
+
+        .btn-cancel:hover {
+            background-color: #cbd3d9;
+            transform: translateY(-2px);
+        }
+</style>

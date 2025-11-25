@@ -1,0 +1,195 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Gestión de Proveedores";
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+
+<div class="providers-wrapper" style="font-family: 'Poppins', sans-serif;">
+    <div class="providers-container">
+        <!-- Encabezado -->
+        <div class="providers-header d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h1 class="providers-title">
+                    <span class="providers-icon me-3">
+                        <i class="bi bi-truck"></i>
+                    </span>
+                    Gestión de proveedores
+                </h1>
+                <p class="providers-subtitle">
+                    Selecciona una opción para registrar nuevos proveedores o consultar el listado.
+                </p>
+            </div>
+            <div class="text-end d-none d-md-block">
+                <a href="@Url.Action("Index", "Home")" class="btn btn-outline-secondary btn-sm btn-back-main">
+                    <i class="bi bi-arrow-left-circle me-1"></i> Volver al menú principal
+                </a>
+            </div>
+        </div>
+
+        <!-- Opciones -->
+        <div class="options">
+            <!-- Registrar proveedor -->
+            <a href="@Url.Action("RegistrarProveedor", "Proveedores")" class="option-card">
+                <div class="option-icon">
+                    <i class="bi bi-person-fill-add"></i>
+                </div>
+                <h3>Registrar proveedor</h3>
+                <p>Ingresa nuevos proveedores en el sistema y mantenlos actualizados.</p>
+            </a>
+
+            <!-- Ver proveedores -->
+            <a href="@Url.Action("DetallesProveedor", "Proveedores")" class="option-card">
+                <div class="option-icon option-icon-secondary">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+                <h3>Ver proveedores</h3>
+                <p>Consulta el listado de proveedores registrados y gestiona su información.</p>
+            </a>
+        </div>
+
+        <!-- Botón volver (versión móvil) -->
+        <div class="mt-4 d-block d-md-none text-center">
+            <a href="@Url.Action("Index", "Home")" class="btn btn-outline-secondary btn-sm btn-back-main w-100">
+                <i class="bi bi-arrow-left-circle me-1"></i> Volver al menú principal
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .providers-wrapper {
+        background-color: #f3f6fb;
+        min-height: calc(100vh - 80px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 15px;
+    }
+
+    .providers-container {
+        max-width: 960px;
+        width: 100%;
+        background-color: #ffffff;
+        border-radius: 22px;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+        padding: 32px 28px 38px;
+    }
+
+    .providers-title {
+        color: #234449;
+        font-size: 1.9rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        margin-bottom: 6px;
+    }
+
+    .providers-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 16px;
+        background-color: #e8f0ff;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        color: #234449;
+    }
+
+    .providers-subtitle {
+        font-size: 0.95rem;
+        color: #6b7a88;
+        margin: 0;
+    }
+
+    .btn-back-main {
+        border-radius: 999px;
+        padding-inline: 1.3rem;
+        font-size: 0.85rem;
+    }
+
+    .options {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 24px;
+        margin-top: 20px;
+    }
+
+    .option-card {
+        width: 280px;
+        background-color: #ffffff;
+        padding: 26px 22px 24px;
+        border-radius: 16px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+        text-decoration: none;
+        color: #234449;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .option-card:hover {
+        transform: translateY(-4px);
+        background-color: #f5f8ff;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.10);
+    }
+
+    .option-icon {
+        width: 46px;
+        height: 46px;
+        border-radius: 16px;
+        background-color: #e8f0ff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2px;
+    }
+
+    .option-icon i {
+        font-size: 1.6rem;
+        color: #3e77f8;
+    }
+
+    .option-icon-secondary {
+        background-color: #e6f8f3;
+    }
+
+    .option-icon-secondary i {
+        color: #1f7a42;
+    }
+
+    .option-card h3 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    .option-card p {
+        margin: 0;
+        font-size: 0.92rem;
+        color: #6b7a88;
+    }
+
+    @@media (max-width: 576px) {
+        .providers-container {
+            padding: 24px 18px 28px;
+        }
+
+        .providers-title {
+            font-size: 1.6rem;
+        }
+
+        .options {
+            gap: 18px;
+        }
+
+        .option-card {
+            width: 100%;
+        }
+    }
+</style>

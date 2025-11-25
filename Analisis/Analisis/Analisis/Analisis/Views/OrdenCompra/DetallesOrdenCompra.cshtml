@@ -1,0 +1,354 @@
+﻿@using Analisis.BD
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var orden = ViewBag.Orden as OrdenesCompra;
+
+    if (orden == null)
+    {
+        <div class="alert alert-danger text-center my-5">
+            No se pudo cargar la información de la orden.
+        </div>
+        return;
+    }
+
+    ViewBag.Title = $"Detalles de la Orden #{orden.id_orden}";
+    var detalles = ViewBag.Detalles as IEnumerable<dynamic>;
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<div class="order-detail-wrapper container my-5">
+
+    <!-- HEADER -->
+    <div class="order-detail-header d-flex align-items-center mb-4">
+        <div class="header-icon me-3">
+            <i class="bi bi-receipt-cutoff"></i>
+        </div>
+        <div>
+            <h2 class="order-detail-title">@ViewBag.Title</h2>
+            <p class="order-detail-subtitle">
+                Resumen de la orden de compra, proveedor y productos asociados.
+            </p>
+        </div>
+    </div>
+
+    <!-- CARD PRINCIPAL -->
+    <div class="card shadow-sm border-0 order-detail-card">
+        <div class="card-body p-4">
+
+            <!-- INFORMACIÓN SUPERIOR -->
+            <div class="row gy-3 mb-3">
+                <!-- Columna 1 -->
+                <div class="col-md-7">
+                    <h5 class="section-title mb-3">
+                        <i class="bi bi-info-circle me-2"></i>Información de la orden
+                    </h5>
+
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="label">Proveedor</span>
+                            <span class="value">@orden.Proveedores?.nombre</span>
+                        </div>
+
+                        <div class="info-item">
+                            <span class="label">Fecha de creación</span>
+                            <span class="value">@orden.fecha_creacion.ToString("dd/MM/yyyy HH:mm")</span>
+                        </div>
+
+                        <div class="info-item">
+                            <span class="label">Fecha de recepción</span>
+                            <span class="value">
+                                @(orden.fecha_recepcion.HasValue
+                                    ? orden.fecha_recepcion.Value.ToString("dd/MM/yyyy")
+                                    : "-")
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna 2 -->
+                <div class="col-md-5">
+                    <h5 class="section-title mb-3">
+                        <i class="bi bi-clipboard2-check me-2"></i>Estado y total
+                    </h5>
+
+                    <div class="status-card">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="status-label">Estado</span>
+                            <span class="status-badge">
+                                @orden.status
+                            </span>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="status-label">Total</span>
+                            <span class="total-amount">
+                                ₡@(orden.total.HasValue
+                                    ? orden.total.Value.ToString("N2")
+                                    : "0,00")
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DETALLE DE PRODUCTOS -->
+            <h5 class="section-title mt-4 mb-3">
+                <i class="bi bi-box-seam me-2"></i>Detalle de productos
+            </h5>
+
+            @if (detalles == null || !detalles.Any())
+            {
+                <div class="no-details-card text-center py-4">
+                    <div class="no-details-icon mb-2">
+                        <i class="bi bi-box"></i>
+                    </div>
+                    <p class="mb-0 text-muted">No hay productos asociados a esta orden.</p>
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th class="text-start">Producto</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-center">Precio unitario</th>
+                                <th class="text-center">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var d in detalles)
+                            {
+                                <tr>
+                                    <td class="text-start">
+                                        <div class="d-flex align-items-center">
+                                            <i class="bi bi-cube text-muted me-2"></i>
+                                            <span>@d.Nombre</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">@d.Cantidad</td>
+                                    <td class="text-center">
+                                        ₡@string.Format("{0:N2}", d.PrecioUnidad)
+                                    </td>
+                                    <td class="text-center">
+                                        ₡@string.Format("{0:N2}", d.Subtotal)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+
+            <!-- BOTONES -->
+            <div class="d-flex justify-content-center justify-content-md-end gap-2 mt-4 flex-wrap">
+                <a href="@Url.Action("ListarOrdenes", "OrdenCompra")"
+                   class="btn btn-back">
+                    <i class="bi bi-arrow-left-circle me-1"></i> Volver al listado
+                </a>
+
+                <a href="@Url.Action("DescargarOrdenPDF", "OrdenCompra", new { id = orden.id_orden })"
+                   class="btn btn-download">
+                    <i class="bi bi-file-earmark-pdf me-1"></i> Descargar PDF
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .order-detail-wrapper {
+        max-width: 980px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .order-detail-header {
+        margin-bottom: 18px;
+    }
+
+    .order-detail-title {
+        color: #234449;
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 4px;
+    }
+
+    .order-detail-subtitle {
+        font-size: 0.9rem;
+        color: #64748b;
+        margin: 0;
+    }
+
+    .header-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, #234449, #3e77f8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 1.6rem;
+    }
+
+    .order-detail-card {
+        border-radius: 18px;
+        background: #ffffff;
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+    }
+
+    .section-title {
+        color: #234449;
+        font-weight: 700;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .section-title i {
+        color: #3e77f8;
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap: 6px 16px;
+    }
+
+    @@media (min-width: 576px) {
+        .info-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    .info-item .label {
+        display: block;
+        font-size: 0.85rem;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        margin-bottom: 2px;
+    }
+
+    .info-item .value {
+        font-size: 0.95rem;
+        color: #0f172a;
+        font-weight: 500;
+    }
+
+    .status-card {
+        background: #f8fafc;
+        border-radius: 12px;
+        padding: 12px 14px;
+        border: 1px solid #e2e8f0;
+    }
+
+    .status-label {
+        font-size: 0.85rem;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+    }
+
+    .status-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: #e0f2fe;
+        color: #0c4a6e;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .total-amount {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #14532d;
+    }
+
+    .no-details-card {
+        border-radius: 14px;
+        background: #f9fafb;
+        border: 1px dashed #cbd5e1;
+    }
+
+    .no-details-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 999px;
+        background: #e0f2fe;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #2563eb;
+        font-size: 1.4rem;
+        margin: 0 auto;
+    }
+
+    .table thead {
+        background: #f8fafc;
+    }
+
+    .table thead th {
+        border-bottom: 1px solid #e2e8f0;
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: #475569;
+        padding: 10px 14px;
+    }
+
+    .table tbody td {
+        border-top: 1px solid #e2e8f0;
+        padding: 10px 14px;
+        font-size: 0.93rem;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f1f5f9;
+        transition: background-color 0.15s ease;
+    }
+
+    .btn-back,
+    .btn-download {
+        border-radius: 999px;
+        padding: 9px 18px;
+        font-weight: 600;
+        font-size: 0.93rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border-width: 1px;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+
+    .btn-back {
+        background-color: #e2e8f0;
+        border-color: #cbd5e1;
+        color: #1e293b;
+    }
+
+    .btn-back:hover {
+        background-color: #cbd5e1;
+        border-color: #94a3b8;
+        transform: translateY(-1px);
+    }
+
+    .btn-download {
+        background-color: #ef4444;
+        border-color: #b91c1c;
+        color: #ffffff;
+    }
+
+    .btn-download:hover {
+        background-color: #b91c1c;
+        border-color: #991b1b;
+        transform: translateY(-1px);
+        box-shadow: 0 8px 18px rgba(185, 28, 28, 0.35);
+    }
+</style>

@@ -1,0 +1,162 @@
+﻿@model Analisis.BD.Clientes
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Editar Cliente";
+}
+
+<div class="container my-5" style="max-width: 600px; font-family: 'Poppins', sans-serif;">
+
+    <!-- Encabezado -->
+    <div class="text-center mb-4">
+        <h2 class="fw-bold" style="color:#234449;">
+            <i class="bi bi-person-lines-fill me-2"></i>Editar Cliente
+        </h2>
+        <p class="text-muted" style="color:#54717a !important;">
+            Modifique la información necesaria y guarde los cambios
+        </p>
+    </div>
+
+    <div class="card shadow-sm border-0 p-4" style="border-radius:18px; background:#f7fafd;">
+        @using (Html.BeginForm("EditClient", "Clientes", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.id)
+
+            <!-- Nombre -->
+            <div class="mb-3">
+                <label class="form-label fw-bold" style="color:#234449;">Nombre</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-input">
+                        <i class="bi bi-person-fill"></i>
+                    </span>
+                    @Html.TextBoxFor(model => model.nombre, new
+                    {
+                        @class = "form-control input-qui",
+                        placeholder = "Nombre completo"
+                    })
+                </div>
+                @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger small" })
+            </div>
+
+            <!-- Cédula -->
+            <div class="mb-3">
+                <label class="form-label fw-bold" style="color:#234449;">Cédula</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-input">
+                        <i class="bi bi-credit-card-2-front"></i>
+                    </span>
+                    @Html.TextBoxFor(model => model.cedula, new
+                    {
+                        @class = "form-control input-qui",
+                        placeholder = "Ej: 1-2345-6789"
+                    })
+                </div>
+                @Html.ValidationMessageFor(model => model.cedula, "", new { @class = "text-danger small" })
+            </div>
+
+            <!-- Correo (solo lectura) -->
+            <div class="mb-3">
+                <label class="form-label fw-bold" style="color:#234449;">Correo Electrónico</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-input">
+                        <i class="bi bi-envelope-fill"></i>
+                    </span>
+                    @Html.TextBoxFor(model => model.correo, new
+                    {
+                        @class = "form-control input-qui",
+                        placeholder = "correo@ejemplo.com",
+                        @readonly = "readonly"
+                    })
+                </div>
+                <small class="text-muted d-block mt-1" style="color:#6c8791 !important;">
+                    El correo no puede modificarse porque se utiliza como identificador.
+                </small>
+            </div>
+
+            <!-- Teléfono -->
+            <div class="mb-3">
+                <label class="form-label fw-bold" style="color:#234449;">Teléfono</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-input">
+                        <i class="bi bi-telephone-fill"></i>
+                    </span>
+                    @Html.TextBoxFor(model => model.telefono, new
+                    {
+                        @class = "form-control input-qui",
+                        placeholder = "Ej: 88888888",
+                        pattern = "\\d{8}",
+                        title = "Debe tener 8 dígitos",
+                        type = "tel"
+                    })
+                </div>
+                @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger small" })
+            </div>
+
+            <!-- Botones -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a href="@Url.Action("ClientIndex", "Clientes")"
+                   class="btn btn-cancel px-4 py-2 rounded-3">
+                    <i class="bi bi-arrow-left-circle me-2"></i>Cancelar
+                </a>
+
+                <button type="submit"
+                        class="btn btn-register px-4 py-2 rounded-3">
+                    <i class="bi bi-save2-fill me-2"></i>Guardar Cambios
+                </button>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    /* Input background frío */
+    .bg-input {
+        background-color: #e6eef2 !important;
+        border: 1px solid #cdd8df;
+        color: #234449;
+    }
+
+    /* Inputs */
+    .input-qui {
+        border: 1px solid #c7d4dd !important;
+        background-color: #fcfeff !important;
+    }
+
+        .input-qui:focus {
+            border-color: #3e77f8 !important;
+            box-shadow: 0 0 6px rgba(62, 119, 248, 0.4) !important;
+        }
+
+    .input-group-text i {
+        font-size: 1.2rem;
+        color: #3e77f8;
+    }
+
+    /* Botón Guardar */
+    .btn-register {
+        background-color: #3e77f8 !important;
+        color: #fff !important;
+        border: none;
+        font-weight: 600;
+    }
+
+        .btn-register:hover {
+            background-color: #234449 !important;
+            color: #fff !important;
+        }
+
+    /* Botón Cancelar (gris frío) */
+    .btn-cancel {
+        background-color: #dce6ea !important;
+        color: #234449 !important;
+        border: 1px solid #bfcbd3;
+        font-weight: 500;
+    }
+
+        .btn-cancel:hover {
+            background-color: #c9d5db !important;
+            color: #234449 !important;
+        }
+</style>

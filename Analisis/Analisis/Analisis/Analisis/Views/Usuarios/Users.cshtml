@@ -1,0 +1,186 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Gestión de Usuarios";
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+
+<div class="users-module-wrapper">
+    <div class="users-module">
+
+        <div class="users-header">
+            <h1 class="users-title">
+                <i class="bi bi-people-fill me-2"></i> Gestión de Usuarios
+            </h1>
+            <p class="users-subtitle">
+                Selecciona una opción para administrar los usuarios del sistema.
+            </p>
+        </div>
+
+        <div class="users-options">
+            <!-- Ver Usuarios -->
+            <a href="@Url.Action("ListUser", "Usuarios")" class="users-card">
+                <div class="users-card-icon">
+                    <i class="bi bi-people"></i>
+                </div>
+                <h3>Ver usuarios</h3>
+                <p>Consulta la lista de usuarios activos registrados en la plataforma.</p>
+            </a>
+
+            <!-- Ver Inactivos -->
+            <a href="@Url.Action("ListInactiveUsers", "Usuarios")" class="users-card">
+                <div class="users-card-icon users-card-icon-warning">
+                    <i class="bi bi-person-x"></i>
+                </div>
+                <h3>Ver inactivos</h3>
+                <p>Revisa los usuarios inactivos y actívalos nuevamente si es necesario.</p>
+            </a>
+
+            <!-- Crear Usuario -->
+            <a href="@Url.Action("CreateUser", "Usuarios")" class="users-card">
+                <div class="users-card-icon users-card-icon-primary">
+                    <i class="bi bi-person-plus"></i>
+                </div>
+                <h3>Crear usuario</h3>
+                <p>Agrega un nuevo usuario ingresando sus datos y rol correspondiente.</p>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f4f6f9;
+    }
+
+    .users-module-wrapper {
+        min-height: calc(100vh - 80px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 16px;
+    }
+
+    .users-module {
+        max-width: 1050px;
+        width: 100%;
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 36px 32px 40px;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.10);
+    }
+
+    .users-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .users-title {
+        color: #234449;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .users-subtitle {
+        color: #6c757d;
+        font-size: 0.98rem;
+        margin: 0;
+    }
+
+    .users-options {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+    }
+
+    .users-card {
+        background-color: #ffffff;
+        border-radius: 16px;
+        padding: 26px 22px 24px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+        text-decoration: none;
+        color: #234449;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .users-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.10);
+        background-color: #f4f8ff;
+    }
+
+    .users-card-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        background: #e6eef7;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 6px;
+    }
+
+    .users-card-icon i {
+        font-size: 1.9rem;
+        color: #234449;
+    }
+
+    .users-card-icon-primary {
+        background: #e2ebff;
+    }
+
+    .users-card-icon-primary i {
+        color: #3e77f8;
+    }
+
+    .users-card-icon-warning {
+        background: #fff2e2;
+    }
+
+    .users-card-icon-warning i {
+        color: #e67e22;
+    }
+
+    .users-card h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    .users-card p {
+        font-size: 0.9rem;
+        color: #66737f;
+        margin: 0;
+    }
+
+    @@media (max-width: 900px) {
+        .users-options {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @@media (max-width: 640px) {
+        .users-module {
+            padding: 26px 18px 30px;
+        }
+
+        .users-options {
+            grid-template-columns: 1fr;
+        }
+
+        .users-title {
+            font-size: 1.7rem;
+        }
+    }
+</style>

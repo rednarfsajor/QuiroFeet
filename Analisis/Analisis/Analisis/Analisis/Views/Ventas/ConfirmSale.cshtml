@@ -1,0 +1,376 @@
+﻿@model Analisis.BD.Ventas
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Confirmación de Venta";
+}
+
+<div class="confirmation-card">
+    <div class="confirmation-header">
+        <div class="icon-success">
+            <i class="bi bi-check-circle-fill"></i>
+        </div>
+        <div>
+            <h1>¡Venta Registrada!</h1>
+            <p>La venta se ha registrado correctamente en el sistema.</p>
+        </div>
+    </div>
+
+    <div class="receipt-badge">
+        <i class="bi bi-receipt-cutoff"></i>
+        Recibo #: <span class="receipt-number">@Model.NumeroRecibo</span>
+    </div>
+
+    <div class="summary-box">
+        <h2><i class="bi bi-clipboard-check"></i> Resumen de la venta</h2>
+
+        <div class="summary-row">
+            <span class="summary-label">Cliente:</span>
+            <span class="summary-value">
+                @(Model.Clientes != null
+                    ? Model.Clientes.nombre
+                    : Html.Raw("<span class='text-missing'>No disponible</span>"))
+            </span>
+        </div>
+
+        <div class="summary-row">
+            <span class="summary-label">Fecha:</span>
+            <span class="summary-value">
+                @(Model.fecha.HasValue
+                    ? Model.fecha.Value.ToString("dd/MM/yyyy hh:mm tt")
+                    : Html.Raw("<span class='text-missing'>No disponible</span>"))
+            </span>
+        </div>
+
+        <div class="summary-row">
+            <span class="summary-label">Total:</span>
+            <span class="summary-value total">
+                ₡@string.Format("{0:N2}", Model.monto)
+            </span>
+        </div>
+
+        <hr class="summary-divider" />
+
+        @if (Model.servicio == "True")
+        {
+            <div class="summary-row">
+                <span class="summary-label">Tipo de venta:</span>
+                <span class="summary-value">
+                    <span class="badge badge-service">
+                        <i class="bi bi-person-workspace"></i> Servicio
+                    </span>
+                </span>
+            </div>
+
+            <div class="summary-detail-block">
+                <p class="detail-title">Detalle del servicio:</p>
+                <p class="detail-text">@Model.detalle</p>
+            </div>
+        }
+        else if (Model.DetalleVenta != null && Model.DetalleVenta.Any())
+        {
+            <div class="summary-row">
+                <span class="summary-label">Tipo de venta:</span>
+                <span class="summary-value">
+                    <span class="badge badge-products">
+                        <i class="bi bi-box-seam"></i> Productos
+                    </span>
+                </span>
+            </div>
+
+            <div class="summary-detail-block">
+                <p class="detail-title">Productos vendidos:</p>
+                <ul class="products-list">
+                    @foreach (var detalle in Model.DetalleVenta)
+                    {
+                        <li>
+                            <span class="product-name">
+                                @(detalle.Productos != null ? detalle.Productos.nombre : "Producto N/D")
+                            </span>
+                            <span class="product-meta">
+                                <span>Cant.: <strong>@detalle.cantidad</strong></span>
+                                <span>Monto: <strong>₡@string.Format("{0:N2}", detalle.monto)</strong></span>
+                            </span>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+        else
+        {
+            <div class="summary-detail-block">
+                <p class="text-missing">
+                    <i class="bi bi-exclamation-circle"></i> No hay productos registrados.
+                </p>
+            </div>
+        }
+    </div>
+
+    <div class="confirmation-actions">
+        <a href="@Url.Action("Sales", "Ventas")" class="btn btn-secondary">
+            <i class="bi bi-arrow-left-circle"></i> Volver al listado
+        </a>
+        <a href="@Url.Action("Details", "Recibos", new { id = Model.id })" class="btn btn-primary">
+            <i class="bi bi-file-earmark-text"></i> Ver detalle de recibo
+        </a>
+    </div>
+</div>
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .confirmation-card {
+        max-width: 750px;
+        margin: 70px auto;
+        background: #ffffff;
+        padding: 32px 36px;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        text-align: left;
+        color: #234449;
+    }
+
+    .confirmation-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 18px;
+    }
+
+    .icon-success {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: #e6f4ea;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: #198754;
+        flex-shrink: 0;
+    }
+
+    .confirmation-header h1 {
+        color: #198754;
+        font-size: 1.9rem;
+        margin: 0 0 4px;
+    }
+
+    .confirmation-header p {
+        margin: 0;
+        font-size: 0.95rem;
+        color: #555;
+    }
+
+    .receipt-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #f3f0ff;
+        color: #4b3fa3;
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+
+    .receipt-number {
+        font-weight: 700;
+    }
+
+    .summary-box {
+        background: #f8fafc;
+        padding: 18px 18px 16px;
+        border-radius: 12px;
+        border: 1px solid #e0e7ec;
+    }
+
+    .summary-box h2 {
+        font-size: 1.1rem;
+        margin: 0 0 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #234449;
+    }
+
+    .summary-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 6px;
+        font-size: 0.95rem;
+    }
+
+    .summary-label {
+        font-weight: 600;
+        color: #234449;
+    }
+
+    .summary-value {
+        text-align: right;
+    }
+
+    .summary-value.total {
+        font-weight: 700;
+        color: #198754;
+    }
+
+    .summary-divider {
+        margin: 12px 0 10px;
+        border: none;
+        border-top: 1px dashed #d0dde5;
+    }
+
+    .summary-detail-block {
+        margin-top: 4px;
+        font-size: 0.95rem;
+    }
+
+    .detail-title {
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    .detail-text {
+        margin: 0;
+        color: #444;
+    }
+
+    .products-list {
+        list-style: none;
+        padding-left: 0;
+        margin: 4px 0 0;
+    }
+
+    .products-list li {
+        padding: 6px 0;
+        border-bottom: 1px dashed #dde5ec;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        font-size: 0.93rem;
+    }
+
+    .products-list li:last-child {
+        border-bottom: none;
+    }
+
+    .product-name {
+        font-weight: 500;
+        color: #234449;
+    }
+
+    .product-meta {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 2px;
+        font-size: 0.85rem;
+        color: #555;
+    }
+
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 3px 9px;
+        border-radius: 999px;
+        font-size: 0.78rem;
+        font-weight: 500;
+    }
+
+    .badge-service {
+        background: #e3f5f3;
+        color: #146c43;
+    }
+
+    .badge-products {
+        background: #e6f2ff;
+        color: #1d4ed8;
+    }
+
+    .text-missing {
+        color: #dc3545;
+        font-weight: 500;
+    }
+
+    .confirmation-actions {
+        margin-top: 24px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 10px 22px;
+        font-size: 0.95rem;
+        border-radius: 999px;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+        color: #fff;
+    }
+
+    .btn-primary {
+        background-color: #234449;
+    }
+
+    .btn-primary:hover {
+        background-color: #2d5760;
+        box-shadow: 0 6px 16px rgba(35, 68, 73, 0.25);
+        transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        box-shadow: 0 4px 12px rgba(92, 99, 106, 0.3);
+        transform: translateY(-1px);
+    }
+
+    @@media (max-width: 768px) {
+        .confirmation-card {
+            margin: 40px 16px;
+            padding: 24px 20px;
+        }
+
+        .summary-row {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .summary-value {
+            text-align: left;
+        }
+
+        .products-list li {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .product-meta {
+            align-items: flex-start;
+        }
+
+        .confirmation-actions {
+            flex-direction: column-reverse;
+            align-items: stretch;
+        }
+
+        .confirmation-actions .btn {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+</style>

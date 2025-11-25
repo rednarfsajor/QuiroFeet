@@ -1,0 +1,135 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Reportes";
+}
+
+<!-- Estilos CSS -->
+<style>
+    .reportes-container {
+        max-width: 1000px;
+        margin: 50px auto;
+        text-align: center;
+    }
+
+    h2 {
+        color: #234449;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-bottom: 30px;
+    }
+
+        .action-buttons a {
+            text-decoration: none;
+            background-color: #3e77f8;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+            .action-buttons a:hover {
+                transform: translateY(-5px);
+                background-color: #234449;
+            }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 40px;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #234449;
+        color: white;
+    }
+
+    td a {
+        color: #3e77f8;
+        text-decoration: none;
+    }
+
+        td a:hover {
+            color: #234449;
+        }
+</style>
+
+<div class="reportes-container">
+    <h2>Reportes de Inventario</h2>
+
+    <div class="action-buttons">
+        <a href="@Url.Action("EstadoStock", "Reportes")">Reporte de Estado de Stock</a>
+        <a href="@Url.Action("HistorialComprasCliente", "Reportes")">Historial de Compras por Cliente</a>
+        <a href="@Url.Action("ReporteVentas", "Reportes")">Reporte de Ventas</a>
+        <a href="@Url.Action("HistorialServiciosProfesional", "Reportes")">Historial de Servicios Profesionales</a>
+        <a href="@Url.Action("ProductosMasVendidos", "Reportes")">Productos Más Vendidos</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre del Reporte</th>
+                <th>Descripción</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Estado de Stock</td>
+                <td>Informe con el estado actual de los productos en inventario.</td>
+                <td>
+                    <a>Ver</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Historial de Compras por Cliente</td>
+                <td>Listado de compras realizadas por cada cliente.</td>
+                <td>
+                    <a>Ver</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Ventas por Producto</td>
+                <td>Informe sobre las ventas realizadas por cada producto.</td>
+                <td>
+                    <a>Ver</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Stock Bajo</td>
+                <td>Informe sobre los productos con stock por debajo del mínimo.</td>
+                <td>
+                    <a>Ver</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Historial de Servicios Profesionales</td>
+                <td>Listado de los servicios profesionales realizados.</td>
+                <td>
+                    <a>Ver</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Productos Más Vendidos</td>
+                <td>Informe sobre los productos con mayor volumen de ventas.</td>
+                <td>
+                    <a>Ver</a>
+                </td>
+            </tr>
+            <!-- Más reportes pueden ser añadidos aquí -->
+        </tbody>
+    </table>
+</div>

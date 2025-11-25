@@ -1,0 +1,198 @@
+﻿@model IEnumerable<Analisis.BD.OrdenesCompra>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Listado de Órdenes de Compra";
+}
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<div class="ordenes-wrapper container my-5">
+
+    <!-- HEADER -->
+    <div class="d-flex align-items-center justify-content-center mb-4">
+        <div class="header-icon me-3">
+            <i class="bi bi-list-check"></i>
+        </div>
+        <h2 class="titulo">@ViewBag.Title</h2>
+    </div>
+
+    <!-- VACÍO -->
+    @if (!Model.Any())
+    {
+        <div class="empty-state">
+            <i class="bi bi-file-earmark-x me-2"></i> No se encontraron órdenes de compra.
+        </div>
+    }
+    else
+    {
+        <!-- TABLA -->
+        <div class="table-responsive rounded shadow-sm">
+            <table class="table table-hover align-middle tabla-ordenes mb-0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Proveedor</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th>Total (₡)</th>
+                        <th style="width:120px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var orden in Model)
+                    {
+                        <tr>
+                            <td class="fw-semibold">#@orden.id_orden</td>
+                            <td>@orden.Proveedores?.nombre</td>
+                            <td>@orden.fecha_creacion.ToString("dd/MM/yyyy HH:mm")</td>
+
+                            <td>
+                                <span class="estado-pill">@orden.status</span>
+                            </td>
+
+                            <td class="fw-semibold text-success">
+                                ₡@(orden.total.HasValue ? orden.total.Value.ToString("N2") : "0.00")
+                            </td>
+
+                            <td class="acciones">
+                                <a href="@Url.Action("DetallesOrdenCompra","OrdenCompra", new { id = orden.id_orden })"
+                                   class="btn-accion ver" title="Ver">
+                                    <i class="bi bi-eye-fill"></i>
+                                </a>
+
+                                <a href="@Url.Action("EditarOrdenCompra","OrdenCompra", new { id = orden.id_orden })"
+                                   class="btn-accion editar" title="Editar">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+
+                                <a href="@Url.Action("EliminarOrdenCompra","OrdenCompra", new { id = orden.id_orden })"
+                                   class="btn-accion eliminar" title="Eliminar">
+                                    <i class="bi bi-trash-fill"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+<style>
+    .ordenes-wrapper {
+        max-width: 1200px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* HEADER */
+    .titulo {
+        font-size: 1.9rem;
+        font-weight: 700;
+        color: #234449;
+    }
+
+    .header-icon {
+        width: 52px;
+        height: 52px;
+        background: linear-gradient(135deg, #3e77f8, #234449);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.6rem;
+    }
+
+    /* EMPTY STATE */
+    .empty-state {
+        background: #fef2f2;
+        border-left: 6px solid #dc2626;
+        padding: 16px;
+        text-align: center;
+        color: #991b1b;
+        font-weight: 600;
+        border-radius: 8px;
+        margin-top: 20px;
+    }
+
+    /* TABLA */
+    .tabla-ordenes thead tr {
+        background-color: #234449 !important;
+        color: white;
+        font-weight: 600;
+    }
+
+    .tabla-ordenes tbody tr {
+        background: #ffffff;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+        .tabla-ordenes tbody tr:hover {
+            background: #f8fafc;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+        }
+
+    /* ESTADO */
+    .estado-pill {
+        padding: 4px 12px;
+        background: #e2e8f0;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #0f172a;
+        text-transform: capitalize;
+    }
+
+    /* BOTONES */
+    .acciones {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+    }
+
+    .btn-accion {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 1rem;
+        transition: all 0.2s ease;
+        text-decoration: none;
+    }
+
+        .btn-accion.ver {
+            background: #3e77f8;
+        }
+
+        .btn-accion.editar {
+            background: #10b981;
+        }
+
+        .btn-accion.eliminar {
+            background: #ef4444;
+        }
+
+        .btn-accion:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .btn-accion.ver:hover {
+            background: #234449;
+        }
+
+        .btn-accion.editar:hover {
+            background: #0f8f65;
+        }
+
+        .btn-accion.eliminar:hover {
+            background: #b91c1c;
+        }
+</style>

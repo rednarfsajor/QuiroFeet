@@ -1,0 +1,250 @@
+﻿@model Analisis.BD.OrdenesCompra
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = $"Eliminar Orden #{Model.id_orden}";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<div class="delete-order-wrapper container my-5">
+
+    <!-- HEADER -->
+    <div class="delete-order-header d-flex align-items-center mb-4">
+        <div class="header-icon me-3">
+            <i class="bi bi-trash3-fill"></i>
+        </div>
+        <div>
+            <h2 class="delete-order-title">@ViewBag.Title</h2>
+            <p class="delete-order-subtitle">
+                Esta acción eliminará permanentemente la orden de compra del sistema.
+            </p>
+        </div>
+    </div>
+
+    <!-- CARD -->
+    <div class="card shadow-sm border-0 delete-order-card">
+        <div class="card-body p-4">
+
+            <!-- AVISO IMPORTANTE -->
+            <div class="warning-box d-flex align-items-start mb-4">
+                <div class="warning-icon me-3">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                </div>
+                <div>
+                    <h5 class="mb-1">¿Estás seguro que deseas eliminar esta orden?</h5>
+                    <p class="mb-0">
+                        Esta acción <strong>no se puede deshacer</strong>. Se eliminará la orden y su relación con el proveedor y productos.
+                    </p>
+                </div>
+            </div>
+
+            <!-- RESUMEN ORDEN -->
+            <h5 class="section-title mb-3">
+                <i class="bi bi-receipt me-2"></i>Resumen de la orden
+            </h5>
+
+            <div class="info-grid mb-3">
+                <div class="info-item">
+                    <span class="label">Proveedor</span>
+                    <span class="value">@Model.Proveedores?.nombre</span>
+                </div>
+
+                <div class="info-item">
+                    <span class="label">Fecha de creación</span>
+                    <span class="value">@Model.fecha_creacion.ToString("dd/MM/yyyy HH:mm")</span>
+                </div>
+
+                <div class="info-item">
+                    <span class="label">Estado</span>
+                    <span class="value">
+                        <span class="status-pill">@Model.status</span>
+                    </span>
+                </div>
+
+                <div class="info-item">
+                    <span class="label">Total</span>
+                    <span class="value total-value">
+                        ₡@(Model.total.HasValue ? Model.total.Value.ToString("N2") : "0,00")
+                    </span>
+                </div>
+            </div>
+
+            <!-- BOTONES -->
+            <div class="d-flex justify-content-center justify-content-md-end gap-2 mt-3 flex-wrap">
+                @using (Html.BeginForm("EliminarOrdenCompra", "OrdenCompra", FormMethod.Post, new { @class = "d-inline" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(m => m.id_orden)
+
+                    <button type="submit" class="btn btn-delete">
+                        <i class="bi bi-trash3 me-1"></i> Eliminar orden
+                    </button>
+                }
+
+                <a href="@Url.Action("ListarOrdenes","OrdenCompra")" class="btn btn-cancel">
+                    <i class="bi bi-arrow-left-circle me-1"></i> Cancelar
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .delete-order-wrapper {
+        max-width: 900px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .delete-order-header {
+        margin-bottom: 20px;
+    }
+
+    .delete-order-title {
+        color: #234449;
+        font-size: 1.9rem;
+        font-weight: 700;
+        margin-bottom: 4px;
+    }
+
+    .delete-order-subtitle {
+        font-size: 0.9rem;
+        color: #64748b;
+        margin: 0;
+    }
+
+    .header-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, #b91c1c, #f97316);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 1.6rem;
+    }
+
+    .delete-order-card {
+        border-radius: 18px;
+        background: #ffffff;
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+    }
+
+    .warning-box {
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        border-radius: 14px;
+        padding: 12px 14px;
+        color: #7f1d1d;
+    }
+
+    .warning-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 999px;
+        background: #fee2e2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #b91c1c;
+        font-size: 1.3rem;
+        flex-shrink: 0;
+    }
+
+    .section-title {
+        color: #234449;
+        font-weight: 700;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .section-title i {
+        color: #3e77f8;
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap: 10px 18px;
+    }
+
+    @@media (min-width: 576px) {
+        .info-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    .info-item .label {
+        display: block;
+        font-size: 0.8rem;
+        color: #6b7280;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin-bottom: 2px;
+    }
+
+    .info-item .value {
+        font-size: 0.95rem;
+        color: #0f172a;
+        font-weight: 500;
+    }
+
+    .total-value {
+        font-weight: 700;
+        color: #b91c1c;
+    }
+
+    .status-pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: #e5e7eb;
+        color: #111827;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .btn-delete,
+    .btn-cancel {
+        border-radius: 999px;
+        padding: 9px 18px;
+        font-weight: 600;
+        font-size: 0.93rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border-width: 1px;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+
+    .btn-delete {
+        background-color: #ef4444;
+        border-color: #b91c1c;
+        color: #ffffff;
+    }
+
+    .btn-delete:hover {
+        background-color: #b91c1c;
+        border-color: #991b1b;
+        transform: translateY(-1px);
+        box-shadow: 0 8px 18px rgba(185, 28, 28, 0.35);
+    }
+
+    .btn-cancel {
+        background-color: #e2e8f0;
+        border-color: #cbd5e1;
+        color: #1e293b;
+    }
+
+    .btn-cancel:hover {
+        background-color: #cbd5e1;
+        border-color: #94a3b8;
+        transform: translateY(-1px);
+    }
+</style>

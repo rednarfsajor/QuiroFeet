@@ -1,0 +1,235 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Gestión de Empleados";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+            <div>
+                <h2 class="mb-0 h5">
+                    <i class="bi bi-people-fill me-2"></i> @ViewBag.Title
+                </h2>
+                <small class="text-muted">Consulta, edita y administra el estado de los empleados.</small>
+            </div>
+            <div class="d-flex gap-2">
+                <!-- Botón para volver a Gestión de Ventas (navegación fácil) -->
+                <a href="@Url.Action("Sales", "Ventas")" class="btn btn-outline-secondary btn-sm">
+                    <i class="bi bi-arrow-left-circle"></i> Gestión de Ventas
+                </a>
+
+                <!-- Botón para registrar un nuevo empleado -->
+                <a href="@Url.Action("RegistrarEmpleados", "Empleados")" class="btn btn-primary btn-sm">
+                    <i class="bi bi-person-plus-fill me-1"></i> Nuevo empleado
+                </a>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <!-- Alerta para mostrar mensajes de éxito / error -->
+            <div id="alertaMensajes" class="alert alert-success alert-dismissible fade show mb-3" role="alert" style="display: none;">
+                <span id="mensajeTexto"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered table-sm" id="tablaEmpleados">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Cédula</th>
+                            <th>Nombre completo</th>
+                            <th>Puesto</th>
+                            <th>Teléfono</th>
+                            <th>Correo electrónico</th>
+                            <th>Estado</th>
+                            <th class="text-center" style="width: 22%;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpoTablaEmpleados">
+                        <tr id="filaLoading">
+                            <td colspan="7" class="text-center">
+                                <div class="spinner-border spinner-border-sm" role="status">
+                                    <span class="visually-hidden">Cargando...</span>
+                                </div>
+                                Cargando empleados...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> <!-- Fin card-body -->
+    </div> <!-- Fin card -->
+</div> <!-- Fin container -->
+<!-- Modal de Confirmación para Desactivar -->
+<div class="modal fade" id="confirmarDesactivarModal" tabindex="-1" aria-labelledby="confirmarDesactivarModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-dark">
+                <h1 class="modal-title fs-5" id="confirmarDesactivarModalLabel">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i> Confirmar desactivación
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Estás seguro de que deseas <strong>desactivar</strong> a este empleado?
+                <br />
+                <span class="text-muted d-block mt-2">
+                    El registro del empleado se mantendrá como histórico, pero no podrá ser asignado a nuevas operaciones.
+                </span>
+                <br />
+                <strong id="nombreEmpleadoDesactivar"></strong>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-warning btn-sm" id="btnConfirmarDesactivar">
+                    <i class="bi bi-person-dash-fill me-1"></i> Desactivar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // URL base para las acciones
+        const baseUrl = '@Url.Content("~/")';
+        // API de empleados (ajusta al nombre real de tu API)
+        const EmpleadosApiUrl = baseUrl + 'api/Empleados';
+
+        let empleadoIdParaDesactivar = null;
+
+        // Función para cargar los empleados desde la API
+        function cargarEmpleados() {
+            const cuerpoTabla = $('#cuerpoTablaEmpleados');
+            const filaLoading = $('#filaLoading');
+
+            filaLoading.show();
+            cuerpoTabla.empty().append(filaLoading);
+
+            $.ajax({
+                url: EmpleadosApiUrl,
+                method: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    filaLoading.hide();
+                    cuerpoTabla.empty();
+
+                    if (data && data.length > 0) {
+                        $.each(data, function (index, empleado) {
+                            // Propiedades esperadas: id, id (cédula), nombre, tipo (puesto), telefono, correo, activo
+                            const cedula   = empleado.cedula || empleado.id || 'N/D';
+                            const nombre   = empleado.nombre || 'N/D';
+                            const puesto   = empleado.tipo || 'N/D';
+                            const telefono = empleado.telefono || 'N/D';
+                            const correo   = empleado.correo || 'N/D';
+                            const activo   = empleado.activo === false ? false : true;
+
+                            const estadoTexto = activo ? 'Activo' : 'Inactivo';
+                            const estadoClase = activo ? 'badge bg-success' : 'badge bg-secondary';
+
+                            let fila = `
+                                <tr>
+                                    <td>${cedula}</td>
+                                    <td>${nombre}</td>
+                                    <td>${puesto}</td>
+                                    <td>${telefono}</td>
+                                    <td>${correo}</td>
+                                    <td><span class="${estadoClase}">${estadoTexto}</span></td>
+                                    <td class="text-center">
+                                        <a href="${baseUrl}Empleados/EditarEmpleados?id=${empleado.id}" class="btn btn-warning btn-sm me-1" title="Editar">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+                                        <a href="${baseUrl}Empleados/DetallesEmpleados?id=${empleado.id}" class="btn btn-info btn-sm text-white me-1" title="Detalles">
+                                            <i class="bi bi-eye-fill"></i>
+                                        </a>
+                                        <a href="${baseUrl}Empleados/GestionarDisponibilidad?id=${empleado.id}" class="btn btn-success btn-sm me-1" title="Disponibilidad">
+                                            <i class="bi bi-calendar2-week"></i>
+                                        </a>
+                                        <a href="${baseUrl}Empleados/ConsultarAgenda?id=${empleado.id}" class="btn btn-secondary btn-sm me-1" title="Agenda">
+                                            <i class="bi bi-book-half"></i>
+                                        </a>
+                                        <button type="button"
+                                                class="btn btn-outline-warning btn-sm btn-desactivar"
+                                                data-id="${empleado.id}"
+                                                data-nombre="${nombre}"
+                                                title="Desactivar empleado">
+                                            <i class="bi bi-person-dash"></i>
+                                        </button>
+                                    </td>
+                                </tr>`;
+                            cuerpoTabla.append(fila);
+                        });
+                    } else {
+                        cuerpoTabla.append('<tr><td colspan="7" class="text-center">No hay empleados registrados.</td></tr>');
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    filaLoading.hide();
+                    console.error("Error al cargar empleados:", textStatus, errorThrown, jqXHR.responseText);
+                    $('#cuerpoTablaEmpleados')
+                        .empty()
+                        .append('<tr><td colspan="7" class="text-center text-danger">Error al cargar los datos. Intente de nuevo más tarde.</td></tr>');
+                }
+            });
+        }
+
+        // --- Lógica para Desactivar ---
+
+        // 1. Click en botón desactivar
+        $('#tablaEmpleados').on('click', '.btn-desactivar', function () {
+            empleadoIdParaDesactivar = $(this).data('id');
+            const nombreEmpleado = $(this).data('nombre');
+            $('#nombreEmpleadoDesactivar').text(nombreEmpleado);
+            $('#confirmarDesactivarModal').modal('show');
+        });
+
+        // 2. Confirmar desactivación en el modal
+        $('#btnConfirmarDesactivar').on('click', function () {
+            if (empleadoIdParaDesactivar) {
+                // IMPORTANTE:
+                // Aquí se asume que tu API tiene un endpoint para desactivar empleados.
+                // Ajusta la URL y el método según tu implementación real.
+                const urlDesactivar = `${EmpleadosApiUrl}/${empleadoIdParaDesactivar}/Desactivar`;
+
+                $.ajax({
+                    url: urlDesactivar,
+                    method: 'PUT', // o 'POST' si tu API lo maneja así
+                    success: function (response) {
+                        $('#confirmarDesactivarModal').modal('hide');
+                        mostrarAlerta('Empleado desactivado correctamente.', 'success');
+                        cargarEmpleados();
+                        empleadoIdParaDesactivar = null;
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $('#confirmarDesactivarModal').modal('hide');
+                        console.error("Error al desactivar empleado:", textStatus, errorThrown, jqXHR.responseText);
+                        mostrarAlerta('Error al desactivar el empleado. ' + (jqXHR.responseJSON?.message || errorThrown), 'danger');
+                        empleadoIdParaDesactivar = null;
+                    }
+                });
+            }
+        });
+
+        // --- Función para mostrar alertas ---
+        function mostrarAlerta(mensaje, tipo = 'success') {
+            const alerta = $('#alertaMensajes');
+            const texto = $('#mensajeTexto');
+
+            texto.text(mensaje);
+            alerta
+                .removeClass('alert-success alert-danger alert-warning alert-info')
+                .addClass(`alert-${tipo}`)
+                .show();
+
+            setTimeout(() => {
+                alerta.fadeOut();
+            }, 5000);
+        }
+
+        // --- Ejecución Inicial ---
+        $(document).ready(function () {
+            cargarEmpleados();
+        });
+    </script>
+}
