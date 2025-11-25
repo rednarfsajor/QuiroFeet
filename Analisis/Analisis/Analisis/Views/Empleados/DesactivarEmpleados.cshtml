@@ -1,0 +1,239 @@
+﻿@model Analisis.BD.Empleados
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Desactivar empleado";
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<div class="deactivate-container">
+    <div class="deactivate-card">
+        <div class="deactivate-icon">
+            <i class="bi bi-person-dash-fill"></i>
+        </div>
+
+        <h1>@ViewBag.Title</h1>
+        <p class="deactivate-text">
+            Estás a punto de desactivar al siguiente empleado.
+            El registro se mantendrá en el sistema como histórico, pero no podrá usarse para nuevas operaciones.
+        </p>
+
+        <div class="employee-summary">
+            <h2>Resumen del empleado</h2>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <span class="label">Cédula</span>
+                    <span class="value">@Model.id</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Nombre completo</span>
+                    <span class="value">@Model.nombre</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Puesto</span>
+                    <span class="value">@Model.tipo</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Correo electrónico</span>
+                    <span class="value">@Model.correo</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Teléfono</span>
+                    <span class="value">@Model.telefono</span>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                <div>
+                    <strong>¿Estás segura de continuar?</strong><br />
+                    Esta acción no elimina la información, pero cambiará el estado del empleado a inactivo.
+                </div>
+            </div>
+        </div>
+
+        @using (Html.BeginForm("DesactivarEmpleados", "Empleados", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.id)
+
+            <div class="deactivate-actions">
+                <a href="@Url.Action("DetallesEmpleados", "Empleados")" class="btn-cancel">
+                    <i class="bi bi-arrow-left-circle"></i> Cancelar y volver
+                </a>
+
+                <button type="submit" class="btn-confirm">
+                    <i class="bi bi-person-dash-fill"></i> Sí, desactivar empleado
+                </button>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: #f9fafb;
+    }
+
+    .deactivate-container {
+        max-width: 800px;
+        margin: 60px auto;
+        padding: 0 20px 40px;
+    }
+
+    .deactivate-card {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 32px 30px 36px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        text-align: left;
+        color: #234449;
+    }
+
+    .deactivate-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 20px;
+        background: #fff4e5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.2rem;
+        color: #f97316;
+        margin-bottom: 14px;
+    }
+
+    .deactivate-card h1 {
+        font-size: 1.9rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    .deactivate-text {
+        margin-bottom: 22px;
+        font-size: 0.98rem;
+        color: #555;
+    }
+
+    .employee-summary h2 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 14px;
+    }
+
+    .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px 20px;
+        margin-bottom: 18px;
+    }
+
+    .summary-item {
+        background: #f9fafb;
+        border-radius: 10px;
+        padding: 10px 12px;
+        border: 1px solid #e5e7eb;
+    }
+
+        .summary-item .label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #6b7280;
+            margin-bottom: 3px;
+        }
+
+        .summary-item .value {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #111827;
+            word-break: break-word;
+        }
+
+    .warning-box {
+        margin-top: 6px;
+        background: #fef3c7;
+        border-radius: 12px;
+        padding: 12px 14px;
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        font-size: 0.9rem;
+        color: #92400e;
+        border: 1px solid #fcd34d;
+    }
+
+        .warning-box i {
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+
+    .deactivate-actions {
+        margin-top: 26px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .btn-cancel,
+    .btn-confirm {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 18px;
+        border-radius: 999px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+    }
+
+    .btn-cancel {
+        background: #f3f4f6;
+        color: #374151;
+    }
+
+        .btn-cancel:hover {
+            background: #e5e7eb;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transform: translateY(-1px);
+        }
+
+    .btn-confirm {
+        background: #f97316;
+        color: #ffffff;
+    }
+
+        .btn-confirm:hover {
+            background: #c2410c;
+            box-shadow: 0 5px 14px rgba(248, 113, 113, 0.35);
+            transform: translateY(-1px);
+        }
+
+    @@media (max-width: 640px) {
+        .deactivate-card {
+            padding: 24px 18px 28px;
+        }
+
+        .summary-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .deactivate-actions {
+            flex-direction: column-reverse;
+            align-items: stretch;
+        }
+
+        .btn-cancel,
+        .btn-confirm {
+            justify-content: center;
+            width: 100%;
+        }
+    }
+</style>

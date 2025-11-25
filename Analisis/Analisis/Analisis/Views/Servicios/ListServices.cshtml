@@ -1,0 +1,163 @@
+﻿@model IEnumerable<Analisis.BD.Servicios>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Lista de Servicios";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+
+<div class="services-wrapper">
+    <div class="header-area">
+        <h1 class="page-title">
+            <i class="bi bi-collection"></i> Servicios Registrados
+        </h1>
+        <p class="page-subtitle">Listado actualizado de servicios disponibles.</p>
+    </div>
+
+    <div class="table-container">
+        <table class="services-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Duración</th>
+                    <th>Precio</th>
+                    <th style="width:150px;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var s in Model)
+                {
+                    <tr>
+                        <td>@s.Id</td>
+                        <td>@s.Nombre</td>
+                        <td>@s.Descripcion</td>
+                        <td>@s.Duracion</td>
+                        <td>₡@string.Format("{0:N2}", s.Precio)</td>
+
+                        <td class="actions-col">
+                            <a href="@Url.Action("EditService", "Servicios", new { id = s.Id })" class="btn-action edit">
+                                <i class="bi bi-pencil-fill"></i>
+                            </a>
+
+                            <a href="@Url.Action("DeleteService", "Servicios", new { id = s.Id })"
+                               class="btn-action delete"
+                               onclick="return confirm('¿Está seguro que desea eliminar este servicio?');">
+                                <i class="bi bi-trash-fill"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: #f3f5f7;
+    }
+
+    .services-wrapper {
+        max-width: 1100px;
+        margin: 50px auto;
+        padding: 0 20px 40px;
+    }
+
+    /* ENCABEZADO */
+    .header-area {
+        margin-bottom: 25px;
+        text-align: left;
+    }
+
+    .page-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #234449;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+        .page-title i {
+            font-size: 1.9rem;
+        }
+
+    .page-subtitle {
+        color: #6b7280;
+        font-size: 0.95rem;
+        margin-top: 5px;
+    }
+
+    /* TABLA */
+    .table-container {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+    }
+
+    .services-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.94rem;
+    }
+
+        .services-table thead {
+            background: #234449;
+            color: white;
+        }
+
+        .services-table th,
+        .services-table td {
+            padding: 14px 16px;
+            text-align: center;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .services-table tbody tr:hover {
+            background: #f1f5f9;
+            transition: 0.2s;
+        }
+
+    .actions-col {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    /* BOTONES DE ACCIÓN */
+    .btn-action {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: white;
+        font-size: 1rem;
+        transition: 0.2s ease;
+    }
+
+        .btn-action.edit {
+            background: #3e77f8;
+        }
+
+            .btn-action.edit:hover {
+                background: #234449;
+                transform: translateY(-2px);
+            }
+
+        .btn-action.delete {
+            background: #dc3545;
+        }
+
+            .btn-action.delete:hover {
+                background: #b02a37;
+                transform: translateY(-2px);
+            }
+</style>

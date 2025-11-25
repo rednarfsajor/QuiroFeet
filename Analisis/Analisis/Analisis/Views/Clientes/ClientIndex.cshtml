@@ -1,0 +1,165 @@
+﻿@model IEnumerable<Analisis.BD.Clientes>
+
+@{
+    ViewBag.Title = "Clientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container my-5" style="font-family: 'Poppins', sans-serif;">
+
+    <!-- Encabezado -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold" style="color:#234449;">
+            <i class="bi bi-people-fill me-2"></i>Clientes
+        </h2>
+
+        <a href="@Url.Action("CreateClient", "Clientes")"
+           class="btn shadow-sm px-4 py-2 btn-add-client">
+            <i class="bi bi-person-fill-add me-2"></i>Agregar Cliente
+        </a>
+    </div>
+
+    <!-- Tarjeta del listado -->
+    <div class="card shadow-sm border-0" style="border-radius:12px;">
+        <div class="card-body p-4">
+
+            @if (!Model.Any())
+            {
+                <div class="alert alert-info text-center">
+                    <i class="bi bi-info-circle me-2"></i>No hay clientes registrados.
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle text-center mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>ID</th>
+                                <th>Cédula</th>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Teléfono</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.id</td>
+                                    <td>@(item.cedula ?? "--")</td>
+                                    <td>@item.nombre</td>
+                                    <td>@item.correo</td>
+                                    <td>@(item.telefono ?? "--")</td>
+
+                                    <td>
+                                        @if (item.activo)
+                                        {
+                                            <span class="badge px-3 py-2 badge-activo">
+                                                <i class="bi bi-check-circle-fill me-1"></i>Activo
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge px-3 py-2 badge-inactivo">
+                                                <i class="bi bi-x-circle-fill me-1"></i>Inactivo
+                                            </span>
+                                        }
+                                    </td>
+
+                                    <td>
+                                        <a href="@Url.Action("EditClient", "Clientes", new { id = item.id })"
+                                           class="btn btn-sm me-2 btn-edit">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+
+                                        @if (item.activo)
+                                        {
+                                            <a href="@Url.Action("InactivarClient", "Clientes", new { id = item.id })"
+                                               class="btn btn-sm btn-inactivar">
+                                                <i class="bi bi-person-fill-x"></i>
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted fst-italic" style="font-size:0.9em;">Inactivo</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+
+        </div>
+    </div>
+
+</div>
+
+<style>
+    /* Botón principal Agregar Cliente */
+    .btn-add-client {
+        background-color: #3e77f8;
+        border: none;
+        border-radius: 10px;
+        color: #ffffff;
+        font-weight: 500;
+    }
+
+        .btn-add-client:hover {
+            background-color: #234449;
+            color: #ffffff;
+        }
+
+    /* Badges de estado (tonos fríos) */
+    .badge-activo {
+        background-color: #2ecc71;
+        color: #ffffff;
+        border-radius: 999px;
+    }
+
+    .badge-inactivo {
+        background-color: #95a5a6;
+        color: #ffffff;
+        border-radius: 999px;
+    }
+
+    /* Botones de acción */
+    .btn-edit {
+        background-color: #ecf3ff;
+        border: 1px solid #3e77f8;
+        color: #234449;
+        border-radius: 8px;
+    }
+
+        .btn-edit:hover {
+            background-color: #3e77f8;
+            color: #ffffff;
+        }
+
+    .btn-inactivar {
+        background-color: #e6eef2;
+        border: 1px solid #c0392b;
+        color: #c0392b;
+        border-radius: 8px;
+    }
+
+        .btn-inactivar:hover {
+            background-color: #c0392b;
+            color: #ffffff;
+        }
+
+    /* Hover de filas */
+    table thead tr th {
+        font-weight: 600;
+    }
+
+    table tbody tr:hover {
+        background-color: #f8fbff !important;
+        transition: 0.2s;
+    }
+</style>

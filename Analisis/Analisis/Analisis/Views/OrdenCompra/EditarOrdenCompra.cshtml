@@ -1,0 +1,265 @@
+﻿@model Analisis.BD.OrdenesCompra
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = $"Editar Orden #{Model.id_orden}";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<div class="edit-order-wrapper container my-5">
+
+    <!-- HEADER -->
+    <div class="edit-order-header d-flex align-items-center mb-4">
+        <div class="header-icon me-3">
+            <i class="bi bi-pencil-square"></i>
+        </div>
+        <div>
+            <h2 class="edit-order-title">@ViewBag.Title</h2>
+            <p class="edit-order-subtitle">Modifique los datos principales de la orden de compra.</p>
+        </div>
+    </div>
+
+    <!-- CARD -->
+    <div class="card shadow-sm border-0 edit-order-card">
+        <div class="card-body px-4 py-4">
+
+            @using (Html.BeginForm("EditarOrdenCompra", "OrdenCompra", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.id_orden)
+
+                <!-- PROVEEDOR -->
+                <div class="mb-4">
+                    <label class="form-label fw-semibold">Proveedor</label>
+                    <div class="input-icon">
+                        <i class="bi bi-truck"></i>
+                        @Html.DropDownListFor(
+                            m => m.proveedor_id,
+                            (SelectList)ViewBag.proveedor_id,
+                            "-- Seleccione un proveedor --",
+                            new { @class = "form-control", required = "required" })
+                    </div>
+                </div>
+
+                <!-- FECHA RECEPCIÓN -->
+                <div class="mb-4">
+                    <label class="form-label fw-semibold">Fecha de recepción</label>
+                    <div class="input-icon">
+                        <i class="bi bi-calendar-event"></i>
+                        <input type="date"
+                               name="fecha_recepcion"
+                               class="form-control"
+                               value="@(Model.fecha_recepcion.HasValue ? Model.fecha_recepcion.Value.ToString("yyyy-MM-dd") : "")" />
+                    </div>
+                </div>
+
+                <!-- ESTADO -->
+                <div class="mb-4">
+                    <label class="form-label fw-semibold">Estado</label>
+                    <div class="input-icon">
+                        <i class="bi bi-clipboard-check"></i>
+                        <input type="text"
+                               name="status"
+                               class="form-control"
+                               value="@Model.status"
+                               required />
+                    </div>
+                </div>
+
+                <!-- BOTONES -->
+                <div class="d-flex justify-content-center justify-content-md-end gap-2 mt-4 flex-wrap">
+                    <button type="submit" class="btn btn-save">
+                        <i class="bi bi-save me-1"></i> Guardar cambios
+                    </button>
+
+                    <a href="@Url.Action("ListarOrdenes","OrdenCompra")" class="btn btn-cancel">
+                        <i class="bi bi-arrow-left-circle me-1"></i> Cancelar
+                    </a>
+                </div>
+            }
+
+        </div>
+    </div>
+
+    <!-- SECCIÓN DETALLE PRODUCTOS -->
+    <h4 class="section-title mt-5 mb-3">
+        <i class="bi bi-box-seam me-2"></i>Detalle de productos
+    </h4>
+
+    <div class="card shadow-sm border-0 product-detail-card">
+        <div class="card-body px-4 py-4">
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th class="text-start">Producto</th>
+                            <th class="text-center">Cantidad</th>
+                            <th class="text-center">Precio unitario</th>
+                            <th class="text-center">Subtotal</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var d in (IEnumerable<dynamic>)ViewBag.Detalles)
+                        {
+                            <tr>
+                                <td class="text-start">
+                                    <div class="d-flex align-items-center">
+                                        <i class="bi bi-cube me-2 text-muted"></i>
+                                        @d.NombreProducto
+                                    </div>
+                                </td>
+
+                                <td class="text-center">@d.Cantidad</td>
+
+                                <td class="text-center">₡@String.Format("{0:N2}", (decimal)d.PrecioUnidad)</td>
+
+                                <td class="text-center">₡@String.Format("{0:N2}", (decimal)d.Subtotal)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ESTILOS -->
+<style>
+    .edit-order-wrapper {
+        max-width: 980px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .edit-order-header {
+        margin-bottom: 20px;
+    }
+
+    .edit-order-title {
+        color: #234449;
+        font-size: 1.9rem;
+        font-weight: 700;
+    }
+
+    .edit-order-subtitle {
+        font-size: 0.9rem;
+        color: #64748b;
+        margin: 0;
+    }
+
+    .header-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, #234449, #3e77f8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .edit-order-card {
+        border-radius: 18px;
+        background: #ffffff;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    }
+
+    .section-title {
+        color: #234449;
+        font-weight: 700;
+        font-size: 1.1rem;
+    }
+
+    /* INPUTS CON ÍCONO */
+    .input-icon {
+        display: flex;
+        align-items: center;
+        background: #f8fafc;
+        border: 1px solid #cbd5e1;
+        border-radius: 12px;
+        padding: 9px 12px;
+        margin-top: 4px;
+    }
+
+        .input-icon i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            color: #3e77f8;
+        }
+
+        .input-icon .form-control {
+            border: none !important;
+            outline: none !important;
+            background: transparent !important;
+            box-shadow: none;
+        }
+
+    /* PRODUCTOS */
+    .product-detail-card {
+        border-radius: 18px;
+        background: #ffffff;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+
+    .table thead th {
+        background: #f1f5f9;
+        font-size: .92rem;
+        font-weight: 600;
+        color: #475569;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .table tbody td {
+        font-size: .9rem;
+        padding: 10px 12px;
+        border-top: 1px solid #e2e8f0;
+    }
+
+    .table tbody tr:hover {
+        background: #eef4ff;
+        transition: .15s ease;
+    }
+
+    /* BOTONES */
+    .btn-save,
+    .btn-cancel {
+        border-radius: 999px;
+        padding: 10px 20px;
+        font-weight: 600;
+        font-size: .95rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: all .2s ease;
+        border-width: 1px;
+        text-decoration: none;
+    }
+
+    .btn-save {
+        background: #234449;
+        border-color: #234449;
+        color: white;
+    }
+
+        .btn-save:hover {
+            background: #3e77f8;
+            border-color: #3e77f8;
+            transform: translateY(-1px);
+        }
+
+    .btn-cancel {
+        background: #e2e8f0;
+        border-color: #cbd5e1;
+        color: #1e293b;
+    }
+
+        .btn-cancel:hover {
+            background: #cbd5e1;
+            transform: translateY(-1px);
+        }
+</style>

@@ -1,0 +1,284 @@
+﻿@model Analisis.BD.Empleados
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Crear Empleado";
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<div class="full-page-container">
+    <div class="form-container">
+        <h1><i class="bi bi-person-plus-fill"></i> Registrar Empleado</h1>
+        <p>Completa la información para registrar un nuevo empleado en el sistema.</p>
+
+        @if (TempData["ErrorEmpleado"] != null)
+        {
+            <div class="alert alert-error">
+                <i class="bi bi-exclamation-circle"></i> @TempData["ErrorEmpleado"]
+            </div>
+        }
+
+        @if (TempData["SuccessEmpleado"] != null)
+        {
+            <div class="alert alert-success">
+                <i class="bi bi-check-circle"></i> @TempData["SuccessEmpleado"]
+            </div>
+        }
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger validation-summary" })
+
+        @using (Html.BeginForm("RegistrarEmpleados", "Empleados", FormMethod.Post, new { @class = "formulario" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.id, "Cédula")
+                @Html.TextBoxFor(model => model.id, new
+                {
+                    @class = "form-control",
+                    placeholder = "Ingrese la cédula del empleado",
+                    required = "required"
+                })
+                @Html.ValidationMessageFor(model => model.id, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.nombre, "Nombre completo")
+                @Html.TextBoxFor(model => model.nombre, new
+                {
+                    @class = "form-control",
+                    placeholder = "Ingrese el nombre completo del empleado",
+                    required = "required"
+                })
+                @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.tipo, "Puesto")
+                @Html.TextBoxFor(model => model.tipo, new
+                {
+                    @class = "form-control",
+                    placeholder = "Ingrese el puesto del empleado",
+                    required = "required"
+                })
+                @Html.ValidationMessageFor(model => model.tipo, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.correo, "Correo electrónico")
+                @Html.TextBoxFor(model => model.correo, new
+                {
+                    @class = "form-control",
+                    placeholder = "Ingrese el correo electrónico",
+                    required = "required",
+                    type = "email"
+                })
+                @Html.ValidationMessageFor(model => model.correo, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.telefono, "Teléfono")
+                @Html.TextBoxFor(model => model.telefono, new
+                {
+                    @class = "form-control",
+                    placeholder = "Ingrese el teléfono",
+                    required = "required"
+                })
+                @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-buttons">
+                <button type="submit" class="btn-submit">
+                    <i class="bi bi-check-circle-fill"></i> Registrar empleado
+                </button>
+                <a href="@Url.Action("Empleados", "Empleados")" class="btn-cancel">
+                    <i class="bi bi-arrow-left-circle"></i> Volver al listado
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: url('@Url.Content("~/Imagenes/marmol2.jfif")') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .full-page-container {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .form-container {
+        width: 100%;
+        max-width: 520px;
+        background-color: rgba(255, 255, 255, 0.96);
+        padding: 36px 30px;
+        border-radius: 18px;
+        box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+        text-align: center;
+        color: #234449;
+    }
+
+    .form-container h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #234449;
+        margin-bottom: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .form-container h1 i {
+        font-size: 1.9rem;
+    }
+
+    .form-container p {
+        color: #3e77f8;
+        margin-bottom: 22px;
+        font-size: 0.98rem;
+    }
+
+    .alert {
+        padding: 10px 14px;
+        border-radius: 10px;
+        margin-bottom: 12px;
+        font-size: 0.88rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .alert-error {
+        background: #fff1f0;
+        color: #b02a37;
+        border: 1px solid #f5c2c7;
+    }
+
+    .alert-success {
+        background: #e6f4ea;
+        color: #146c43;
+        border: 1px solid #badbcc;
+    }
+
+    .validation-summary {
+        font-size: 0.85rem;
+        text-align: left;
+        margin: 0 auto 10px;
+        max-width: 360px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 18px;
+    }
+
+    .form-group label {
+        font-weight: 600;
+        color: #234449;
+        margin-bottom: 5px;
+        text-align: left;
+        width: 80%;
+        max-width: 360px;
+        font-size: 0.9rem;
+    }
+
+    .form-group input {
+        width: 80%;
+        max-width: 360px;
+        padding: 10px 12px;
+        border: 1px solid #ced4da;
+        border-radius: 9px;
+        font-size: 0.95rem;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .form-group input:focus {
+        border-color: #3e77f8;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(62, 119, 248, 0.2);
+    }
+
+    .text-danger {
+        font-size: 0.8rem;
+        margin-top: 3px;
+        width: 80%;
+        max-width: 360px;
+        text-align: left;
+    }
+
+    .form-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+    }
+
+    .btn-submit, .btn-cancel {
+        flex: 1;
+        min-width: 150px;
+        text-align: center;
+        padding: 11px 14px;
+        border: none;
+        border-radius: 999px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+    }
+
+    .btn-submit {
+        background-color: #234449;
+        color: #fff;
+    }
+
+    .btn-submit:hover {
+        background-color: #2d5760;
+        box-shadow: 0 6px 16px rgba(35, 68, 73, 0.25);
+        transform: translateY(-1px);
+    }
+
+    .btn-cancel {
+        background-color: #f0f0f0;
+        color: #234449;
+    }
+
+    .btn-cancel:hover {
+        background-color: #e0e0e0;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+        transform: translateY(-1px);
+    }
+
+    @@media (max-width: 600px) {
+        .form-container {
+            padding: 26px 18px;
+        }
+
+        .form-group label,
+        .form-group input,
+        .text-danger {
+            width: 100%;
+            max-width: 100%;
+        }
+    }
+</style>

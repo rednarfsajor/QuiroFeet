@@ -1,0 +1,226 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Gestión de Empleados";
+}
+
+<div class="employees-container" style="font-family: 'Poppins', sans-serif;">
+    <div class="employees-header">
+        <div>
+            <h1><i class="bi bi-people-fill"></i> Gestión de Empleados</h1>
+            <p>Seleccione una opción para registrar o consultar empleados del sistema.</p>
+        </div>
+        <div class="employees-badge">
+            <i class="bi bi-briefcase-fill"></i> Módulo de Empleados
+        </div>
+    </div>
+
+    <div class="options">
+        <!-- Registrar Empleado -->
+        <a href="@Url.Action("RegistrarEmpleados", "Empleados")" class="option-card">
+            <div class="option-icon-wrapper register">
+                <i class="bi bi-person-fill-add"></i>
+            </div>
+            <h3>Registrar empleado</h3>
+            <p>Ingresar nuevos empleados al sistema con sus datos principales.</p>
+            <span class="option-link">
+                Ir a registro de empleado <i class="bi bi-arrow-right"></i>
+            </span>
+        </a>
+
+        <!-- Ver/Listar Empleados -->
+        <a href="@Url.Action("DetallesEmpleados", "Empleados")" class="option-card">
+            <div class="option-icon-wrapper list">
+                <i class="bi bi-people-fill"></i>
+            </div>
+            <h3>Ver empleados</h3>
+            <p>Consultar, editar y desactivar empleados registrados.</p>
+            <span class="option-link">
+                Ver listado de empleados <i class="bi bi-arrow-right"></i>
+            </span>
+        </a>
+    </div>
+</div>
+
+<style>
+    .employees-container {
+        max-width: 1000px;
+        margin: 70px auto;
+        padding: 0 20px 40px;
+        color: #234449;
+        text-align: left;
+    }
+
+    .employees-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 18px;
+        margin-bottom: 24px;
+    }
+
+        .employees-header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+            .employees-header h1 i {
+                font-size: 1.9rem;
+            }
+
+        .employees-header p {
+            font-size: 0.98rem;
+            color: #555;
+            margin: 0;
+        }
+
+    .employees-badge {
+        background: #e3f5f3;
+        color: #234449;
+        padding: 8px 16px;
+        border-radius: 999px;
+        font-size: 0.9rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        white-space: nowrap;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    }
+
+    .employees-nav {
+        margin-bottom: 22px;
+    }
+
+    .back-link {
+        font-size: 0.9rem;
+        text-decoration: none;
+        color: #3e77f8;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+    .options {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+        justify-content: center;
+    }
+
+    .option-card {
+        background-color: #ffffff;
+        padding: 26px 24px;
+        border-radius: 16px;
+        box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);
+        text-decoration: none;
+        color: #234449;
+        transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+        border: 1px solid transparent;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .option-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(62, 119, 248, 0.12), transparent 55%);
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            pointer-events: none;
+        }
+
+        .option-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+            border-color: #d3e3ea;
+        }
+
+            .option-card:hover::before {
+                opacity: 1;
+            }
+
+    .option-icon-wrapper {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 6px;
+    }
+
+        .option-icon-wrapper.register {
+            background: #e6f2ff;
+        }
+
+        .option-icon-wrapper.list {
+            background: #fff4e5;
+        }
+
+        .option-icon-wrapper i {
+            font-size: 1.9rem;
+        }
+
+    .option-card h3 {
+        margin: 4px 0;
+        font-size: 1.18rem;
+        font-weight: 600;
+    }
+
+    .option-card p {
+        font-size: 0.95rem;
+        color: #555;
+        margin: 0;
+        flex: 1;
+    }
+
+    .option-link {
+        margin-top: 10px;
+        font-size: 0.9rem;
+        color: #3e77f8;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-weight: 500;
+    }
+
+        .option-link i {
+            font-size: 1rem;
+        }
+
+    @@media (max-width: 768px) {
+        .employees-container {
+            margin: 40px auto;
+        }
+
+        .employees-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .options {
+            grid-template-columns: 1fr;
+        }
+
+        .option-card {
+            padding: 22px 20px;
+        }
+    }
+
+    @@media (max-width: 480px) {
+        .employees-header h1 {
+            font-size: 1.8rem;
+        }
+    }
+</style>

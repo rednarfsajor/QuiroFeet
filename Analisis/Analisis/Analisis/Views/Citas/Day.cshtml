@@ -1,0 +1,277 @@
+﻿@using System.Linq
+@model IEnumerable<Analisis.ViewModel.DateViewModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Eventos del día";
+
+    // Normalizar la fecha que viene en el ViewBag
+    DateTime fechaSeleccionada;
+
+    if (ViewBag.Fecha is DateTime)
+    {
+        fechaSeleccionada = (DateTime)ViewBag.Fecha;
+    }
+    else if (ViewBag.Fecha != null)
+    {
+        DateTime.TryParse(ViewBag.Fecha.ToString(), out fechaSeleccionada);
+    }
+    else
+    {
+        fechaSeleccionada = DateTime.Today;
+    }
+
+    var fechaTitulo = fechaSeleccionada.ToString("dd/MM/yyyy");
+    var fechaParametro = fechaSeleccionada.ToString("yyyy-MM-dd"); // para querystring
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-xl-10 col-lg-11">
+            <div class="card day-card shadow-sm border-0">
+                <div class="card-body p-4 p-md-5">
+
+                    <!-- Título y acciones -->
+                    <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-3 gap-3">
+                        <div>
+                            <h2 class="mb-1 day-title">
+                                <span class="day-icon me-3">
+                                    <i class="bi bi-calendar-event"></i>
+                                </span>
+                                <span>Eventos del día @fechaTitulo</span>
+                            </h2>
+                            <p class="text-muted mb-0 day-subtitle">
+                                Revisa, modifica o cancela las citas programadas para esta fecha.
+                            </p>
+                        </div>
+                        <div class="mt-2 mt-md-0 text-md-end">
+                            <a href="@Url.Action("CreateDate", "Citas", new { fecha = fechaParametro })"
+                               class="btn btn-primary btn-sm me-2 btn-add">
+                                <i class="bi bi-plus-circle me-2"></i>Agregar evento
+                            </a>
+                            <a href="@Url.Action("Calendar", "Citas")"
+                               class="btn btn-outline-secondary btn-sm btn-back">
+                                <i class="bi bi-arrow-left-circle me-2"></i>Volver al calendario
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Línea separadora suave -->
+                    <hr class="day-divider" />
+
+                    <!-- Tabla de citas -->
+                    <div class="table-responsive mt-3">
+                        <table class="table align-middle mb-0 day-table">
+                            <thead class="table-header">
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Hora</th>
+                                    <th>Cliente</th>
+                                    <th>Servicio</th>
+                                    <th>Profesional</th>
+                                    <th class="text-center">Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null && Model.Any())
+                                {
+                                    foreach (var cita in Model)
+                                    {
+                                        string estadoClase = "badge-estado badge-estado-otro";
+
+                                        if (!string.IsNullOrEmpty(cita.Estado))
+                                        {
+                                            switch (cita.Estado.ToLower())
+                                            {
+                                                case "pendiente":
+                                                    estadoClase = "badge-estado badge-estado-pendiente";
+                                                    break;
+                                                case "confirmada":
+                                                case "atendida":
+                                                    estadoClase = "badge-estado badge-estado-activa";
+                                                    break;
+                                                case "cancelada":
+                                                    estadoClase = "badge-estado badge-estado-cancelada";
+                                                    break;
+                                            }
+                                        }
+
+                                        <tr class="day-row"
+                                            onclick="window.location='@Url.Action("ModifyDate", "Citas", new { id = cita.id })'">
+                                            <td>@cita.fecha.ToString("dd/MM/yyyy")</td>
+                                            <td>@cita.hora</td>
+                                            <td>@cita.NombreCliente</td>
+                                            <td>@cita.NombreServicio</td>
+                                            <td>@cita.NombreProfesional</td>
+                                            <td class="text-center">
+                                                <span class="@estadoClase">
+                                                    @cita.Estado
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="6" class="text-center text-muted py-4">
+                                            <i class="bi bi-info-circle me-2"></i>
+                                            No hay eventos programados para este día.
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f3f6fb;
+    }
+
+    .day-card {
+        border-radius: 22px;
+        background: #ffffff;
+    }
+
+    .day-title {
+        font-size: 1.6rem;
+        color: #234449;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+    }
+
+    .day-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .day-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        background-color: #e8f0ff;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.35rem;
+        color: #234449;
+    }
+
+    .btn-add {
+        font-weight: 600;
+        border-radius: 999px;
+        padding-inline: 1.4rem;
+        box-shadow: 0 4px 10px rgba(62, 119, 248, 0.35);
+    }
+
+    .btn-back {
+        border-radius: 999px;
+        padding-inline: 1.4rem;
+    }
+
+        .btn-add i,
+        .btn-back i {
+            font-size: 0.95rem;
+        }
+
+    .day-divider {
+        margin-top: 0.8rem;
+        margin-bottom: 0.2rem;
+        border: 0;
+        border-top: 1px solid #e2e7f0;
+    }
+
+    .table-header {
+        border-bottom: 1px solid #dde3ee;
+        background-color: #f8faff;
+    }
+
+        .table-header th {
+            border: none !important;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #6b7a88;
+        }
+
+    .day-table tbody tr td {
+        font-size: 0.94rem;
+        vertical-align: middle;
+        border-top: 1px solid #f0f2f7;
+    }
+
+    .day-row {
+        transition: background-color 0.12s ease, transform 0.06s ease, box-shadow 0.12s ease;
+        cursor: pointer;
+    }
+
+        .day-row:hover {
+            background-color: #f5f8ff;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+    /* Badges de estado */
+    .badge-estado {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.25rem 0.7rem;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        min-width: 88px;
+    }
+
+    .badge-estado-pendiente {
+        background-color: #fff7e0;
+        color: #ad7a06;
+        border: 1px solid #f0d18f;
+    }
+
+    .badge-estado-activa {
+        background-color: #e3f7ea;
+        color: #1f7a42;
+        border: 1px solid #9ad3ad;
+    }
+
+    .badge-estado-cancelada {
+        background-color: #fde8e8;
+        color: #a0182b;
+        border: 1px solid #f5b1bc;
+    }
+
+    .badge-estado-otro {
+        background-color: #e5ecff;
+        color: #2643a1;
+        border: 1px solid #b5c5ff;
+    }
+
+    @@media (max-width: 576px) {
+        .day-title {
+            font-size: 1.35rem;
+        }
+
+        .day-icon {
+            width: 36px;
+            height: 36px;
+            font-size: 1.1rem;
+        }
+
+        .btn-add,
+        .btn-back {
+            width: 100%;
+            margin-bottom: 0.25rem;
+        }
+    }
+</style>

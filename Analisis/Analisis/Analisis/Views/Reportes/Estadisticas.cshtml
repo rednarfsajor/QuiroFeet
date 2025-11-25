@@ -1,0 +1,253 @@
+﻿@{
+    ViewBag.Title = "Estadísticas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    // Conversión segura a dynamic (con fallback vacío si hay null)
+    var citasProfesional = ViewBag.CitasPorProfesional as IEnumerable<dynamic> ?? new List<dynamic>();
+    var citasServicio = ViewBag.CitasPorServicio as IEnumerable<dynamic> ?? new List<dynamic>();
+    var clientesConMasCitas = ViewBag.ClientesConMasCitas as IEnumerable<dynamic> ?? new List<dynamic>();
+    var citasPorDia = ViewBag.CitasPorDia as IEnumerable<dynamic> ?? new List<dynamic>();
+    var citasPorMes = ViewBag.CitasPorMes as IEnumerable<dynamic> ?? new List<dynamic>();
+    var citasPorProfesionalServicio = ViewBag.CitasPorProfesionalServicio as IEnumerable<dynamic> ?? new List<dynamic>();
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+    body {
+        background: #f4f6f9;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .dashboard-container {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    h2 {
+        text-align: center;
+        color: #213435;
+        margin-bottom: 30px;
+        font-weight: 700;
+    }
+
+    .progress-card {
+        text-align: center;
+        padding: 20px;
+        border-radius: 15px;
+        background: #eaf4fc;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        margin-bottom: 20px;
+    }
+
+    .progress-circle {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin: 0 auto 15px auto;
+        background: conic-gradient(#007bff 75%, #e0e0e0 0%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.1rem;
+        color: #213435;
+    }
+
+    .table {
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+        .table th {
+            background-color: #f0f4f8;
+            color: #213435;
+        }
+
+    .chart-container {
+        background: linear-gradient(135deg, #e0f7fa, #e0ffe0);
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+        .chart-container h5 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #213435;
+            font-weight: 600;
+        }
+</style>
+
+<div class="dashboard-container">
+    <h2><i class="bi bi-bar-chart-fill"></i> Estadísticas Generales</h2>
+
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="progress-card">
+                <div class="progress-circle" style="background: conic-gradient(#28a745 100%, #e0e0e0 0%);">
+                    @((ViewBag.TotalIngresos != null) ? ((decimal)ViewBag.TotalIngresos).ToString("C") : "₡0")
+                </div>
+                <h5>Total Ingresos</h5>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="progress-card">
+                <div class="progress-circle" style="background: conic-gradient(#007bff 80%, #e0e0e0 0%);">
+                    @(ViewBag.VentaMasAlta != null ? ((decimal)ViewBag.VentaMasAlta.monto).ToString("C") : "No hay")
+                </div>
+                <h5>Venta más alta</h5>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="progress-card">
+                <div class="progress-circle" style="background: conic-gradient(#dc3545 50%, #e0e0e0 0%);">
+                    @(ViewBag.VentaMasBaja != null ? ((decimal)ViewBag.VentaMasBaja.monto).ToString("C") : "No hay")
+                </div>
+                <h5>Venta más baja</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <h5><i class="bi bi-bar-chart-line-fill"></i> Citas por Profesional y Servicio</h5>
+        <canvas id="barChart" height="100"></canvas>
+    </div>
+
+    <h4>Citas por Profesional</h4>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nombre Profesional</th>
+                <th>Total Citas</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (dynamic item in citasProfesional)
+            {
+                <tr>
+                    <td>@item.Profesional</td>
+                    <td>@item.Total</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4 class="mt-5">Citas por Servicio</h4>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nombre Servicio</th>
+                <th>Total Citas</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (dynamic item in citasServicio)
+            {
+                <tr>
+                    <td>@item.Servicio</td>
+                    <td>@item.Total</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4 class="mt-5">Clientes con más Citas</h4>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nombre Cliente</th>
+                <th>Total Citas</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (dynamic item in clientesConMasCitas)
+            {
+                <tr>
+                    <td>@item.Cliente</td>
+                    <td>@item.Total</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4 class="mt-5">Citas por Día</h4>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Día</th>
+                <th>Total Citas</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (dynamic item in citasPorDia)
+            {
+                <tr>
+                    <td>@item.Dia</td>
+                    <td>@item.Total</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4 class="mt-5">Citas por Mes</h4>
+    <table class="table table-bordered mb-5">
+        <thead>
+            <tr>
+                <th>Mes</th>
+                <th>Total Citas</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (dynamic item in citasPorMes)
+            {
+                <tr>
+                    <td>@item.Mes</td>
+                    <td>@item.Total</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    const dataFromServer = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(citasPorProfesionalServicio));
+
+    const profesionales = [...new Set(dataFromServer.map(item => item.Profesional))];
+    const servicios = [...new Set(dataFromServer.map(item => item.Servicio))];
+
+    const datasets = servicios.map(servicio => {
+        const color = '#' + Math.floor(Math.random() * 16777215).toString(16);
+        return {
+            label: servicio,
+            data: profesionales.map(p => {
+                const match = dataFromServer.find(item => item.Profesional === p && item.Servicio === servicio);
+                return match ? match.Total : 0;
+            }),
+            backgroundColor: color
+        };
+    });
+
+    const ctx = document.getElementById('barChart').getContext('2d');
+    const barChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: profesionales,
+            datasets: datasets
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+</script>

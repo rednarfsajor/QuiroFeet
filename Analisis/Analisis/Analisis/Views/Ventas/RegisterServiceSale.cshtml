@@ -1,0 +1,347 @@
+﻿@{
+    ViewBag.Title = "Registrar Venta de Servicio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="register-service-container">
+    <div class="register-service-header">
+        <div>
+            <h1><i class="bi bi-person-workspace"></i> Registrar Venta de Servicio</h1>
+            <p>Complete la información para registrar la venta del servicio ofrecido.</p>
+        </div>
+        <div class="service-badge">
+            <i class="bi bi-tools"></i> Nueva venta de servicio
+        </div>
+    </div>
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger mb-2" })
+
+    @using (Html.BeginForm("RegisterServiceSale", "Ventas", FormMethod.Post, new { @class = "service-form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <!-- Cliente -->
+        <div class="form-group">
+            <label for="id_cliente" class="form-label">
+                <i class="bi bi-person-fill"></i> Cliente
+            </label>
+            @Html.DropDownList(
+                "id_cliente",
+                (SelectList)ViewBag.Clientes,
+                "-- Seleccione un cliente --",
+                new { @class = "form-control", required = "required" }
+            )
+            <small class="form-hint">
+                Elija el cliente al que se le brindó el servicio.
+            </small>
+        </div>
+
+        <!-- Servicio -->
+        <div class="form-group">
+            <label for="id_servicio" class="form-label">
+                <i class="bi bi-gear-fill"></i> Servicio
+            </label>
+            @Html.DropDownList(
+                "id_servicio",
+                (SelectList)ViewBag.Servicios,
+                "-- Seleccione un servicio --",
+                new { @class = "form-control", required = "required" }
+            )
+            <small class="form-hint">
+                Seleccione el servicio que se realizó al cliente.
+            </small>
+        </div>
+
+        <!-- Resumen -->
+        <div class="service-summary">
+            <div class="summary-title">
+                <i class="bi bi-clipboard-check"></i> Resumen de la venta
+            </div>
+            <div class="summary-body">
+                <div class="summary-row">
+                    <span>Cliente:</span>
+                    <span id="summary-cliente">Sin seleccionar</span>
+                </div>
+                <div class="summary-row">
+                    <span>Servicio:</span>
+                    <span id="summary-servicio">Sin seleccionar</span>
+                </div>
+                <small class="summary-note">
+                    Verifique que el cliente y el servicio sean correctos antes de registrar la venta.
+                </small>
+            </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="actions">
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-check-circle"></i> Registrar Venta
+            </button>
+            <a href="@Url.Action("ListSales", "Ventas")" class="btn btn-secondary">
+                <i class="bi bi-arrow-left-circle"></i> Volver
+            </a>
+        </div>
+    }
+</div>
+
+<!-- Notificación -->
+<div id="notification" class="notification" style="display:none;">
+    <i class="bi bi-check2-circle"></i> Venta de servicio registrada exitosamente.
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const ddlCliente = document.getElementById("id_cliente");
+            const ddlServicio = document.getElementById("id_servicio");
+            const spanCliente = document.getElementById("summary-cliente");
+            const spanServicio = document.getElementById("summary-servicio");
+
+            function getSelectedText(select) {
+                if (!select) return "";
+                const idx = select.selectedIndex;
+                if (idx <= 0) return "";
+                return select.options[idx].text;
+            }
+
+            function actualizarResumen() {
+                const clienteText = getSelectedText(ddlCliente) || "Sin seleccionar";
+                const servicioText = getSelectedText(ddlServicio) || "Sin seleccionar";
+
+                spanCliente.textContent = clienteText;
+                spanServicio.textContent = servicioText;
+            }
+
+            if (ddlCliente) {
+                ddlCliente.addEventListener("change", actualizarResumen);
+            }
+
+            if (ddlServicio) {
+                ddlServicio.addEventListener("change", actualizarResumen);
+            }
+
+            // Inicializar resumen
+            actualizarResumen();
+
+            // Notificación por querystring ?success=true
+            if (window.location.href.includes("success=true")) {
+                const notification = document.getElementById("notification");
+                notification.style.display = "flex";
+                setTimeout(() => {
+                    notification.style.display = "none";
+                }, 3000);
+            }
+        });
+    </script>
+}
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .register-service-container {
+        max-width: 700px;
+        margin: 60px auto;
+        background-color: #ffffff;
+        padding: 32px 36px;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        color: #234449;
+    }
+
+    .register-service-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 24px;
+    }
+
+    .register-service-header h1 {
+        color: #234449;
+        font-size: 2rem;
+        margin-bottom: 6px;
+    }
+
+    .register-service-header p {
+        font-size: 0.95rem;
+        color: #555;
+        margin: 0;
+    }
+
+    .service-badge {
+        background: #e3f5f3;
+        color: #234449;
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        white-space: nowrap;
+    }
+
+    .service-form {
+        margin-top: 10px;
+    }
+
+    .form-group {
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #234449;
+        margin-bottom: 6px;
+        display: block;
+    }
+
+    .form-hint {
+        font-size: 0.8rem;
+        color: #777;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 9px 11px;
+        font-size: 0.95rem;
+        border: 1px solid #ced4da;
+        border-radius: 8px;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: #234449;
+        box-shadow: 0 0 0 3px rgba(35, 68, 73, 0.15);
+    }
+
+    .service-summary {
+        margin-top: 10px;
+        margin-bottom: 18px;
+        border-radius: 12px;
+        border: 1px solid #e0e7ec;
+        background: #f8fafc;
+        padding: 12px 16px;
+    }
+
+    .summary-title {
+        font-weight: 600;
+        font-size: 0.95rem;
+        margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: #234449;
+    }
+
+    .summary-body {
+        font-size: 0.9rem;
+    }
+
+    .summary-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 4px;
+    }
+
+    .summary-note {
+        font-size: 0.75rem;
+        color: #777;
+        display: block;
+        margin-top: 4px;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 14px;
+        margin-top: 18px;
+    }
+
+    .btn {
+        padding: 10px 22px;
+        font-size: 0.95rem;
+        border: none;
+        border-radius: 999px;
+        color: white;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+    }
+
+    .btn-primary {
+        background-color: #234449;
+    }
+
+    .btn-primary:hover {
+        background-color: #2d5760;
+        box-shadow: 0 6px 16px rgba(35, 68, 73, 0.25);
+        transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        box-shadow: 0 4px 12px rgba(92, 99, 106, 0.3);
+        transform: translateY(-1px);
+    }
+
+    .notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #28a745;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        animation: fadeInOut 3s ease;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    @@keyframes fadeInOut {
+        0% { opacity: 0; transform: translateY(-10px); }
+        10% { opacity: 1; transform: translateY(0); }
+        90% { opacity: 1; transform: translateY(0); }
+        100% { opacity: 0; transform: translateY(-10px); }
+    }
+
+    .text-danger {
+        color: #dc3545 !important;
+    }
+
+    @@media (max-width: 768px) {
+        .register-service-container {
+            margin: 20px;
+            padding: 20px;
+        }
+
+        .register-service-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .actions {
+            flex-direction: column-reverse;
+            align-items: stretch;
+        }
+
+        .actions .btn {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+</style>

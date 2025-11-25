@@ -1,0 +1,179 @@
+﻿@model Analisis.BD.Productos
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Inactivar Producto";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+
+<div class="deactivate-wrapper container my-5">
+
+    <div class="card shadow-sm border-0 deactivate-card">
+        <!-- Encabezado -->
+        <div class="deactivate-header d-flex align-items-center">
+            <div class="header-icon me-3">
+                <i class="bi bi-slash-circle"></i>
+            </div>
+            <div>
+                <h3 class="mb-1">Inactivar producto</h3>
+                <p class="mb-0">Esta acción deshabilita el producto para nuevas órdenes.</p>
+            </div>
+        </div>
+
+        <!-- Cuerpo -->
+        <div class="card-body text-center pt-3 pb-4">
+            <p class="mb-2 confirm-text">
+                ¿Estás seguro de que deseas inactivar este producto?
+            </p>
+
+            <h4 class="product-name mb-3">
+                @Model.nombre
+            </h4>
+
+            <div class="product-details text-start mx-auto">
+                <p>
+                    <span class="label">Descripción:</span>
+                    <span class="value">
+                        @(String.IsNullOrWhiteSpace(Model.descripcion) ? "--" : Model.descripcion)
+                    </span>
+                </p>
+                <p>
+                    <span class="label">Precio:</span>
+                    <span class="value">
+                        @(Model.precio.HasValue
+                            ? "₡ " + Model.precio.Value.ToString("N2")
+                            : "₡ 0,00")
+                    </span>
+                </p>
+            </div>
+
+            @using (Html.BeginForm("InactivarProducto", "Inventario", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.id)
+
+                <div class="mt-4 d-flex justify-content-center gap-2 flex-wrap">
+                    <button type="submit" class="btn btn-deactivate">
+                        <i class="bi bi-slash-circle me-2"></i> Inactivar
+                    </button>
+
+                    <a href="@Url.Action("Inventario", "Inventario")" class="btn btn-cancel">
+                        <i class="bi bi-arrow-left-circle me-2"></i> Cancelar
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    .deactivate-wrapper {
+        max-width: 640px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .deactivate-card {
+        border-radius: 18px;
+        overflow: hidden;
+        background: #ffffff;
+    }
+
+    .deactivate-header {
+        background: linear-gradient(90deg, #234449, #3e77f8);
+        color: #ffffff;
+        padding: 18px 22px;
+    }
+
+        .deactivate-header h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .deactivate-header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+    .header-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+    }
+
+    .confirm-text {
+        color: #334155;
+        font-size: 1rem;
+    }
+
+    .product-name {
+        color: #234449;
+        font-weight: 700;
+    }
+
+    .product-details {
+        max-width: 380px;
+        font-size: 0.95rem;
+        color: #475569;
+    }
+
+        .product-details p {
+            margin-bottom: 6px;
+        }
+
+        .product-details .label {
+            font-weight: 600;
+            color: #234449;
+            display: inline-block;
+            min-width: 95px;
+        }
+
+        .product-details .value {
+            color: #0f172a;
+        }
+
+    .btn-deactivate,
+    .btn-cancel {
+        min-width: 150px;
+        border-radius: 999px;
+        font-weight: 600;
+        padding: 9px 18px;
+        font-size: 0.95rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        border-width: 1px;
+        transition: all 0.2s ease;
+    }
+
+    .btn-deactivate {
+        background-color: #ef4444;
+        border-color: #b91c1c;
+        color: #ffffff;
+    }
+
+        .btn-deactivate:hover {
+            background-color: #b91c1c;
+            border-color: #991b1b;
+            box-shadow: 0 8px 18px rgba(185, 28, 28, 0.35);
+            transform: translateY(-1px);
+        }
+
+    .btn-cancel {
+        background-color: #e2e8f0;
+        border-color: #cbd5e1;
+        color: #1e293b;
+    }
+
+        .btn-cancel:hover {
+            background-color: #cbd5e1;
+            border-color: #94a3b8;
+            transform: translateY(-1px);
+        }
+</style>

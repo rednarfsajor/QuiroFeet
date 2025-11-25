@@ -1,0 +1,426 @@
+﻿@model Analisis.BD.Ventas
+@{
+    Layout = null;
+    ViewBag.Title = "Recibo de Venta";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+
+<div class="invoice-wrapper" id="recibo">
+    <!-- ENCABEZADO -->
+    <div class="invoice-header">
+        <div class="brand-block">
+            <div class="logo-box">
+                <img src="~/Imagenes/Logo.png" alt="Logo Quiropie" class="logo-fixed" />
+            </div>
+            <div class="brand-text">
+                <h1>Quiropie By Lucy</h1>
+                <p>www.quirofeet.com</p>
+                <p>Tel: 71602353 • Correo: info@quirofeet.com</p>
+            </div>
+        </div>
+
+        <div class="meta-block">
+            <p><span class="meta-label">Recibo #</span> <span class="meta-value">@Model.NumeroRecibo</span></p>
+            <p><span class="meta-label">Fecha</span> <span class="meta-value">@(Model.fecha?.ToString("dd/MM/yyyy") ?? "Sin fecha")</span></p>
+            <p><span class="meta-label">Hora</span> <span class="meta-value">@(Model.fecha?.ToString("hh:mm tt") ?? "Sin hora")</span></p>
+        </div>
+    </div>
+
+    <!-- DATOS CLIENTE -->
+    <div class="section-card">
+        <div class="section-title">
+            <i class="bi bi-person-vcard"></i> Datos del Cliente
+        </div>
+        <div class="section-body two-cols">
+            <div>
+                <p><span class="field-label">Nombre:</span> @(Model.Clientes?.nombre ?? "No disponible")</p>
+                @* Ajusta el nombre de la propiedad según tu modelo (Cedula, Identificacion, etc.) *@
+                @* <p><span class="field-label">Cédula:</span> @Model.Clientes.Cedula</p> *@
+            </div>
+            <div>
+                <p><span class="field-label">Tipo de venta:</span> @(Model.servicio == "True" ? "Servicio" : "Producto")</p>
+                <p><span class="field-label">Detalle general:</span> @Model.detalle</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- DETALLE DE LÍNEAS -->
+    <div class="section-card">
+        <div class="section-title">
+            <i class="bi bi-receipt-cutoff"></i> Detalle del Recibo
+        </div>
+
+        <table class="detail-table">
+            <thead>
+                <tr>
+                    <th>Producto / Servicio</th>
+                    <th>Descripción</th>
+                    <th class="text-center">Cantidad</th>
+                    <th class="text-right">Monto</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.servicio == "True")
+                {
+                    <tr>
+                        <td>Servicio</td>
+                        <td>@Model.detalle</td>
+                        <td class="text-center">1</td>
+                        <td class="text-right">₡@string.Format("{0:N2}", Model.monto)</td>
+                    </tr>
+                }
+                else if (Model.DetalleVenta != null && Model.DetalleVenta.Any())
+                {
+                    foreach (var detalle in Model.DetalleVenta)
+                    {
+                        var producto = detalle.Productos;
+                        <tr>
+                            <td>@(producto?.nombre ?? "Producto N/D")</td>
+                            <td>@(producto?.descripcion ?? "Sin descripción")</td>
+                            <td class="text-center">@detalle.cantidad</td>
+                            <td class="text-right">₡@string.Format("{0:N2}", detalle.monto)</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4" class="text-center text-muted">
+                            No hay productos registrados.
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-right total-label">Total</td>
+                    <td class="text-right total-value">₡@string.Format("{0:N2}", Model.monto)</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <!-- MENSAJE -->
+    <p class="thank-you">¡Gracias por confiar en <strong>Quiropie By Lucy</strong>!</p>
+
+    <!-- ACCIONES (SOLO PANTALLA) -->
+    <div class="actions no-print">
+        <button class="btn btn-primary" onclick="window.print()">
+            <i class="bi bi-printer"></i> Imprimir
+        </button>
+        <button class="btn btn-success" onclick="downloadPDF()">
+            <i class="bi bi-file-earmark-pdf"></i> Descargar PDF
+        </button>
+        <a href="@Url.Action("ListReceipts", "Recibos")" class="btn btn-secondary">
+            <i class="bi bi-arrow-left-circle"></i> Volver al historial
+        </a>
+    </div>
+</div>
+
+<!-- JS PARA DESCARGAR PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+    async function downloadPDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        const receipt = document.getElementById("recibo");
+        const hiddenElements = document.querySelectorAll(".no-print");
+
+        hiddenElements.forEach(el => el.style.display = "none");
+
+        const canvas = await html2canvas(receipt, { scale: 2 });
+        const imgData = canvas.toDataURL('image/png');
+        const pdfWidth = doc.internal.pageSize.getWidth();
+        const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+        doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        doc.save("Recibo_QuiropieByLucy.pdf");
+
+        hiddenElements.forEach(el => el.style.display = "");
+    }
+</script>
+
+<style>
+    body {
+        font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #f3f5f7;
+        padding: 25px;
+    }
+
+    .invoice-wrapper {
+        max-width: 900px;
+        margin: 0 auto;
+        background: #ffffff;
+        padding: 35px 40px 30px;
+        border-radius: 16px;
+        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+    }
+
+    /* ===== HEADER ===== */
+    .invoice-header {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+    }
+
+    .brand-block {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .logo-box {
+        width: 60px;
+        height: 60px;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid #e2e8f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f9fafb;
+    }
+
+    .logo-fixed {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    .brand-text h1 {
+        font-size: 1.4rem;
+        margin: 0;
+        color: #234449;
+        font-weight: 700;
+    }
+
+    .brand-text p {
+        margin: 2px 0;
+        font-size: 0.85rem;
+        color: #6b7280;
+    }
+
+    .meta-block {
+        text-align: right;
+        font-size: 0.9rem;
+        color: #4b5563;
+        min-width: 190px;
+    }
+
+    .meta-label {
+        font-weight: 600;
+        color: #111827;
+    }
+
+    .meta-value {
+        margin-left: 5px;
+    }
+
+    /* ===== SECTIONS ===== */
+    .section-card {
+        border-radius: 14px;
+        border: 1px solid #e5e7eb;
+        padding: 16px 18px 14px;
+        margin-bottom: 18px;
+        background: #fafbff;
+    }
+
+    .section-title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #234449;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    .section-title i {
+        font-size: 1.1rem;
+    }
+
+    .section-body {
+        font-size: 0.9rem;
+        color: #374151;
+    }
+
+    .two-cols {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px 30px;
+    }
+
+    .field-label {
+        font-weight: 600;
+        color: #111827;
+    }
+
+    /* ===== TABLE ===== */
+    .detail-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 8px;
+        font-size: 0.9rem;
+    }
+
+    .detail-table thead tr {
+        background: #234449;
+        color: #ffffff;
+    }
+
+    .detail-table th,
+    .detail-table td {
+        padding: 8px 10px;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .detail-table th:first-child {
+        border-top-left-radius: 10px;
+    }
+
+    .detail-table th:last-child {
+        border-top-right-radius: 10px;
+    }
+
+    .detail-table tbody tr:nth-child(even) {
+        background: #f9fafb;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+
+    .text-muted {
+        color: #9ca3af;
+    }
+
+    .total-label {
+        font-weight: 700;
+        font-size: 0.95rem;
+        border-bottom: none;
+    }
+
+    .total-value {
+        font-weight: 800;
+        font-size: 1rem;
+        border-bottom: none;
+        color: #234449;
+    }
+
+    /* ===== THANK YOU ===== */
+    .thank-you {
+        text-align: center;
+        margin-top: 22px;
+        font-size: 0.9rem;
+        color: #4b5563;
+        font-style: italic;
+    }
+
+    /* ===== BOTONES ===== */
+    .actions {
+        text-align: center;
+        margin-top: 25px;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 9px 18px;
+        border-radius: 999px;
+        border: none;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: 0.18s ease;
+    }
+
+    .btn i {
+        font-size: 1rem;
+    }
+
+    .btn-primary {
+        background: #234449;
+        color: #ffffff;
+    }
+
+    .btn-primary:hover {
+        background: #1b2f37;
+    }
+
+    .btn-success {
+        background: #16a34a;
+        color: #ffffff;
+    }
+
+    .btn-success:hover {
+        background: #15803d;
+    }
+
+    .btn-secondary {
+        background: #6b7280;
+        color: #ffffff;
+    }
+
+    .btn-secondary:hover {
+        background: #4b5563;
+    }
+
+    .no-print {
+        display: block;
+    }
+
+    @@media print {
+        body {
+            background: #ffffff;
+            padding: 0;
+        }
+
+        .invoice-wrapper {
+            box-shadow: none;
+            border-radius: 0;
+            margin: 0;
+        }
+
+        .no-print {
+            display: none !important;
+        }
+
+        @@page {
+            margin: 10mm;
+        }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @@media (max-width: 640px) {
+        .invoice-wrapper {
+            padding: 20px 15px;
+            border-radius: 0;
+        }
+
+        .invoice-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .meta-block {
+            text-align: left;
+        }
+
+        .two-cols {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

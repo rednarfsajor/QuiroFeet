@@ -1,0 +1,183 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Crear Orden de Compra";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<div class="order-wrapper container my-5">
+
+    <div class="card shadow-sm border-0 order-card">
+
+        <!-- ENCABEZADO -->
+        <div class="order-header d-flex align-items-center">
+            <div class="header-icon me-3">
+                <i class="bi bi-file-earmark-plus"></i>
+            </div>
+            <div>
+                <h3 class="mb-1">Crear orden de compra</h3>
+                <p class="mb-0">Registra una nueva solicitud de compra para abastecer inventario.</p>
+            </div>
+        </div>
+
+        <!-- FORMULARIO -->
+        <div class="card-body py-4 px-4">
+            <form action="@Url.Action("RegistrarOrdenCompra", "Inventario")" method="post">
+
+                <!-- PRODUCTO -->
+                <div class="form-group mb-3">
+                    <label class="form-label">Producto</label>
+                    <div class="input-icon">
+                        <i class="bi bi-box-seam"></i>
+                        <input type="text" name="producto" class="form-control"
+                               placeholder="Nombre del producto" required />
+                    </div>
+                </div>
+
+                <!-- CANTIDAD -->
+                <div class="form-group mb-3">
+                    <label class="form-label">Cantidad</label>
+                    <div class="input-icon">
+                        <i class="bi bi-123"></i>
+                        <input type="number"
+                               name="cantidad"
+                               class="form-control"
+                               placeholder="Cantidad a solicitar"
+                               min="1"
+                               required />
+                    </div>
+                </div>
+
+                <!-- BOTONES -->
+                <div class="d-flex justify-content-center mt-4 gap-3 flex-wrap">
+                    <button type="submit" class="btn btn-submit">
+                        <i class="bi bi-check-circle-fill me-1"></i> Crear orden
+                    </button>
+
+                    <a href="@Url.Action("Inventario", "Inventario")" class="btn btn-cancel">
+                        <i class="bi bi-arrow-left-circle me-1"></i> Cancelar
+                    </a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .order-wrapper {
+        max-width: 640px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .order-card {
+        border-radius: 18px;
+        overflow: hidden;
+        background: #ffffff;
+    }
+
+    /* HEADER */
+    .order-header {
+        background: linear-gradient(90deg, #234449, #3e77f8);
+        color: #ffffff;
+        padding: 18px 22px;
+    }
+
+        .order-header h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+        }
+
+        .order-header p {
+            font-size: 0.92rem;
+            opacity: 0.9;
+        }
+
+    .header-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.18);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #234449;
+        margin-bottom: 6px;
+    }
+
+    /* INPUTS */
+    .input-icon {
+        display: flex;
+        align-items: center;
+        background: #f8fafc;
+        border: 1px solid #cbd5e1;
+        border-radius: 12px;
+        padding: 9px 12px;
+        transition: all 0.2s ease;
+    }
+
+        .input-icon i {
+            margin-right: 10px;
+            font-size: 1.3rem;
+            color: #3e77f8;
+        }
+
+        .input-icon input {
+            border: none !important;
+            outline: none !important;
+            background: transparent;
+            width: 100%;
+            font-size: 0.95rem;
+            padding-top: 4px;
+        }
+
+        .input-icon:focus-within {
+            border-color: #3b82f6;
+            background-color: #fff;
+            box-shadow: 0 0 0 2px rgba(59,130,246,0.18);
+        }
+
+    /* BOTONES */
+    .btn-submit,
+    .btn-cancel {
+        min-width: 150px;
+        padding: 10px 18px;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 0.96rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        transition: all 0.2s ease;
+    }
+
+    .btn-submit {
+        background-color: #3e77f8;
+        border: none;
+        color: #fff;
+    }
+
+        .btn-submit:hover {
+            background-color: #234449;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(37,99,235,0.35);
+        }
+
+    .btn-cancel {
+        background-color: #e2e8f0;
+        border: 1px solid #cbd5e1;
+        color: #1e293b;
+    }
+
+        .btn-cancel:hover {
+            background-color: #cbd5e1;
+            transform: translateY(-1px);
+        }
+</style>

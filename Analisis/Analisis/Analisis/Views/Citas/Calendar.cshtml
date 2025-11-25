@@ -1,0 +1,204 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Calendario";
+}
+
+<div class="calendar-container">
+    <header>
+        <div class="nav-controls">
+            <button class="nav-btn" id="prev-year"><i class="fas fa-angle-double-left"></i></button>
+            <button class="nav-btn" id="prev-month"><i class="fas fa-chevron-left"></i></button>
+        </div>
+        <h1 id="current-month"></h1>
+        <div class="nav-controls">
+            <button class="nav-btn" id="next-month"><i class="fas fa-chevron-right"></i></button>
+            <button class="nav-btn" id="next-year"><i class="fas fa-angle-double-right"></i></button>
+        </div>
+    </header>
+    <table>
+        <thead>
+            <tr>
+                <th>Dom</th>
+                <th>Lun</th>
+                <th>Mar</th>
+                <th>Mié</th>
+                <th>Jue</th>
+                <th>Vie</th>
+                <th>Sáb</th>
+            </tr>
+        </thead>
+        <tbody id="calendar-body"></tbody>
+    </table>
+</div>
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f9fafb;
+        margin: 0;
+        color: #fff;
+    }
+
+    .calendar-container {
+        background-color: #234449;
+        border-radius: 16px;
+        padding: 30px;
+        width: 85vw;
+        max-width: 900px;
+        margin: 30px auto;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+
+    .nav-controls {
+        display: flex;
+        gap: 10px;
+    }
+
+    h1 {
+        font-size: 24px;
+        color: #93ded7;
+        text-align: center;
+        margin: 0 10px;
+    }
+
+    .nav-btn {
+        background: none;
+        border: none;
+        color: #93ded7;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th {
+        color: #93ded7;
+        font-size: 16px;
+        padding-bottom: 10px;
+        text-align: center;
+    }
+
+    td {
+        width: 14.28%;
+        height: 70px;
+        text-align: center;
+        font-size: 18px;
+        color: white;
+        border-radius: 50%;
+        transition: background-color 0.3s;
+    }
+
+        td.active {
+            background-color: #ff3b30;
+            color: white;
+        }
+
+        td:not(.empty):hover {
+            background-color: #3e77f8;
+            cursor: pointer;
+        }
+
+    .empty {
+        background-color: transparent;
+    }
+</style>
+
+<script>
+    const calendarBody = document.getElementById('calendar-body');
+    const currentMonthElement = document.getElementById('current-month');
+    const prevMonthButton = document.getElementById('prev-month');
+    const nextMonthButton = document.getElementById('next-month');
+    const prevYearButton = document.getElementById('prev-year');
+    const nextYearButton = document.getElementById('next-year');
+
+    let selectedDate = new Date();
+
+    function generateCalendar(date) {
+        calendarBody.innerHTML = '';
+
+        const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+        const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+
+        const options = { month: 'long', year: 'numeric' };
+        let monthText = date.toLocaleDateString('es-ES', options);
+        currentMonthElement.textContent = monthText.charAt(0).toUpperCase() + monthText.slice(1);
+
+        const totalDays = lastDay.getDate();
+        const startDay = firstDay.getDay();
+        let day = 1;
+
+        for (let i = 0; i < 6; i++) {
+            const row = document.createElement('tr');
+
+            for (let j = 0; j < 7; j++) {
+                const cell = document.createElement('td');
+
+                if (i === 0 && j < startDay) {
+                    cell.classList.add('empty');
+                } else if (day <= totalDays) {
+                    cell.textContent = day;
+
+                    const today = new Date();
+                    if (
+                        day === today.getDate() &&
+                        date.getMonth() === today.getMonth() &&
+                        date.getFullYear() === today.getFullYear()
+                    ) {
+                        cell.classList.add('active');
+                    }
+
+                    cell.addEventListener('click', () => {
+                        document.querySelectorAll('td').forEach(td => td.classList.remove('active'));
+                        cell.classList.add('active');
+                        const selectedDate = `${cell.textContent}/${date.getMonth() + 1}/${date.getFullYear()}`;
+                        window.location.href = `/Citas/Day?fecha=${encodeURIComponent(selectedDate)}`;
+                    });
+
+                    day++;
+                } else {
+                    cell.classList.add('empty');
+                }
+
+                row.appendChild(cell);
+            }
+
+            calendarBody.appendChild(row);
+        }
+    }
+
+    prevMonthButton.addEventListener('click', () => {
+        selectedDate.setMonth(selectedDate.getMonth() - 1);
+        generateCalendar(selectedDate);
+    });
+
+    nextMonthButton.addEventListener('click', () => {
+        selectedDate.setMonth(selectedDate.getMonth() + 1);
+        generateCalendar(selectedDate);
+    });
+
+    prevYearButton.addEventListener('click', () => {
+        selectedDate.setFullYear(selectedDate.getFullYear() - 1);
+        generateCalendar(selectedDate);
+    });
+
+    nextYearButton.addEventListener('click', () => {
+        selectedDate.setFullYear(selectedDate.getFullYear() + 1);
+        generateCalendar(selectedDate);
+    });
+
+    generateCalendar(selectedDate);
+</script>
+
+<!-- Asegúrate de tener FontAwesome para que los íconos se vean -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">

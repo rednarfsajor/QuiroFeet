@@ -1,0 +1,138 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Anular Recibo";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+
+<div class="cancel-wrapper">
+    <div class="cancel-card">
+
+        <div class="icon-circle">
+            <i class="bi bi-x-octagon-fill"></i>
+        </div>
+
+        <h1 class="title">Anular Recibo</h1>
+
+        <p class="subtitle">
+            ¿Desea anular el recibo <strong>#@ViewBag.ReceiptNumber</strong>?
+        </p>
+
+        <p class="warning-text">
+            Esta acción es permanente y se registrará en el historial del sistema.
+        </p>
+
+        <form action="/Recibos/ConfirmCancelReceipt" method="post" class="cancel-form">
+            <input type="hidden" name="ReceiptNumber" value="@ViewBag.ReceiptNumber" />
+
+            <button type="submit" class="btn-danger-action">
+                <i class="bi bi-trash3"></i> Confirmar Anulación
+            </button>
+
+            <a href="/Recibos/ListReceipts" class="btn-secondary-action">
+                <i class="bi bi-arrow-left"></i> Regresar
+            </a>
+        </form>
+
+    </div>
+</div>
+
+<style>
+/* ======== CONTENEDOR GENERAL ======== */
+.cancel-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+.cancel-card {
+    max-width: 520px;
+    background: #ffffff;
+    padding: 45px 40px;
+    border-radius: 18px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    text-align: center;
+    animation: fadeIn 0.45s ease-in-out;
+}
+
+/* ======== ICONO ======== */
+.icon-circle {
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    margin: 0 auto 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(231, 76, 60, 0.15);
+}
+
+.icon-circle i {
+    font-size: 52px;
+    color: #e74c3c;
+}
+
+/* ======== TEXTOS ======== */
+.title {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: #234449;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #34495e;
+    margin-bottom: 10px;
+}
+
+.warning-text {
+    color: #b33939;
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+}
+
+/* ======== BOTONES ======== */
+.cancel-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-danger-action {
+    background: #e74c3c;
+    color: #fff;
+    padding: 13px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: 0.2s ease;
+    font-weight: 600;
+}
+
+.btn-danger-action:hover {
+    background: #c0392b;
+}
+
+.btn-secondary-action {
+    background: #234449;
+    color: #fff;
+    padding: 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 0.98rem;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.btn-secondary-action:hover {
+    background: #1b2f37;
+}
+
+/* ======== ANIMACIÓN ======== */
+@@media fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>

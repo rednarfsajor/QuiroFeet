@@ -1,0 +1,116 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Usuario actualizado";
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+
+<div class="user-update-wrapper">
+    <div class="user-update-card">
+        <div class="user-update-icon">
+            <i class="bi bi-check-circle-fill"></i>
+        </div>
+
+        <h1 class="user-update-title">
+            Usuario actualizado
+        </h1>
+
+        <p class="user-update-text">
+            Los datos del usuario <strong>@ViewBag.FullName</strong> se han actualizado correctamente.
+        </p>
+
+        <a href="@Url.Action("ListUser", "Usuarios")" class="btn-back-users">
+            <i class="bi bi-arrow-left-circle me-1"></i>
+            Volver a la lista de usuarios
+        </a>
+    </div>
+</div>
+
+<style>
+    .user-update-wrapper {
+        min-height: calc(100vh - 80px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 15px;
+        background-color: #f3f6fb;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .user-update-card {
+        max-width: 540px;
+        width: 100%;
+        background-color: #ffffff;
+        padding: 36px 30px 32px;
+        border-radius: 20px;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+        text-align: center;
+    }
+
+    .user-update-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        margin: 0 auto 14px;
+        background-color: #e6f7ec;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .user-update-icon i {
+        font-size: 2rem;
+        color: #28a745;
+    }
+
+    .user-update-title {
+        color: #234449;
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    .user-update-text {
+        font-size: 0.98rem;
+        color: #5f6b73;
+        margin-bottom: 24px;
+    }
+
+    .btn-back-users {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 22px;
+        border-radius: 999px;
+        background-color: #234449;
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        border: none;
+        box-shadow: 0 4px 10px rgba(35, 68, 73, 0.35);
+        transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.05s ease;
+    }
+
+    .btn-back-users:hover {
+        background-color: #3e77f8;
+        box-shadow: 0 4px 12px rgba(62, 119, 248, 0.45);
+        transform: translateY(-1px);
+        color: #ffffff;
+    }
+
+    .btn-back-users i {
+        font-size: 1rem;
+    }
+
+    @@media (max-width: 576px) {
+        .user-update-card {
+            padding: 28px 20px 26px;
+        }
+
+        .user-update-title {
+            font-size: 1.5rem;
+        }
+    }
+</style>
