@@ -1,82 +1,468 @@
-﻿@{
+﻿@model IEnumerable<Analisis.BD.Clientes>
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Gestión de Clientes";
+    ViewBag.Title = "Clientes";
+
+    string filtroEstado = ViewBag.FiltroEstado as string ?? "Todos";
+    string busquedaActual = ViewBag.CurrentSearch as string ?? "";
+
+    int pageNumber = ViewBag.PageNumber != null ? (int)ViewBag.PageNumber : 1;
+    int totalPages = ViewBag.TotalPages != null ? (int)ViewBag.TotalPages : 1;
+    int totalItems = ViewBag.TotalItems != null ? (int)ViewBag.TotalItems : (Model?.Count() ?? 0);
 }
 
-<div class="receipts-container" style="font-family: 'Poppins', sans-serif;">
-    <h1>Gestión de Clientes</h1>
-    <p>Seleccione una opción para continuar.</p>
+<div class="qf-page-header">
+    <div>
+        <h1 class="qf-page-title">
+            <i class="bi bi-people-fill"></i> Clientes
+        </h1>
+        <p class="qf-page-subtitle">
+            Gestión y administración de clientes registrados en QuiroFeet.
+        </p>
+    </div>
 
-    <div class="options">
-        <!-- Botón para Crear Clientes -->
-        <a href="@Url.Action("CreateClient", "Clientes")" class="option-card">
-            <i class="bi bi-person-fill-add"></i>
-            <h3>Registrar Cliente</h3>
-            <p>Ingresar nuevos clientes en el sistema</p>
-        </a>
-
-        <!-- Botón para Ver Clientes -->
-        <a href="@Url.Action("ListClients", "Clientes")" class="option-card">
-            <i class="bi bi-people-fill"></i>
-            <h3>Ver Clientes</h3>
-            <p>Consultar el listado de clientes</p>
+    <div class="qf-gap-1">
+        <a href="@Url.Action("CreateClient", "Clientes")" class="qf-btn qf-btn-primary">
+            <i class="bi bi-person-fill-add"></i> Agregar Cliente
         </a>
     </div>
 </div>
 
-<style>
-    .receipts-container {
-        max-width: 900px;
-        margin: 80px auto;
-        text-align: center;
-        padding: 20px;
-    }
+<div class="qf-card" style="margin-bottom: 1rem;">
+    <div class="qf-filters">
+        @using (Html.BeginForm("ClientIndex", "Clientes", FormMethod.Get, new { @class = "qf-filters-form" }))
+        {
+            <div class="qf-filters-left">
+                <label class="qf-form-label">Buscar</label>
+                @Html.TextBox("search", busquedaActual, new { @class = "qf-form-control", placeholder = "Nombre, cédula, correo..." })
+            </div>
 
-    h1 {
-        color: #234449;
-        font-size: 2.5em;
-        margin-bottom: 10px;
-    }
+            <div class="qf-filters-middle">
+                <label class="qf-form-label">Estado</label>
+                <div class="qf-filters-chips">
+                    <button type="submit" name="estado" value="Todos" class="qf-chip @(filtroEstado == "Todos" ? "qf-chip-active" : "")">Todos</button>
+                    <button type="submit" name="estado" value="Activos" class="qf-chip @(filtroEstado == "Activos" ? "qf-chip-active" : "")">Activos</button>
+                    <button type="submit" name="estado" value="Inactivos" class="qf-chip @(filtroEstado == "Inactivos" ? "qf-chip-active" : "")">Inactivos</button>
+                </div>
+            </div>
 
-    p {
-        font-size: 1.2em;
-        color: #555;
-        margin-bottom: 40px;
-    }
+            <div class="qf-filters-right">
+                <button type="submit" class="qf-btn qf-btn-primary">
+                    <i class="bi bi-search"></i> Aplicar
+                </button>
+            </div>
+        }
+    </div>
+</div>
 
-    .options {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 30px;
-    }
+@if (Model != null)
+{
+    <p class="qf-results-info">
+        Mostrando <strong>@Model.Count()</strong> de <strong>@totalItems</strong> clientes • Página <strong>@pageNumber</strong> de <strong>@totalPages</strong>
+    </p>
+}
 
-    .option-card {
-        width: 280px;
-        background-color: #ffffff;
-        padding: 35px 30px;
-        border-radius: 12px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        text-decoration: none;
-        color: #234449;
-        transition: transform 0.3s, background-color 0.3s;
-    }
+<div class="qf-table-card">
+    <div class="qf-table-wrapper">
+        <table class="qf-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cédula</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Estado</th>
+                    <th style="width: 160px;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var cliente in Model)
+                    {
+                        <tr>
+                            <td>@cliente.id</td>
+                            <td>@(string.IsNullOrEmpty(cliente.cedula) ? "--" : cliente.cedula)</td>
+                            <td>@cliente.nombre</td>
+                            <td>@cliente.correo</td>
+                            <td>@cliente.telefono</td>
 
-        .option-card:hover {
-            transform: translateY(-10px);
-            background-color: #f0f6ff;
+                            <td>
+                                @if (cliente.activo)
+                                {
+                                    <span class="qf-badge qf-badge-success-flat">Activo</span>
+                                }
+                                else
+                                {
+                                    <span class="qf-badge qf-badge-muted-flat">Inactivo</span>
+                                }
+                            </td>
+
+                            <td>
+                                <div class="qf-gap-1">
+                                    <a href="@Url.Action("EditClient", "Clientes", new { id = cliente.id })"
+                                       class="qf-btn qf-btn-primary qf-btn-icon"
+                                       title="Editar cliente">
+                                        <i class="bi bi-pencil-fill"></i>
+                                    </a>
+
+                                    @if (cliente.activo)
+                                    {
+                                        <a href="@Url.Action("ConfirmarDesactivar", "Clientes", new { id = cliente.id })"
+                                           class="qf-btn qf-btn-danger qf-btn-icon"
+                                           title="Inactivar">
+                                            <i class="bi bi-person-dash-fill"></i>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("ConfirmarActivar", "Clientes", new { id = cliente.id })"
+                                           class="qf-btn qf-btn-primary qf-btn-icon"
+                                           title="Reactivar">
+                                            <i class="bi bi-person-check-fill"></i>
+                                        </a>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="7">No se encontraron clientes con los filtros seleccionados.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@if (totalPages > 1)
+{
+    <div class="qf-pagination">
+        <ul class="qf-pagination-list">
+            @* Primera / Anterior *@
+            @if (pageNumber > 1)
+            {
+                <li><a href="@Url.Action("ClientIndex", new { page = 1, estado = filtroEstado, search = busquedaActual })">&laquo;</a></li>
+                <li><a href="@Url.Action("ClientIndex", new { page = pageNumber - 1, estado = filtroEstado, search = busquedaActual })">&lsaquo;</a></li>
+            }
+            else
+            {
+                <li class="disabled"><span>&laquo;</span></li>
+                <li class="disabled"><span>&lsaquo;</span></li>
+            }
+
+            @* Números *@
+            @{
+                for (int i = 1; i <= totalPages; i++)
+                {
+                    if (i == pageNumber)
+                    {
+                        <li class="active"><span>@i</span></li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("ClientIndex", new { page = i, estado = filtroEstado, search = busquedaActual })">@i</a></li>
+                    }
+                }
+            }
+
+            @* Siguiente / Última *@
+            @if (pageNumber < totalPages)
+            {
+                <li><a href="@Url.Action("ClientIndex", new { page = pageNumber + 1, estado = filtroEstado, search = busquedaActual })">&rsaquo;</a></li>
+                <li><a href="@Url.Action("ClientIndex", new { page = totalPages, estado = filtroEstado, search = busquedaActual })">&raquo;</a></li>
+            }
+            else
+            {
+                <li class="disabled"><span>&rsaquo;</span></li>
+                <li class="disabled"><span>&raquo;</span></li>
+            }
+        </ul>
+    </div>
+}
+
+@section Styles{
+    <style>
+        /* ===== CONTENEDORES GENERALES ===== */
+        .qf-page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
         }
 
-        .option-card i {
-            font-size: 3.2em;
-            color: #3e77f8;
-            margin-bottom: 20px;
+        .qf-page-title {
+            font-size: 2.3rem;
+            margin: 0;
+            color: #234449;
         }
 
-    h3 {
-        margin-bottom: 10px;
-        font-size: 1.5em;
-    }
-</style>
+            .qf-page-title i {
+                margin-right: .5rem;
+            }
 
+        .qf-page-subtitle {
+            margin: .25rem 0 0;
+            color: #6B7280;
+            font-size: .95rem;
+        }
 
+        .qf-gap-1 {
+            display: flex;
+            gap: .5rem;
+            flex-wrap: wrap;
+        }
+
+        .qf-card,
+        .qf-table-card {
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+            padding: 1.5rem 1.75rem;
+        }
+
+        .qf-table-card {
+            margin-top: 1rem;
+        }
+
+        .qf-results-info {
+            margin: .25rem 0 1rem;
+            font-size: .9rem;
+            color: #6B7280;
+        }
+
+        /* ===== BOTONES ===== */
+        .qf-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .35rem;
+            padding: .45rem .9rem;
+            border-radius: 999px;
+            border: none;
+            font-size: .85rem;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background .15s, transform .1s, box-shadow .15s;
+        }
+
+        .qf-btn-primary {
+            background: #0FC57C;
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(15, 197, 124, 0.35);
+        }
+
+            .qf-btn-primary:hover {
+                background: #0aa164;
+                transform: translateY(-1px);
+            }
+
+        .qf-btn-secondary {
+            background: #E5E7EB;
+            color: #234449;
+        }
+
+            .qf-btn-secondary:hover {
+                background: #d1d5db;
+            }
+
+        .qf-btn-danger {
+            background: #EF4444;
+            color: #ffffff;
+        }
+
+            .qf-btn-danger:hover {
+                background: #dc2626;
+            }
+
+        .qf-btn-icon {
+            padding-inline: .6rem;
+            min-width: 36px;
+        }
+
+        .inline-form {
+            display: inline-block;
+        }
+
+        /* ===== FORM / FILTROS ===== */
+        .qf-filters {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .qf-filters-form {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+
+        .qf-filters-left {
+            flex: 1 1 260px;
+        }
+
+        .qf-filters-middle {
+            flex: 1 1 260px;
+        }
+
+        .qf-filters-right {
+            flex: 0 0 auto;
+        }
+
+        .qf-form-label {
+            display: block;
+            font-size: .8rem;
+            font-weight: 600;
+            color: #4B5563;
+            margin-bottom: .25rem;
+        }
+
+        .qf-form-control {
+            width: 100%;
+            padding: .45rem .65rem;
+            border-radius: 10px;
+            border: 1px solid #D1D5DB;
+            font-size: .85rem;
+            outline: none;
+        }
+
+            .qf-form-control:focus {
+                border-color: #0FC57C;
+                box-shadow: 0 0 0 1px rgba(15, 197, 124, 0.25);
+            }
+
+        .qf-filters-chips {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .qf-chip {
+            border-radius: 999px;
+            border: 1px solid #D1D5DB;
+            background: #FFFFFF;
+            padding: 0.25rem 0.9rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s, border 0.15s;
+        }
+
+        .qf-chip-active {
+            background: #0FC57C;
+            color: #FFFFFF;
+            border-color: #0FC57C;
+        }
+
+        /* ===== TABLA ===== */
+        .qf-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .qf-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .9rem;
+        }
+
+            .qf-table thead tr {
+                background: #234449;
+                color: #ffffff;
+            }
+
+            .qf-table th,
+            .qf-table td {
+                padding: .75rem 1rem;
+                text-align: left;
+                border-bottom: 1px solid #E5E7EB;
+                vertical-align: middle;
+            }
+
+            .qf-table tbody tr:nth-child(odd) {
+                background: #F9FAFB;
+            }
+
+            .qf-table tbody tr:hover {
+                background: #ECFEF3;
+            }
+
+        /* ===== BADGES PLANOS (solo borde, sin relleno para que no parezcan botón) ===== */
+        .qf-badge-success-flat {
+            background: transparent;
+            color: #166534;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: .75rem;
+            border: 1px solid #86efac; /* verde suave */
+            font-weight: 500;
+        }
+
+        .qf-badge-muted-flat {
+            background: transparent;
+            color: #374151;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: .75rem;
+            border: 1px solid #d1d5db; /* gris suave */
+            font-weight: 500;
+        }
+
+        /* ===== PAGINACIÓN ===== */
+        .qf-pagination {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .qf-pagination-list {
+            display: flex;
+            list-style: none;
+            gap: .3rem;
+            padding-left: 0;
+        }
+
+            .qf-pagination-list li a,
+            .qf-pagination-list li span {
+                padding: .3rem .7rem;
+                border-radius: 999px;
+                border: 1px solid #D1D5DB;
+                text-decoration: none;
+                font-size: .8rem;
+                color: #234449;
+            }
+
+            .qf-pagination-list li.active span {
+                background: #0FC57C;
+                color: white;
+                border-color: #0FC57C;
+            }
+
+            .qf-pagination-list li.disabled span {
+                opacity: .4;
+                cursor: default;
+            }
+
+        @@media (max-width: 768px) {
+            .qf-page-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .qf-pagination {
+                justify-content: center;
+            }
+        }
+    </style>
+}
