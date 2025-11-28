@@ -1,64 +1,198 @@
-﻿@{
+﻿@model Analisis.BD.Productos
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Inactivar Producto";
+    ViewBag.Title = "Inactivar producto";
+
+    // Texto legible según el estado del producto
+    var estadoTexto = Model.activo == 1 ? "Activo" : "Inactivo";
 }
 
-<!-- Estilos CSS -->
-<style>
-    .form-container {
-        max-width: 600px;
-        margin: 100px auto;
-        padding: 40px;
-        background-color: #fff;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        border-radius: 12px;
-    }
+<div class="qf-page-header">
+    <div>
+        <h1 class="qf-page-title">
+            <i class="bi bi-slash-circle"></i> Inactivar producto
+        </h1>
+        <p class="qf-page-subtitle">
+            El producto no se eliminará, solo quedará inactivo en el inventario.
+        </p>
+    </div>
+</div>
 
-    h2 {
-        color: #234449;
-        font-size: 2.5em;
-        margin-bottom: 20px;
-    }
+<div class="qf-form-wrapper">
+    <div class="qf-form-card">
+        <div class="qf-form-card-header">
+            <div>
+                <h2>Confirmar inactivación</h2>
+                <p>Revisa la información y confirma si deseas inactivar este producto.</p>
+            </div>
+        </div>
 
-    p {
-        font-size: 1.2em;
-        color: #555;
-        margin-bottom: 30px;
-    }
+        @using (Html.BeginForm("InactivarProducto", "Inventario", FormMethod.Post, new { @class = "qf-form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.id)
 
-    button {
-        background-color: #ff4c4c;
-        color: #fff;
-        padding: 12px 30px;
-        border-radius: 8px;
-        font-size: 1.2em;
-        margin-top: 20px;
-        width: 100%;
-        transition: transform 0.3s;
-    }
+            @* Por si en algún momento agregas reglas de validación *@
+            @Html.ValidationSummary(true, "", new { @class = "qf-validation-summary" })
 
-        button:hover {
-            transform: translateY(-5px);
-            background-color: #d13c3c;
+            <div class="qf-form-group">
+                <p class="qf-form-label">Producto</p>
+                <p><strong>@Model.nombre</strong></p>
+            </div>
+
+            <div class="qf-form-group">
+                <p class="qf-form-label">Descripción</p>
+                <p>@(string.IsNullOrWhiteSpace(Model.descripcion) ? "Sin descripción" : Model.descripcion)</p>
+            </div>
+
+            <div class="qf-form-group">
+                <p class="qf-form-label">Estado actual</p>
+                <p>@estadoTexto</p>
+            </div>
+
+            <div class="qf-form-actions">
+                <button type="submit" class="qf-btn qf-btn-danger">
+                    <i class="bi bi-slash-circle"></i> Inactivar producto
+                </button>
+
+                <a href="@Url.Action("Inventario", "Inventario")" class="qf-btn qf-btn-secondary">
+                    <i class="bi bi-x-lg"></i> Cancelar
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+@section Styles{
+    <style>
+        .qf-page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.8rem;
+            gap: 1rem;
         }
 
-    a {
-        display: block;
-        text-align: center;
-        font-size: 1.2em;
-        margin-top: 20px;
-        color: #234449;
-    }
-</style>
+        .qf-page-title {
+            font-size: 2.4rem;
+            margin: 0;
+            color: #234449;
+        }
 
-<div class="form-container">
-    <h2>Inactivar Producto</h2>
+            .qf-page-title i {
+                margin-right: .5rem;
+            }
 
-    <p>¿Estás seguro de que deseas inactivar este producto?</p>
+        .qf-page-subtitle {
+            margin: .25rem 0 0;
+            color: #6B7280;
+            font-size: .95rem;
+        }
 
-    <form action="#" method="post">
-        <button type="submit">Inactivar</button>
-    </form>
+        .qf-form-wrapper {
+            display: flex;
+            justify-content: center;
+        }
 
-    <a href="@Url.Action("Inventario", "Inventario")">Cancelar</a>
-</div>
+        .qf-form-card {
+            background: #ffffff;
+            border-radius: 22px;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.10);
+            padding: 2.2rem 2.6rem 2rem;
+            width: 100%;
+            max-width: 720px;
+        }
+
+        .qf-form-card-header {
+            margin-bottom: 1.4rem;
+            border-bottom: 1px solid #E5E7EB;
+            padding-bottom: 0.8rem;
+        }
+
+            .qf-form-card-header h2 {
+                font-size: 1.25rem;
+                margin: 0;
+                color: #234449;
+            }
+
+            .qf-form-card-header p {
+                margin: .2rem 0 0;
+                color: #6B7280;
+                font-size: .9rem;
+            }
+
+        .qf-form-group {
+            margin-bottom: 1rem;
+        }
+
+        .qf-form-label {
+            font-size: .86rem;
+            font-weight: 600;
+            color: #4B5563;
+            margin-bottom: .1rem;
+        }
+
+        .qf-form-actions {
+            margin-top: 1.9rem;
+            display: flex;
+            justify-content: flex-end;
+            gap: .8rem;
+            flex-wrap: wrap;
+        }
+
+        .qf-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .35rem;
+            padding: .5rem 1.2rem;
+            border-radius: 999px;
+            border: none;
+            font-size: .9rem;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background .15s, transform .1s, box-shadow .15s;
+        }
+
+        .qf-btn-primary {
+            background: #0FC57C;
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(15, 197, 124, 0.35);
+        }
+
+        .qf-btn-secondary {
+            background: #E5E7EB;
+            color: #234449;
+        }
+
+        .qf-btn-danger {
+            background: #EF4444;
+            color: #ffffff;
+        }
+
+        .qf-btn-primary:hover {
+            background: #0aa164;
+            transform: translateY(-1px);
+        }
+
+        .qf-btn-secondary:hover {
+            background: #d1d5db;
+        }
+
+        .qf-btn-danger:hover {
+            background: #dc2626;
+        }
+
+        @@media (max-width: 768px) {
+            .qf-form-card {
+                padding: 1.5rem 1.25rem;
+            }
+
+            .qf-form-actions {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+}

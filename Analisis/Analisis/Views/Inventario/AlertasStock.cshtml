@@ -1,38 +1,145 @@
 ﻿@model IEnumerable<Tuple<Analisis.BD.Inventario, Analisis.BD.Productos>>
 
 @{
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Alertas de Stock";
 }
 
-<h2>⚠️ Productos con Bajo Stock</h2>
+<div class="qf-page-header">
+    <div>
+        <h1 class="qf-page-title">
+            <i class="bi bi-exclamation-triangle-fill"></i> Alertas de stock
+        </h1>
+        <p class="qf-page-subtitle">
+            Productos cuyo inventario está por debajo del nivel recomendado.
+        </p>
+    </div>
+</div>
 
 @if (!Model.Any())
 {
-    <div class="alert alert-success">
-        Todos los productos tienen suficiente stock.
+    <div class="qf-form-card" style="max-width: 700px; margin: auto; text-align:center;">
+        <h3 style="color:#166534; margin-bottom:10px;">
+            <i class="bi bi-check-circle-fill"></i> Todo está en orden
+        </h3>
+        <p style="color:#4B5563;">No hay productos con stock bajo.</p>
     </div>
 }
 else
 {
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Producto</th>
-                
-                <th>Stock Actual</th>
-                
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr class="table-warning">
-                    <td>@item.Item2.nombre</td>
-                   
-                    <td><strong>@item.Item1.stock</strong></td>
-                   
-                </tr>
+    <div class="qf-table-card">
+        <div class="qf-table-wrapper">
+            <table class="qf-table">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Stock actual</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        var producto = item.Item2;
+                        var inv = item.Item1;
+
+                        <tr>
+                            <td>@producto.nombre</td>
+
+                            <td>
+                                <span class="qf-badge-danger-flat">
+                                    @inv.stock unidades
+                                </span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+@section Styles{
+    <style>
+
+        /* ===== HEADER ===== */
+        .qf-page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.8rem;
+            gap: 1rem;
+        }
+
+        .qf-page-title {
+            font-size: 2.3rem;
+            margin: 0;
+            color: #234449;
+        }
+
+            .qf-page-title i {
+                margin-right: .45rem;
             }
-        </tbody>
-    </table>
+
+        .qf-page-subtitle {
+            margin: .25rem 0 0;
+            color: #6B7280;
+            font-size: .95rem;
+        }
+
+        /* ===== CARD / TABLA ===== */
+        .qf-table-card {
+            background: #ffffff;
+            border-radius: 22px;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+            padding: 1.75rem 2rem;
+        }
+
+        .qf-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .qf-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .95rem;
+        }
+
+            .qf-table thead tr {
+                background: #234449;
+                color: #ffffff;
+            }
+
+            .qf-table th,
+            .qf-table td {
+                padding: .85rem 1rem;
+                text-align: left;
+                border-bottom: 1px solid #E5E7EB;
+            }
+
+            .qf-table tbody tr:nth-child(odd) {
+                background: #F9FAFB;
+            }
+
+            .qf-table tbody tr:hover {
+                background: #FFF7F7;
+            }
+
+        /* ===== BADGES ===== */
+        .qf-badge-danger-flat {
+            background: #FEF2F2;
+            color: #B91C1C;
+            padding: 6px 15px;
+            border-radius: 999px;
+            font-size: .8rem;
+            border: 1px solid #FECACA;
+            font-weight: 600;
+        }
+
+        @@media (max-width: 768px) {
+            .qf-table-card {
+                padding: 1.2rem;
+            }
+        }
+    </style>
 }

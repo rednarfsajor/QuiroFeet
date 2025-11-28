@@ -10,21 +10,37 @@ namespace QuiroFeet.Controllers
     {
         private QuiroFeetEntities6 db = new QuiroFeetEntities6();
 
-        // Acción principal: Mostrar la vista de inventario con la lista de productos activos
-        public ActionResult Inventario()
+        // LISTADO PRINCIPAL: Productos (activos e inactivos) con paginación
+        public ActionResult Inventario(int page = 1, int pageSize = 10)
         {
             if (Session["UsuarioId"] == null)
                 return RedirectToAction("Login", "Account");
 
-            var productos = db.Productos
-                             .Include(p => p.Proveedores)
-                             .Where(p => p.activo == 1)
-                             .ToList();
+            // Mostramos todos para poder ver estado y reactivar
+            var query = db.Productos
+                          .Include(p => p.Proveedores);
+
+            int totalItems = query.Count();
+            int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
+            if (totalPages == 0) totalPages = 1;
+            if (page < 1) page = 1;
+            if (page > totalPages) page = totalPages;
+
+            var productos = query
+                .OrderBy(p => p.id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            ViewBag.PageNumber = page;
+            ViewBag.TotalPages = totalPages;
+            ViewBag.TotalItems = totalItems;
 
             return View(productos);
         }
 
-        // GET: Mostrar formulario para registrar nuevo producto
+        // GET: Registrar nuevo producto
         public ActionResult RegistrarProducto()
         {
             if (Session["UsuarioId"] == null)
@@ -34,7 +50,7 @@ namespace QuiroFeet.Controllers
             return View();
         }
 
-        // POST: Recibir datos del formulario para registrar nuevo producto
+        // POST: Registrar nuevo producto
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult RegistrarProducto(Productos producto)
@@ -44,16 +60,15 @@ namespace QuiroFeet.Controllers
 
             if (ModelState.IsValid)
             {
+                // Siempre se crea activo
                 producto.activo = 1;
 
                 db.Productos.Add(producto);
                 db.SaveChanges();
 
-                Productos productoBuscado = db.Productos.OrderByDescending(elproducto => elproducto.id).FirstOrDefault();
-
                 var inventario = new Inventario
                 {
-                    id_producto = productoBuscado.id,
+                    id_producto = producto.id,
                     stock = 0,
                     publico = 0
                 };
@@ -68,7 +83,7 @@ namespace QuiroFeet.Controllers
             return View(producto);
         }
 
-        // EDITAR PRODUCTO - GET
+        // GET: Editar producto
         public ActionResult EditarProducto(int id)
         {
             if (Session["UsuarioId"] == null)
@@ -85,7 +100,7 @@ namespace QuiroFeet.Controllers
             return View(producto);
         }
 
-        // EDITAR PRODUCTO - POST
+        // POST: Editar producto
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditarProducto(Productos producto, int stock)
@@ -95,6 +110,17 @@ namespace QuiroFeet.Controllers
 
             if (ModelState.IsValid)
             {
+                var productoDb = db.Productos.Find(producto.id);
+                if (productoDb == null)
+                    return HttpNotFound();
+
+                productoDb.nombre = producto.nombre;
+                productoDb.descripcion = producto.descripcion;
+                productoDb.precio = producto.precio;
+                productoDb.id_proveedor = producto.id_proveedor;
+
+                db.Entry(productoDb).State = EntityState.Modified;
+
                 var inventario = db.Inventario.FirstOrDefault(i => i.id_producto == producto.id);
                 if (inventario != null)
                 {
@@ -106,11 +132,64 @@ namespace QuiroFeet.Controllers
                 return RedirectToAction("Inventario");
             }
 
+            var invent = db.Inventario.FirstOrDefault(i => i.id_producto == producto.id);
+            ViewBag.Inventario = invent;
+
             ViewBag.IdProveedor = new SelectList(db.Proveedores.ToList(), "Id", "Nombre", producto.id_proveedor);
             return View(producto);
         }
 
-        // ELIMINAR PRODUCTO
+        // ========================
+        //   INACTIVAR / ACTIVAR
+        // ========================
+
+        // GET: InactivarProducto
+        // Se llama desde SweetAlert: /Inventario/InactivarProducto/{id}
+        [HttpGet]
+        public ActionResult InactivarProducto(int id)
+        {
+            if (Session["UsuarioId"] == null)
+                return RedirectToAction("Login", "Account");
+
+            var producto = db.Productos.Find(id);
+            if (producto == null)
+                return HttpNotFound();
+
+            // Si ya está inactivo, solo regresamos
+            if (producto.activo == 0)
+                return RedirectToAction("Inventario");
+
+            producto.activo = 0;
+            db.Entry(producto).State = EntityState.Modified;
+            db.SaveChanges();
+
+            // Podrías usar TempData si quieres mostrar un mensaje en la vista
+            // TempData["InventarioMensaje"] = "Producto inactivado correctamente.";
+
+            return RedirectToAction("Inventario");
+        }
+
+        // GET: ActivarProducto (reactivar sin vista intermedia)
+        [HttpGet]
+        public ActionResult ActivarProducto(int id)
+        {
+            if (Session["UsuarioId"] == null)
+                return RedirectToAction("Login", "Account");
+
+            var producto = db.Productos.Find(id);
+            if (producto == null)
+                return HttpNotFound();
+
+            producto.activo = 1;
+            db.Entry(producto).State = EntityState.Modified;
+            db.SaveChanges();
+
+            // TempData["InventarioMensaje"] = "Producto activado nuevamente.";
+
+            return RedirectToAction("Inventario");
+        }
+
+        // (Opcional) ELIMINAR PRODUCTO FÍSICAMENTE – casi no lo usarías ya
         public ActionResult EliminarProducto(int id)
         {
             if (Session["UsuarioId"] == null)
@@ -133,7 +212,6 @@ namespace QuiroFeet.Controllers
         }
 
         // VISTAS ADICIONALES
-
         public ActionResult RegistrarIngreso()
         {
             if (Session["UsuarioId"] == null)
@@ -166,14 +244,14 @@ namespace QuiroFeet.Controllers
             int umbral = 5;
 
             var alertas = db.Inventario
-                 .Where(i => i.stock <= umbral)
-                 .Select(i => new
-                 {
-                     Inventario = i,
-                     Producto = i.Productos
-                 })
-                 .ToList()
-                 .Select(x => new Tuple<Inventario, Productos>(x.Inventario, x.Producto));
+                .Where(i => i.stock <= umbral)
+                .Select(i => new
+                {
+                    Inventario = i,
+                    Producto = i.Productos
+                })
+                .ToList()
+                .Select(x => new Tuple<Inventario, Productos>(x.Inventario, x.Producto));
 
             return View(alertas);
         }

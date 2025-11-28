@@ -1,104 +1,314 @@
 ﻿@using Analisis.BD
+@model Analisis.BD.OrdenesCompra
+
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null; // Igual que el recibo de ventas
 
-    var orden = ViewBag.Orden as OrdenesCompra;
-
-    if (orden == null)
-    {
-        <div class="alert alert-danger text-center">
-            No se pudo cargar la información de la orden.
-        </div>
-        return;
-    }
-
-    ViewBag.Title = $"Detalles de la Orden #{orden.id_orden}";
+    // Soporta ambos escenarios: Model o ViewBag.Orden
+    var orden = Model ?? (ViewBag.Orden as OrdenesCompra);
     var detalles = ViewBag.Detalles as IEnumerable<dynamic>;
+
+    ViewBag.Title = orden != null
+        ? $"Orden de compra #{orden.id_orden}"
+        : "Orden de compra";
 }
 
-
-<div class="container mt-5">
-    <h2 class="text-center mb-4">@ViewBag.Title</h2>
-
-    <!-- Información de la Orden -->
-    <div class="mb-5">
-        <h4 class="text-primary">Información de la Orden</h4>
-        <p><strong>Proveedor:</strong> @orden.Proveedores.nombre</p>
-        <p><strong>Fecha de creación:</strong> @orden.fecha_creacion.ToString("dd/MM/yyyy HH:mm")</p>
-        <p>
-            <strong>Fecha de recepción:</strong>
-            @(orden.fecha_recepcion.HasValue
-                ? orden.fecha_recepcion.Value.ToString("dd/MM/yyyy")
-                : "-")
+@if (orden == null)
+{
+    <div class="invoice-box">
+        <p style="text-align:center; color:#b91c1c;">
+            No se pudo cargar la información de la orden de compra.
         </p>
-        <p><strong>Estado:</strong> @orden.status</p>
-        <p>
-            <strong>Total:</strong>
-            ₡@(orden.total.HasValue
-                ? orden.total.Value.ToString("N2")
-                : "0.00")
-        </p>
+        <div class="actions no-print">
+            <a href="@Url.Action("ListarOrdenes", "OrdenCompra")" class="btn btn-back">
+                <i class="bi bi-arrow-left-circle"></i> Volver al listado
+            </a>
+        </div>
     </div>
+}
+else
+{
+    <div class="invoice-box" id="orden-compra">
+        <div class="header">
+            <div class="logo-container">
+                <img src="~/Imagenes/Logo.png" alt="Logo Quiropie" class="logo-fixed" />
+            </div>
+        </div>
 
-    <!-- Detalle de Productos -->
-    <h4 class="text-primary mb-3">Detalle de Productos</h4>
-    <table class="table table-striped text-center">
-        <thead class="bg-dark text-white">
-            <tr>
-                <th>Producto</th>
-                <th>Cantidad</th>
-                <th>Precio Unitario</th>
-                <th>Subtotal</th>
+        <table cellpadding="0" cellspacing="0">
+            <!-- Encabezado principal -->
+            <tr class="top">
+                <td colspan="4">
+                    <table>
+                        <tr>
+                            <td class="info">
+                                <strong>Orden de compra #: </strong> @orden.id_orden<br />
+                                <strong>Fecha de creación: </strong> @orden.fecha_creacion.ToString("dd/MM/yyyy")<br />
+                                <strong>Hora: </strong> @orden.fecha_creacion.ToString("hh:mm tt")
+                            </td>
+                            <td class="title">
+                                <h1>Quiropie By Lucy</h1>
+                                <p>www.quirofeet.com</p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var d in detalles)
+
+            <!-- Información adicional -->
+            <tr class="information">
+                <td colspan="4">
+                    <table>
+                        <tr>
+                            <td>
+                                <strong>Proveedor:</strong><br />
+                                @(orden.Proveedores?.nombre ?? "Proveedor N/D")
+                            </td>
+                            <td>
+                                <strong>Estado:</strong> @orden.status<br />
+                                <strong>Fecha recepción:</strong>
+                                @(orden.fecha_recepcion.HasValue
+                                    ? orden.fecha_recepcion.Value.ToString("dd/MM/yyyy")
+                                    : "Pendiente")
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- Encabezados de detalle -->
+            <tr class="heading">
+                <td>Producto</td>
+                <td style="text-align:center;">Cantidad</td>
+                <td style="text-align:right;">Precio unitario</td>
+                <td style="text-align:right;">Subtotal</td>
+            </tr>
+
+            @if (detalles != null && detalles.Any())
+            {
+                foreach (var d in detalles)
+                {
+                    <tr class="item">
+                        <td>@d.Nombre</td>
+                        <td style="text-align:center;">@d.Cantidad</td>
+                        <td style="text-align:right;">
+                            ₡@string.Format("{0:N2}", d.PrecioUnidad)
+                        </td>
+                        <td style="text-align:right;">
+                            ₡@string.Format("{0:N2}", d.Subtotal)
+                        </td>
+                    </tr>
+                }
+            }
+            else
             {
                 <tr>
-                    <td>@d.Nombre</td>
-                    <td>@d.Cantidad</td>
-                    
-                    <td>₡@string.Format("{0:N2}", d.PrecioUnidad)</td>
-                    <td>₡@string.Format("{0:N2}", d.Subtotal)</td>
+                    <td colspan="4" style="text-align:center;">
+                        No hay productos registrados en esta orden.
+                    </td>
                 </tr>
             }
-        </tbody>
-    </table>
 
-    <!-- Botones -->
-    <a href="@Url.Action("ListarOrdenes", "OrdenCompra")"
-       class="btn btn-primary rounded-pill px-4 py-2 me-2 text-white">
-        <i class="bi bi-arrow-left text-white me-1"></i> Volver al listado
-    </a>
+            <!-- Total -->
+            <tr class="total">
+                <td colspan="3" style="text-align:right;">Total:</td>
+                <td>
+                    <strong>
+                        ₡@string.Format("{0:N2}", orden.total ?? 0m)
+                    </strong>
+                </td>
+            </tr>
+        </table>
 
-    <a href="@Url.Action("DescargarOrdenPDF", "OrdenCompra", new { id = orden.id_orden })"
-       class="btn btn-primary rounded-pill px-4 py-2 text-white">
-        <i class="bi bi-file-earmark-pdf text-white me-1"></i> Descargar PDF
-    </a>
+        <p class="thank-you">
+            ¡Gracias por gestionar sus compras con Quiropie By Lucy!
+        </p>
 
-    <style>
-        .container {
-            max-width: 900px;
-            background-color: #ffffff;
-            padding: 40px;
-            margin: 40px auto;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+        <div class="actions no-print">
+            <button class="btn btn-print" onclick="window.print()">
+                <i class="bi bi-printer"></i> Imprimir
+            </button>
+            <button class="btn btn-download" onclick="downloadPDFOrden()">
+                <i class="bi bi-file-earmark-pdf"></i> Descargar PDF
+            </button>
+            <a href="@Url.Action("ListarOrdenes", "OrdenCompra")" class="btn btn-back">
+                <i class="bi bi-arrow-left-circle"></i> Volver
+            </a>
+        </div>
+    </div>
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+    async function downloadPDFOrden() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        const container = document.getElementById("orden-compra");
+        const hiddenElements = document.querySelectorAll(".no-print");
+
+        // Ocultar botones para que no salgan en el PDF
+        hiddenElements.forEach(el => el.style.display = "none");
+
+        const canvas = await html2canvas(container, { scale: 2 });
+        const imgData = canvas.toDataURL('image/png');
+        const pdfWidth = doc.internal.pageSize.getWidth();
+        const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+        doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        doc.save("OrdenCompra_@((orden != null ? orden.id_orden.ToString() : "QuiroFeet")).pdf");
+
+        // Volver a mostrar botones
+        hiddenElements.forEach(el => el.style.display = "");
+    }
+</script>
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: #f9fafb;
+        padding: 20px;
+    }
+
+    .invoice-box {
+        max-width: 800px;
+        margin: auto;
+        padding: 40px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        position: relative;
+    }
+
+    .header {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .logo-container {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+
+    .logo-fixed {
+        width: 50px;
+        height: auto;
+    }
+
+    .invoice-box table {
+        width: 100%;
+        line-height: 1.5;
+        text-align: left;
+        border-collapse: collapse;
+    }
+
+        .invoice-box table td {
+            padding: 8px;
+            vertical-align: top;
         }
 
-        h2 {
-            color: #234449;
+    .invoice-box .title {
+        text-align: center;
+    }
+
+    .invoice-box h1 {
+        font-size: 1.8em;
+        color: #234449;
+        margin: 0;
+    }
+
+    .invoice-box p {
+        font-size: 0.95em;
+        color: #555;
+        margin: 4px 0 0;
+    }
+
+    .invoice-box table tr.heading td {
+        background: #234449;
+        color: white;
+        font-weight: bold;
+    }
+
+    .invoice-box table tr.item td {
+        border-bottom: 1px solid #eee;
+    }
+
+    .invoice-box table tr.total td {
+        border-top: 2px solid #234449;
+        font-weight: bold;
+        font-size: 1.1em;
+    }
+
+    .thank-you {
+        text-align: center;
+        margin-top: 30px;
+        font-style: italic;
+        color: #555;
+    }
+
+    .actions {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        margin: 5px;
+        text-decoration: none;
+        border-radius: 6px;
+        color: white;
+        font-size: 1em;
+        display: inline-block;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-print {
+        background: #234449;
+    }
+
+    .btn-download {
+        background: #28a745;
+    }
+
+    .btn-back {
+        background: #6c757d;
+        text-decoration: none;
+    }
+
+    .btn-print:hover {
+        background: #3e77f8;
+    }
+
+    .btn-download:hover {
+        background: #218838;
+    }
+
+    .btn-back:hover {
+        background: #5a6268;
+    }
+
+    .no-print {
+        display: block;
+    }
+
+    @@media print {
+        .no-print {
+            display: none !important;
         }
 
-        .text-primary {
-            color: #3e77f8 !important;
+        body {
+            background: white;
         }
 
-        .table th {
-            background-color: #234449 !important;
+        .invoice-box {
+            box-shadow: none;
+            margin: 0;
         }
 
-        .btn i {
-            vertical-align: middle;
+        @@page {
+            margin: 0;
         }
-    </style>
+    }
+</style>

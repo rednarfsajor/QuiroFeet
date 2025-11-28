@@ -1,205 +1,467 @@
-﻿@model List<Analisis.BD.Productos>
+﻿@model IEnumerable<Analisis.BD.Productos>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Inventario";
+
+    int pageNumber = ViewBag.PageNumber != null ? (int)ViewBag.PageNumber : 1;
+    int totalPages = ViewBag.TotalPages != null ? (int)ViewBag.TotalPages : 1;
+    int totalItems = ViewBag.TotalItems != null ? (int)ViewBag.TotalItems : (Model?.Count() ?? 0);
 }
 
-<!-- Bootstrap Icons -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
-<!-- SweetAlert2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<!-- Estilos CSS -->
-<style>
-    .inventario-container {
-        max-width: 1100px;
-        margin: 50px auto;
-        padding: 30px;
-        background: #ffffff;
-        border-radius: 15px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-    }
-
-    h2 {
-        color: #234449;
-        font-size: 2.6em;
-        margin-bottom: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-    }
-
-    .action-buttons {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-        margin-bottom: 30px;
-    }
-
-        .action-buttons a {
-            text-decoration: none;
-            background-color: #3e77f8;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-size: 1.1em;
-            font-weight: 500;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, background-color 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-            .action-buttons a:hover {
-                transform: translateY(-4px);
-                background-color: #234449;
-            }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 30px;
-    }
-
-    th, td {
-        padding: 14px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-        font-size: 1em;
-    }
-
-    th {
-        background-color: #234449;
-        color: white;
-    }
-
-    .mensaje-vacio {
-        margin-top: 40px;
-        font-size: 1.2em;
-        color: #b02a37;
-        background-color: #ffe6e6;
-        padding: 20px;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-    }
-
-    .btn-editar, .btn-eliminar {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 8px 14px;
-        border-radius: 8px;
-        font-size: 0.9em;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background-color 0.3s, color 0.3s;
-        border: none;
-        text-decoration: none;
-    }
-
-    .btn-editar {
-        background-color: #3e77f8;
-        color: white;
-    }
-
-        .btn-editar:hover {
-            background-color: #234449;
-            color: white;
-        }
-
-    .btn-eliminar {
-        background-color: #b02a37;
-        color: white;
-        margin-left: 8px;
-    }
-
-        .btn-eliminar:hover {
-            background-color: #7a1c24;
-            color: white;
-        }
-
-    .bi {
-        font-size: 1.2em;
-    }
-</style>
-
-<div class="inventario-container">
-    <h2><i class="bi bi-box-seam"></i> Inventario</h2>
-
-    <div class="action-buttons">
-        <a href="@Url.Action("RegistrarProducto", "Inventario")"><i class="bi bi-plus-circle-fill"></i> Registrar Producto</a>
-        <a href="@Url.Action("HistorialMovimientos", "Inventario")"><i class="bi bi-clock-history"></i> Historial de Movimientos</a>
-        <a href="@Url.Action("AlertasStock", "Inventario")"><i class="bi bi-exclamation-triangle-fill"></i> Alertas de Stock</a>
-        <a href="@Url.Action("CrearOrdenCompra", "OrdenCompra")"><i class="bi bi-file-earmark-plus-fill"></i> Crear Orden de Compra</a>
+<div class="qf-page-header">
+    <div>
+        <h1 class="qf-page-title">
+            <i class="bi bi-box-seam"></i> Inventario
+        </h1>
+        <p class="qf-page-subtitle">
+            Gestión y control de productos registrados en QuiroFeet.
+        </p>
     </div>
 
-    @if (Model == null || !Model.Any())
-    {
-        <div class="mensaje-vacio">
-            <i class="bi bi-exclamation-circle-fill"></i> No hay productos registrados en el inventario.
-        </div>
-    }
-    else
-    {
-        <table>
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@item.nombre</td>
-                        <td>@item.descripcion</td>
-                        <td>
-                            <a href="@Url.Action("EditarProducto", new { id = item.id })" class="btn-editar" title="Editar">
-                                <i class="bi bi-pencil-square"></i> Editar
-                            </a>
-                            <button class="btn-eliminar" data-id="@item.id" title="Eliminar">
-                                <i class="bi bi-trash-fill"></i> Eliminar
-                            </button>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
+    <div class="qf-gap-1">
+        <a href="@Url.Action("RegistrarProducto", "Inventario")" class="qf-btn qf-btn-primary">
+            <i class="bi bi-plus-circle-fill"></i> Registrar producto
+        </a>
+        <a href="@Url.Action("CrearOrdenCompra", "OrdenCompra")" class="qf-btn qf-btn-secondary">
+            <i class="bi bi-file-earmark-plus-fill"></i> Orden de compra
+        </a>
+    </div>
 </div>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const botonesEliminar = document.querySelectorAll(".btn-eliminar");
+<div class="qf-card" style="margin-bottom: 1rem;">
+    <div class="qf-filters">
+        <div class="qf-filters-left">
+            <p class="qf-form-label" style="margin-bottom: .35rem;">Accesos rápidos</p>
+            <p class="qf-results-info" style="margin:0;">
+                Navega a los módulos relacionados con movimientos y alertas de inventario.
+            </p>
+        </div>
+        <div class="qf-gap-1">
+            <a href="@Url.Action("HistorialMovimientos", "Inventario")" class="qf-btn qf-btn-secondary">
+                <i class="bi bi-clock-history"></i> Historial de movimientos
+            </a>
+            <a href="@Url.Action("AlertasStock", "Inventario")" class="qf-btn qf-btn-secondary">
+                <i class="bi bi-exclamation-triangle-fill"></i> Alertas de stock
+            </a>
+        </div>
+    </div>
+</div>
 
-        botonesEliminar.forEach(btn => {
-            btn.addEventListener("click", function () {
-                const productoId = this.getAttribute("data-id");
+@if (Model != null)
+{
+    <p class="qf-results-info">
+        Mostrando <strong>@Model.Count()</strong> de <strong>@totalItems</strong> producto@(totalItems == 1 ? "" : "s")
+        • Página <strong>@pageNumber</strong> de <strong>@totalPages</strong>.
+    </p>
+}
 
-                Swal.fire({
-                    title: '¿Estás seguro?',
-                    text: "Esta acción no se puede deshacer.",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#234449',
-                    cancelButtonColor: '#aaa',
-                    confirmButtonText: 'Sí, eliminar',
-                    cancelButtonText: 'Cancelar'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = `/Inventario/EliminarProducto/${productoId}`;
+@if (Model == null || !Model.Any())
+{
+    <div class="qf-table-card">
+        <div class="qf-empty-state">
+            <i class="bi bi-exclamation-circle-fill"></i>
+            <div>
+                <strong>No hay productos registrados.</strong><br />
+                Registra un nuevo producto para comenzar a gestionar el inventario.
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="qf-table-card">
+        <div class="qf-table-wrapper">
+            <table class="qf-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Estado</th>
+                        <th style="width: 190px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.id</td>
+                            <td>@item.nombre</td>
+                            <td>@item.descripcion</td>
+                            <td>
+                                @if (item.activo == 1)
+                                {
+                                    <span class="qf-badge qf-badge-success-flat">Activo</span>
+                                }
+                                else
+                                {
+                                    <span class="qf-badge qf-badge-muted-flat">Inactivo</span>
+                                }
+                            </td>
+                            <td>
+                                <div class="qf-gap-1">
+                                    <a href="@Url.Action("EditarProducto", "Inventario", new { id = item.id })"
+                                       class="qf-btn qf-btn-primary qf-btn-icon"
+                                       title="Editar producto">
+                                        <i class="bi bi-pencil-fill"></i>
+                                    </a>
+
+                                    @if (item.activo == 1)
+                                    {
+                                        <!-- Inactivar -->
+                                        <button type="button"
+                                                class="qf-btn qf-btn-danger qf-btn-icon js-toggle-product"
+                                                data-id="@item.id"
+                                                data-action="inactivar"
+                                                title="Inactivar producto">
+                                            <i class="bi bi-slash-circle-fill"></i>
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <!-- Activar -->
+                                        <button type="button"
+                                                class="qf-btn qf-btn-secondary qf-btn-icon js-toggle-product"
+                                                data-id="@item.id"
+                                                data-action="activar"
+                                                title="Activar producto">
+                                            <i class="bi bi-arrow-clockwise"></i>
+                                        </button>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
                     }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+@if (totalPages > 1)
+{
+    <div class="qf-pagination">
+        <ul class="qf-pagination-list">
+            @* Primera / Anterior *@
+            @if (pageNumber > 1)
+            {
+                <li><a href="@Url.Action("Inventario", new { page = 1 })">&laquo;</a></li>
+                <li><a href="@Url.Action("Inventario", new { page = pageNumber - 1 })">&lsaquo;</a></li>
+            }
+            else
+            {
+                <li class="disabled"><span>&laquo;</span></li>
+                <li class="disabled"><span>&lsaquo;</span></li>
+            }
+
+            @* Números *@
+            @{
+                for (int i = 1; i <= totalPages; i++)
+                {
+                    if (i == pageNumber)
+                    {
+                        <li class="active"><span>@i</span></li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("Inventario", new { page = i })">@i</a></li>
+                    }
+                }
+            }
+
+            @* Siguiente / Última *@
+            @if (pageNumber < totalPages)
+            {
+                <li><a href="@Url.Action("Inventario", new { page = pageNumber + 1 })">&rsaquo;</a></li>
+                <li><a href="@Url.Action("Inventario", new { page = totalPages })">&raquo;</a></li>
+            }
+            else
+            {
+                <li class="disabled"><span>&rsaquo;</span></li>
+                <li class="disabled"><span>&raquo;</span></li>
+            }
+        </ul>
+    </div>
+}
+
+@section Styles{
+    <style>
+        /* ===== CONTENEDORES GENERALES ===== */
+        .qf-page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
+        }
+
+        .qf-page-title {
+            font-size: 2.3rem;
+            margin: 0;
+            color: #234449;
+        }
+
+            .qf-page-title i {
+                margin-right: .5rem;
+            }
+
+        .qf-page-subtitle {
+            margin: .25rem 0 0;
+            color: #6B7280;
+            font-size: .95rem;
+        }
+
+        .qf-gap-1 {
+            display: flex;
+            gap: .5rem;
+            flex-wrap: wrap;
+        }
+
+        .qf-card,
+        .qf-table-card {
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+            padding: 1.5rem 1.75rem;
+        }
+
+        .qf-table-card {
+            margin-top: 1rem;
+        }
+
+        .qf-results-info {
+            margin: .25rem 0 1rem;
+            font-size: .9rem;
+            color: #6B7280;
+        }
+
+        /* ===== BOTONES ===== */
+        .qf-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .35rem;
+            padding: .45rem .9rem;
+            border-radius: 999px;
+            border: none;
+            font-size: .85rem;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background .15s, transform .1s, box-shadow .15s;
+        }
+
+        .qf-btn-primary {
+            background: #0FC57C;
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(15, 197, 124, 0.35);
+        }
+
+            .qf-btn-primary:hover {
+                background: #0aa164;
+                transform: translateY(-1px);
+            }
+
+        .qf-btn-secondary {
+            background: #E5E7EB;
+            color: #234449;
+        }
+
+            .qf-btn-secondary:hover {
+                background: #d1d5db;
+            }
+
+        .qf-btn-danger {
+            background: #EF4444;
+            color: #ffffff;
+        }
+
+            .qf-btn-danger:hover {
+                background: #dc2626;
+            }
+
+        .qf-btn-icon {
+            padding-inline: .6rem;
+            min-width: 36px;
+        }
+
+        /* ===== FILTROS ===== */
+        .qf-filters {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .qf-filters-left {
+            flex: 1 1 260px;
+        }
+
+        .qf-form-label {
+            display: block;
+            font-size: .8rem;
+            font-weight: 600;
+            color: #4B5563;
+            margin-bottom: .25rem;
+        }
+
+        /* ===== TABLA ===== */
+        .qf-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .qf-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .9rem;
+        }
+
+            .qf-table thead tr {
+                background: #234449;
+                color: #ffffff;
+            }
+
+            .qf-table th,
+            .qf-table td {
+                padding: .75rem 1rem;
+                text-align: left;
+                border-bottom: 1px solid #E5E7EB;
+                vertical-align: middle;
+            }
+
+            .qf-table tbody tr:nth-child(odd) {
+                background: #F9FAFB;
+            }
+
+            .qf-table tbody tr:hover {
+                background: #ECFEF3;
+            }
+
+        /* ===== BADGES ESTADO ===== */
+        .qf-badge-success-flat {
+            background: transparent;
+            color: #166534;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: .75rem;
+            border: 1px solid #86efac;
+            font-weight: 500;
+        }
+
+        .qf-badge-muted-flat {
+            background: transparent;
+            color: #374151;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: .75rem;
+            border: 1px solid #d1d5db;
+            font-weight: 500;
+        }
+
+        /* ===== EMPTY STATE ===== */
+        .qf-empty-state {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #b91c1c;
+            font-size: .9rem;
+        }
+
+            .qf-empty-state i {
+                font-size: 1.4rem;
+            }
+
+        /* ===== PAGINACIÓN (igual que ClientIndex) ===== */
+        .qf-pagination {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .qf-pagination-list {
+            display: flex;
+            list-style: none;
+            gap: .3rem;
+            padding-left: 0;
+        }
+
+            .qf-pagination-list li a,
+            .qf-pagination-list li span {
+                padding: .3rem .7rem;
+                border-radius: 999px;
+                border: 1px solid #D1D5DB;
+                text-decoration: none;
+                font-size: .8rem;
+                color: #234449;
+            }
+
+            .qf-pagination-list li.active span {
+                background: #0FC57C;
+                color: white;
+                border-color: #0FC57C;
+            }
+
+            .qf-pagination-list li.disabled span {
+                opacity: .4;
+                cursor: default;
+            }
+
+        @@media (max-width: 768px) {
+            .qf-page-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .qf-pagination {
+                justify-content: center;
+            }
+        }
+    </style>
+}
+
+@section Scripts{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const botonesToggle = document.querySelectorAll(".js-toggle-product");
+
+            botonesToggle.forEach(btn => {
+                btn.addEventListener("click", function () {
+                    const productoId = this.getAttribute("data-id");
+                    const action = this.getAttribute("data-action"); // inactivar / activar
+                    const esInactivar = action === "inactivar";
+
+                    Swal.fire({
+                        title: esInactivar ? '¿Inactivar producto?' : '¿Activar producto?',
+                        text: esInactivar
+                            ? 'El producto no se eliminará, solo quedará inactivo en el inventario.'
+                            : 'El producto volverá a estar disponible como activo.',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: esInactivar ? '#EF4444' : '#0FC57C',
+                        cancelButtonColor: '#aaaaaa',
+                        confirmButtonText: esInactivar ? 'Sí, inactivar' : 'Sí, activar',
+                        cancelButtonText: 'Cancelar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            const url = esInactivar
+                                ? '/Inventario/InactivarProducto/' + productoId
+                                : '/Inventario/ActivarProducto/' + productoId;
+
+                            window.location.href = url;
+                        }
+                    });
                 });
             });
         });
-    });
-</script>
+    </script>
+}

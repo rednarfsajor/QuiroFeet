@@ -3,116 +3,366 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = $"Editar Orden #{Model.id_orden}";
+
+    // Opciones de estado (texto vs valor que se guarda)
+    var estados = new List<SelectListItem>
+{
+        new SelectListItem
+        {
+            Text = "Pendiente",
+            Value = "Pendiente",
+            Selected = string.Equals(Model.status, "Pendiente", StringComparison.OrdinalIgnoreCase)
+        },
+        new SelectListItem
+        {
+            // El usuario ve "Recibida",
+            // pero internamente se sigue usando "Procesada"
+            Text = "Recibida",
+            Value = "Procesada",
+            Selected = string.Equals(Model.status, "Procesada", StringComparison.OrdinalIgnoreCase)
+                      || string.Equals(Model.status, "Recibida", StringComparison.OrdinalIgnoreCase)
+        },
+        new SelectListItem
+        {
+            Text = "Cancelada",
+            Value = "Cancelada",
+            Selected = string.Equals(Model.status, "Cancelada", StringComparison.OrdinalIgnoreCase)
+        }
+    };
 }
 
-<div class="container mt-5">
-    <h2 class="text-center mb-4">@ViewBag.Title</h2>
-
-    @using (Html.BeginForm("EditarOrdenCompra", "OrdenCompra", FormMethod.Post, new { @class = "mx-auto", style = "max-width:600px;" }))
-    {
-        @Html.AntiForgeryToken()
-        @Html.HiddenFor(m => m.id_orden)
-
-        <div class="mb-3">
-            <label class="form-label">Proveedor</label>
-            @Html.DropDownListFor(m => m.proveedor_id,
-                (SelectList)ViewBag.proveedor_id,
-                "-- Seleccione --",
-                new { @class = "form-select", required = "required" })
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Fecha de recepción</label>
-            <input type="date"
-                   name="fecha_recepcion"
-                   class="form-control"
-                   value="@(Model.fecha_recepcion.HasValue ? Model.fecha_recepcion.Value.ToString("yyyy-MM-dd") : "")" />
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Estado</label>
-            <input type="text"
-                   name="status"
-                   class="form-control"
-                   value="@Model.status"
-                   required />
-        </div>
-
-        <div class="d-flex justify-content-between mt-4">
-            <button type="submit" class="btn btn-primary px-4">
-                <i class="bi bi-save me-1 text-white"></i> Guardar cambios
-            </button>
-            <a href="@Url.Action("ListarOrdenes","OrdenCompra")"
-               class="btn btn-primary px-4 text-white">
-                <i class="bi bi-arrow-left-circle me-1"></i> Cancelar
-            </a>
-        </div>
-    }
-
-    <hr class="my-5" />
-
-    <h4 class="text-primary mb-3">Detalle de Productos</h4>
-    <table class="table table-striped text-center">
-        <thead class="bg-dark text-white">
-            <tr>
-                <th>Producto</th>
-                <th>Cantidad</th>
-                <th>Precio Unitario</th>
-                <th>Subtotal</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var d in (IEnumerable<dynamic>)ViewBag.Detalles)
-            {
-                <tr>
-                    <td>@d.NombreProducto</td>
-                    <td>@d.Cantidad</td>
-                    <td>₡@String.Format("{0:N2}", (decimal)d.PrecioUnidad)</td>
-                    <td>₡@String.Format("{0:N2}", (decimal)d.Subtotal)</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+<div class="qf-page-header">
+    <div>
+        <h1 class="qf-page-title">
+            <i class="bi bi-pencil-square"></i> Editar orden de compra
+        </h1>
+        <p class="qf-page-subtitle">
+            Actualiza los datos de la orden registrada en QuiroFeet.
+        </p>
+    </div>
 </div>
 
-<style>
-    .container {
-        max-width: 700px;
-        background-color: #fff;
-        padding: 40px;
-        margin: 40px auto;
-        border-radius: 12px;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.05);
-    }
+<div class="qf-form-wrapper">
+    <div class="qf-form-card qf-wide">
+        <div class="qf-form-card-header">
+            <div>
+                <h2>Datos de la orden</h2>
+                <p>Modifica solo los campos necesarios y guarda los cambios.</p>
+            </div>
+        </div>
 
-    h2, h4 {
-        color: #234449;
-    }
+        @using (Html.BeginForm("EditarOrdenCompra", "OrdenCompra", FormMethod.Post, new { @class = "qf-form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.id_orden)
 
-    .text-primary {
-        color: #3e77f8 !important;
-    }
+            @Html.ValidationSummary(true, "", new { @class = "qf-validation-summary" })
 
-    .form-label {
-        font-weight: 600;
-    }
+            <div class="qf-form-grid qf-grid-wide">
 
-    .btn i {
-        vertical-align: middle;
-    }
+                <!-- Proveedor -->
+                <div class="qf-form-group">
+                    <label class="qf-form-label" for="proveedor_id">Proveedor</label>
+                    @Html.DropDownListFor(m => m.proveedor_id,
+                        (SelectList)ViewBag.proveedor_id,
+                        "-- Seleccione --",
+                        new { @class = "qf-form-control qf-input-big", required = "required" })
+                </div>
 
-    .btn-primary {
-        background-color: #1677ff;
-        border-color: #1677ff;
-    }
+                <!-- Fecha creación (solo lectura) -->
+                <div class="qf-form-group">
+                    <label class="qf-form-label">Fecha de creación</label>
+                    <input type="text"
+                           class="qf-form-control qf-input-big"
+                           value="@(Model.fecha_creacion.ToString("dd/MM/yyyy HH:mm"))"
+                           readonly />
+                </div>
 
-        .btn-primary:hover {
-            background-color: #125ed9;
-            border-color: #125ed9;
+                <!-- Fecha recepción (editable) -->
+                <div class="qf-form-group">
+                    <label class="qf-form-label" for="fecha_recepcion">Fecha de recepción</label>
+                    <input type="date"
+                           name="fecha_recepcion"
+                           id="fecha_recepcion"
+                           class="qf-form-control qf-input-big"
+                           value="@(Model.fecha_recepcion.HasValue ? Model.fecha_recepcion.Value.ToString("yyyy-MM-dd") : "")" />
+                </div>
+
+                <!-- Estado (DROPDOWN) -->
+                <div class="qf-form-group">
+                    <label class="qf-form-label" for="status">Estado</label>
+                    @Html.DropDownListFor(m => m.status,
+                        estados,
+                        "-- Seleccione estado --",
+                        new { @class = "qf-form-control qf-input-big", required = "required" })
+                    @Html.ValidationMessageFor(m => m.status, "", new { @class = "qf-field-error" })
+                </div>
+
+            </div>
+
+            <div class="qf-form-actions">
+                <button type="submit" class="qf-btn qf-btn-primary">
+                    <i class="bi bi-check-lg"></i> Guardar cambios
+                </button>
+
+                <a href="@Url.Action("ListarOrdenes", "OrdenCompra")" class="qf-btn qf-btn-secondary">
+                    <i class="bi bi-x-lg"></i> Cancelar
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+@* Detalle de productos *@
+<div class="qf-form-wrapper" style="margin-top: 1.8rem;">
+    <div class="qf-form-card qf-wide">
+        <div class="qf-form-card-header">
+            <div>
+                <h2>Detalle de productos</h2>
+                <p>Resumen de los productos incluidos en esta orden.</p>
+            </div>
+        </div>
+
+        <div class="qf-table-wrapper">
+            <table class="qf-table">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio unitario</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var d in (IEnumerable<dynamic>)ViewBag.Detalles)
+                    {
+                        <tr>
+                            <td>@d.NombreProducto</td>
+                            <td>@d.Cantidad</td>
+                            <td>₡@String.Format("{0:N2}", (decimal)d.PrecioUnidad)</td>
+                            <td>₡@String.Format("{0:N2}", (decimal)d.Subtotal)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Styles{
+    <style>
+        /* ===== HEADER ===== */
+        .qf-page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.8rem;
+            gap: 1rem;
         }
 
-    .text-white i {
-        color: white;
-    }
-</style>
+        .qf-page-title {
+            font-size: 2.4rem;
+            margin: 0;
+            color: #234449;
+        }
 
+            .qf-page-title i {
+                margin-right: .5rem;
+            }
+
+        .qf-page-subtitle {
+            margin: .25rem 0 0;
+            color: #6B7280;
+            font-size: .95rem;
+        }
+
+        /* ===== WRAPPER / CARD ===== */
+        .qf-form-wrapper {
+            display: flex;
+            justify-content: center;
+        }
+
+        .qf-form-card {
+            background: #ffffff;
+            border-radius: 22px;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.10);
+            padding: 2.2rem 2.6rem 2rem;
+            width: 100%;
+            max-width: 960px;
+        }
+
+            .qf-form-card.qf-wide {
+                max-width: 1150px;
+            }
+
+        .qf-form-card-header {
+            margin-bottom: 1.4rem;
+            border-bottom: 1px solid #E5E7EB;
+            padding-bottom: 0.8rem;
+        }
+
+            .qf-form-card-header h2 {
+                font-size: 1.25rem;
+                margin: 0;
+                color: #234449;
+            }
+
+            .qf-form-card-header p {
+                margin: .2rem 0 0;
+                color: #6B7280;
+                font-size: .9rem;
+            }
+
+        .qf-form {
+            width: 100%;
+        }
+
+        .qf-validation-summary {
+            margin-bottom: 1rem;
+            padding: .7rem .9rem;
+            border-radius: 10px;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #b91c1c;
+            font-size: .85rem;
+        }
+
+        /* ===== GRID ===== */
+        .qf-form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.4rem 2.2rem;
+        }
+
+        .qf-grid-wide {
+            gap: 1.7rem 3rem;
+        }
+
+        .qf-form-group {
+            display: flex;
+            flex-direction: column;
+            gap: .3rem;
+        }
+
+        .qf-form-label {
+            font-size: .86rem;
+            font-weight: 600;
+            color: #4B5563;
+        }
+
+        .qf-form-control {
+            width: 100%;
+            padding: .65rem .85rem;
+            border-radius: 10px;
+            border: 1px solid #D1D5DB;
+            font-size: .92rem;
+            outline: none;
+        }
+
+        .qf-input-big {
+            padding: .85rem 1rem;
+            font-size: 1.02rem;
+        }
+
+        .qf-form-control:focus {
+            border-color: #0FC57C;
+            box-shadow: 0 0 0 1px rgba(15, 197, 124, 0.25);
+        }
+
+        .qf-field-error {
+            font-size: .8rem;
+            color: #dc2626;
+        }
+
+        /* ===== ACCIONES ===== */
+        .qf-form-actions {
+            margin-top: 1.9rem;
+            display: flex;
+            justify-content: flex-end;
+            gap: .8rem;
+            flex-wrap: wrap;
+        }
+
+        /* ===== BOTONES ===== */
+        .qf-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .35rem;
+            padding: .5rem 1.2rem;
+            border-radius: 999px;
+            border: none;
+            font-size: .9rem;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background .15s, transform .1s, box-shadow .15s;
+        }
+
+        .qf-btn-primary {
+            background: #0FC57C;
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(15, 197, 124, 0.35);
+        }
+
+            .qf-btn-primary:hover {
+                background: #0aa164;
+                transform: translateY(-1px);
+            }
+
+        .qf-btn-secondary {
+            background: #E5E7EB;
+            color: #234449;
+        }
+
+            .qf-btn-secondary:hover {
+                background: #d1d5db;
+            }
+
+        /* ===== TABLA DETALLE ===== */
+        .qf-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .qf-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .9rem;
+        }
+
+            .qf-table thead tr {
+                background: #234449;
+                color: #ffffff;
+            }
+
+            .qf-table th,
+            .qf-table td {
+                padding: .75rem 1rem;
+                text-align: left;
+                border-bottom: 1px solid #E5E7EB;
+            }
+
+            .qf-table tbody tr:nth-child(odd) {
+                background: #F9FAFB;
+            }
+
+            .qf-table tbody tr:hover {
+                background: #ECFEF3;
+            }
+
+        @@media (max-width: 768px) {
+            .qf-form-card {
+                padding: 1.5rem 1.25rem;
+            }
+
+            .qf-form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .qf-form-actions {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+}

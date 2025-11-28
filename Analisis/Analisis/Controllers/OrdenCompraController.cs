@@ -19,9 +19,49 @@ namespace Analisis.Controllers
         private QuiroFeetEntities6 db = new QuiroFeetEntities6();
 
         // GET: /OrdenCompra/ListarOrdenes
-        public ActionResult ListarOrdenes()
+        public ActionResult ListarOrdenes(string estado = "Todos", string search = "", int page = 1, int pageSize = 10)
         {
-            var ordenes = db.OrdenesCompra.Include(o => o.Proveedores).ToList();
+            var query = db.OrdenesCompra
+                          .Include(o => o.Proveedores)
+                          .AsQueryable();
+
+            // Búsqueda por ID de orden o nombre de proveedor
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                query = query.Where(o =>
+                    o.id_orden.ToString().Contains(search) ||
+                    (o.Proveedores != null && o.Proveedores.nombre.Contains(search)));
+            }
+
+            // Filtro por estado
+            if (!string.IsNullOrWhiteSpace(estado) && estado != "Todos")
+            {
+                query = query.Where(o =>
+                    o.status != null &&
+                    o.status.Equals(estado, StringComparison.OrdinalIgnoreCase));
+            }
+
+            // Totales para la paginación
+            var totalItems = query.Count();
+            var totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
+
+            if (page < 1) page = 1;
+            if (totalPages == 0) totalPages = 1;
+            if (page > totalPages) page = totalPages;
+
+            var ordenes = query
+                .OrderByDescending(o => o.fecha_creacion)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            // Datos para la vista
+            ViewBag.FiltroEstado = estado;
+            ViewBag.CurrentSearch = search;
+            ViewBag.PageNumber = page;
+            ViewBag.TotalPages = totalPages;
+            ViewBag.TotalItems = totalItems;
+
             return View(ordenes);
         }
 
@@ -43,7 +83,6 @@ namespace Analisis.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CrearOrdenCompra(OrdenCompraViewModel model)
         {
-            // Validación personalizada ya se realiza por IValidatableObject
             if (!ModelState.IsValid)
             {
                 ViewBag.Proveedores = new SelectList(db.Proveedores, "id", "nombre", model.proveedor_id);
@@ -104,7 +143,9 @@ namespace Analisis.Controllers
         // GET: /OrdenCompra/DetallesOrdenCompra/5
         public ActionResult DetallesOrdenCompra(int id)
         {
-            var orden = db.OrdenesCompra.Include("Proveedores").FirstOrDefault(o => o.id_orden == id);
+            var orden = db.OrdenesCompra
+                          .Include("Proveedores")
+                          .FirstOrDefault(o => o.id_orden == id);
             if (orden == null) return HttpNotFound();
 
             var detalles = db.DetalleOrden
@@ -138,10 +179,19 @@ namespace Analisis.Controllers
         // GET: /OrdenCompra/EditarOrdenCompra/5
         public ActionResult EditarOrdenCompra(int id)
         {
-            var orden = db.OrdenesCompra.Find(id);
+            var orden = db.OrdenesCompra
+                          .Include(o => o.Proveedores)
+                          .FirstOrDefault(o => o.id_orden == id);
+
             if (orden == null) return HttpNotFound();
 
-            ViewBag.proveedor_id = new SelectList(db.Proveedores.ToList(), "id", "nombre", orden.proveedor_id);
+            // Aquí se marca como seleccionado el proveedor actual de la orden
+            ViewBag.proveedor_id = new SelectList(
+                db.Proveedores.ToList(),
+                "id",
+                "nombre",
+                orden.proveedor_id
+            );
 
             var detalles = db.DetalleOrden
                 .Where(d => d.id_orden == id)
@@ -167,18 +217,62 @@ namespace Analisis.Controllers
                 }).ToList();
 
             ViewBag.Detalles = detalles;
+
             return View(orden);
         }
 
         // POST: /OrdenCompra/EditarOrdenCompra/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditarOrdenCompra(int id, string status)
+        public ActionResult EditarOrdenCompra(OrdenesCompra model)
         {
-            var orden = db.OrdenesCompra.Find(id);
+            if (!ModelState.IsValid)
+            {
+                // Si hay errores, recargamos combos y detalles,
+                // manteniendo el proveedor seleccionado
+                ViewBag.proveedor_id = new SelectList(
+                    db.Proveedores.ToList(),
+                    "id",
+                    "nombre",
+                    model.proveedor_id
+                );
+
+                var detallesError = db.DetalleOrden
+                    .Where(d => d.id_orden == model.id_orden)
+                    .Join(db.Productos,
+                          d => d.id_producto,
+                          p => p.id,
+                          (d, p) => new
+                          {
+                              NombreProducto = p.nombre,
+                              Cantidad = d.qty,
+                              PrecioUnidad = d.precio_unidad,
+                              Subtotal = d.subtotal
+                          })
+                    .ToList()
+                    .Select(x =>
+                    {
+                        dynamic dyn = new ExpandoObject();
+                        dyn.NombreProducto = x.NombreProducto;
+                        dyn.Cantidad = x.Cantidad;
+                        dyn.PrecioUnidad = x.PrecioUnidad;
+                        dyn.Subtotal = x.Subtotal;
+                        return dyn;
+                    }).ToList();
+
+                ViewBag.Detalles = detallesError;
+
+                return View(model);
+            }
+
+            var orden = db.OrdenesCompra.Find(model.id_orden);
             if (orden == null) return HttpNotFound();
 
-            orden.status = status;
+            // Actualizamos campos que vienen del formulario
+            orden.proveedor_id = model.proveedor_id;
+            orden.fecha_recepcion = model.fecha_recepcion;
+            orden.status = model.status;
+
             db.Entry(orden).State = EntityState.Modified;
             db.SaveChanges();
 
@@ -189,7 +283,9 @@ namespace Analisis.Controllers
         // GET: /OrdenCompra/EliminarOrdenCompra/5
         public ActionResult EliminarOrdenCompra(int id)
         {
-            var orden = db.OrdenesCompra.Include(o => o.DetalleOrden).FirstOrDefault(o => o.id_orden == id);
+            var orden = db.OrdenesCompra
+                          .Include(o => o.DetalleOrden)
+                          .FirstOrDefault(o => o.id_orden == id);
             if (orden == null) return HttpNotFound();
 
             return View(orden);
@@ -200,7 +296,9 @@ namespace Analisis.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EliminarOrdenConfirmed(int id)
         {
-            var orden = db.OrdenesCompra.Include(o => o.DetalleOrden).FirstOrDefault(o => o.id_orden == id);
+            var orden = db.OrdenesCompra
+                          .Include(o => o.DetalleOrden)
+                          .FirstOrDefault(o => o.id_orden == id);
             if (orden == null) return HttpNotFound();
 
             foreach (var detalle in orden.DetalleOrden.ToList())
@@ -218,7 +316,9 @@ namespace Analisis.Controllers
         // PDF de Orden
         public ActionResult DescargarOrdenPDF(int id)
         {
-            var orden = db.OrdenesCompra.Include("Proveedores").FirstOrDefault(o => o.id_orden == id);
+            var orden = db.OrdenesCompra
+                          .Include("Proveedores")
+                          .FirstOrDefault(o => o.id_orden == id);
             if (orden == null) return HttpNotFound();
 
             var detalles = db.DetalleOrden.Where(d => d.id_orden == id).ToList();
@@ -235,7 +335,7 @@ namespace Analisis.Controllers
 
                 doc.Add(new Paragraph($"Detalles de la Orden #{orden.id_orden}", titleFont));
                 doc.Add(Chunk.NEWLINE);
-                doc.Add(new Paragraph($"Proveedor: {orden.Proveedores.nombre}", bodyFont));
+                doc.Add(new Paragraph($"Proveedor: {orden.Proveedores?.nombre}", bodyFont));
                 doc.Add(new Paragraph($"Fecha de creación: {orden.fecha_creacion}", bodyFont));
                 doc.Add(new Paragraph($"Estado: {orden.status}", bodyFont));
                 doc.Add(new Paragraph($"Total: ₡{orden.total:N2}", bodyFont));
@@ -269,7 +369,8 @@ namespace Analisis.Controllers
         {
             var productos = db.Productos
                 .Where(p => p.id_proveedor == proveedorId)
-                .Select(p => new {
+                .Select(p => new
+                {
                     id = p.id,
                     nombre = p.nombre,
                     precio = p.precio

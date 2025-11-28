@@ -3,7 +3,7 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Crear Nueva Orden de Compra";
+    ViewBag.Title = "Crear nueva orden de compra";
 
     if (Model?.Productos == null || !Model.Productos.Any())
     {
@@ -14,268 +14,585 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<style>
-    .orden-container {
-        max-width: 900px;
-        margin: 40px auto;
-        padding: 30px;
-        background: #ffffff;
-        border-radius: 15px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
-        font-family: 'Segoe UI', sans-serif;
-        color: #234449;
-    }
+<div class="qf-page-header">
+    <div>
+        <h1 class="qf-page-title">
+            <i class="bi bi-file-earmark-plus-fill"></i> Crear orden de compra
+        </h1>
+        <p class="qf-page-subtitle">
+            Registra una nueva orden de compra asociando proveedor, productos y cantidades.
+        </p>
+    </div>
 
-    h2 {
-        text-align: center;
-        color: #234449;
-        font-size: 2.4em;
-        margin-bottom: 25px;
-    }
-
-    .form-label {
-        font-weight: 600;
-        color: #234449;
-    }
-
-    .form-select, .form-control {
-        border-radius: 8px;
-        border: 1px solid #ccc;
-        padding: 10px;
-    }
-
-    .producto-row {
-        background: #f9f9f9;
-        border-radius: 10px;
-        padding: 15px;
-        margin-bottom: 15px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
-    }
-
-    .btn-primary-custom {
-        background-color: #3e77f8;
-        border: none;
-        color: white !important;
-        border-radius: 8px;
-        padding: 10px 20px;
-        font-weight: 600;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        transition: background-color 0.3s ease;
-        text-decoration: none;
-    }
-
-        .btn-primary-custom:hover {
-            background-color: #234449;
-        }
-
-    .btn-remove {
-        background-color: #b02a37;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        padding: 8px 10px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        transition: background-color 0.3s;
-    }
-
-        .btn-remove:hover {
-            background-color: #7a1c24;
-        }
-
-    .total-display {
-        text-align: center;
-        font-size: 1.2em;
-        font-weight: bold;
-        margin-top: 25px;
-        background: #eaf4fc;
-        padding: 10px 20px;
-        border-radius: 10px;
-        border: 1px solid #cddfee;
-        color: #234449;
-    }
-
-    .action-buttons {
-        text-align: center;
-        margin-top: 30px;
-    }
-</style>
-
-<div class="orden-container">
-    <h2><i class="bi bi-file-earmark-plus-fill"></i> @ViewBag.Title</h2>
-
-    @using (Html.BeginForm("CrearOrdenCompra", "OrdenCompra", FormMethod.Post, new { @class = "mx-auto", style = "max-width:800px;" }))
-    {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
-
-        <div class="mb-3">
-            @Html.LabelFor(m => m.proveedor_id, htmlAttributes: new { @class = "form-label" })
-            @Html.DropDownListFor(m => m.proveedor_id, (SelectList)ViewBag.Proveedores, "-- Seleccione --",
-                new { @class = "form-select", required = "required", id = "proveedor-select" })
-            @Html.ValidationMessageFor(m => m.proveedor_id, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="mb-4">
-            <label class="form-label">Fecha de Creación</label>
-            <input type="text" class="form-control" value="@Model.fecha_creacion.ToString("dd/MM/yyyy HH:mm")" readonly />
-        </div>
-
-        <h4 class="text-primary mb-3"><i class="bi bi-box-seam-fill"></i> Productos</h4>
-
-        <div id="productos-container">
-            @for (int i = 0; i < Model.Productos.Count; i++)
-            {
-                var precio = Model.Productos[i].precio ?? "0.00";
-                <div class="row g-2 align-items-end producto-row">
-                    <div class="col-md-5">
-                        <label class="form-label">Producto</label>
-                        <select name="Productos[@i].id_producto" class="form-select producto-select" required>
-                            <option value="">-- Seleccione un producto --</option>
-                        </select>
-                        @Html.ValidationMessage($"Productos[{i}].id_producto", "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-md-2">
-                        <label class="form-label">Cantidad</label>
-                        <input type="number" name="Productos[@i].qty" class="form-control" min="1" value="@Model.Productos[i].qty" required />
-                        @Html.ValidationMessage($"Productos[{i}].qty", "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Precio Unitario</label>
-                        <input type="text" class="form-control precio-mostrado" value="@precio" readonly />
-                        <input type="hidden" name="Productos[@i].precio" class="precio-real" value="@precio" />
-                        @Html.ValidationMessage($"Productos[{i}].precio", "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-md-2 text-end">
-                        <button type="button" class="btn-remove" title="Eliminar">
-                            <i class="bi bi-trash-fill"></i>
-                        </button>
-                    </div>
-                </div>
-            }
-        </div>
-
-        <button type="button" id="add-product-btn" class="btn-primary-custom mt-3">
-            <i class="bi bi-plus-circle"></i> Agregar Producto
-        </button>
-
-        <div class="total-display mt-4">
-            Total: <span id="totalGeneral">₡0.00</span>
-        </div>
-
-        <div class="action-buttons">
-            <button type="submit" class="btn-primary-custom me-2">
-                <i class="bi bi-save"></i> Guardar Orden
-            </button>
-            <a href="@Url.Action("ListarOrdenes", "OrdenCompra")" class="btn-primary-custom">
-                <i class="bi bi-arrow-left-circle"></i> Cancelar
-            </a>
-        </div>
-    }
+    <div class="qf-gap-1">
+        <a href="@Url.Action("ListarOrdenes", "OrdenCompra")" class="qf-btn qf-btn-secondary">
+            <i class="bi bi-arrow-left-circle"></i> Volver al listado
+        </a>
+    </div>
 </div>
 
-<script>
-    let productosDisponibles = [];
+<div class="qf-form-wrapper">
+    <div class="qf-form-card">
+        <div class="qf-form-layout">
+            <!-- PANEL LATERAL -->
+            <div class="qf-form-side">
+                <div class="qf-form-side-icon">
+                    <i class="bi bi-bag-check-fill"></i>
+                </div>
+                <h2>Datos de la orden</h2>
+                <p>
+                    Crea órdenes de compra para mantener el inventario al día y controlar las entradas
+                    de productos por proveedor.
+                </p>
 
-    function actualizarIndices() {
-        const filas = document.querySelectorAll(".producto-row");
-        filas.forEach((row, index) => {
-            row.querySelector("select").setAttribute("name", `Productos[${index}].id_producto`);
-            row.querySelector("input[name$='qty']").setAttribute("name", `Productos[${index}].qty`);
-            row.querySelector(".precio-real").setAttribute("name", `Productos[${index}].precio`);
+                <ul>
+                    <li><i class="bi bi-check-circle-fill"></i> Selecciona el proveedor correspondiente.</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Agrega uno o varios productos con su cantidad.</li>
+                    <li><i class="bi bi-check-circle-fill"></i> El total se calcula automáticamente.</li>
+                </ul>
+            </div>
+
+            <!-- FORMULARIO PRINCIPAL -->
+            <div class="qf-form-main">
+                @using (Html.BeginForm("CrearOrdenCompra", "OrdenCompra", FormMethod.Post, new { @class = "qf-form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "qf-validation-summary" })
+
+                    <div class="qf-form-grid">
+                        <!-- PROVEEDOR -->
+                        <div class="qf-form-group">
+                            @Html.LabelFor(m => m.proveedor_id, "Proveedor", new { @class = "qf-form-label" })
+                            @Html.DropDownListFor(
+                                m => m.proveedor_id,
+                                (SelectList)ViewBag.Proveedores,
+                                "-- Seleccione --",
+                                new { @class = "qf-form-control", required = "required", id = "proveedor-select" }
+                            )
+                            @Html.ValidationMessageFor(m => m.proveedor_id, "", new { @class = "qf-field-error" })
+                        </div>
+
+                        <!-- FECHA CREACIÓN -->
+                        <div class="qf-form-group">
+                            <label class="qf-form-label">Fecha de creación</label>
+                            <input type="text"
+                                   class="qf-form-control"
+                                   value="@Model.fecha_creacion.ToString("dd/MM/yyyy HH:mm")"
+                                   readonly />
+                        </div>
+                    </div>
+
+                    <div class="qf-products-header">
+                        <h3><i class="bi bi-box-seam-fill"></i> Productos incluidos</h3>
+                        <p>Agrega los productos que deseas solicitar en esta orden de compra.</p>
+                    </div>
+
+                    <div id="productos-container" class="qf-products-list">
+                        @for (int i = 0; i < Model.Productos.Count; i++)
+                        {
+                            var precio = Model.Productos[i].precio ?? "0.00";
+                            <div class="producto-row">
+                                <div class="qf-product-grid">
+                                    <div class="qf-form-group">
+                                        <label class="qf-form-label">Producto</label>
+                                        <select name="Productos[@i].id_producto"
+                                                class="qf-form-control producto-select"
+                                                required>
+                                            <option value="">-- Seleccione un producto --</option>
+                                        </select>
+                                        @Html.ValidationMessage($"Productos[{i}].id_producto", "", new { @class = "qf-field-error" })
+                                    </div>
+
+                                    <div class="qf-form-group">
+                                        <label class="qf-form-label">Cantidad</label>
+                                        <input type="number"
+                                               name="Productos[@i].qty"
+                                               class="qf-form-control"
+                                               min="1"
+                                               value="@Model.Productos[i].qty"
+                                               required />
+                                        @Html.ValidationMessage($"Productos[{i}].qty", "", new { @class = "qf-field-error" })
+                                    </div>
+
+                                    <div class="qf-form-group">
+                                        <label class="qf-form-label">Precio unitario</label>
+                                        <input type="text"
+                                               class="qf-form-control precio-mostrado"
+                                               value="@precio"
+                                               readonly />
+                                        <input type="hidden"
+                                               name="Productos[@i].precio"
+                                               class="precio-real"
+                                               value="@precio" />
+                                        @Html.ValidationMessage($"Productos[{i}].precio", "", new { @class = "qf-field-error" })
+                                    </div>
+
+                                    <div class="qf-form-group qf-product-remove">
+                                        <button type="button"
+                                                class="qf-btn qf-btn-danger qf-btn-icon btn-remove"
+                                                title="Eliminar fila">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <button type="button" id="add-product-btn" class="qf-btn qf-btn-secondary qf-btn-with-icon">
+                        <i class="bi bi-plus-circle"></i> Agregar producto
+                    </button>
+
+                    <div class="orden-total-box">
+                        Total general: <span id="totalGeneral">₡0.00</span>
+                    </div>
+
+                    <div class="qf-form-actions">
+                        <button type="submit" class="qf-btn qf-btn-primary">
+                            <i class="bi bi-save"></i> Guardar orden
+                        </button>
+                        <a href="@Url.Action("ListarOrdenes", "OrdenCompra")" class="qf-btn qf-btn-secondary">
+                            <i class="bi bi-x-lg"></i> Cancelar
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles{
+    <style>
+        /* ===== HEADER ===== */
+        .qf-page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.75rem;
+            gap: 1rem;
+        }
+
+        .qf-page-title {
+            font-size: 2.3rem;
+            margin: 0;
+            color: #234449;
+        }
+
+        .qf-page-title i {
+            margin-right: .5rem;
+        }
+
+        .qf-page-subtitle {
+            margin: .25rem 0 0;
+            color: #6B7280;
+            font-size: .95rem;
+        }
+
+        .qf-gap-1 {
+            display: flex;
+            gap: .5rem;
+            flex-wrap: wrap;
+        }
+
+        /* ===== CARD GENERAL ===== */
+        .qf-form-wrapper {
+            margin-bottom: 2.5rem;
+        }
+
+        .qf-form-card {
+            background: #ffffff;
+            border-radius: 22px;
+            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.10);
+            padding: 2.2rem 2.4rem;
+            max-width: 1150px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .qf-form-layout {
+            display: grid;
+            grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
+            gap: 2.2rem;
+        }
+
+        /* ===== PANEL LATERAL ===== */
+        .qf-form-side {
+            background: linear-gradient(145deg, #234449, #0FC57C);
+            border-radius: 18px;
+            padding: 1.6rem 1.5rem;
+            color: #ECFEFF;
+            display: flex;
+            flex-direction: column;
+            gap: .75rem;
+        }
+
+        .qf-form-side-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: .25rem;
+        }
+
+        .qf-form-side-icon i {
+            font-size: 1.6rem;
+        }
+
+        .qf-form-side h2 {
+            font-size: 1.25rem;
+            margin: 0;
+        }
+
+        .qf-form-side p {
+            font-size: .9rem;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .qf-form-side ul {
+            list-style: none;
+            padding-left: 0;
+            margin: .75rem 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: .35rem;
+            font-size: .86rem;
+        }
+
+        .qf-form-side li {
+            display: flex;
+            gap: .4rem;
+            align-items: flex-start;
+        }
+
+        .qf-form-side li i {
+            font-size: .95rem;
+            margin-top: 1px;
+        }
+
+        /* ===== FORMULARIO PRINCIPAL ===== */
+        .qf-form-main .qf-form {
+            width: 100%;
+        }
+
+        .qf-validation-summary {
+            margin-bottom: 1rem;
+            padding: .7rem .9rem;
+            border-radius: 10px;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #b91c1c;
+            font-size: .85rem;
+        }
+
+        .qf-form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.25rem 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .qf-form-group {
+            display: flex;
+            flex-direction: column;
+            gap: .25rem;
+        }
+
+        .qf-form-label {
+            font-size: .85rem;
+            font-weight: 600;
+            color: #4B5563;
+        }
+
+        .qf-form-control {
+            width: 100%;
+            padding: .55rem .8rem;
+            border-radius: 10px;
+            border: 1px solid #D1D5DB;
+            font-size: .9rem;
+            outline: none;
+        }
+
+        .qf-form-control:focus {
+            border-color: #0FC57C;
+            box-shadow: 0 0 0 1px rgba(15, 197, 124, 0.25);
+        }
+
+        .qf-field-error {
+            font-size: .8rem;
+            color: #dc2626;
+        }
+
+        /* ===== SECCIÓN PRODUCTOS ===== */
+        .qf-products-header h3 {
+            font-size: 1.1rem;
+            margin: 0;
+            color: #234449;
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+        }
+
+        .qf-products-header p {
+            margin: .2rem 0 1rem;
+            font-size: .87rem;
+            color: #6B7280;
+        }
+
+        .qf-products-list {
+            display: flex;
+            flex-direction: column;
+            gap: .85rem;
+            margin-bottom: 1rem;
+        }
+
+        .producto-row {
+            background: #F9FAFB;
+            border-radius: 14px;
+            border: 1px solid #E5E7EB;
+            padding: .9rem .95rem;
+        }
+
+        .qf-product-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 1.2fr) minmax(0, 1.5fr) auto;
+            gap: .8rem 1rem;
+            align-items: flex-end;
+        }
+
+        .qf-product-remove {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        /* ===== TOTAL Y ACCIONES ===== */
+        .orden-total-box {
+            margin-top: 1.1rem;
+            margin-bottom: 1.4rem;
+            padding: .75rem 1rem;
+            border-radius: 12px;
+            border: 1px solid #cddfee;
+            background: #eaf4fc;
+            font-size: .95rem;
+            font-weight: 600;
+            color: #234449;
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+        }
+
+        .orden-total-box span {
+            font-size: 1.05rem;
+        }
+
+        .qf-form-actions {
+            margin-top: 1.25rem;
+            display: flex;
+            gap: .75rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .qf-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .35rem;
+            padding: .45rem 1.05rem;
+            border-radius: 999px;
+            border: none;
+            font-size: .85rem;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background .15s, transform .1s, box-shadow .15s;
+        }
+
+        .qf-btn-with-icon {
+            margin-top: .3rem;
+        }
+
+        .qf-btn-primary {
+            background: #0FC57C;
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(15, 197, 124, 0.35);
+        }
+
+        .qf-btn-primary:hover {
+            background: #0aa164;
+            transform: translateY(-1px);
+        }
+
+        .qf-btn-secondary {
+            background: #E5E7EB;
+            color: #234449;
+        }
+
+        .qf-btn-secondary:hover {
+            background: #d1d5db;
+        }
+
+        .qf-btn-danger {
+            background: #EF4444;
+            color: #ffffff;
+        }
+
+        .qf-btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .qf-btn-icon {
+            padding-inline: .6rem;
+            min-width: 36px;
+        }
+
+        @@media (max-width: 992px) {
+            .qf-form-card {
+                padding: 1.8rem 1.6rem;
+            }
+
+            .qf-form-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @@media (max-width: 768px) {
+            .qf-form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .qf-product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .qf-form-actions {
+                justify-content: flex-start;
+            }
+
+            .qf-page-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+}
+
+@section Scripts{
+    <script>
+        let productosDisponibles = [];
+
+        function actualizarIndices() {
+            const filas = document.querySelectorAll(".producto-row");
+            filas.forEach((row, index) => {
+                row.querySelector("select.producto-select")
+                    .setAttribute("name", `Productos[${index}].id_producto`);
+
+                row.querySelector("input[name$='qty']")
+                    .setAttribute("name", `Productos[${index}].qty`);
+
+                row.querySelector(".precio-real")
+                    .setAttribute("name", `Productos[${index}].precio`);
+            });
+        }
+
+        function actualizarPrecioYTotal() {
+            const filas = document.querySelectorAll(".producto-row");
+            let total = 0;
+
+            filas.forEach((row) => {
+                const select = row.querySelector("select.producto-select");
+                const precioMostrado = row.querySelector(".precio-mostrado");
+                const precioHidden = row.querySelector(".precio-real");
+                const qtyInput = row.querySelector("input[name$='qty']");
+
+                const selectedOption = select.options[select.selectedIndex];
+                const precio = parseFloat(selectedOption?.getAttribute("data-precio")) || 0;
+                const cantidad = parseInt(qtyInput.value) || 0;
+
+                precioMostrado.value = precio.toFixed(2);
+                precioHidden.value = precio.toFixed(2);
+                total += precio * cantidad;
+            });
+
+            document.getElementById("totalGeneral").innerText = "₡" + total.toFixed(2);
+        }
+
+        function attachRemove(row) {
+            const btn = row.querySelector(".btn-remove");
+            if (!btn) return;
+
+            btn.addEventListener("click", function () {
+                if (document.querySelectorAll(".producto-row").length > 1) {
+                    row.remove();
+                    actualizarIndices();
+                    actualizarPrecioYTotal();
+                }
+            });
+        }
+
+        document.getElementById("add-product-btn").addEventListener("click", function () {
+            const container = document.getElementById("productos-container");
+            const template = container.querySelector(".producto-row").cloneNode(true);
+
+            template.querySelector("input[name$='qty']").value = 1;
+            template.querySelector(".precio-mostrado").value = "0.00";
+            template.querySelector(".precio-real").value = "0.00";
+
+            const select = template.querySelector("select.producto-select");
+            select.innerHTML = '<option value="">-- Seleccione un producto --</option>';
+            productosDisponibles.forEach(p => {
+                const opt = document.createElement("option");
+                opt.value = p.id;
+                opt.setAttribute("data-precio", p.precio);
+                opt.textContent = p.nombre;
+                select.appendChild(opt);
+            });
+
+            container.appendChild(template);
+            attachRemove(template);
+            actualizarIndices();
+            actualizarPrecioYTotal();
         });
-    }
 
-    function actualizarPrecioYTotal() {
-        const filas = document.querySelectorAll(".producto-row");
-        let total = 0;
+        document.getElementById("proveedor-select").addEventListener("change", function () {
+            const proveedorId = this.value;
+            if (!proveedorId || isNaN(proveedorId)) return;
 
-        filas.forEach((row) => {
-            const select = row.querySelector("select");
-            const precioMostrado = row.querySelector(".precio-mostrado");
-            const precioHidden = row.querySelector(".precio-real");
-            const qtyInput = row.querySelector("input[name$='qty']");
+            fetch(`/OrdenCompra/GetProductosPorProveedor?proveedorId=${proveedorId}`)
+                .then(res => res.json())
+                .then(data => {
+                    productosDisponibles = data;
 
-            const selectedOption = select.options[select.selectedIndex];
-            const precio = parseFloat(selectedOption?.getAttribute("data-precio")) || 0;
-            const cantidad = parseInt(qtyInput.value) || 0;
+                    const selects = document.querySelectorAll(".producto-select");
+                    selects.forEach(select => {
+                        const selectedValue = select.value; // por si en un futuro quieres reutilizar
+                        select.innerHTML = '<option value="">-- Seleccione un producto --</option>';
 
-            precioMostrado.value = precio.toFixed(2);
-            precioHidden.value = precio.toFixed(2);
-            total += precio * cantidad;
+                        productosDisponibles.forEach(p => {
+                            const opt = document.createElement("option");
+                            opt.value = p.id;
+                            opt.setAttribute("data-precio", p.precio);
+                            opt.textContent = p.nombre;
+                            select.appendChild(opt);
+                        });
+                    });
+
+                    actualizarPrecioYTotal();
+                });
         });
 
-        document.getElementById("totalGeneral").innerText = "₡" + total.toFixed(2);
-    }
-
-    function attachRemove(row) {
-        row.querySelector(".btn-remove").addEventListener("click", function () {
-            if (document.querySelectorAll(".producto-row").length > 1) {
-                row.remove();
-                actualizarIndices();
+        document.addEventListener("change", function (e) {
+            if (e.target.matches("select[name^='Productos']") || e.target.matches("input[name^='Productos']")) {
                 actualizarPrecioYTotal();
             }
         });
-    }
 
-    document.getElementById("add-product-btn").addEventListener("click", function () {
-        const container = document.getElementById("productos-container");
-        const template = container.querySelector(".producto-row").cloneNode(true);
-
-        template.querySelector("input[name$='qty']").value = 1;
-        template.querySelector(".precio-mostrado").value = "0.00";
-        template.querySelector(".precio-real").value = "0.00";
-
-        const select = template.querySelector("select");
-        select.innerHTML = '<option value="">-- Seleccione un producto --</option>';
-        productosDisponibles.forEach(p => {
-            const opt = document.createElement("option");
-            opt.value = p.id;
-            opt.setAttribute("data-precio", p.precio);
-            opt.textContent = p.nombre;
-            select.appendChild(opt);
-        });
-
-        container.appendChild(template);
-        attachRemove(template);
+        // Attach a todos los existentes al cargar
+        document.querySelectorAll(".producto-row").forEach(r => attachRemove(r));
         actualizarIndices();
-    });
-
-    document.getElementById("proveedor-select").addEventListener("change", function () {
-        const proveedorId = this.value;
-        if (!proveedorId || isNaN(proveedorId)) return;
-
-        fetch(`/OrdenCompra/GetProductosPorProveedor?proveedorId=${proveedorId}`)
-            .then(res => res.json())
-            .then(data => {
-                productosDisponibles = data;
-                const selects = document.querySelectorAll(".producto-select");
-                selects.forEach(select => {
-                    select.innerHTML = '<option value="">-- Seleccione un producto --</option>';
-                    productosDisponibles.forEach(p => {
-                        const opt = document.createElement("option");
-                        opt.value = p.id;
-                        opt.setAttribute("data-precio", p.precio);
-                        opt.textContent = p.nombre;
-                        select.appendChild(opt);
-                    });
-                });
-
-                actualizarPrecioYTotal();
-            });
-    });
-
-    document.addEventListener("change", function (e) {
-        if (e.target.matches("select[name^='Productos']") || e.target.matches("input[name^='Productos']")) {
-            actualizarPrecioYTotal();
-        }
-    });
-
-    attachRemove(document.querySelector(".producto-row"));
-    actualizarIndices();
-    actualizarPrecioYTotal();
-</script>
+        actualizarPrecioYTotal();
+    </script>
+}

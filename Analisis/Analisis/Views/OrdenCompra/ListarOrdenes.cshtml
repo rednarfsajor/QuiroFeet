@@ -2,151 +2,394 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Listado de Órdenes de Compra";
+    ViewBag.Title = "Órdenes de compra";
+
+    string filtroEstado = ViewBag.FiltroEstado as string ?? "Todos";
+    string busquedaActual = ViewBag.CurrentSearch as string ?? "";
+
+    int pageNumber = ViewBag.PageNumber != null ? (int)ViewBag.PageNumber : 1;
+    int totalPages = ViewBag.TotalPages != null ? (int)ViewBag.TotalPages : 1;
+    int totalItems = ViewBag.TotalItems != null ? (int)ViewBag.TotalItems : (Model?.Count() ?? 0);
 }
 
-<!-- Bootstrap Icons -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
 
-<div class="ordenes-container">
-    <h2><i class="bi bi-list-check"></i> @ViewBag.Title</h2>
+<div class="qf-page-header">
+    <div>
+        <h1 class="qf-page-title">
+            <i class="bi bi-list-check"></i> Órdenes de compra
+        </h1>
+        <p class="qf-page-subtitle">
+            Listado y administración de órdenes de compra registradas en QuiroFeet.
+        </p>
+    </div>
 
-    @if (!Model.Any())
-    {
-        <div class="mensaje-vacio">
-            <i class="bi bi-info-circle-fill me-2"></i> No se encontraron órdenes de compra.
-        </div>
-    }
-    else
-    {
-        <table class="ordenes-tabla">
+    <div class="qf-gap-1">
+        <a href="@Url.Action("CrearOrdenCompra", "OrdenCompra")" class="qf-btn qf-btn-primary">
+            <i class="bi bi-file-earmark-plus-fill"></i> Nueva orden
+        </a>
+    </div>
+</div>
+
+@if (Model != null)
+{
+    <p class="qf-results-info">
+        Mostrando <strong>@Model.Count()</strong> de <strong>@totalItems</strong> órdenes • Página <strong>@pageNumber</strong> de <strong>@totalPages</strong>
+    </p>
+}
+
+<div class="qf-table-card">
+    <div class="qf-table-wrapper">
+        <table class="qf-table">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Proveedor</th>
-                    <th>Fecha y Hora</th>
+                    <th>Fecha y hora</th>
                     <th>Estado</th>
                     <th>Total (₡)</th>
-                    <th>Acciones</th>
+                    <th style="width: 170px;">Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var orden in Model)
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var orden in Model)
+                    {
+                        var totalTexto = orden.total.HasValue ? orden.total.Value.ToString("N2") : "0.00";
+                        <tr>
+                            <td>@orden.id_orden</td>
+
+                            <td>
+                                @(orden.Proveedores != null && !string.IsNullOrEmpty(orden.Proveedores.nombre)
+                                    ? orden.Proveedores.nombre
+                                    : "Sin proveedor")
+                            </td>
+
+                            <td>@orden.fecha_creacion.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td>
+                                @{
+                                    var estado = orden.status ?? "";
+                                    if (estado.Equals("Pendiente", StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        <span class="qf-badge qf-badge-warning-flat">Pendiente</span>;
+                                    }
+                                    else if (estado.Equals("Procesada", StringComparison.OrdinalIgnoreCase)
+                                          || estado.Equals("Completada", StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        <span class="qf-badge qf-badge-success-flat">Procesada</span>;
+                                    }
+                                    else if (estado.Equals("Cancelada", StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        <span class="qf-badge qf-badge-danger-flat">Cancelada</span>;
+                                    }
+                                    else
+                                    {
+                                        <span class="qf-badge qf-badge-muted-flat">@estado</span>;
+                                    }
+                                }
+                            </td>
+                            <td>₡@totalTexto</td>
+                            <td>
+                                <div class="qf-gap-1">
+                                    <a href="@Url.Action("DetallesOrdenCompra","OrdenCompra", new { id = orden.id_orden })"
+                                       class="qf-btn qf-btn-secondary qf-btn-icon"
+                                       title="Ver detalles">
+                                        <i class="bi bi-eye-fill"></i>
+                                    </a>
+
+                                    <a href="@Url.Action("EditarOrdenCompra","OrdenCompra", new { id = orden.id_orden })"
+                                       class="qf-btn qf-btn-primary qf-btn-icon"
+                                       title="Editar orden">
+                                        <i class="bi bi-pencil-fill"></i>
+                                    </a>
+
+                                    <a href="@Url.Action("EliminarOrdenCompra","OrdenCompra", new { id = orden.id_orden })"
+                                       class="qf-btn qf-btn-danger qf-btn-icon"
+                                       title="Eliminar orden">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
                 {
                     <tr>
-                        <td>@orden.id_orden</td>
-                        <td>@orden.Proveedores.nombre</td>
-                        <td>@orden.fecha_creacion.ToString("dd/MM/yyyy HH:mm")</td>
-                        <td>@orden.status</td>
-                        <td>₡@(orden.total.HasValue ? orden.total.Value.ToString("N2") : "0.00")</td>
-                        <td class="acciones">
-                            <a href="@Url.Action("DetallesOrdenCompra","OrdenCompra", new { id = orden.id_orden })" class="btn-ver" title="Ver Detalles">
-                                <i class="bi bi-eye-fill"></i>
-                            </a>
-                            <a href="@Url.Action("EditarOrdenCompra","OrdenCompra", new { id = orden.id_orden })" class="btn-editar" title="Editar Orden">
-                                <i class="bi bi-pencil-square"></i>
-                            </a>
-                            <a href="@Url.Action("EliminarOrdenCompra","OrdenCompra", new { id = orden.id_orden })" class="btn-eliminar" title="Eliminar Orden">
-                                <i class="bi bi-trash-fill"></i>
-                            </a>
-                        </td>
+                        <td colspan="6">No se encontraron órdenes.</td>
                     </tr>
                 }
             </tbody>
         </table>
-    }
+    </div>
 </div>
 
-<!-- Estilos -->
-<style>
-    .ordenes-container {
-        max-width: 1100px;
-        margin: 50px auto;
-        padding: 30px;
-        background: #ffffff;
-        border-radius: 12px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
-        font-family: 'Segoe UI', sans-serif;
-        color: #234449;
-    }
+@if (totalPages > 1)
+{
+    <div class="qf-pagination">
+        <ul class="qf-pagination-list">
+            @* Primera / Anterior *@
+            @if (pageNumber > 1)
+            {
+                <li><a href="@Url.Action("ListarOrdenes", new { page = 1, estado = filtroEstado, search = busquedaActual })">&laquo;</a></li>
+                <li><a href="@Url.Action("ListarOrdenes", new { page = pageNumber - 1, estado = filtroEstado, search = busquedaActual })">&lsaquo;</a></li>
+            }
+            else
+            {
+                <li class="disabled"><span>&laquo;</span></li>
+                <li class="disabled"><span>&lsaquo;</span></li>
+            }
 
-    h2 {
-        text-align: center;
-        font-size: 2.2em;
-        margin-bottom: 25px;
-        color: #234449;
-    }
+            @* Números *@
+            @{
+                for (int i = 1; i <= totalPages; i++)
+                {
+                    if (i == pageNumber)
+                    {
+                        <li class="active"><span>@i</span></li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("ListarOrdenes", new { page = i, estado = filtroEstado, search = busquedaActual })">@i</a></li>
+                    }
+                }
+            }
 
-    .mensaje-vacio {
-        text-align: center;
-        background: #ffe6e6;
-        color: #b02a37;
-        padding: 20px;
-        font-size: 1.2em;
-        border-radius: 10px;
-        margin-top: 20px;
-    }
+            @* Siguiente / Última *@
+            @if (pageNumber < totalPages)
+            {
+                <li><a href="@Url.Action("ListarOrdenes", new { page = pageNumber + 1, estado = filtroEstado, search = busquedaActual })">&rsaquo;</a></li>
+                <li><a href="@Url.Action("ListarOrdenes", new { page = totalPages, estado = filtroEstado, search = busquedaActual })">&raquo;</a></li>
+            }
+            else
+            {
+                <li class="disabled"><span>&rsaquo;</span></li>
+                <li class="disabled"><span>&raquo;</span></li>
+            }
+        </ul>
+    </div>
+}
 
-    .ordenes-tabla {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 30px;
-    }
-
-        .ordenes-tabla th,
-        .ordenes-tabla td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #ddd;
-            text-align: center;
+@section Styles{
+    <style>
+        /* ===== CONTENEDORES GENERALES ===== */
+        .qf-page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
         }
 
-        .ordenes-tabla thead {
-            background-color: #234449;
-            color: white;
+        .qf-page-title {
+            font-size: 2.3rem;
+            margin: 0;
+            color: #234449;
         }
 
-    .acciones {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-    }
+            .qf-page-title i {
+                margin-right: .5rem;
+            }
 
-    .btn-ver,
-    .btn-editar,
-    .btn-eliminar {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 36px;
-        height: 36px;
-        border-radius: 8px;
-        font-size: 1.1em;
-        color: white;
-        transition: background-color 0.3s ease;
-        text-decoration: none;
-    }
-
-    .btn-ver {
-        background-color: #3e77f8;
-    }
-
-        .btn-ver:hover {
-            background-color: #234449;
+        .qf-page-subtitle {
+            margin: .25rem 0 0;
+            color: #6B7280;
+            font-size: .95rem;
         }
 
-    .btn-editar {
-        background-color: #3e77f8;
-    }
-
-        .btn-editar:hover {
-            background-color: #234449;
+        .qf-gap-1 {
+            display: flex;
+            gap: .5rem;
+            flex-wrap: wrap;
         }
 
-    .btn-eliminar {
-        background-color: #b02a37;
-    }
-
-        .btn-eliminar:hover {
-            background-color: #7a1c24;
+        .qf-card,
+        .qf-table-card {
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+            padding: 1.5rem 1.75rem;
         }
-</style>
+
+        .qf-table-card {
+            margin-top: 1rem;
+        }
+
+        .qf-results-info {
+            margin: .25rem 0 1rem;
+            font-size: .9rem;
+            color: #6B7280;
+        }
+
+        /* ===== BOTONES ===== */
+        .qf-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .35rem;
+            padding: .45rem .9rem;
+            border-radius: 999px;
+            border: none;
+            font-size: .85rem;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background .15s, transform .1s, box-shadow .15s;
+        }
+
+        .qf-btn-primary {
+            background: #0FC57C;
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(15, 197, 124, 0.35);
+        }
+
+            .qf-btn-primary:hover {
+                background: #0aa164;
+                transform: translateY(-1px);
+            }
+
+        .qf-btn-secondary {
+            background: #E5E7EB;
+            color: #234449;
+        }
+
+            .qf-btn-secondary:hover {
+                background: #d1d5db;
+            }
+
+        .qf-btn-danger {
+            background: #EF4444;
+            color: #ffffff;
+        }
+
+            .qf-btn-danger:hover {
+                background: #dc2626;
+            }
+
+        .qf-btn-icon {
+            padding-inline: .6rem;
+            min-width: 36px;
+        }
+
+        /* ===== TABLA ===== */
+        .qf-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .qf-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .9rem;
+        }
+
+            .qf-table thead tr {
+                background: #234449;
+                color: #ffffff;
+            }
+
+            .qf-table th,
+            .qf-table td {
+                padding: .75rem 1rem;
+                text-align: left;
+                border-bottom: 1px solid #E5E7EB;
+                vertical-align: middle;
+            }
+
+            .qf-table tbody tr:nth-child(odd) {
+                background: #F9FAFB;
+            }
+
+            .qf-table tbody tr:hover {
+                background: #ECFEF3;
+            }
+
+        /* ===== BADGES ===== */
+        .qf-badge-success-flat {
+            background: transparent;
+            color: #166534;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: .75rem;
+            border: 1px solid #86efac;
+            font-weight: 500;
+        }
+
+        .qf-badge-muted-flat {
+            background: transparent;
+            color: #374151;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: .75rem;
+            border: 1px solid #d1d5db;
+            font-weight: 500;
+        }
+
+        .qf-badge-warning-flat {
+            background: transparent;
+            color: #92400e;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: .75rem;
+            border: 1px solid #fed7aa;
+            font-weight: 500;
+        }
+
+        .qf-badge-danger-flat {
+            background: transparent;
+            color: #b91c1c;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: .75rem;
+            border: 1px solid #fecaca;
+            font-weight: 500;
+        }
+
+        /* ===== PAGINACIÓN ===== */
+        .qf-pagination {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .qf-pagination-list {
+            display: flex;
+            list-style: none;
+            gap: .3rem;
+            padding-left: 0;
+        }
+
+            .qf-pagination-list li a,
+            .qf-pagination-list li span {
+                padding: .3rem .7rem;
+                border-radius: 999px;
+                border: 1px solid #D1D5DB;
+                text-decoration: none;
+                font-size: .8rem;
+                color: #234449;
+            }
+
+            .qf-pagination-list li.active span {
+                background: #0FC57C;
+                color: white;
+                border-color: #0FC57C;
+            }
+
+            .qf-pagination-list li.disabled span {
+                opacity: .4;
+                cursor: default;
+            }
+
+        @@media (max-width: 768px) {
+            .qf-page-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .qf-pagination {
+                justify-content: center;
+            }
+        }
+    </style>
+}

@@ -1,66 +1,142 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Historial de Movimientos";
+    ViewBag.Title = "Historial de movimientos";
 }
 
-<!-- Estilos CSS -->
-<style>
-    .movimientos-container {
-        max-width: 900px;
-        margin: 50px auto;
-    }
-
-    h2 {
-        color: #234449;
-        font-size: 2.5em;
-        margin-bottom: 20px;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 30px;
-    }
-
-    th, td {
-        padding: 12px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-
-    th {
-        background-color: #234449;
-        color: white;
-    }
-
-    td {
-        font-size: 1.2em;
-    }
-</style>
-
-<div class="movimientos-container">
-    <h2>Historial de Movimientos</h2>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Fecha</th>
-                <th>Tipo de Movimiento</th>
-                <th>Cantidad</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>01/04/2025</td>
-                <td>Ingreso</td>
-                <td>10</td>
-            </tr>
-            <tr>
-                <td>02/04/2025</td>
-                <td>Salida</td>
-                <td>5</td>
-            </tr>
-            <!-- Más movimientos aquí -->
-        </tbody>
-    </table>
+<div class="qf-page-header">
+    <div>
+        <h1 class="qf-page-title">
+            <i class="bi bi-arrow-left-right"></i> Historial de movimientos
+        </h1>
+        <p class="qf-page-subtitle">
+            Registro de ingresos y salidas de inventario.
+        </p>
+    </div>
 </div>
+
+<div class="qf-table-card">
+    <div class="qf-table-wrapper">
+        <table class="qf-table">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Tipo de movimiento</th>
+                    <th>Cantidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Ejemplos estáticos, luego los reemplazás por tu modelo -->
+                <tr>
+                    <td>01/04/2025</td>
+                    <td>
+                        <span class="qf-badge-success-flat">Ingreso</span>
+                    </td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>02/04/2025</td>
+                    <td>
+                        <span class="qf-badge-danger-flat">Salida</span>
+                    </td>
+                    <td>5</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Styles{
+    <style>
+        /* ===== HEADER ===== */
+        .qf-page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
+        }
+
+        .qf-page-title {
+            font-size: 2.3rem;
+            margin: 0;
+            color: #234449;
+        }
+
+            .qf-page-title i {
+                margin-right: .5rem;
+            }
+
+        .qf-page-subtitle {
+            margin: .25rem 0 0;
+            color: #6B7280;
+            font-size: .95rem;
+        }
+
+        /* ===== CARD / TABLA ===== */
+        .qf-table-card {
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+            padding: 1.5rem 1.75rem;
+        }
+
+        .qf-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .qf-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .9rem;
+        }
+
+            .qf-table thead tr {
+                background: #234449;
+                color: #ffffff;
+            }
+
+            .qf-table th,
+            .qf-table td {
+                padding: .75rem 1rem;
+                text-align: left;
+                border-bottom: 1px solid #E5E7EB;
+                vertical-align: middle;
+            }
+
+            .qf-table tbody tr:nth-child(odd) {
+                background: #F9FAFB;
+            }
+
+            .qf-table tbody tr:hover {
+                background: #ECFEF3;
+            }
+
+        /* ===== BADGES ===== */
+        .qf-badge-success-flat {
+            background: transparent;
+            color: #166534;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: .75rem;
+            border: 1px solid #86efac;
+            font-weight: 500;
+        }
+
+        .qf-badge-danger-flat {
+            background: transparent;
+            color: #b91c1c;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: .75rem;
+            border: 1px solid #fecaca;
+            font-weight: 500;
+        }
+
+        @@media (max-width: 768px) {
+            .qf-table-card {
+                padding: 1.25rem;
+            }
+        }
+    </style>
+}

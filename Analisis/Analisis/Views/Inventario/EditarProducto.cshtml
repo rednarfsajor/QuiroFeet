@@ -1,213 +1,309 @@
 ﻿@model Analisis.BD.Productos
 
 @{
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Editar Producto";
 }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+<div class="qf-page-header">
+    <div>
+        <h1 class="qf-page-title">
+            <i class="bi bi-pencil-square"></i> Editar producto
+        </h1>
+        <p class="qf-page-subtitle">
+            Actualiza los datos del producto y su inventario en QuiroFeet.
+        </p>
+    </div>
+</div>
 
-<div class="full-page-container">
-    <div class="form-container">
-        <h1><i class="bi bi-pencil-square"></i> Editar Producto</h1>
-        <p>Actualiza los datos del producto y su inventario</p>
+<div class="qf-form-wrapper">
+    <div class="qf-form-card qf-wide">
+        <div class="qf-form-card-header">
+            <div>
+                <h2>Datos del producto</h2>
+                <p>Modifica solo los campos necesarios y guarda los cambios.</p>
+            </div>
+        </div>
 
-        @using (Html.BeginForm("EditarProducto", "Inventario", FormMethod.Post, new { @class = "formulario", autocomplete = "off" }))
+        @using (Html.BeginForm("EditarProducto", "Inventario", FormMethod.Post, new { @class = "qf-form" }))
         {
             @Html.AntiForgeryToken()
-            @Html.HiddenFor(model => model.id)
+            @Html.HiddenFor(m => m.id)
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.nombre)
-                <div class="input-icon">
-                    <i class="bi bi-card-text"></i>
-                    @Html.TextBoxFor(model => model.nombre, new { @class = "form-control", placeholder = "Ej. Producto XYZ", required = "required", autofocus = "autofocus" })
+            @Html.ValidationSummary(true, "", new { @class = "qf-validation-summary" })
+
+            <div class="qf-form-grid qf-grid-wide">
+
+                <!-- Nombre -->
+                <div class="qf-form-group">
+                    <label class="qf-form-label" for="nombre">Nombre del producto</label>
+                    @Html.TextBoxFor(m => m.nombre, new
+                    {
+                        @class = "qf-form-control qf-input-big",
+                        placeholder = "Ej: Crema hidratante podal",
+                        required = "required"
+                    })
+                    @Html.ValidationMessageFor(m => m.nombre, "", new { @class = "qf-field-error" })
                 </div>
-                @Html.ValidationMessageFor(model => model.nombre)
+
+                <!-- Proveedor -->
+                <div class="qf-form-group">
+                    <label class="qf-form-label" for="id_proveedor">Proveedor</label>
+                    @Html.DropDownListFor(m => m.id_proveedor,
+                        ViewBag.IdProveedor as SelectList,
+                        "-- Seleccione un proveedor --",
+                        new
+                        {
+                            @class = "qf-form-control qf-input-big",
+                            required = "required"
+                        })
+                    @Html.ValidationMessageFor(m => m.id_proveedor, "", new { @class = "qf-field-error" })
+                </div>
+
+                <!-- Descripción -->
+                <div class="qf-form-group qf-col-span-2">
+                    <label class="qf-form-label" for="descripcion">Descripción</label>
+                    @Html.TextAreaFor(m => m.descripcion, new
+                    {
+                        @class = "qf-form-control",
+                        rows = "3",
+                        placeholder = "Descripción del producto (opcional)"
+                    })
+                    @Html.ValidationMessageFor(m => m.descripcion, "", new { @class = "qf-field-error" })
+                </div>
+
+                <!-- Precio -->
+                <div class="qf-form-group">
+                    <label class="qf-form-label" for="precio">Precio (₡)</label>
+                    @Html.TextBoxFor(m => m.precio, new
+                    {
+                        @class = "qf-form-control qf-input-big",
+                        type = "number",
+                        step = "0.01",
+                        min = "0",
+                        placeholder = "Ej: 3500.00",
+                        required = "required"
+                    })
+                    @Html.ValidationMessageFor(m => m.precio, "", new { @class = "qf-field-error" })
+                </div>
+
+                <!-- Stock -->
+                <div class="qf-form-group">
+                    <label class="qf-form-label" for="stock">Stock</label>
+                    <input type="number"
+                           id="stock"
+                           name="stock"
+                           class="qf-form-control qf-input-big"
+                           value="@((ViewBag.Inventario != null && ViewBag.Inventario.stock != null) ? ViewBag.Inventario.stock.ToString() : "0")"
+                           min="0"
+                           required />
+                </div>
+
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.id_proveedor, "Proveedor")
-                <div class="input-icon">
-                    <i class="bi bi-truck"></i>
-                    @Html.DropDownListFor(model => model.id_proveedor, ViewBag.IdProveedor as SelectList, "-- Seleccione un proveedor --", new { @class = "form-control", required = "required" })
-                </div>
-                @Html.ValidationMessageFor(model => model.id_proveedor)
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.descripcion)
-                <div class="input-icon">
-                    <i class="bi bi-text-paragraph"></i>
-                    @Html.TextAreaFor(model => model.descripcion, new { @class = "form-control", rows = 3, placeholder = "Descripción del producto (opcional)" })
-                </div>
-                @Html.ValidationMessageFor(model => model.descripcion)
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.precio)
-                <div class="input-icon">
-                    <i class="bi bi-currency-dollar"></i>
-                    @Html.TextBoxFor(model => model.precio, new { @class = "form-control", type = "number", step = "0.01", placeholder = "Ej. 99.99", required = "required" })
-                </div>
-                @Html.ValidationMessageFor(model => model.precio)
-            </div>
-
-            <hr />
-
-            <h4 class="mt-4 text-center" style="color:#234449;">Inventario</h4>
-
-            <div class="form-group">
-                <label for="stock" class="control-label">Stock</label>
-                <div class="input-icon">
-                    <i class="bi bi-box-seam"></i>
-                    <input type="number" name="stock" class="form-control" value="@ViewBag.Inventario?.stock ?? 0" min="0" required />
-                </div>
-            </div>
-
-            <div class="form-buttons mt-4">
-                <button type="submit" class="btn-submit">
-                    <i class="bi bi-check-circle-fill"></i> Guardar Cambios
+            <div class="qf-form-actions">
+                <button type="submit" class="qf-btn qf-btn-primary">
+                    <i class="bi bi-check-lg"></i> Guardar cambios
                 </button>
-                <a href="@Url.Action("Inventario", "Inventario")" class="btn-cancel">
-                    <i class="bi bi-x-circle-fill"></i> Cancelar
+
+                <a href="@Url.Action("Inventario", "Inventario")" class="qf-btn qf-btn-secondary">
+                    <i class="bi bi-x-lg"></i> Cancelar
                 </a>
             </div>
         }
     </div>
 </div>
 
-<style>
-    html, body {
-        height: 100%;
-        margin: 0;
-        font-family: 'Poppins', sans-serif;
-        background: url('@Url.Content("~/Imagenes/marmol2.jfif")') no-repeat center center fixed;
-        background-size: cover;
-    }
+@section Styles{
+    <style>
+        /* ===== HEADER ===== */
+        .qf-page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.8rem;
+            gap: 1rem;
+        }
 
-    .full-page-container {
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-    }
+        .qf-page-title {
+            font-size: 2.4rem;
+            margin: 0;
+            color: #234449;
+        }
 
-    .form-container {
-        background-color: rgba(255, 255, 255, 0.97);
-        padding: 40px 30px;
-        border-radius: 20px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        max-width: 520px;
-        width: 100%;
-        text-align: center;
-    }
+            .qf-page-title i {
+                margin-right: .5rem;
+            }
 
-    .form-container h1 {
-        font-size: 2em;
-        font-weight: 700;
-        color: #234449;
-        margin-bottom: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-    }
+        .qf-page-subtitle {
+            margin: .25rem 0 0;
+            color: #6B7280;
+            font-size: .95rem;
+        }
 
-    .form-container p {
-        color: #3e77f8;
-        margin-bottom: 30px;
-    }
+        /* ===== WRAPPER / CARD ===== */
+        .qf-form-wrapper {
+            display: flex;
+            justify-content: center;
+        }
 
-    .form-group {
-        margin-bottom: 20px;
-        text-align: left;
-    }
+        .qf-form-card {
+            background: #ffffff;
+            border-radius: 22px;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.10);
+            padding: 2.2rem 2.6rem 2rem;
+            width: 100%;
+            max-width: 960px;
+        }
 
-    .form-group label {
-        font-weight: 600;
-        color: #234449;
-        margin-bottom: 5px;
-        display: block;
-        text-transform: capitalize;
-    }
+            .qf-form-card.qf-wide {
+                max-width: 1150px;
+            }
 
-    .input-icon {
-        display: flex;
-        align-items: center;
-        background-color: #f9f9f9;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        padding: 8px 12px;
-    }
+        .qf-form-card-header {
+            margin-bottom: 1.4rem;
+            border-bottom: 1px solid #E5E7EB;
+            padding-bottom: 0.8rem;
+        }
 
-    .input-icon i {
-        margin-right: 10px;
-        color: #3e77f8;
-        font-size: 1.2em;
-    }
+            .qf-form-card-header h2 {
+                font-size: 1.25rem;
+                margin: 0;
+                color: #234449;
+            }
 
-    .input-icon input,
-    .input-icon textarea,
-    .input-icon select {
-        border: none;
-        outline: none;
-        width: 100%;
-        font-family: 'Poppins', sans-serif;
-        background-color: transparent;
-        font-size: 1em;
-    }
+            .qf-form-card-header p {
+                margin: .2rem 0 0;
+                color: #6B7280;
+                font-size: .9rem;
+            }
 
-    .form-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-top: 25px;
-    }
+        .qf-form {
+            width: 100%;
+        }
 
-    .btn-submit, .btn-cancel {
-        flex: 1;
-        text-align: center;
-        padding: 12px;
-        border: none;
-        border-radius: 10px;
-        font-weight: 600;
-        cursor: pointer;
-        font-family: 'Poppins', sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
+        .qf-validation-summary {
+            margin-bottom: 1rem;
+            padding: .7rem .9rem;
+            border-radius: 10px;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #b91c1c;
+            font-size: .85rem;
+        }
 
-    .btn-submit {
-        background-color: #3e77f8;
-        color: #fff;
-    }
+        /* ===== GRID ===== */
+        .qf-form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.4rem 2.2rem;
+        }
 
-    .btn-submit:hover {
-        background-color: #234449;
-    }
+        .qf-grid-wide {
+            gap: 1.7rem 3rem;
+        }
 
-    .btn-cancel {
-        background-color: #f0f0f0;
-        color: #234449;
-    }
+        .qf-col-span-2 {
+            grid-column: span 2;
+        }
 
-    .btn-cancel:hover {
-        background-color: #ddd;
-    }
+        .qf-form-group {
+            display: flex;
+            flex-direction: column;
+            gap: .3rem;
+        }
 
-    .field-validation-error {
-        color: #dc3545;
-        font-size: 0.9em;
-        margin-top: 5px;
-    }
+        .qf-form-label {
+            font-size: .86rem;
+            font-weight: 600;
+            color: #4B5563;
+        }
 
-    .btn-submit i {
-        color: #fff;
-    }
-</style>
+        .qf-form-control {
+            width: 100%;
+            padding: .65rem .85rem;
+            border-radius: 10px;
+            border: 1px solid #D1D5DB;
+            font-size: .92rem;
+            outline: none;
+        }
+
+        .qf-input-big {
+            padding: .85rem 1rem;
+            font-size: 1.02rem;
+        }
+
+        .qf-form-control:focus {
+            border-color: #0FC57C;
+            box-shadow: 0 0 0 1px rgba(15, 197, 124, 0.25);
+        }
+
+        .qf-field-error {
+            font-size: .8rem;
+            color: #dc2626;
+        }
+
+        /* ===== ACCIONES ===== */
+        .qf-form-actions {
+            margin-top: 1.9rem;
+            display: flex;
+            justify-content: flex-end;
+            gap: .8rem;
+            flex-wrap: wrap;
+        }
+
+        /* ===== BOTONES ===== */
+        .qf-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .35rem;
+            padding: .5rem 1.2rem;
+            border-radius: 999px;
+            border: none;
+            font-size: .9rem;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background .15s, transform .1s, box-shadow .15s;
+        }
+
+        .qf-btn-primary {
+            background: #0FC57C;
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(15, 197, 124, 0.35);
+        }
+
+            .qf-btn-primary:hover {
+                background: #0aa164;
+                transform: translateY(-1px);
+            }
+
+        .qf-btn-secondary {
+            background: #E5E7EB;
+            color: #234449;
+        }
+
+            .qf-btn-secondary:hover {
+                background: #d1d5db;
+            }
+
+        @@media (max-width: 768px) {
+            .qf-form-card {
+                padding: 1.5rem 1.25rem;
+            }
+
+            .qf-form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .qf-form-actions {
+                justify-content: flex-start;
+            }
+
+            .qf-col-span-2 {
+                grid-column: span 1;
+            }
+        }
+    </style>
+}
