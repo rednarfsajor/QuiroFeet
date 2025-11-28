@@ -1,0 +1,194 @@
+﻿@model Analisis.BD.Clientes
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Inactivar Cliente";
+}
+
+<div class="qf-page-header">
+    <div>
+        <h1 class="qf-page-title">
+            <i class="bi bi-person-dash-fill"></i> Inactivar cliente
+        </h1>
+        <p class="qf-page-subtitle">
+            Esta acción marcará al cliente como inactivo dentro del sistema.
+        </p>
+    </div>
+</div>
+
+<div class="qf-confirm-wrapper">
+    <div class="qf-confirm-card qf-confirm-card-danger">
+        <div class="qf-confirm-icon qf-danger-icon">
+            <i class="bi bi-person-dash-fill"></i>
+        </div>
+
+        <h2 class="qf-confirm-title">¿Inactivar a @Model.nombre?</h2>
+
+        <p class="qf-confirm-text">
+            El cliente <strong>@Model.nombre</strong> será marcado como
+            <span class="qf-tag qf-tag-danger">Inactivo</span> y no podrá utilizarse para citas ni ventas.
+        </p>
+
+        <div class="qf-confirm-actions">
+            @using (Html.BeginForm("DesactivarCliente", "Clientes", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("id", Model.id)
+
+                <button type="submit" class="qf-btn qf-btn-danger">
+                    <i class="bi bi-x-octagon-fill"></i> Sí, inactivar cliente
+                </button>
+            }
+
+            <a href="@Url.Action("ClientIndex", "Clientes")" class="qf-btn qf-btn-secondary">
+                <i class="bi bi-arrow-left"></i> Cancelar
+            </a>
+        </div>
+    </div>
+</div>
+
+@section Styles{
+    <style>
+        /* ----- HEADER ----- */
+        .qf-page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
+        }
+
+        .qf-page-title {
+            font-size: 2.1rem;
+            margin: 0;
+            color: #234449;
+        }
+
+            .qf-page-title i {
+                margin-right: .5rem;
+            }
+
+        .qf-page-subtitle {
+            margin: .25rem 0 0;
+            color: #6B7280;
+            font-size: .95rem;
+        }
+
+
+        /* ----- CONTENEDOR ----- */
+        .qf-confirm-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .qf-confirm-card {
+            max-width: 620px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 22px;
+            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.10);
+            padding: 2.1rem 2.3rem 1.9rem;
+            text-align: center;
+        }
+
+        .qf-confirm-card-danger {
+            border-top: 4px solid #dc2626;
+        }
+
+        .qf-confirm-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 999px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .qf-danger-icon {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+
+        /* ----- TEXTO Y TAGS ----- */
+        .qf-confirm-title {
+            margin: 0 0 .5rem;
+            font-size: 1.4rem;
+            color: #234449;
+        }
+
+        .qf-confirm-text {
+            margin: 0;
+            font-size: .95rem;
+            color: #4B5563;
+            line-height: 1.6;
+        }
+
+        .qf-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.1rem 0.6rem;
+            border-radius: 999px;
+            font-size: .75rem;
+            font-weight: 500;
+        }
+
+        .qf-tag-danger {
+            background: #fecaca;
+            color: #991b1b;
+        }
+
+
+        /* ----- BOTONES ----- */
+        .qf-confirm-actions {
+            margin-top: 1.8rem;
+            display: flex;
+            justify-content: center;
+            gap: .9rem;
+            flex-wrap: wrap;
+        }
+
+        .qf-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .35rem;
+            padding: .45rem 1.05rem;
+            border-radius: 999px;
+            border: none;
+            font-size: .85rem;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background .15s, transform .1s, box-shadow .15s;
+        }
+
+        .qf-btn-danger {
+            background: #dc2626;
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(220, 38, 38, 0.35);
+        }
+
+            .qf-btn-danger:hover {
+                background: #b91c1c;
+                transform: translateY(-1px);
+            }
+
+        .qf-btn-secondary {
+            background: #E5E7EB;
+            color: #234449;
+        }
+
+            .qf-btn-secondary:hover {
+                background: #d1d5db;
+            }
+
+        @@media (max-width: 640px) {
+            .qf-confirm-card {
+                padding: 1.6rem 1.4rem 1.5rem;
+            }
+        }
+    </style>
+}

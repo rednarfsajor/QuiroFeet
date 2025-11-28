@@ -27,6 +27,8 @@ namespace Analisis.BD
         public string nombre { get; set; }
         public string correo { get; set; }
         public string telefono { get; set; }
+        public bool activo { get; set; }
+        public string cedula { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Citas> Citas { get; set; }
